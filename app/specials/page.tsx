@@ -6,7 +6,7 @@ const specials = [
     src: "/images/specials/summer-drips.jpg",
     alt: "Stars, Stripes and Summer Drips IV and vitamin injection specials",
     actions: [
-      { label: "Book an IV Therapy Session or Vitamin Shot", href: "/book-now", variant: "blue" }
+      { label: "Book an IV Therapy Session or Vitamin Shot", href: "https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx", variant: "blue" }
     ]
   },
   {
@@ -20,7 +20,7 @@ const specials = [
     src: "/images/specials/peptide-therapy.jpg",
     alt: "Peptide therapy at Harmony Med Spa",
     actions: [
-      { label: "Book Now", href: "/book-now", variant: "black" },
+      { label: "Book Now", href: "https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx", variant: "black" },
       { label: "Request Pricing on Peptides", href: "#specials-interest", variant: "black" }
     ]
   }

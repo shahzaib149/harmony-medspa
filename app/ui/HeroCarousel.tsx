@@ -26,7 +26,7 @@ export default function HeroCarousel() {
       <div className="hero-shade" />
       <div className="hero-content">
         <h1>harmony med spa</h1>
-        <a className="line-button" href="/book-now">book now</a>
+        <a className="line-button" href="https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx">book now</a>
       </div>
       <div className="hero-dots" aria-label="Carousel slides">
         {slides.map((_, index) => (

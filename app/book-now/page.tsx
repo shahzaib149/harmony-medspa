@@ -34,7 +34,7 @@ export default function BookNowPage() {
         </Link>
         <nav className="booking-nav" aria-label="Booking navigation">
           <Link href="/">Home</Link>
-          <Link href="/book-now">Online Booking</Link>
+          <a href="https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx">Online Booking</a>
         </nav>
       </header>
 
@@ -102,7 +102,7 @@ export default function BookNowPage() {
           </div>
           <div>
             <h2>Pages</h2>
-            <Link href="/book-now">Online Booking</Link>
+            <a href="https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx">Online Booking</a>
             <a href="#">Booking Terms</a>
             <a href="#">Privacy Policy</a>
           </div>

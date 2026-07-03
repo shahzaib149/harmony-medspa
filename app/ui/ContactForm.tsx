@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const WEBHOOK_URL = "https://hook.us2.make.com/mj8bga3ohgj6l7l0fe35f1mqktlfob7a";
+const BOOK_NOW_URL = "https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Errors = {
@@ -105,9 +105,9 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
   }
 
   const bookNowButton = (
-    <Link className={variant === "home" ? "line-button" : "form-book-now-button"} href="/book-now">
+    <a className={variant === "home" ? "line-button" : "form-book-now-button"} href={BOOK_NOW_URL}>
       Book Now
-    </Link>
+    </a>
   );
 
   const submitButton = (
