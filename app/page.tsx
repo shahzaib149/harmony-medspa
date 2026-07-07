@@ -8,6 +8,8 @@ import ProvidersSection from "./ui/ProvidersSection";
 
 const googleMapsLocationUrl =
   "https://www.google.com/maps/search/?api=1&query=Harmony%20Med%20Spa%2C%202184%20Gulf%20Gate%20Dr%2C%20Sarasota%2C%20FL%2034231";
+const monthlySpecialsUrl = "https://mailchi.mp/harmonymedspafl/monthly-specials";
+const newsletterOptInUrl = "https://mailchi.mp/harmonymedspafl/newsletter-opt-in";
 
 export default function Home() {
   return (
@@ -41,7 +43,7 @@ export default function Home() {
             Board-certified nurse practitioner Jessica Simone, APRN, and her team take a natural approach to beauty that provides men and women
             of all ages the most effective and innovative aesthetic treatments available in a relaxed and welcoming setting.
           </p>
-          <a className="line-button" href="/specials">Specials</a>
+          <a className="line-button" href={monthlySpecialsUrl}>Specials</a>
         </div>
       </section>
 
@@ -69,7 +71,7 @@ export default function Home() {
         <div className="section-inner narrow">
           <h2>stay in the know</h2>
           <p>Opt into our newsletter and be the first to know about upcoming specials, exclusive events, and more.</p>
-          <a className="line-button" href="/learn-more">Learn More</a>
+          <a className="line-button" href={newsletterOptInUrl} target="_blank" rel="noopener noreferrer">Learn More</a>
         </div>
       </section>
 

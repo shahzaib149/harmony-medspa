@@ -105,7 +105,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
   }
 
   const bookNowButton = (
-    <a className={variant === "home" ? "line-button" : "form-book-now-button"} href={BOOK_NOW_URL}>
+    <a className={variant === "home" ? "line-button" : "form-book-now-button"} href={BOOK_NOW_URL} target="_blank" rel="noopener noreferrer">
       Book Now
     </a>
   );
