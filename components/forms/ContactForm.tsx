@@ -1,9 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { CONTACT_WEBHOOK_URL, ONLINE_BOOKING_URL } from "@/lib/constants";
 
-const WEBHOOK_URL = "https://hook.us2.make.com/mj8bga3ohgj6l7l0fe35f1mqktlfob7a";
-const BOOK_NOW_URL = "https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Errors = {
@@ -57,7 +56,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
     const params = new URLSearchParams(window.location.search);
 
     try {
-      const response = await fetch(WEBHOOK_URL, {
+      const response = await fetch(CONTACT_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -105,7 +104,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
   }
 
   const bookNowButton = (
-    <a className={variant === "home" ? "line-button" : "form-book-now-button"} href={BOOK_NOW_URL} target="_blank" rel="noopener noreferrer">
+    <a className={variant === "home" ? "line-button" : "form-book-now-button"} href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
       Book Now
     </a>
   );

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { providers } from "../data/providers";
+import { providers } from "@/lib/data/providers";
 
 export default function ProvidersSection() {
   const sectionRef = useRef<HTMLElement>(null);

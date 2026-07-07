@@ -1,8 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { CONTACT_WEBHOOK_URL } from "@/lib/constants";
 
-const WEBHOOK_URL = "https://hook.us2.make.com/mj8bga3ohgj6l7l0fe35f1mqktlfob7a";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -69,7 +69,7 @@ export default function MembershipForm({ kind }: { kind: FormKind }) {
     const params = new URLSearchParams(window.location.search);
 
     try {
-      const response = await fetch(WEBHOOK_URL, {
+      const response = await fetch(CONTACT_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

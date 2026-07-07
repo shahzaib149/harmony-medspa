@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import TypewriterText from "./TypewriterText";
+import TypewriterText from "@/components/ui/TypewriterText";
+import { ONLINE_BOOKING_URL } from "@/lib/constants";
 
 const slides = ["/images/carousel/heroimage_1.jpg", "/images/carousel/heroimage_2.jpg"];
 
@@ -29,7 +30,7 @@ export default function HeroCarousel() {
         <h1>
           <TypewriterText text="harmony med spa" />
         </h1>
-        <a className="line-button" href="https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx"target="_blank" rel="noopener noreferrer">book now</a>
+        <a className="line-button" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">book now</a>
       </div>
       <div className="hero-dots" aria-label="Carousel slides">
         {slides.map((_, index) => (

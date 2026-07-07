@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ONLINE_BOOKING_URL } from "@/lib/constants";
 
 const businessHours = [
   ["Sunday", "Closed"],
@@ -34,7 +35,7 @@ export default function BookNowPage() {
         </Link>
         <nav className="booking-nav" aria-label="Booking navigation">
           <Link href="/">Home</Link>
-          <a href="https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx">Online Booking</a>
+          <a href={ONLINE_BOOKING_URL}>Online Booking</a>
         </nav>
       </header>
 
@@ -102,7 +103,7 @@ export default function BookNowPage() {
           </div>
           <div>
             <h2>Pages</h2>
-            <a href="https://na02.patientnow.com/a/harmonymedspa/OnlineBooking.aspx">Online Booking</a>
+            <a href={ONLINE_BOOKING_URL}>Online Booking</a>
             <a href="#">Booking Terms</a>
             <a href="#">Privacy Policy</a>
           </div>

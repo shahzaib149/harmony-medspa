@@ -1,34 +1,19 @@
-import { Building2, CalendarDays, Facebook, Instagram, MapPin, Phone, Star, Mail } from "lucide-react";
-import AboutDropdown from "./ui/AboutDropdown";
-import ContactForm from "./ui/ContactForm";
-import HeroCarousel from "./ui/HeroCarousel";
-import PatientCenterDropdown from "./ui/PatientCenterDropdown";
-import ServicesGrid from "./ui/ServicesGrid";
-import ProvidersSection from "./ui/ProvidersSection";
+import { MapPin, Star } from "lucide-react";
+import ContactForm from "@/components/forms/ContactForm";
+import HeroCarousel from "@/components/home/HeroCarousel";
+import ServicesGrid from "@/components/home/ServicesGrid";
+import ProvidersSection from "@/components/home/ProvidersSection";
+import SiteHeader from "@/components/layout/SiteHeader";
+import SiteFooter from "@/components/layout/SiteFooter";
+import { GOOGLE_MAPS_LOCATION_URL } from "@/lib/constants";
 
-const googleMapsLocationUrl =
-  "https://www.google.com/maps/search/?api=1&query=Harmony%20Med%20Spa%2C%202184%20Gulf%20Gate%20Dr%2C%20Sarasota%2C%20FL%2034231";
 const monthlySpecialsUrl = "https://mailchi.mp/harmonymedspafl/monthly-specials";
 const newsletterOptInUrl = "https://mailchi.mp/harmonymedspafl/newsletter-opt-in";
 
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <nav className="nav-left" aria-label="Primary left">
-          <a href="#home">home</a>
-          <AboutDropdown />
-          <a href="/services">services</a>
-        </nav>
-        <a className="brand" href="#home" aria-label="Harmony Med Spa home">
-          <img src="/images/logo-transparent.png" alt="Harmony Med Spa" />
-        </a>
-        <nav className="nav-right" aria-label="Primary right">
-          <a href="/shop">shop</a>
-          <PatientCenterDropdown />
-          <a href="/contact-us">contact us</a>
-        </nav>
-      </header>
+      <SiteHeader className="site-header" homeHref="#home" />
 
       <HeroCarousel />
 
@@ -99,7 +84,7 @@ export default function Home() {
       <section id="contact" className="contact">
         <a
           className="map-panel"
-          href={googleMapsLocationUrl}
+          href={GOOGLE_MAPS_LOCATION_URL}
           target="_blank"
           rel="noreferrer"
           aria-label="Open Harmony Med Spa, 2184 Gulf Gate Drive, Sarasota, Florida in Google Maps"
@@ -113,44 +98,7 @@ export default function Home() {
         <ContactForm variant="home" />
       </section>
 
-      <footer className="footer">
-        <div className="footer-inner">
-          <div className="awards">
-            <div className="award-circle">2024<br /><strong>BNS</strong><span>Best in Business</span></div>
-            <div className="bbb">BBB Accredited Business</div>
-          </div>
-          <div className="footer-contact">
-            <p>
-              <MapPin size={18} />
-              <a className="footer-address" href={googleMapsLocationUrl} target="_blank" rel="noreferrer">
-                Harmony Med Spa<br />2184 Gulf Gate Dr.<br />Sarasota, FL 34231
-              </a>
-            </p>
-            <p><Phone size={18} />Phone:<br />(941) 923-8990</p>
-            <p><Building2 size={18} />Fax:<br />(941) 923-9024</p>
-          </div>
-          <div className="hours">
-            {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => (
-              <p key={day}><span>{day}</span><strong>9:00am to 5:00pm</strong></p>
-            ))}
-            <p><span>Saturday</span><strong>Closed</strong></p>
-            <p><span>Sunday</span><strong>Closed</strong></p>
-          </div>
-          <div className="social">
-            <p>Follow Us On</p>
-            <div>
-              <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
-              <a href="#" aria-label="Google"><Mail size={20} /></a>
-              <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
-              <a href="#" aria-label="Book"><CalendarDays size={20} /></a>
-            </div>
-          </div>
-        </div>
-        <div className="copyright">© 2026 Harmony Med Spa. All rights reserved.</div>
-        <p className="powered-by">
-          Powered by: <span className="roya-logo"><span>r</span><span>o</span><span>y</span><span>a</span><span>.com</span></span>
-        </p>
-      </footer>
+      <SiteFooter address="linked-name" copyright="symbol" />
     </main>
   );
 }

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { providers } from "../data/providers";
+import { providers } from "@/lib/data/providers";
 
 type Provider = (typeof providers)[number];
 
