@@ -19,20 +19,20 @@ export default function HeroCarousel() {
   }, []);
 
   return (
-    <section id="home" className="hero" aria-label="Harmony Med Spa image carousel">
+    <section id="home" className="hero relative min-h-[930px] h-[100vh] overflow-hidden bg-[#222] max-[720px]:min-h-[760px]" aria-label="Harmony Med Spa image carousel">
       {slides.map((slide, index) => (
-        <div className={`hero-slide ${index === active ? "is-active" : ""}`} key={slide}>
+        <div className={`hero-slide absolute inset-0 opacity-0 [transform:scale(1.02)] [transition:opacity_1.1s_ease,transform_5.2s_ease] [&_img]:object-cover [&_img]:[filter:grayscale(0.35)_brightness(1.16)_saturate(1.08)] ${index === active ? "is-active" : ""}`} key={slide}>
           <Image src={slide} alt="" fill priority={index === 0} sizes="100vw" />
         </div>
       ))}
-      <div className="hero-shade" />
-      <div className="hero-content">
+      <div className="hero-shade absolute inset-0 [background:rgba(0,0,0,0.26)]" />
+      <div className="hero-content absolute left-[50%] bottom-[54px] [transform:translateX(-50%)] w-[min(900px,92vw)] text-[#fff] text-center [&_h1]:mt-0 [&_h1]:mb-[28px] [&_h1]:mx-0 [&_h1]:[font-family:'Segoe_UI_Light','Helvetica_Neue',Arial,sans-serif] [&_h1]:text-[length:clamp(58px,7.4vw,112px)] [&_h1]:leading-[0.95] [&_h1]:font-extralight [&_h1]:tracking-[0] [&_h1]:min-h-[0.95em] max-[720px]:[&_h1]:text-[length:clamp(58px,7.4vw,112px)]">
         <h1>
           <TypewriterText text="harmony med spa" />
         </h1>
-        <a className="line-button" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">book now</a>
+        <a className="line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">book now</a>
       </div>
-      <div className="hero-dots" aria-label="Carousel slides">
+      <div className="hero-dots absolute right-[34px] bottom-[28px] flex gap-[8px] [&_button]:w-[32px] [&_button]:h-[3px] [&_button]:border-0 [&_button]:[background:rgba(255,255,255,0.42)] [&_button]:cursor-pointer [&_.is-active]:bg-[#fff]" aria-label="Carousel slides">
         {slides.map((_, index) => (
           <button
             className={index === active ? "is-active" : ""}

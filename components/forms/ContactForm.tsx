@@ -104,13 +104,13 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
   }
 
   const bookNowButton = (
-    <a className={variant === "home" ? "line-button" : "form-book-now-button"} href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+    <a className={variant === "home" ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" : "form-book-now-button"} href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
       Book Now
     </a>
   );
 
   const submitButton = (
-    <button className={variant === "home" ? "line-button" : undefined} type="submit" disabled={status === "submitting"}>
+    <button className={variant === "home" ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" : undefined} type="submit" disabled={status === "submitting"}>
       {status === "submitting" ? "Sending..." : "Send Message"}
     </button>
   );
@@ -124,7 +124,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
           <input type="text" name="name" value={name} onChange={(event) => setName(event.target.value)} />
         </label>
         {errors.name ? <p className="form-field-error">{errors.name}</p> : null}
-        <div className="split">
+        <div className="split grid grid-cols-[1fr_1fr] gap-[34px] max-[720px]:grid-cols-[1fr] max-[720px]:gap-[0]">
           <label>
             <span>email</span>
             <input type="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />

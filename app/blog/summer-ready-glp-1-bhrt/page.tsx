@@ -6,16 +6,16 @@ import SiteFooter from "@/components/layout/SiteFooter";
 
 export default function SummerReadyGlpBhrtPage() {
   return (
-    <main className="blog-page blog-detail-page">
+    <main className="blog-page blog-detail-page min-h-[100vh] bg-[#fff] text-[#000]">
       <SiteHeader className="contact-page-header" />
 
-      <section className="blog-hero blog-detail-hero">
+      <section className="blog-hero blog-detail-hero grid [place-items:center] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_70%_42%,rgba(255,255,255,0.06),transparent_24%),repeating-linear-gradient(29deg,rgba(255,255,255,0.025)_0_2px,transparent_2px_9px),linear-gradient(135deg,#252525,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:font-thin min-h-[341px] py-[48px] px-[24px] text-center [&_h1]:w-[min(100%,1290px)] [&_h1]:text-[length:clamp(42px,3.25vw,58px)] [&_h1]:leading-[1.05] max-[720px]:min-h-[230px]">
         <h1>summer-ready from the inside out: how glp-1 weight loss and bhrt work together to help you look and feel your best</h1>
       </section>
 
-      <section className="blog-content blog-detail-content">
-        <article className="blog-article">
-          <div className="blog-article-lede">
+      <section className="blog-content blog-detail-content grid gap-[90px] w-[min(100%_-_48px,1300px)] my-0 mx-auto pb-[142px] px-0 [align-items:start] grid-cols-[minmax(0,820px)_390px] pt-[100px] max-[1050px]:grid-cols-[minmax(0,680px)] max-[1050px]:justify-center max-[1050px]:gap-[46px] max-[1050px]:pt-[76px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:grid-cols-[1fr] max-[720px]:gap-[46px] max-[720px]:pt-[56px] max-[720px]:pb-[76px] max-[720px]:px-0">
+        <article className="blog-article min-w-[0] text-[#4f5966] text-[length:19px] leading-[1.82] [&_p]:mt-0 [&_p]:mb-[18px] [&_p]:mx-0 [&_h2]:mt-[28px] [&_h2]:mb-[17px] [&_h2]:mx-0 [&_h2]:text-[#ebb35a] [&_h2]:text-[length:30px] [&_h2]:leading-[1.2] [&_h2]:font-thin [&_h3]:mt-[27px] [&_h3]:mb-[16px] [&_h3]:mx-0 [&_h3]:text-[#e2a719] [&_h3]:text-[length:30px] [&_h3]:leading-[1.15] [&_h3]:font-extrabold [&_ul]:mt-0 [&_ul]:mb-[20px] [&_ul]:mr-0 [&_ul]:ml-[28px] [&_ul]:p-0 [&_li]:pl-[4px] [&_li]:leading-[1.55]">
+          <div className="blog-article-lede grid grid-cols-[minmax(0,1fr)_300px] gap-[28px] [align-items:start]">
             <div>
               <p>
                 Beach season in Sarasota, FL often inspires people to focus on how they look in summer clothes, swimsuits, and vacation photos. But for many adults, especially those dealing with midlife hormone changes, feeling truly summer-ready is about more than just losing a few pounds. Fatigue, poor sleep, stubborn weight gain, brain fog, and low motivation can make it harder to feel confident and energized even when you are trying to make healthy choices.
@@ -24,7 +24,7 @@ export default function SummerReadyGlpBhrtPage() {
                 At Harmony Med Spa, medically supervised weight loss and hormone optimization can work together to support a more complete summer wellness plan. GLP-1 medications such as Semaglutide and Tirzepatide help regulate appetite and support weight loss, while Bio-Identical Hormone Replacement Therapy, or BHRT, may help address hormonal symptoms that can affect energy, mood, sleep, and metabolism.
               </p>
             </div>
-            <div className="blog-article-feature-image">
+            <div className="blog-article-feature-image relative min-h-[228px] overflow-hidden rounded-[14px] bg-[#0aa785] before:absolute before:inset-0 before:z-[1] before:content-[''] before:[background:linear-gradient(90deg,rgba(0,0,0,0.05)_0_48%,rgba(0,167,133,0.92)_48%_100%)] [&_img]:object-cover [&_span]:absolute [&_span]:right-[16px] [&_span]:bottom-[17px] [&_span]:z-[2] [&_span]:w-[130px] [&_span]:text-[#fff] [&_span]:text-[length:15px] [&_span]:leading-[1.02] [&_span]:uppercase [&_strong]:inline-block [&_strong]:my-[12px] [&_strong]:mx-0 [&_strong]:text-[length:28px] [&_strong]:leading-[1]">
               <Image src="/images/services/wellness/hormonereplacement_thumbnail_1.jpg" alt="" fill sizes="300px" />
               <span>Bio-Identical<br />Hormone Replacement Therapy<br /><strong>+</strong><br />GLP-1</span>
             </div>
@@ -113,14 +113,14 @@ export default function SummerReadyGlpBhrtPage() {
           </p>
         </article>
 
-        <aside className="blog-sidebar" aria-label="Blog links">
-          <label className="about-search">
+        <aside className="blog-sidebar grid [align-content:start] gap-[20px] [&_.about-search]:h-[70px] [&_.about-search]:mb-[15px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[1050px]:[&_.about-search]:col-[1_/_-1] max-[720px]:grid-cols-[1fr] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Blog links">
+          <label className="about-search flex items-center h-[56px] mb-[12px] py-0 pr-[20px] pl-[24px] [border:1px_solid_#c8d2dd] rounded-[8px] text-[var(--gold)] bg-[#fff] [&_input]:min-w-[0] [&_input]:flex-1 [&_input]:border-0 [&_input]:[outline:0] [&_input]:text-[#344356] [&_input]:bg-[transparent] [&_input]:[font:inherit] [&_input::placeholder]:text-[#425263] [&_input::placeholder]:opacity-[0.9] max-[1050px]:col-[1_/_-1]">
             <span className="sr-only">Search keyword</span>
             <input type="search" placeholder="Enter search keyword" />
             <Search size={18} />
           </label>
 
-          <Link className="about-side-card" href="/services" target="_blank" rel="noopener noreferrer">
+          <Link className="about-side-card relative grid [place-items:center] min-h-[184px] overflow-hidden rounded-[10px] text-[#fff] text-center isolate before:content-[''] before:absolute before:inset-0 before:z-[-1] before:[background:rgba(0,0,0,0.34)] [&_img]:z-[-2] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] [&_span]:text-[length:25px] [&_span]:leading-[1.1] [&_span]:font-normal [&_small]:inline-flex [&_small]:min-w-[146px] [&_small]:justify-center [&_small]:mt-[10px] [&_small]:py-[12px] [&_small]:px-[18px] [&_small]:[border-top:1px_solid_var(--gold)] [&_small]:[border-bottom:1px_solid_var(--gold)] [&_small]:text-[length:16px]" href="/services" target="_blank" rel="noopener noreferrer">
             <Image src="/images/blogs/blog-3/img_1.png" alt="" fill sizes="390px" />
             <span>
               All
@@ -130,7 +130,7 @@ export default function SummerReadyGlpBhrtPage() {
             <small>Learn More</small>
           </Link>
 
-          <Link className="about-side-card" href="/contact-us" target="_blank" rel="noopener noreferrer">
+          <Link className="about-side-card relative grid [place-items:center] min-h-[184px] overflow-hidden rounded-[10px] text-[#fff] text-center isolate before:content-[''] before:absolute before:inset-0 before:z-[-1] before:[background:rgba(0,0,0,0.34)] [&_img]:z-[-2] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] [&_span]:text-[length:25px] [&_span]:leading-[1.1] [&_span]:font-normal [&_small]:inline-flex [&_small]:min-w-[146px] [&_small]:justify-center [&_small]:mt-[10px] [&_small]:py-[12px] [&_small]:px-[18px] [&_small]:[border-top:1px_solid_var(--gold)] [&_small]:[border-bottom:1px_solid_var(--gold)] [&_small]:text-[length:16px]" href="/contact-us" target="_blank" rel="noopener noreferrer">
             <Image src="/images/blogs/blog-3/Img_2.png" alt="" fill sizes="390px" />
             <span>
               Keep
