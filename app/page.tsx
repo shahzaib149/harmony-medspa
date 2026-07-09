@@ -1,8 +1,9 @@
-import { MapPin, Star } from "lucide-react";
+import { MapPin } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import ServicesGrid from "@/components/home/ServicesGrid";
 import ProvidersSection from "@/components/home/ProvidersSection";
+import TestimonialCarousel from "@/components/home/TestimonialCarousel";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { GOOGLE_MAPS_LOCATION_URL } from "@/lib/constants";
@@ -60,26 +61,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="testimonial">
-        <div className="quote-mark text-[#e4e4e4] text-[length:150px] leading-[1] [font-family:Georgia,serif] max-[720px]:h-[70px]">“</div>
-        <div className="quote-content [&_p]:mt-0 [&_p]:mb-[34px] [&_p]:mx-0 [&_p]:leading-[1.55] [&_p]:font-normal">
-          <p>
-            I’ve been to a few Med Spas in Sarasota, and Jessica is absolutely the best. She truly cares about providing exceptional service
-            and I am thrilled to have finally found a practitioner I can trust.
-          </p>
-          <div className="stars flex items-center gap-[3px] text-[#e1a71d] [&_span]:ml-[12px] [&_span]:text-[#111] [&_span]:[font-family:'Brush_Script_MT','Segoe_Script',cursive] [&_span]:text-[length:26px] max-[720px]:justify-center" aria-label="Five star review">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Star key={index} fill="currentColor" size={22} />
-            ))}
-            <span>by Ariel F.</span>
-          </div>
-        </div>
-        <div className="slider-lines flex gap-[4px] [&_span]:w-[50px] [&_span]:h-[5px] [&_span]:bg-[#aaa] [&_span:first-child]:bg-[#000] max-[720px]:justify-center" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
-      </section>
+      <TestimonialCarousel />
 
       <section id="contact" className="contact">
         <a

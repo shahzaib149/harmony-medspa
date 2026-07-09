@@ -9,10 +9,10 @@ const patientLinks = [
   { label: "payment plans", href: "/payment-plans" },
   { label: "gift cards", href: giftCardsUrl },
   { label: "testimonials", href: "/testimonials" },
-  { label: "specials", href: monthlySpecialsUrl },
+  { label: "specials", href: monthlySpecialsUrl, newTab: true },
   { label: "events", href: "/events" },
   { label: "blog", href: "/blog" },
-  { label: "newsletter", href: newsletterOptInUrl },
+  { label: "newsletter", href: newsletterOptInUrl, newTab: true },
   { label: "membership", href: "/membership" }
 ];
 
@@ -29,7 +29,7 @@ export default function PatientCenterDropdown() {
               {item.label}
             </Link>
           ) : (
-            <a href={item.href} key={item.label}>
+            <a href={item.href} key={item.label} target={item.newTab ? "_blank" : undefined} rel={item.newTab ? "noreferrer" : undefined}>
               {item.label}
             </a>
           )

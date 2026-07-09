@@ -7,77 +7,77 @@ const services = [
   {
     title: "RF Microneedling",
     image: "/images/services/catalog/rf-microneedling.jpg",
-    href: "/body"
+    href: "/rf-microneedling"
   },
   {
     title: "Laser Hair Removal",
     image: "/images/services/catalog/laser-hair-removal.jpg",
-    href: "/lasers-and-lights"
+    href: "/laser-hair-removal"
   },
   {
     title: "Daxxify",
     image: "/images/services/catalog/daxxify.jpg",
-    href: "/injectables"
+    href: "/daxxify"
   },
   {
     title: "Sculptra",
     image: "/images/services/catalog/sculptra.jpg",
-    href: "/injectables"
+    href: "/sculptra"
   },
   {
     title: "Dermal Fillers",
     image: "/images/services/catalog/dermal-fillers.jpg",
-    href: "/injectables"
+    href: "/dermal-fillers"
   },
   {
     title: "Glo2Facials",
     image: "/images/services/catalog/glo2facials.jpg",
-    href: "/facials-and-peels"
+    href: "/glo2facials"
   },
   {
     title: "Chemical Peels",
     image: "/images/services/catalog/chemical-peels.jpg",
-    href: "/facials-and-peels"
+    href: "/chemical-peels"
   },
   {
     title: "Hormone Replacement Therapy",
     image: "/images/services/catalog/hormone-replacement-therapy.jpg",
-    href: "/wellness"
+    href: "/hormone-replacement-therapy"
   },
   {
     title: "Skincare Products",
     image: "/images/services/catalog/skincare-products.jpg",
-    href: "/skincare"
+    href: "/skincare-products"
   },
   {
     title: "Facials",
     image: "/images/services/catalog/facials.jpg",
-    href: "/facials-and-peels"
+    href: "/facials"
   },
   {
     title: "Fractional CO2 Laser Treatments",
     image: "/images/services/catalog/fractional-co2-laser-treatments.jpg",
-    href: "/lasers-and-lights"
+    href: "/fractional-co2-laser-treatments"
   },
   {
     title: "RevivaMask(TM)",
     image: "/images/services/catalog/revivamask.jpg",
-    href: "/skincare"
+    href: "/revivamask"
   },
   {
     title: "Medical Weight Loss",
     image: "/images/services/catalog/medical-weight-loss.jpg",
-    href: "/wellness"
+    href: "/medical-weight-loss"
   },
   {
     title: "Hair Restoration",
     image: "/images/services/catalog/hair-restoration.jpg",
-    href: "/skincare"
+    href: "/hair-restoration"
   },
   {
     title: "IV Therapy",
     image: "/images/services/catalog/iv-therapy.jpg",
-    href: "/wellness"
+    href: "/iv-therapy"
   }
 ];
 

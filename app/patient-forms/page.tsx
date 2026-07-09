@@ -7,11 +7,11 @@ import SiteFooter from "@/components/layout/SiteFooter";
 const forms = [
   {
     title: "Terms of Service Agreement",
-    href: "#"
+    href: "https://mailchi.mp/harmonymedspafl/hms-terms-of-service-agreement-2024"
   },
   {
     title: "Pre and Post Care Instructions",
-    href: "#"
+    href: "https://mailchi.mp/harmonymedspafl/preandpostcareinstructions"
   }
 ];
 
@@ -33,7 +33,7 @@ export default function PatientFormsPage() {
                 <FileText size={16} strokeWidth={1.8} />
                 <span>{form.title}</span>
               </div>
-              <a className="patient-form-link inline-flex justify-center [justify-self:end] min-w-[156px] py-[20px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#000] text-[length:20px] leading-[1] [transition:color_160ms_ease,border-color_160ms_ease,transform_160ms_ease] hover:text-[#b98210] hover:border-[color:#b98210] hover:[transform:translateX(-4px)] focus-visible:text-[#b98210] focus-visible:border-[color:#b98210] focus-visible:[transform:translateX(-4px)] max-[720px]:[justify-self:start]" href={form.href}>
+              <a className="patient-form-link inline-flex justify-center [justify-self:end] min-w-[156px] py-[20px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#000] text-[length:20px] leading-[1] [transition:color_160ms_ease,border-color_160ms_ease,transform_160ms_ease] hover:text-[#b98210] hover:border-[color:#b98210] hover:[transform:translateX(-4px)] focus-visible:text-[#b98210] focus-visible:border-[color:#b98210] focus-visible:[transform:translateX(-4px)] max-[720px]:[justify-self:start]" href={form.href} target="_blank" rel="noopener noreferrer" >
                 Read Now
               </a>
             </article>

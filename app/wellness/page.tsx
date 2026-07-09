@@ -1,11 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 
 const treatments = [
   {
     title: "Hormone Replacement Therapy (HRT)",
-    image: "/images/services/wellness/hormonereplacement_thumbnail_1.jpg"
+    image: "/images/services/wellness/hormonereplacement_thumbnail_1.jpg",
+    href: "/hormone-replacement-therapy"
   },
   {
     title: "Medical Weight Loss",
@@ -33,10 +35,10 @@ export default function WellnessPage() {
 
         <div className="treatment-card-grid grid grid-cols-[repeat(2,244px)] justify-center gap-[16px] mt-[48px] max-[720px]:grid-cols-[minmax(244px,320px)] max-[720px]:gap-[22px]">
           {treatments.map((treatment) => (
-            <a className="treatment-card relative grid [place-items:end_center] w-[244px] h-[244px] overflow-hidden rounded-[14px] text-[var(--gold)] text-center shadow-[0_18px_42px_rgba(0,0,0,0.16)] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] after:content-[''] after:absolute after:inset-0 after:[background:linear-gradient(transparent_42%,rgba(0,0,0,0.76))] [&_span]:relative [&_span]:z-[1] [&_span]:max-w-[90%] [&_span]:pt-0 [&_span]:pb-[22px] [&_span]:px-[10px] [&_span]:text-[length:22px] [&_span]:leading-[1.05] [&_span]:font-thin max-[720px]:w-full" href="/#contact" key={treatment.title}>
+            <Link className="treatment-card relative grid [place-items:end_center] w-[244px] h-[244px] overflow-hidden rounded-[14px] text-[var(--gold)] text-center shadow-[0_18px_42px_rgba(0,0,0,0.16)] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] after:content-[''] after:absolute after:inset-0 after:[background:linear-gradient(transparent_42%,rgba(0,0,0,0.76))] [&_span]:relative [&_span]:z-[1] [&_span]:max-w-[90%] [&_span]:pt-0 [&_span]:pb-[22px] [&_span]:px-[10px] [&_span]:text-[length:22px] [&_span]:leading-[1.05] [&_span]:font-thin max-[720px]:w-full" href={treatment.href ?? "/#contact"} key={treatment.title}>
               <Image src={treatment.image} alt="" fill sizes="(max-width: 720px) 82vw, 244px" />
               <span>{treatment.title}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

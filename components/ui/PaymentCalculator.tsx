@@ -5,13 +5,13 @@ import { useMemo, useState } from "react";
 const careCreditCalculatorBaseUrl = "https://www.carecredit.com/payment_calculator/template.html";
 
 export default function PaymentCalculator() {
-  const [amount, setAmount] = useState("500");
+  const [amount, setAmount] = useState<string | null>(null);
 
   const calculatorUrl = useMemo(() => {
-    const cleanAmount = amount.replace(/[^\d.]/g, "");
+    const cleanAmount = amount?.replace(/[^\d.]/g, "") ?? "";
     const url = new URL(careCreditCalculatorBaseUrl);
 
-    url.searchParams.set("amount", cleanAmount || "500");
+    url.searchParams.set("amount", cleanAmount || "null");
     url.searchParams.set("keys", "");
     url.searchParams.set("plate", "GFF238");
 
@@ -32,7 +32,7 @@ export default function PaymentCalculator() {
             <input
               aria-label="Estimated procedure amount"
               inputMode="decimal"
-              value={amount}
+              value={amount ?? ""}
               onChange={(event) => setAmount(event.target.value.replace(/[^\d.]/g, ""))}
             />
           </span>
