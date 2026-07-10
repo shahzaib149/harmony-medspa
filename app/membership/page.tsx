@@ -1,6 +1,7 @@
 import MembershipForm from "@/components/forms/MembershipForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const membershipBookingUrl = "https://na02.patientnow.com/a/harmonymedspa/";
 
@@ -46,11 +47,11 @@ export default function MembershipPage() {
       <SiteHeader className="contact-page-header" />
 
       <section className="membership-hero grid [place-items:center] min-h-[272px] [background:linear-gradient(rgba(0,0,0,0.66),rgba(0,0,0,0.66)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.09),transparent_15%),radial-gradient(circle_at_58%_30%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_78%_70%,rgba(255,255,255,0.06),transparent_18%),repeating-linear-gradient(26deg,rgba(255,255,255,0.035)_0_2px,transparent_2px_9px),linear-gradient(135deg,#262626,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[#d49d19] [&_h1]:text-[length:clamp(40px,3vw,52px)] [&_h1]:leading-[1] [&_h1]:font-thin max-[720px]:min-h-[210px]">
-        <h1>membership</h1>
+        <h1><TypewriterText text="membership" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="membership-section membership-facials w-[min(1220px,calc(100%_-_48px))] my-0 mx-auto text-center pt-[94px] pb-0 px-0 [&_h2]:mt-0 [&_h2]:mb-[14px] [&_h2]:mx-0 [&_h2]:text-[length:clamp(36px,3vw,44px)] [&_h2]:leading-[1] [&_h2]:font-thin [&>p]:m-0 [&>p]:text-[length:15px] [&>p]:leading-[1.45] [&>p]:font-normal max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[64px]" aria-labelledby="facial-memberships">
-        <h2 id="facial-memberships">facial memberships</h2>
+        <h2 id="facial-memberships"><TypewriterText text="facial memberships" startOnView /></h2>
         <p>Choose between our Signature Facials or the advanced Glo2Facial.</p>
 
         <div className="membership-pricing-table membership-facial-table mt-[30px] mb-0 mx-auto rounded-[14px] bg-[#f3f3f3] text-left max-w-[1220px] pt-[18px] pb-[38px] px-[66px] max-[1050px]:p-[30px] max-[720px]:p-[20px]">
@@ -89,7 +90,7 @@ export default function MembershipPage() {
       </section>
 
       <section className="membership-section membership-harmony w-[min(1220px,calc(100%_-_48px))] my-0 mx-auto text-center pt-[33px] pb-0 px-0 [&_h2]:mt-0 [&_h2]:mb-[14px] [&_h2]:mx-0 [&_h2]:text-[length:clamp(36px,3vw,44px)] [&_h2]:leading-[1] [&_h2]:font-thin [&>p]:m-0 [&>p]:text-[length:15px] [&>p]:leading-[1.45] [&>p]:font-normal max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[36px]" aria-labelledby="harmony-memberships">
-        <h2 id="harmony-memberships">harmony memberships</h2>
+        <h2 id="harmony-memberships"><TypewriterText text="harmony memberships" startOnView /></h2>
         <p>Exclusive member benefits and beauty bank for year-round beauty and wellness.</p>
 
         <div className="membership-discount-head grid grid-cols-[170px_minmax(360px,1fr)_130px_150px_150px] gap-[28px] items-center max-w-[1220px] mt-[22px] mb-[-28px] mx-auto py-0 px-[66px] text-center text-[length:12px] leading-[1.45] font-normal max-[1050px]:hidden" aria-hidden="true">

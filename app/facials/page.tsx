@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const browLashMenu = ["Brow Tint", "Brow Lamination", "Lash Tint", "Brow Shaping / Maintenance"];
 
@@ -37,13 +38,13 @@ export default function FacialsPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.64),rgba(0,0,0,0.64)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,4vw,60px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>facials</h1>
+        <h1><TypewriterText text="facials" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
         <article className="min-w-0 text-[length:20px] leading-[1.45] font-normal text-[#4f5b68] max-[720px]:text-[length:17px]">
           <section className="mb-[34px]">
-            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">Treatment Menu</h2>
+            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Treatment Menu" startOnView /></h2>
             <h3 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:25px] leading-[1.16] font-thin max-[720px]:text-[length:22px]">Browns &amp; Lashes</h3>
             <ul className="m-0 grid gap-[8px] list-none p-0">
               {browLashMenu.map((item) => (
@@ -62,7 +63,7 @@ export default function FacialsPage() {
           />
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">Facial Menu:</h2>
+            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Facial Menu:" startOnView /></h2>
             {facialMenu.map((item) => (
               <div className="mb-[32px]" key={item.title}>
                 <h3 className="mt-0 mb-[6px] text-[#ebb35a] text-[length:25px] leading-[1.16] font-thin max-[720px]:text-[length:22px]">{item.title}</h3>
@@ -72,7 +73,7 @@ export default function FacialsPage() {
           </section>
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">Enhancements:</h2>
+            <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Enhancements:" startOnView /></h2>
             <ul className="m-0 grid gap-[8px] list-none p-0">
               {enhancements.map((item) => (
                 <li key={item}>{item}</li>
@@ -89,9 +90,7 @@ export default function FacialsPage() {
           />
 
           <section>
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">
-              Chemical Peels: The Perfect Derma Peel
-            </h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Chemical Peels: The Perfect Derma Peel" startOnView /></h2>
             <p className="mt-0 mb-[8px] max-w-[840px]">
               <strong>The Perfect Derma&trade;</strong> Peel is safe, effective medium depth peel for all skin types &amp; ethnicities.
             </p>
@@ -100,9 +99,7 @@ export default function FacialsPage() {
               Peel is the only peel that includes the powerful anti-oxidant Glutathione, which lightens and brightens the skin, slows down
               the aging process and helps prevent wrinkles.
             </p>
-            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">
-              Save More When You Buy A Package Of 3 Or 6 Peels
-            </h2>
+            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Save More When You Buy A Package Of 3 Or 6 Peels" startOnView /></h2>
             <a className="mx-auto inline-flex min-w-[248px] justify-center py-[14px] px-[24px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#050505] text-[length:18px]" href="tel:9419238990">
               Call to Request Pricing
             </a>

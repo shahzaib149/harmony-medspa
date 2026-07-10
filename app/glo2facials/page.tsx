@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const promiseSteps = [
   {
@@ -44,13 +45,13 @@ export default function Glo2FacialsPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,4vw,60px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>glo2facials</h1>
+        <h1><TypewriterText text="glo2facials" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
         <article className="min-w-0 text-[length:20px] leading-[1.45] font-normal max-[720px]:text-[length:17px]">
           <section className="mb-[28px]">
-            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">Glo2Facial Treatment Menu</h2>
+            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Glo2Facial Treatment Menu" startOnView /></h2>
             <h3 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:25px] leading-[1.18] font-thin max-[720px]:text-[length:22px]">THE GLO2FACIAL (45 MINS)</h3>
             <p className="mt-0 mb-[28px] max-w-[840px]">
               Dive into a rejuvenating journey tailored for those seeking the ultimate skin revival. The Glo2Facial, with its 45-minute luxurious treatment, seamlessly blends three distinctive processes, ensuring your skin reaps the benefits of each, all in one session.
@@ -67,7 +68,7 @@ export default function Glo2FacialsPage() {
           />
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">THE 3-IN-1 PROMISE:</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="THE 3-IN-1 PROMISE:" startOnView /></h2>
             <p className="mt-0 mb-[28px] max-w-[840px]">
               The &quot;3-in-1 Promise&quot; of the GloFacial encapsulates a holistic approach to skin rejuvenation, combining the essential steps of exfoliation, infusion, and oxygenation. This trifecta ensures deep skin renewal, offering a complete revitalization experience that addresses skin imperfections, promotes hydration, and stimulates natural regeneration all in one transformative session.
             </p>
@@ -87,7 +88,7 @@ export default function Glo2FacialsPage() {
           />
 
           <section className="mb-[54px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">Additional Treatment Areas:</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Additional Treatment Areas:" startOnView /></h2>
             {treatmentAreas.map((area) => (
               <div className="mb-[28px]" key={area.title}>
                 <h3 className="mt-0 mb-[6px] text-[#050505] text-[length:20px] leading-[1.2] font-bold">{area.title}</h3>
@@ -97,7 +98,7 @@ export default function Glo2FacialsPage() {
           </section>
 
           <section className="mb-[42px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">TREATMENT ADD-ONS:</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="TREATMENT ADD-ONS:" startOnView /></h2>
             <p className="mt-0 mb-[28px] max-w-[840px]">Dermaplane</p>
             <Image
               className="w-full h-auto rounded-[16px]"
@@ -110,11 +111,11 @@ export default function Glo2FacialsPage() {
 
           <section className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-[40px] max-w-[640px] mb-[32px] max-[640px]:grid-cols-[1fr] max-[640px]:gap-[18px]">
             <div>
-              <h2 className="mt-0 mb-[4px] text-[#ebb35a] text-[length:25px] leading-[1.12] font-thin">6 Month Package</h2>
+              <h2 className="mt-0 mb-[4px] text-[#ebb35a] text-[length:25px] leading-[1.12] font-thin"><TypewriterText text="6 Month Package" startOnView /></h2>
               <p className="m-0 text-[length:18px] leading-[1.1] text-[#4b5663]">6 Glo2Facials, 10% off Skincare Products</p>
             </div>
             <div>
-              <h2 className="mt-0 mb-[4px] text-[#ebb35a] text-[length:25px] leading-[1.12] font-thin">12 Month Package</h2>
+              <h2 className="mt-0 mb-[4px] text-[#ebb35a] text-[length:25px] leading-[1.12] font-thin"><TypewriterText text="12 Month Package" startOnView /></h2>
               <p className="m-0 text-[length:18px] leading-[1.1] text-[#4b5663]">12 Glo2Facials, 10% off Skincare Products</p>
             </div>
           </section>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const includes = [
   {
@@ -101,7 +102,7 @@ export default function HairRestorationPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.64),rgba(0,0,0,0.64)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,4vw,58px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>hair restoration</h1>
+        <h1><TypewriterText text="hair restoration" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
@@ -116,7 +117,7 @@ export default function HairRestorationPage() {
           />
 
           <section className="mb-[34px] text-[#000]">
-            <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">We Are Offering:</h2>
+            <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="We Are Offering:" startOnView /></h2>
             <h3 className="mt-0 mb-[20px] text-[#4f5b68] text-[length:26px] leading-[1.18] font-thin max-[720px]:text-[length:23px]">
               Scalp Microneedling + KeraFactor<sup>&reg;</sup> Serum + Red Light Therapy
             </h3>
@@ -168,7 +169,7 @@ export default function HairRestorationPage() {
           </section>
 
           <section className="mb-[54px]">
-            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">Discover The KeraFactor Formula:</h2>
+            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Discover The KeraFactor Formula:" startOnView /></h2>
             <h3 className="mt-0 mb-[24px] text-[#4f5b68] text-[length:25px] leading-[1.2] font-thin max-[720px]:text-[length:22px]">
               Your Path To Healthier Hair And Scalp
             </h3>
@@ -179,7 +180,7 @@ export default function HairRestorationPage() {
           </section>
 
           <section className="mb-[54px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">What KeraFactor Does:</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="What KeraFactor Does:" startOnView /></h2>
             <p className="m-0 max-w-[840px]">
               Our cutting-edge treatment is designed to awaken dormant hair follicles and boost scalp circulation for lush, voluminous, and
               vibrant hair. Years of clinical research have shown that many hair and scalp issues stem from the deficiency of key growth
@@ -189,7 +190,7 @@ export default function HairRestorationPage() {
           </section>
 
           <section className="mb-[54px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">Why KeraFactor?</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Why KeraFactor?" startOnView /></h2>
             <p className="mt-0 mb-[8px] max-w-[840px]">
               This comprehensive range of products is the latest breakthrough in promoting hair that exudes strength, smoothness, thickness,
               and fullness.
@@ -204,7 +205,7 @@ export default function HairRestorationPage() {
           </section>
 
           <section>
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">Explore KeraFactor Products</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Explore KeraFactor Products" startOnView /></h2>
             <p className="mt-0 mb-[34px] max-w-[840px]">
               KeraFactor offers an array of innovative solutions to address various hair and scalp concerns, providing professional-grade care
               both in-office and at home:
@@ -230,7 +231,7 @@ export default function HairRestorationPage() {
           </section>
 
           <section className="mt-[40px] rounded-[18px] bg-[#000] py-[58px] px-[28px] text-center">
-            <h2 className="mt-0 mb-[34px] text-[var(--gold)] text-[length:29px] leading-[1.15] font-thin">Book Your Hair Restoration Consult Today</h2>
+            <h2 className="mt-0 mb-[34px] text-[var(--gold)] text-[length:29px] leading-[1.15] font-thin"><TypewriterText text="Book Your Hair Restoration Consult Today" startOnView /></h2>
             <a
               className="inline-flex min-w-[160px] justify-center py-[14px] px-[24px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#fff] text-[length:18px]"
               href="https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx?SID=Y0V3TDRqZVZnT3M9"

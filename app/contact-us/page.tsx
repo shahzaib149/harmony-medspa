@@ -3,6 +3,7 @@ import ContactForm from "@/components/forms/ContactForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { GOOGLE_MAPS_LOCATION_URL } from "@/lib/constants";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function ContactUsPage() {
   return (
@@ -10,12 +11,12 @@ export default function ContactUsPage() {
       <SiteHeader className="contact-page-header" />
 
       <section className="contact-page-hero grid [place-items:center] min-h-[255px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.09),transparent_15%),radial-gradient(circle_at_58%_30%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_78%_70%,rgba(255,255,255,0.06),transparent_18%),repeating-linear-gradient(26deg,rgba(255,255,255,0.035)_0_2px,transparent_2px_9px),linear-gradient(135deg,#252525,#111_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[#d49d19] [&_h1]:text-[length:clamp(40px,3vw,52px)] [&_h1]:leading-[1] [&_h1]:font-thin max-[720px]:min-h-[210px]">
-        <h1>contact us</h1>
+        <h1><TypewriterText text="contact us" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="contact-page-main grid grid-cols-[minmax(520px,660px)_313px] justify-center items-stretch w-[min(980px,calc(100%_-_48px))] mt-[75px] mb-[76px] mx-auto max-[1050px]:grid-cols-[minmax(0,660px)] max-[720px]:w-[min(100%_-_32px,560px)] max-[720px]:mt-[48px] max-[720px]:mb-[58px] max-[720px]:mx-auto" aria-labelledby="contact-page-title">
         <div className="contact-page-form-panel pt-[74px] pb-[82px] px-[78px] bg-[#f4f4f4] [&_h2]:mt-0 [&_h2]:mb-[8px] [&_h2]:mx-0 [&_h2]:text-[#ebb13d] [&_h2]:text-[length:38px] [&_h2]:leading-[1] [&_h2]:font-thin [&_p]:max-w-[500px] [&_p]:mt-0 [&_p]:mb-[27px] [&_p]:mx-0 [&_p]:uppercase [&_p]:text-[#000] [&_p]:text-[length:15px] [&_p]:leading-[1.38] [&_p]:font-normal [&_p]:tracking-[0.46em] max-[720px]:pt-[44px] max-[720px]:pb-[50px] max-[720px]:px-[24px] max-[720px]:[&_p]:tracking-[0.22em]">
-          <h2 id="contact-page-title">Contact Us</h2>
+          <h2 id="contact-page-title"><TypewriterText text="Contact Us" startOnView /></h2>
           <p>For non-urgent questions or to learn more about our services, contact us today!</p>
           <ContactForm variant="page" />
         </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function SculptraPage() {
   return (
@@ -10,7 +11,7 @@ export default function SculptraPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,4vw,60px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>sculptra</h1>
+        <h1><TypewriterText text="sculptra" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
@@ -35,9 +36,7 @@ export default function SculptraPage() {
               height={388}
             />
             <section>
-              <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">
-                Sculptra Treatment At Harmony Med Spa In Sarasota, FL
-              </h2>
+              <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Sculptra Treatment At Harmony Med Spa In Sarasota, FL" startOnView /></h2>
               <p className="mt-0 mb-0 max-w-[520px]">
                 At Harmony Med Spa in Sarasota, FL, we&apos;re thrilled to introduce you to our revolutionary Injectable Sculptra treatment, designed to enhance your natural beauty and combat the signs of aging.
               </p>
@@ -53,7 +52,7 @@ export default function SculptraPage() {
           />
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">SCULPTRA AESTHETIC:</h2>
+            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="SCULPTRA AESTHETIC:" startOnView /></h2>
             <p className="mt-0 mb-[28px]">
               Sculptra is a remarkable injectable treatment that harnesses the power of your body&apos;s own collagen production to restore volume, smooth wrinkles, and rejuvenate your skin. With Sculptra, you can achieve long-lasting results and enjoy a more youthful and radiant appearance.
             </p>
@@ -66,7 +65,7 @@ export default function SculptraPage() {
           </section>
 
           <section className="mb-[54px] clear-both">
-            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">Unlock The Benefits:</h2>
+            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Unlock The Benefits:" startOnView /></h2>
             <ul className="mt-0 mb-0 pl-[30px]">
               <li><strong>Boosts Natural Collagen:</strong> Sculptra stimulates collagen production deep within the skin, gradually restoring volume and improving texture.</li>
               <li><strong>Combat Facial Aging:</strong> Bid farewell to signs of aging and embrace a fresher, more youthful appearance with Sculptra.</li>
@@ -79,7 +78,7 @@ export default function SculptraPage() {
           </section>
 
           <section>
-            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">Take The First Step Towards Radiant Skin:</h2>
+            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Take The First Step Towards Radiant Skin:" startOnView /></h2>
             <p className="mt-0 mb-0 max-w-[820px]">
               Ready to experience the transformative effects of Injectable Sculptra? Schedule your consultation with our expert team at Harmony Med Spa today. Begin your journey towards glowing, youthful skin and rediscover your confidence. Contact us now to book your appointment. Your path to radiant skin starts here at Harmony Med Spa.
             </p>

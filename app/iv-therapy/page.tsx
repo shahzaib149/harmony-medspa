@@ -5,6 +5,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import faqData from "@/Images/Services/IV therapy/iv_therapy_faqs.json";
 import IvFaqAccordion from "./IvFaqAccordion";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const ivServices = [
   {
@@ -35,14 +36,12 @@ export default function IvTherapyPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.64),rgba(0,0,0,0.64)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,4vw,58px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>iv therapy</h1>
+        <h1><TypewriterText text="iv therapy" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
         <article className="min-w-0 text-[length:20px] leading-[1.45] font-normal max-[720px]:text-[length:17px]">
-          <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-bold max-[720px]:text-[length:25px]">
-            IV Therapy Menu - Harmony Med Spa
-          </h2>
+          <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-bold max-[720px]:text-[length:25px]"><TypewriterText text="IV Therapy Menu - Harmony Med Spa" startOnView /></h2>
 
           <div className="grid gap-[32px] mb-[36px]">
             {ivServices.map((service) => (

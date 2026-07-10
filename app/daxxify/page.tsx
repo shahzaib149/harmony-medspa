@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const studyPoints = [
   "There were no serious treatment-related side effects in clinical trials for DAXXIFY(TM).",
@@ -16,7 +17,7 @@ export default function DaxxifyPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,4vw,60px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>daxxify</h1>
+        <h1><TypewriterText text="daxxify" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
@@ -45,7 +46,7 @@ export default function DaxxifyPage() {
           </p>
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">What Is DAXXIFY(TM) And How Is It Different?</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="What Is DAXXIFY(TM) And How Is It Different?" startOnView /></h2>
             <p className="mt-0 mb-[28px] max-w-[840px]">
               DAXXIFY(TM) is FDA approved to help smooth moderate to severe lines between the brows. It is a long-lasting frown line treatment powered by a peptide, with results that last on average 6 months and up to 9 months for some patients.
             </p>
@@ -65,7 +66,7 @@ export default function DaxxifyPage() {
           </section>
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">Why Are Peptides Important?</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Why Are Peptides Important?" startOnView /></h2>
             <p className="mt-0 mb-[28px] max-w-[840px]">
               All frown line treatments require a special ingredient to stabilize botulinum toxin A, the protein responsible for helping smooth moderate to severe frown lines.
             </p>
@@ -75,7 +76,7 @@ export default function DaxxifyPage() {
           </section>
 
           <section className="mb-[58px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">Is DAXXIFY(TM) Well Studied?</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Is DAXXIFY(TM) Well Studied?" startOnView /></h2>
             <p className="mt-0 mb-[12px] max-w-[840px]">
               DAXXIFY(TM) was studied in a large clinical program for frown line treatment and included more than 2,400 people across different ages and skin types.
             </p>
@@ -90,9 +91,7 @@ export default function DaxxifyPage() {
           </section>
 
           <section className="[&>p]:max-w-[840px] [&>p]:mt-0 [&>p]:mb-[28px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]">
-              Important Safety Information For DAXXIFY(TM)
-            </h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:29px] leading-[1.12] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Important Safety Information For DAXXIFY(TM)" startOnView /></h2>
             <p>
               <strong>DAXXIFY(TM) may cause serious side effects that can be life threatening.</strong> Get medical help right away if you have problems swallowing, speaking, or breathing, or symptoms of spread of toxin effects after injection.
             </p>

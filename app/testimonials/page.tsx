@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const testimonials = [
   {
@@ -43,12 +44,12 @@ export default function TestimonialsPage() {
       <SiteHeader className="contact-page-header" />
 
       <section className="testimonials-hero grid [place-items:center] min-h-[341px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_70%_42%,rgba(255,255,255,0.06),transparent_24%),repeating-linear-gradient(29deg,rgba(255,255,255,0.025)_0_2px,transparent_2px_9px),linear-gradient(135deg,#252525,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,3.5vw,58px)] [&_h1]:leading-[1] [&_h1]:font-thin max-[720px]:min-h-[230px]">
-        <h1>testimonials</h1>
+        <h1><TypewriterText text="testimonials" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="testimonials-content grid grid-cols-[minmax(0,820px)_390px] gap-[90px] w-[min(100%_-_48px,1300px)] my-0 mx-auto pt-[108px] pb-[142px] px-0 max-[1050px]:grid-cols-[minmax(0,680px)] max-[1050px]:justify-center max-[1050px]:gap-[46px] max-[1050px]:pt-[76px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[56px] max-[720px]:pb-[76px] max-[720px]:px-0">
         <article className="testimonials-main min-w-[0] [&_h2]:mt-0 [&_h2]:mb-[24px] [&_h2]:mx-0 [&_h2]:text-[#ebb35a] [&_h2]:text-[length:29px] [&_h2]:leading-[1.1] [&_h2]:font-thin max-[720px]:[&_h2]:text-[length:24px]" aria-labelledby="testimonials-title">
-          <h2 id="testimonials-title">Hear From Our Clients</h2>
+          <h2 id="testimonials-title"><TypewriterText text="Hear From Our Clients" startOnView /></h2>
           <p className="testimonials-intro mt-0 mb-[34px] mx-0 text-[#4f5966] text-[length:18px] leading-[1.85] font-normal max-[720px]:text-[length:16px]">
             Read what our clients say about our office and patient care. We're proud of our 5 star reviews and the reputation we've
             established in the community.

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function EventsPage() {
   return (
@@ -10,14 +11,12 @@ export default function EventsPage() {
       <SiteHeader className="contact-page-header" />
 
       <section className="events-hero grid [place-items:center] min-h-[341px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_70%_42%,rgba(255,255,255,0.06),transparent_24%),repeating-linear-gradient(29deg,rgba(255,255,255,0.025)_0_2px,transparent_2px_9px),linear-gradient(135deg,#252525,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,3.5vw,58px)] [&_h1]:leading-[1] [&_h1]:font-thin max-[720px]:min-h-[230px]">
-        <h1>events</h1>
+        <h1><TypewriterText text="events" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="events-content grid grid-cols-[minmax(0,820px)_390px] gap-[90px] w-[min(100%_-_48px,1300px)] my-0 mx-auto pt-[108px] pb-[142px] px-0 max-[1050px]:grid-cols-[minmax(0,680px)] max-[1050px]:justify-center max-[1050px]:gap-[46px] max-[1050px]:pt-[76px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[56px] max-[720px]:pb-[76px] max-[720px]:px-0">
         <article className="events-main min-w-[0] text-[#4f5966] text-[length:19px] leading-[1.74] [&_p]:mt-0 [&_p]:mb-[33px] [&_p]:mx-0 max-[720px]:text-[length:16px] max-[720px]:leading-[1.65]" aria-labelledby="events-title">
-          <h2 id="events-title" className="sr-only">
-            Harmony Med Spa events
-          </h2>
+          <h2 id="events-title" className="sr-only"><TypewriterText text="Harmony Med Spa events" startOnView /></h2>
           <p>
             Harmony Med Spa is a full-service medical spa in Sarasota, Florida. Board-certified nurse practitioner Jessica Simone,
             AGNP-C, and her team take a natural approach to beauty that provides men and women of all ages the most effective and

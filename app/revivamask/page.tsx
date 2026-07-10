@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const uses = ["Micro-needling (with RF)", "Derma rolling", "Derma peel", "Laser treatments"];
 
@@ -28,9 +29,7 @@ export default function RevivaMaskPage() {
             />
           </div>
 
-          <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">
-            Advanced Rejuvenation For Optimal Skincare Results
-          </h2>
+          <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Advanced Rejuvenation For Optimal Skincare Results" startOnView /></h2>
           <p className="mt-0 mb-[36px] max-w-[840px]">
             RevivaMask<sup>TM</sup> introduces an innovative approach to skin rejuvenation, combining highly concentrated exosomes and
             UCT-MSC (umbilical cord tissue - mesenchymal stem cell) extracellular matrix to revitalize and repair the skin. At Harmony Med

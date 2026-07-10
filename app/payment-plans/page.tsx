@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import PaymentCalculator from "@/components/ui/PaymentCalculator";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const youtubeEmbedUrl = "https://www.youtube.com/embed/4gueRZVcjCs?start=26";
 
@@ -13,13 +14,13 @@ export default function PaymentPlansPage() {
       <SiteHeader className="contact-page-header" />
 
       <section className="payment-plans-hero grid [place-items:center] min-h-[341px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_70%_42%,rgba(255,255,255,0.06),transparent_24%),repeating-linear-gradient(29deg,rgba(255,255,255,0.025)_0_2px,transparent_2px_9px),linear-gradient(135deg,#252525,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,3.5vw,58px)] [&_h1]:leading-[1] [&_h1]:font-thin max-[720px]:min-h-[230px]">
-        <h1>payment plans</h1>
+        <h1><TypewriterText text="payment plans" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="payment-plans-content grid grid-cols-[minmax(0,820px)_390px] gap-[90px] w-[min(100%_-_48px,1300px)] my-0 mx-auto pt-[108px] pb-[142px] px-0 max-[1050px]:grid-cols-[minmax(0,680px)] max-[1050px]:justify-center max-[1050px]:gap-[46px] max-[1050px]:pt-[76px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[56px] max-[720px]:pb-[76px] max-[720px]:px-0">
         <article className="payment-plans-main min-w-[0]">
           <section className="payment-section payment-cherry text-[#4f5966] text-[length:19px] leading-[1.58] font-normal [&_+_.payment-section]:mt-[70px] [&_h2]:mt-0 [&_h2]:mb-[20px] [&_h2]:mx-0 [&_h2]:text-[#ebb35a] [&_h2]:text-[length:27px] [&_h2]:leading-[1.14] [&_h2]:font-thin [&_h3]:mt-0 [&_h3]:mb-[20px] [&_h3]:mx-0 [&_h3]:text-[#ebb35a] [&_h3]:leading-[1.14] [&_h3]:font-thin [&_h3]:text-[length:25px] [&_p]:mt-0 [&_p]:mb-[8px] [&_p]:mx-0 [&_strong]:font-extrabold [&_ol]:mt-0 [&_ol]:mb-[28px] [&_ol]:mx-0 [&_ol]:pl-[22px] [&_ol]:text-[#000] [&_ol]:leading-[1.42] [&_ul]:mt-0 [&_ul]:mb-[28px] [&_ul]:mx-0 [&_ul]:pl-[22px] [&_ul]:text-[#000] [&_ul]:leading-[1.42] [&_li]:mb-[3px] max-[720px]:text-[length:16px] max-[720px]:[&_h2]:text-[length:24px] max-[720px]:[&_h3]:text-[length:24px]" aria-labelledby="cherry-title">
-            <h2 id="cherry-title">Cherry Payment Plans</h2>
+            <h2 id="cherry-title"><TypewriterText text="Cherry Payment Plans" startOnView /></h2>
             <p>Get treated now and pay over time with Cherry.</p>
             <p>
               Cherry is a payment plan designed for your health, beauty, and wellness needs and procedures and allows you to make
@@ -62,7 +63,7 @@ export default function PaymentPlansPage() {
           </section>
 
           <section className="payment-section payment-care-credit text-[#4f5966] text-[length:19px] leading-[1.58] font-normal [&_+_.payment-section]:mt-[70px] [&_h2]:mt-0 [&_h2]:mb-[20px] [&_h2]:mx-0 [&_h2]:text-[#ebb35a] [&_h2]:text-[length:27px] [&_h2]:leading-[1.14] [&_h2]:font-thin [&_h3]:mt-0 [&_h3]:mb-[20px] [&_h3]:mx-0 [&_h3]:text-[#ebb35a] [&_h3]:leading-[1.14] [&_h3]:font-thin [&_h3]:text-[length:25px] [&_p]:mt-0 [&_p]:mx-0 [&_strong]:font-extrabold [&_ol]:mt-0 [&_ol]:mb-[28px] [&_ol]:mx-0 [&_ol]:pl-[22px] [&_ol]:text-[#000] [&_ol]:leading-[1.42] [&_ul]:mt-0 [&_ul]:mb-[28px] [&_ul]:mx-0 [&_ul]:pl-[22px] [&_ul]:leading-[1.42] [&_li]:mb-[3px] pt-[2px] [&_p]:mb-[28px] [&_ul]:text-[#4f5966] max-[720px]:text-[length:16px] max-[720px]:[&_h2]:text-[length:24px] max-[720px]:[&_h3]:text-[length:24px]" aria-labelledby="care-credit-title">
-            <h2 id="care-credit-title">Care Credit</h2>
+            <h2 id="care-credit-title"><TypewriterText text="Care Credit" startOnView /></h2>
             <p>
               <strong>
                 Harmony Med Spa proudly accepts the CareCredit credit card for all your health, wellness and beauty wants or needs.
@@ -107,7 +108,7 @@ export default function PaymentPlansPage() {
           </div>
 
           <section className="payment-section payment-calculator-section text-[#4f5966] text-[length:19px] leading-[1.58] font-normal [&_+_.payment-section]:mt-[70px] mt-[70px] [&_h2]:mt-0 [&_h2]:mx-0 [&_h2]:text-[#ebb35a] [&_h2]:text-[length:27px] [&_h2]:leading-[1.14] [&_h2]:font-thin [&_h3]:mt-0 [&_h3]:mb-[20px] [&_h3]:mx-0 [&_h3]:text-[#ebb35a] [&_h3]:leading-[1.14] [&_h3]:font-thin [&_h3]:text-[length:25px] [&_p]:mt-0 [&_p]:mb-[8px] [&_p]:mx-0 [&_strong]:font-extrabold [&_ol]:mt-0 [&_ol]:mb-[28px] [&_ol]:mx-0 [&_ol]:pl-[22px] [&_ol]:text-[#000] [&_ol]:leading-[1.42] [&_ul]:mt-0 [&_ul]:mb-[28px] [&_ul]:mx-0 [&_ul]:pl-[22px] [&_ul]:text-[#000] [&_ul]:leading-[1.42] [&_li]:mb-[3px] [&_h2]:mb-[30px] max-[720px]:text-[length:16px] max-[720px]:[&_h2]:text-[length:24px] max-[720px]:[&_h3]:text-[length:24px]" aria-labelledby="calculator-title">
-            <h2 id="calculator-title">Care Credit Calculator</h2>
+            <h2 id="calculator-title"><TypewriterText text="Care Credit Calculator" startOnView /></h2>
             <PaymentCalculator />
           </section>
         </article>

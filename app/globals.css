@@ -251,6 +251,37 @@
   transform: scale(1);
 }
 
+/* Trailing cursor for TypewriterText. Sized in `em` so it tracks the heading's
+   font-size, and given a fixed 2px width so it never nudges the layout. */
+.typewriter-caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.82em;
+  margin-left: 0.06em;
+  vertical-align: baseline;
+  background: currentColor;
+  animation: caretBlink 1.05s steps(1) infinite;
+}
+
+@keyframes caretBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the caret, just stop it blinking. Hiding it would erase the hero's
+     cursor on machines that force reduced motion. */
+  .typewriter-caret {
+    animation: none;
+  }
+}
+
 .section-inner.narrow {
   width: min(760px, calc(100% - 42px));
 }
@@ -697,37 +728,16 @@
 }
 
 @media (max-width: 720px) {
-  .hero {
-    min-height: 666px;
-    height: auto;
-    background: #1d1d1d;
-  }
-
-  .hero-slide {
-    top: 0;
-    bottom: auto;
-    height: 265px;
-  }
-
+  /* The hero stays full-bleed on phones: the image fills the viewport and the
+     title/CTA sit on top of it, matching the desktop treatment. */
   .hero-shade {
-    top: 0;
-    bottom: auto;
-    height: 265px;
-  }
-
-  .hero-content {
-    top: 265px;
-    bottom: auto;
-    display: grid;
-    align-content: center;
-    min-height: 317px;
-    width: 100%;
-    padding: 46px 24px 58px;
-    background: #1d1d1d;
+    background: rgba(0, 0, 0, 0.36);
   }
 
   .hero-dots {
-    display: none;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 16px;
   }
 }
 

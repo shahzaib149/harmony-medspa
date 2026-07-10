@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const galleryImages = [
   "about_1.jpg",
@@ -23,12 +24,12 @@ export default function AboutUsPage() {
       <SiteHeader className="team-header" />
 
       <section className="about-hero grid [place-items:center] min-h-[272px] [background:linear-gradient(rgba(0,0,0,0.58),rgba(0,0,0,0.58)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_70%_42%,rgba(255,255,255,0.06),transparent_24%),repeating-linear-gradient(29deg,rgba(255,255,255,0.025)_0_2px,transparent_2px_9px),linear-gradient(135deg,#252525,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,3.4vw,56px)] [&_h1]:leading-[1] [&_h1]:font-thin">
-        <h1>about us</h1>
+        <h1><TypewriterText text="about us" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="about-content grid grid-cols-[minmax(0,650px)_312px] gap-[88px] w-[min(100%_-_48px,1040px)] my-0 mx-auto pt-[84px] pb-[112px] px-0 max-[1050px]:grid-cols-[minmax(0,680px)] max-[1050px]:justify-center max-[1050px]:gap-[42px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[60px] max-[720px]:pb-[76px] max-[720px]:px-0">
         <article className="about-story [&_h2]:mt-0 [&_h2]:mb-[22px] [&_h2]:mx-0 [&_h2]:text-[#dfad39] [&_h2]:text-[length:20px] [&_h2]:font-thin [&_p]:mt-0 [&_p]:mb-[26px] [&_p]:mx-0 [&_p]:text-[#000] [&_p]:text-[length:16px] [&_p]:leading-[1.48]">
-          <h2>Our Story</h2>
+          <h2><TypewriterText text="Our Story" startOnView /></h2>
           <p>
             Harmony Med Spa is a full-service medical spa in Sarasota, Florida. Board-certified nurse practitioner Jessica Simone, APRN,
             and her team take a natural approach to beauty that provides men and women of all ages the most effective and innovative

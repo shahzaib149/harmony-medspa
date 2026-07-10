@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const treatmentAreas = ["Face (upper lip, chin, cheeks)", "Neck", "Arms", "Underarms", "Chest", "Back", "Bikini area", "Legs"];
 
@@ -20,7 +21,7 @@ export default function LaserHairRemovalPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.64),rgba(0,0,0,0.64)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(40px,4vw,58px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>laser hair removal</h1>
+        <h1><TypewriterText text="laser hair removal" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
@@ -36,16 +37,14 @@ export default function LaserHairRemovalPage() {
             />
           </div>
 
-          <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">
-            Laser Hair Removal At Harmony Med Spa In Sarasota, FL: Say Goodbye To Unwanted Hair
-          </h2>
+          <h2 className="mt-0 mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Laser Hair Removal At Harmony Med Spa In Sarasota, FL: Say Goodbye To Unwanted Hair" startOnView /></h2>
           <p className="mt-0 mb-[48px] max-w-[840px]">
             Are you tired of shaving, waxing, or plucking unwanted hair? Experience the freedom of smooth, hair-free skin with Laser Hair
             Removal at Harmony Med Spa in Sarasota, FL.
           </p>
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">What Is Laser Hair Removal?</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="What Is Laser Hair Removal?" startOnView /></h2>
             <p className="m-0 max-w-[840px]">
               Laser Hair Removal is a safe, effective, and long-lasting solution for reducing unwanted hair on various areas of the body.
               Our advanced laser technology targets hair follicles, disabling their ability to grow back, leaving you with silky-smooth skin.
@@ -53,7 +52,7 @@ export default function LaserHairRemovalPage() {
           </section>
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">Areas Of Treatment</h2>
+            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Areas Of Treatment" startOnView /></h2>
             <p className="mt-0 mb-[8px] max-w-[840px]">
               At Harmony Med Spa, we offer Laser Hair Removal for both men and women on numerous areas of the body, including but not
               limited to:
@@ -66,7 +65,7 @@ export default function LaserHairRemovalPage() {
           </section>
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">Benefits Of Laser Hair Removal:</h2>
+            <h2 className="mt-0 mb-[20px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Benefits Of Laser Hair Removal:" startOnView /></h2>
             <ul className="mt-0 mb-0 pl-[30px]">
               {benefits.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
@@ -75,7 +74,7 @@ export default function LaserHairRemovalPage() {
           </section>
 
           <section className="mb-[48px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">Does It Hurt?</h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Does It Hurt?" startOnView /></h2>
             <p className="m-0 max-w-[840px]">
               Laser Hair Removal is generally well-tolerated by most individuals, with only mild discomfort reported during the procedure.
               Our experienced practitioners utilize advanced cooling techniques to ensure your comfort throughout the treatment.
@@ -83,9 +82,7 @@ export default function LaserHairRemovalPage() {
           </section>
 
           <section>
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">
-              Call Us Today To Schedule Your Laser Hair Removal Treatment
-            </h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Call Us Today To Schedule Your Laser Hair Removal Treatment" startOnView /></h2>
             <p className="mt-0 mb-[28px] max-w-[840px]">
               Ready to bid farewell to unwanted hair and embrace smooth, hair-free skin? Contact Harmony Med Spa today to schedule your
               Laser Hair Removal consultation. Say hello to a life free from the hassles of traditional hair removal methods!

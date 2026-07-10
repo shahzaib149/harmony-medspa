@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Facebook, Instagram, Mail } from "lucide-react";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const specials = [
   {
@@ -57,7 +58,7 @@ export default function SpecialsPage() {
       </section>
 
       <section className="specials-interest w-[min(100%_-_40px,760px)] mt-0 mb-[46px] mx-auto rounded-[8px] bg-[#fff] py-[42px] px-[44px] shadow-[0_18px_42px_rgba(0,0,0,0.1)] max-[720px]:w-[min(100%_-_28px,640px)] max-[720px]:py-[32px] max-[720px]:px-[22px]" id="specials-interest" aria-labelledby="specials-interest-title">
-        <h1 className="m-0 text-center text-[#c99b13] text-[length:clamp(30px,5vw,42px)] leading-[1.05] font-thin" id="specials-interest-title">Interested? Tell Us How to Contact You!</h1>
+        <h1 className="m-0 text-center text-[#c99b13] text-[length:clamp(30px,5vw,42px)] leading-[1.05] font-thin" id="specials-interest-title"><TypewriterText text="Interested? Tell Us How to Contact You!" letterDelay={110} caret ignoreReducedMotion /></h1>
         <p className="mt-[18px] mb-0 mx-auto max-w-[650px] text-center text-[length:16px] leading-[1.55] font-normal">Please enter your email address (required) and your mobile number if you&apos;d like us to text you for the fastest response.</p>
         <p className="mt-[14px] mb-0 mx-auto max-w-[650px] text-center text-[length:16px] leading-[1.55] font-normal">A member of our team will follow up as soon as possible to help you choose the perfect package, answer any questions, and reserve your spot before these limited-time offers end.</p>
 

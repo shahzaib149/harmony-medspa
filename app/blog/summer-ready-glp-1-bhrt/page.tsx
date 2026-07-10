@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function SummerReadyGlpBhrtPage() {
   return (
@@ -10,7 +11,7 @@ export default function SummerReadyGlpBhrtPage() {
       <SiteHeader className="contact-page-header" />
 
       <section className="blog-hero blog-detail-hero grid [place-items:center] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_70%_42%,rgba(255,255,255,0.06),transparent_24%),repeating-linear-gradient(29deg,rgba(255,255,255,0.025)_0_2px,transparent_2px_9px),linear-gradient(135deg,#252525,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:font-thin min-h-[341px] py-[48px] px-[24px] text-center [&_h1]:w-[min(100%,1290px)] [&_h1]:text-[length:clamp(42px,3.25vw,58px)] [&_h1]:leading-[1.05] max-[720px]:min-h-[230px]">
-        <h1>summer-ready from the inside out: how glp-1 weight loss and bhrt work together to help you look and feel your best</h1>
+        <h1><TypewriterText text="summer-ready from the inside out: how glp-1 weight loss and bhrt work together to help you look and feel your best" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="blog-content blog-detail-content grid gap-[90px] w-[min(100%_-_48px,1300px)] my-0 mx-auto pb-[142px] px-0 [align-items:start] grid-cols-[minmax(0,820px)_390px] pt-[100px] max-[1050px]:grid-cols-[minmax(0,680px)] max-[1050px]:justify-center max-[1050px]:gap-[46px] max-[1050px]:pt-[76px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:grid-cols-[1fr] max-[720px]:gap-[46px] max-[720px]:pt-[56px] max-[720px]:pb-[76px] max-[720px]:px-0">
@@ -34,7 +35,7 @@ export default function SummerReadyGlpBhrtPage() {
             Together, these treatments may offer a more personalized strategy for looking and feeling your best this summer. Instead of chasing a quick fix, this approach can help support body confidence, energy, sleep, and consistency so patients can enjoy beach days, boating weekends, and active summer plans with more ease.
           </p>
 
-          <h2>Table Of Contents</h2>
+          <h2><TypewriterText text="Table Of Contents" startOnView /></h2>
           <ul>
             <li>Why Summer Goals Can Feel Harder in Midlife</li>
             <li>How GLP-1 Supports Summer Weight-Loss Goals</li>
@@ -45,7 +46,7 @@ export default function SummerReadyGlpBhrtPage() {
             <li>Schedule a Summer Wellness Consultation in Sarasota, FL</li>
           </ul>
 
-          <h2>Why Summer Goals Can Feel Harder In Midlife</h2>
+          <h2><TypewriterText text="Why Summer Goals Can Feel Harder In Midlife" startOnView /></h2>
           <p>
             For many women and men, summer can bring extra motivation to focus on health and appearance. At the same time, hormonal changes can make progress feel frustrating. Patients may notice stubborn weight gain, increased belly fat, lower energy, disrupted sleep, irritability, brain fog, and decreased libido, all of which can affect confidence and make it harder to stay consistent with nutrition, movement, and self-care routines.
           </p>
@@ -53,7 +54,7 @@ export default function SummerReadyGlpBhrtPage() {
             This is one reason a standard diet-only approach often feels disappointing. If appetite is difficult to control or hormones are contributing to fatigue and poor recovery, it is much harder to stay on track. A more personalized plan can help address both the metabolic and hormonal factors that influence how patients look and feel during the summer months.
           </p>
 
-          <h2>How GLP-1 Supports Summer Weight-Loss Goals</h2>
+          <h2><TypewriterText text="How GLP-1 Supports Summer Weight-Loss Goals" startOnView /></h2>
           <p>
             GLP-1 medications such as Semaglutide and Tirzepatide are designed to support medical weight loss by helping regulate appetite and food intake. These medications mimic the effects of GLP-1, a hormone involved in hunger regulation, which can help patients feel fuller sooner and reduce cravings.
           </p>
@@ -61,7 +62,7 @@ export default function SummerReadyGlpBhrtPage() {
             For patients who have struggled with repeated dieting, GLP-1 support can make it easier to build sustainable habits. The goal is not only to lose weight, but to create a plan that supports long-term health, steady progress, and confidence in daily life.
           </p>
 
-          <h2>How BHRT Supports Energy, Mood, And Metabolism</h2>
+          <h2><TypewriterText text="How BHRT Supports Energy, Mood, And Metabolism" startOnView /></h2>
           <p>
             Hormone imbalance can affect much more than mood. Low or fluctuating hormone levels may contribute to fatigue, sleep disruption, hot flashes, changes in body composition, and reduced motivation. BHRT is designed to help restore hormone balance using bio-identical hormones that are carefully evaluated for each patient.
           </p>
@@ -69,12 +70,12 @@ export default function SummerReadyGlpBhrtPage() {
             When hormones are better supported, some patients may find it easier to sleep, recover, maintain energy, and stay consistent with healthy habits. That support can be especially valuable when combined with a medically supervised weight-loss plan.
           </p>
 
-          <h2>Why GLP-1 And BHRT Can Be A Powerful Summer Combination</h2>
+          <h2><TypewriterText text="Why GLP-1 And BHRT Can Be A Powerful Summer Combination" startOnView /></h2>
           <p>
             GLP-1 medications and BHRT address different parts of the wellness picture. GLP-1 support can help with appetite and weight-management challenges, while BHRT may help address hormone-related symptoms that interfere with energy, sleep, mood, and metabolism. A medically supervised approach can help uncover whether both metabolic support and hormone optimization should be part of the plan.
           </p>
 
-          <h2>What To Expect Before Starting Treatment</h2>
+          <h2><TypewriterText text="What To Expect Before Starting Treatment" startOnView /></h2>
           <p>
             Before recommending GLP-1 medications, BHRT, or a combination of the two, the team at Harmony Med Spa will review your goals, symptoms, health history, and treatment priorities. Medical weight loss visits include an exam and ongoing progress monitoring, while BHRT planning may include hormone-focused evaluation and discussion of personalized treatment options.
           </p>
@@ -82,7 +83,7 @@ export default function SummerReadyGlpBhrtPage() {
             This step is important because not every patient needs the same treatment path. Some patients may benefit most from GLP-1 support, while others may discover that hormone imbalance is playing a major role in how they feel. For some, the most effective plan may involve both.
           </p>
 
-          <h2>FAQs About GLP-1 And BHRT</h2>
+          <h2><TypewriterText text="FAQs About GLP-1 And BHRT" startOnView /></h2>
           <h3>Can I Do GLP-1 And BHRT At The Same Time?</h3>
           <p>
             Possibly. Some patients may be candidates for both treatments when weight concerns and hormone-related symptoms are happening at the same time. The best way to know is through a consultation and individualized assessment at Harmony Med Spa.
@@ -104,7 +105,7 @@ export default function SummerReadyGlpBhrtPage() {
             If you are struggling with stubborn weight, appetite control, fatigue, sleep changes, brain fog, low motivation, or other signs of possible hormone imbalance, an evaluation can help determine which treatment options make sense. A personalized consultation is the best place to start.
           </p>
 
-          <h2>Schedule A Summer Wellness Consultation In Sarasota, FL</h2>
+          <h2><TypewriterText text="Schedule A Summer Wellness Consultation In Sarasota, FL" startOnView /></h2>
           <p>
             Getting summer-ready is not only about fitting into different clothes. It is also about feeling energized, balanced, and comfortable in your own body. At Harmony Med Spa, GLP-1 medical weight loss and BHRT can be part of a personalized strategy to help patients approach summer with more confidence and support.
           </p>

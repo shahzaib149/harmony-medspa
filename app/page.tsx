@@ -7,6 +7,7 @@ import TestimonialCarousel from "@/components/home/TestimonialCarousel";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { GOOGLE_MAPS_LOCATION_URL } from "@/lib/constants";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const monthlySpecialsUrl = "https://mailchi.mp/harmonymedspafl/monthly-specials";
 const newsletterOptInUrl = "https://mailchi.mp/harmonymedspafl/newsletter-opt-in";
@@ -35,14 +36,14 @@ export default function Home() {
 
       <section id="services" className="services section-light bg-[var(--paper)] text-[var(--ink)]">
         <div className="section-inner w-[min(1060px,calc(100%_-_42px))] my-0 mx-auto text-center">
-          <h2>our services</h2>
+          <h2><TypewriterText text="our services" startOnView /></h2>
           <ServicesGrid />
         </div>
       </section>
 
       <section className="experience section-dark bg-[var(--black)] text-[#fff]">
         <div className="section-inner narrow w-[min(1060px,calc(100%_-_42px))] my-0 mx-auto text-center">
-          <h2>the harmony experience</h2>
+          <h2><TypewriterText text="the harmony experience" startOnView /></h2>
           <p>
             At Harmony Med Spa, our mission is to elevate the well-being and confidence of every patient through personalized,
             natural-looking aesthetic and wellness care in a warm, welcoming environment, guided by advanced, evidence-based treatments
@@ -55,7 +56,7 @@ export default function Home() {
 
       <section id="specials" className="newsletter section-dark bg-[var(--black)] text-[#fff]">
         <div className="section-inner narrow w-[min(1060px,calc(100%_-_42px))] my-0 mx-auto text-center">
-          <h2>stay in the know</h2>
+          <h2><TypewriterText text="stay in the know" startOnView /></h2>
           <p>Opt into our newsletter and be the first to know about upcoming specials, exclusive events, and more.</p>
           <a className="line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" href={newsletterOptInUrl} target="_blank" rel="noopener noreferrer">Learn More</a>
         </div>

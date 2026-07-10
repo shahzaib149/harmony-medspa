@@ -3,6 +3,7 @@ import Link from "next/link";
 import { beforeAfterGalleries } from "@/lib/data/beforeAfterGalleries";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function BeforeAndAftersPage() {
   return (
@@ -10,7 +11,7 @@ export default function BeforeAndAftersPage() {
       <SiteHeader className="contact-page-header" />
 
       <section className="before-after-hero grid [place-items:center] min-h-[306px] [background:linear-gradient(rgba(0,0,0,0.66),rgba(0,0,0,0.66)),radial-gradient(circle_at_22%_38%,rgba(255,255,255,0.09),transparent_15%),radial-gradient(circle_at_58%_30%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_78%_70%,rgba(255,255,255,0.06),transparent_18%),repeating-linear-gradient(26deg,rgba(255,255,255,0.035)_0_2px,transparent_2px_9px),linear-gradient(135deg,#262626,#101010_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[#d49d19] [&_h1]:text-[length:clamp(42px,3.2vw,54px)] [&_h1]:leading-[1] [&_h1]:font-thin max-[720px]:min-h-[210px]">
-        <h1>gallery</h1>
+        <h1><TypewriterText text="gallery" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="before-after-content pt-[91px] pb-[124px] px-[24px] max-[720px]:pt-[54px] max-[720px]:pb-[70px] max-[720px]:px-[16px]" aria-labelledby="before-after-title">

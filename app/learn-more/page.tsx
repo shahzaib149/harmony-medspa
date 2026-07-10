@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Facebook, Instagram } from "lucide-react";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function LearnMorePage() {
   return (
@@ -14,7 +15,7 @@ export default function LearnMorePage() {
           priority
         />
 
-        <h1 id="learn-more-title" className="sr-only">Join the Harmony Med Spa newsletter</h1>
+        <h1 id="learn-more-title" className="sr-only"><TypewriterText text="Join the Harmony Med Spa newsletter" letterDelay={110} caret ignoreReducedMotion /></h1>
 
         <form className="learn-more-form grid gap-[21px] w-[min(320px,100%)] mt-[23px] mb-0 mx-auto [&_label]:grid [&_label]:gap-[8px] [&_label]:text-[length:14px] [&_label]:font-bold [&_input]:h-[33px] [&_input]:[border:1px_solid_#c9c9c9] [&_input]:bg-[#fff] [&_input]:text-[#333] [&_input]:[font:inherit] [&_input]:text-[length:14px]! [&_select]:h-[33px] [&_select]:[border:1px_solid_#c9c9c9] [&_select]:bg-[#fff] [&_select]:text-[#333] [&_select]:[font:inherit] [&_select]:text-[length:14px]! [&_input]:w-full [&_input]:py-0 [&_input]:px-[9px] [&_p]:mt-[-13px] [&_p]:mb-0 [&_p]:mx-0 [&_p]:text-[#566274] [&_p]:text-[length:10px] [&_p]:leading-[1.35] [&_p_a]:text-[#008ad8] [&_p_a]:underline [&_button]:min-h-[48px] [&_button]:mt-[1px] [&_button]:border-0 [&_button]:rounded-[14px] [&_button]:bg-[#242424] [&_button]:text-[#fff] [&_button]:[font:inherit] [&_button]:text-[length:16px]! [&_button]:font-normal! [&_button]:cursor-pointer">
           <label>

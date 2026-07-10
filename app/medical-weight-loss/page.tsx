@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 const programIncludes = [
   {
@@ -82,7 +83,7 @@ export default function MedicalWeightLossPage() {
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.64),rgba(0,0,0,0.64)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,4vw,58px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
-        <h1>medical weight loss</h1>
+        <h1><TypewriterText text="medical weight loss" letterDelay={110} caret ignoreReducedMotion /></h1>
       </section>
 
       <section className="grid grid-cols-[minmax(0,820px)_390px] gap-[78px] w-[min(100%_-_48px,1280px)] my-0 mx-auto pt-[92px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,820px)] max-[1050px]:justify-center max-[1050px]:gap-[48px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:pt-[58px] max-[720px]:pb-[86px]">
@@ -97,9 +98,7 @@ export default function MedicalWeightLossPage() {
               priority
             />
             <div>
-              <h2 className="mt-[18px] mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]">
-                Medical Weight Loss Program Overview
-              </h2>
+              <h2 className="mt-[18px] mb-[22px] text-[#ebb35a] text-[length:29px] leading-[1.1] font-thin max-[720px]:text-[length:25px]"><TypewriterText text="Medical Weight Loss Program Overview" startOnView /></h2>
               <h3 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">
                 How The Medical Weight Loss Program Works:
               </h3>
@@ -123,7 +122,7 @@ export default function MedicalWeightLossPage() {
           </ul>
 
           <section className="mb-[40px]">
-            <h2 className="mt-0 mb-[8px] text-[length:20px] leading-[1.35] font-bold">Optional Upgrades:</h2>
+            <h2 className="mt-0 mb-[8px] text-[length:20px] leading-[1.35] font-bold"><TypewriterText text="Optional Upgrades:" startOnView /></h2>
             <ul className="mt-0 mb-0 pl-[30px]">
               {upgrades.map((item) => (
                 <li key={item.label}>
@@ -134,7 +133,7 @@ export default function MedicalWeightLossPage() {
           </section>
 
           <section className="mb-[40px]">
-            <h2 className="mt-0 mb-[8px] text-[length:20px] leading-[1.35] font-bold">Important Considerations While on GLP-1 Medications:</h2>
+            <h2 className="mt-0 mb-[8px] text-[length:20px] leading-[1.35] font-bold"><TypewriterText text="Important Considerations While on GLP-1 Medications:" startOnView /></h2>
             <ul className="mt-0 mb-0 pl-[30px]">
               {considerations.map((item) => (
                 <li key={item.label}>
@@ -145,7 +144,7 @@ export default function MedicalWeightLossPage() {
           </section>
 
           <section className="mb-[54px]">
-            <h2 className="mt-0 mb-[2px] text-[length:20px] leading-[1.35] font-bold">Known Side Effects of GLP-1 Medications:</h2>
+            <h2 className="mt-0 mb-[2px] text-[length:20px] leading-[1.35] font-bold"><TypewriterText text="Known Side Effects of GLP-1 Medications:" startOnView /></h2>
             <p className="mt-0 mb-[4px]">Common side effects include:</p>
             <ul className="mt-0 mb-0 pl-[30px]">
               <li>Nausea</li>
@@ -154,9 +153,7 @@ export default function MedicalWeightLossPage() {
           </section>
 
           <section className="mb-[64px]">
-            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">
-              How The Medical Weight Loss Program Works:
-            </h2>
+            <h2 className="mt-0 mb-[24px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="How The Medical Weight Loss Program Works:" startOnView /></h2>
             {faqs.map((faq) => (
               <p className="mt-0 mb-[28px] max-w-[840px] last:mb-0" key={faq.question}>
                 <strong>{faq.question}</strong> {faq.answer}
@@ -165,9 +162,7 @@ export default function MedicalWeightLossPage() {
           </section>
 
           <section>
-            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]">
-              Learn More About Our GLP-1 Medications
-            </h2>
+            <h2 className="mt-0 mb-[18px] text-[#ebb35a] text-[length:27px] leading-[1.12] font-thin max-[720px]:text-[length:24px]"><TypewriterText text="Learn More About Our GLP-1 Medications" startOnView /></h2>
             <div className="flex flex-wrap gap-[20px] mb-[38px]">
               <Link
                 className="inline-flex min-w-[232px] justify-center py-[14px] px-[24px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[length:18px]"
