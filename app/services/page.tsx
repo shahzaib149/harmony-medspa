@@ -79,6 +79,11 @@ const services = [
     title: "IV Therapy",
     image: "/images/services/catalog/iv-therapy.jpg",
     href: "/iv-therapy"
+  },
+  {
+    title: "Peptide Therapy",
+    image: "/images/services/catalog/peptide-therapy.jfif",
+    href: "/peptide-therapy"
   }
 ];
 
