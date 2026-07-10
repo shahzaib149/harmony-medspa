@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { CONTACT_WEBHOOK_URL } from "@/lib/constants";
+import { submitLead } from "@/lib/submitLead";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -66,33 +66,16 @@ export default function MembershipForm({ kind }: { kind: FormKind }) {
     }
 
     setStatus("submitting");
-    const params = new URLSearchParams(window.location.search);
 
     try {
-      const response = await fetch(CONTACT_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          Name: name.trim(),
-          Email: email.trim(),
-          Phone: phone.trim(),
-          Message: copy.title,
-          Source: copy.source,
-          Status: "New",
-          "Treatment Interest": copy.interest,
-          "UTM Source": params.get("utm_source") ?? "",
-          "UTM Campaign": params.get("utm_campaign") ?? "",
-          "UTM Medium": params.get("utm_medium") ?? "",
-          "Page URL": window.location.href,
-          "Lead Created At": new Date().toISOString(),
-          "Email Sent Status": "Pending",
-          "SMS Sent Status": "Pending"
-        })
+      await submitLead({
+        name,
+        email,
+        phone,
+        message: copy.title,
+        source: copy.source,
+        treatmentInterest: copy.interest
       });
-
-      if (!response.ok) {
-        throw new Error("Webhook request failed");
-      }
 
       setName("");
       setEmail("");

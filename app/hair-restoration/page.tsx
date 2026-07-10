@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { ONLINE_BOOKING_URL } from "@/lib/constants";
 
 const includes = [
   {
@@ -234,7 +235,7 @@ export default function HairRestorationPage() {
             <h2 className="mt-0 mb-[34px] text-[var(--gold)] text-[length:29px] leading-[1.15] font-thin"><TypewriterText text="Book Your Hair Restoration Consult Today" startOnView /></h2>
             <a
               className="inline-flex min-w-[160px] justify-center py-[14px] px-[24px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#fff] text-[length:18px]"
-              href="https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx?SID=Y0V3TDRqZVZnT3M9"
+              href={ONLINE_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -2,8 +2,7 @@ import MembershipForm from "@/components/forms/MembershipForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
-
-const membershipBookingUrl = "https://na02.patientnow.com/a/harmonymedspa/";
+import { ONLINE_BOOKING_URL } from "@/lib/constants";
 
 const facialMemberships = [
   {
@@ -137,7 +136,7 @@ export default function MembershipPage() {
       </section>
 
       <section className="membership-cta w-[min(1220px,calc(100%_-_48px))] mt-[234px] mb-0 mx-auto [&_a]:flex [&_a]:items-center [&_a]:justify-center [&_a]:min-h-[60px] [&_a]:rounded-[14px] [&_a]:bg-[#f3f3f3] [&_a]:text-[length:clamp(34px,3vw,42px)] [&_a]:leading-[1] [&_a]:font-thin [&_span]:ml-[10px] [&_span]:text-[#111] [&_span]:text-[length:34px] [&_span]:[transform:translateY(-1px)] max-[1050px]:mt-[96px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:mt-[72px]" aria-label="Book a membership consultation">
-        <a href={membershipBookingUrl} target="_blank" rel="noopener noreferrer">book now <span aria-hidden="true">&gt;</span></a>
+        <a href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">book now <span aria-hidden="true">&gt;</span></a>
       </section>
 
       <section className="membership-forms grid grid-cols-[repeat(2,minmax(0,1fr))] gap-[30px] w-[min(1220px,calc(100%_-_48px))] mt-[40px] mb-[144px] mx-auto max-[1050px]:grid-cols-[minmax(0,1fr)] max-[1050px]:max-w-[640px] max-[1050px]:mb-[88px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:mt-[32px] max-[720px]:mb-[72px] max-[720px]:mx-auto" aria-label="Membership forms">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Facebook, Instagram, Mail } from "lucide-react";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import TypewriterText from "@/components/ui/TypewriterText";
+import SpecialsForm from "@/components/forms/SpecialsForm";
 
 const specials = [
   {
@@ -62,33 +63,7 @@ export default function SpecialsPage() {
         <p className="mt-[18px] mb-0 mx-auto max-w-[650px] text-center text-[length:16px] leading-[1.55] font-normal">Please enter your email address (required) and your mobile number if you&apos;d like us to text you for the fastest response.</p>
         <p className="mt-[14px] mb-0 mx-auto max-w-[650px] text-center text-[length:16px] leading-[1.55] font-normal">A member of our team will follow up as soon as possible to help you choose the perfect package, answer any questions, and reserve your spot before these limited-time offers end.</p>
 
-        <form className="specials-form grid grid-cols-[repeat(2,minmax(0,1fr))] gap-[16px] mt-[30px] [&_label]:grid [&_label]:gap-[7px] [&_span]:text-[length:13px] [&_span]:font-bold [&_input]:h-[46px] [&_input]:w-full [&_input]:rounded-[4px] [&_input]:border [&_input]:border-[#d0d0d0] [&_input]:bg-[#fff] [&_input]:px-[14px] [&_input]:text-[length:15px] [&_input]:outline-0 max-[640px]:grid-cols-[1fr]">
-          <label>
-            <span>First Name</span>
-            <input type="text" name="firstName" />
-          </label>
-          <label>
-            <span>Last Name</span>
-            <input type="text" name="lastName" />
-          </label>
-          <label>
-            <span>Email Address</span>
-            <input type="email" name="email" />
-          </label>
-          <label>
-            <span>SMS Phone Number</span>
-            <div className="specials-phone-input grid grid-cols-[82px_1fr] gap-[8px] [&_select]:h-[46px] [&_select]:rounded-[4px] [&_select]:border [&_select]:border-[#d0d0d0] [&_select]:bg-[#fff] [&_select]:px-[10px] [&_select]:outline-0">
-              <select name="country" aria-label="Country code" defaultValue="US">
-                <option value="US">US</option>
-              </select>
-              <input type="tel" name="phone" placeholder="+1" aria-label="SMS phone number" />
-            </div>
-          </label>
-          <p className="specials-disclaimer col-[1_/_-1] m-0 text-[#555] text-[length:12px] leading-[1.45]">
-            Harmony Med Spa - By providing your phone number, you agree to receive promotional and marketing messages, notifications, and customer service communications from Harmony Med Spa. Message and data rates may apply. Consent is not a condition of purchase. Message frequency varies. Text HELP for help. Text STOP to cancel. <a href="#">See terms</a>, <a href="#">See Privacy Policy</a>.
-          </p>
-          <button className="col-[1_/_-1] justify-self-center min-w-[150px] py-[14px] px-[24px] border-0 border-t border-b border-[#d49d19] bg-[transparent] text-[#000] text-[length:16px] cursor-pointer max-[640px]:w-full" type="submit">Submit</button>
-        </form>
+        <SpecialsForm />
       </section>
 
       <footer className="specials-footer flex justify-center gap-[12px] py-[28px] px-[18px] bg-[#111] text-[#fff]" aria-label="Social links">

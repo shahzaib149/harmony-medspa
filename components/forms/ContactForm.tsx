@@ -1,7 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { CONTACT_WEBHOOK_URL, ONLINE_BOOKING_URL } from "@/lib/constants";
+import { ONLINE_BOOKING_URL } from "@/lib/constants";
+import { submitLead } from "@/lib/submitLead";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -12,17 +13,6 @@ type Errors = {
 };
 
 type Status = "idle" | "submitting" | "success" | "error";
-
-function formatUsPhoneE164(value: string) {
-  const digits = value.replace(/\D/g, "");
-  const nationalNumber = digits.startsWith("1") && digits.length >= 11 ? digits.slice(1) : digits;
-
-  if (!nationalNumber) {
-    return "";
-  }
-
-  return `+1${nationalNumber.slice(-10)}`;
-}
 
 function validate(name: string, email: string, phone: string): Errors {
   const errors: Errors = {};
@@ -64,38 +54,14 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
 
     setStatus("submitting");
 
-    const params = new URLSearchParams(window.location.search);
-    const formattedPhone = formatUsPhoneE164(phone);
-
     try {
-      const payload = {
-        Name: name.trim(),
-        Email: email.trim(),
-        Phone: formattedPhone,
-        Message: message.trim(),
-        Source: "Website Contact Form",
-        Status: "New",
-        "Treatment Interest": "",
-        "UTM Source": params.get("utm_source") ?? "",
-        "UTM Campaign": params.get("utm_campaign") ?? "",
-        "UTM Medium": params.get("utm_medium") ?? "",
-        "Page URL": window.location.href,
-        "Lead Created At": new Date().toISOString(),
-        "Email Sent Status": "Pending",
-        "SMS Sent Status": "Pending"
-      };
-
-      console.log("Contact form webhook payload", payload);
-
-      const response = await fetch(CONTACT_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+      await submitLead({
+        name,
+        email,
+        phone,
+        message,
+        source: "Website Contact Form"
       });
-
-      if (!response.ok) {
-        throw new Error("Webhook request failed");
-      }
 
       setName("");
       setEmail("");
