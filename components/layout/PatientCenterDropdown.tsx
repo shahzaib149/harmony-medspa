@@ -7,7 +7,7 @@ const giftCardsUrl = "https://mailchi.mp/harmonymedspafl/gift_cards";
 const patientLinks = [
   { label: "patient forms", href: "/patient-forms" },
   { label: "payment plans", href: "/payment-plans" },
-  { label: "gift cards", href: giftCardsUrl },
+  { label: "gift cards", href: giftCardsUrl, newTab: true },
   { label: "testimonials", href: "/testimonials" },
   { label: "specials", href: monthlySpecialsUrl, newTab: true },
   { label: "events", href: "/events" },
