@@ -82,7 +82,7 @@ const services = [
   },
   {
     title: "Peptide Therapy",
-    image: "/images/services/catalog/peptide-therapy.jfif",
+    image: "/images/services/catalog/peptide-therapy.jpg",
     href: "/peptide-therapy"
   }
 ];
