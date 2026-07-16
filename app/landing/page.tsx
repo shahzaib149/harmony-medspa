@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CalendarDays, Phone } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import LandingTestimonials from "@/components/home/LandingTestimonials";
 import SiteFooter from "@/components/layout/SiteFooter";
@@ -30,8 +31,14 @@ export default function LandingPage() {
             <img src="/images/logo-transparent.png" alt="Harmony Med Spa" />
           </Link>
           <div className="landing-hero-actions">
-            <a className="landing-phone" href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>
-            <GoldButton href={ONLINE_BOOKING_URL}>book an appointment</GoldButton>
+            <a className="landing-phone" href={`tel:${PHONE_TEL}`} aria-label={`Call ${PHONE_DISPLAY}`}>
+              <Phone className="landing-action-icon" size={22} fill="currentColor" aria-hidden="true" />
+              <span>{PHONE_DISPLAY}</span>
+            </a>
+            <a className="landing-gold-button" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer" aria-label="Book an appointment">
+              <CalendarDays className="landing-action-icon" size={22} aria-hidden="true" />
+              <span>book an appointment</span>
+            </a>
           </div>
         </div>
 
