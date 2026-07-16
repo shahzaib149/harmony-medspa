@@ -34,7 +34,7 @@ function validate(name: string, email: string, phone: string): Errors {
   return errors;
 }
 
-export default function ContactForm({ variant }: { variant: "home" | "page" }) {
+export default function ContactForm({ variant }: { variant: "home" | "page" | "landing" }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -74,7 +74,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
     }
   }
 
-  const formClassName = variant === "home" ? "contact-form" : "contact-page-form";
+  const formClassName = variant === "home" ? "contact-form" : variant === "landing" ? "landing-contact-form" : "contact-page-form";
 
   if (status === "success") {
     return (
@@ -93,7 +93,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
 
   const submitButton = (
     <button className={variant === "home" ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" : undefined} type="submit" disabled={status === "submitting"}>
-      {status === "submitting" ? "Sending..." : "Send Message"}
+      {status === "submitting" ? "Sending..." : variant === "landing" ? "Submit" : "Send Message"}
     </button>
   );
 
@@ -127,6 +127,22 @@ export default function ContactForm({ variant }: { variant: "home" | "page" }) {
           {submitButton}
           {bookNowButton}
         </div>
+      </form>
+    );
+  }
+
+  if (variant === "landing") {
+    return (
+      <form className={formClassName} onSubmit={handleSubmit} noValidate>
+        <input type="text" name="name" placeholder="Enter Name *" aria-label="Name" value={name} onChange={(event) => setName(event.target.value)} />
+        {errors.name ? <p className="form-field-error">{errors.name}</p> : null}
+        <input type="email" name="email" placeholder="Enter Email *" aria-label="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
+        {errors.email ? <p className="form-field-error">{errors.email}</p> : null}
+        <input type="tel" name="phone" placeholder="Enter Number *" aria-label="Phone number" value={phone} onChange={(event) => setPhone(event.target.value)} />
+        {errors.phone ? <p className="form-field-error">{errors.phone}</p> : null}
+        <textarea name="message" placeholder="Enter message" aria-label="Message" rows={6} value={message} onChange={(event) => setMessage(event.target.value)} />
+        {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at (941) 923-8990.</p> : null}
+        <div className="form-button-row">{submitButton}</div>
       </form>
     );
   }
