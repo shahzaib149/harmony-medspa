@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Accessibility } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import LandingTestimonials from "@/components/home/LandingTestimonials";
 import SiteFooter from "@/components/layout/SiteFooter";
@@ -38,7 +37,12 @@ export default function LandingPage() {
 
         <div className="landing-hero-grid">
           <div className="landing-hero-copy">
-            <h1>Advanced Skin and<br />Wellness<br />Treatments You Can<br />Trust</h1>
+            <h1>
+              <span>Advanced Skin and</span>
+              <span>Wellness</span>
+              <span>Treatments You Can</span>
+              <span>Trust</span>
+            </h1>
             <p className="landing-eyebrow">Aesthetic and wellness care in Sarasota, FL</p>
             <p className="landing-hero-description">
               Harmony MedSpa provides personalized, non-surgical aesthetic and wellness services designed to support skin health,
@@ -193,10 +197,6 @@ export default function LandingPage() {
       </section>
 
       <SiteFooter address="plain" social="membership" />
-
-      <a className="landing-accessibility" href="#main-content" aria-label="Skip to the main content">
-        <Accessibility size={28} strokeWidth={2} />
-      </a>
     </main>
   );
 }

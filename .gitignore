@@ -30,3 +30,6 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+
+# Local browser/test artifacts
+.codex-artifacts/
