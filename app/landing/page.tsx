@@ -172,7 +172,15 @@ export default function LandingPage() {
 
       <LandingTestimonials />
 
-      <section className="landing-ready">
+      <section className="landing-ready" id="get-started">
+        <div className="landing-ready-image">
+          <Image
+            src={`${landingImages}/8.jpg`}
+            alt="Woman with healthy, glowing skin"
+            fill
+            sizes="100vw"
+          />
+        </div>
         <div className="landing-ready-copy">
           <h2>ready to get started?</h2>
           <p className="landing-kicker">Schedule a consultation or learn more</p>

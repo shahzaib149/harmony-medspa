@@ -305,6 +305,7 @@
   font-family: "Segoe UI Light", "Helvetica Neue", Arial, sans-serif;
   font-weight: 300;
   letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
 .landing-gold-button {
@@ -350,6 +351,13 @@
 
 .landing-image-frame img {
   object-fit: cover;
+}
+
+.landing-about-copy,
+.landing-wellness-copy,
+.landing-treatment-copy,
+.landing-ready-copy {
+  min-width: 0;
 }
 
 .landing-hero {
@@ -833,7 +841,18 @@
 .landing-ready {
   position: relative;
   min-height: 575px;
-  background: var(--landing-gray) url("/images/landing/8.jpg") center / cover no-repeat;
+  overflow: hidden;
+  background: var(--landing-gray);
+}
+
+.landing-ready-image {
+  position: absolute;
+  inset: 0;
+}
+
+.landing-ready-image img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .landing-ready-copy {
@@ -931,6 +950,10 @@
 }
 
 @media (max-width: 800px) {
+  .landing-page {
+    overflow: clip;
+  }
+
   .landing-section-shell,
   .landing-hero-top,
   .landing-hero-grid {
@@ -945,7 +968,7 @@
 
   .landing-hero {
     min-height: 0;
-    padding-bottom: 68px;
+    padding-bottom: 0;
     background-position: 46% top;
   }
 
@@ -996,19 +1019,20 @@
   .landing-contact-card {
     width: 100%;
     min-height: 0;
-    margin-top: 72px;
+    margin-top: clamp(52px, 10vw, 72px);
   }
 
   .landing-about,
   .landing-wellness,
   .landing-aesthetics {
-    padding: 88px 0;
+    padding: clamp(72px, 12vw, 88px) 0;
   }
 
   .landing-about-grid,
   .landing-wellness-feature,
   .landing-treatment-row {
     grid-template-columns: 1fr;
+    gap: clamp(34px, 7vw, 48px);
   }
 
   .landing-about-copy,
@@ -1030,6 +1054,8 @@
   .landing-hormone-feature .landing-wellness-image,
   .landing-treatment-copy-first .landing-treatment-image {
     order: 2;
+    flex: 0 0 auto;
+    width: 100%;
   }
 
   .landing-weight-feature,
@@ -1053,7 +1079,7 @@
   .landing-testimonials {
     grid-template-columns: 1fr;
     min-height: 0;
-    padding: 80px 28px;
+    padding: clamp(64px, 10vw, 80px) 28px;
   }
 
   .landing-testimonial-heading {
@@ -1063,29 +1089,42 @@
   }
 
   .landing-testimonial-quote {
-    min-height: 360px;
-    padding: 72px 20px 30px;
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: 32px;
+    min-height: 330px;
+    padding: 64px 20px 40px;
+  }
+
+  .landing-stars {
+    margin-top: 0;
   }
 
   .landing-ready {
-    min-height: 760px;
-    background-position: 35% center;
+    min-height: 0;
+    overflow: visible;
+    background: #f4f4f4;
   }
 
-  .landing-ready::after {
-    position: absolute;
-    inset: 0;
-    content: "";
-    background: linear-gradient(to bottom, rgba(233,233,233,0.08) 25%, rgba(233,233,233,0.98) 60%);
+  .landing-ready-image {
+    position: relative;
+    inset: auto;
+    height: clamp(290px, 58vw, 370px);
+    overflow: hidden;
+  }
+
+  .landing-ready-image img {
+    object-position: 18% center;
   }
 
   .landing-ready-copy {
-    z-index: 1;
+    position: relative;
     top: auto;
-    left: 50%;
-    bottom: 62px;
-    width: min(620px, calc(100% - 40px));
-    transform: translateX(-50%);
+    left: auto;
+    width: min(680px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: clamp(58px, 10vw, 76px) 0 clamp(64px, 11vw, 84px);
+    transform: none;
   }
 }
 
@@ -1119,7 +1158,7 @@
   }
 
   .landing-hero-copy h1 {
-    font-size: 42px;
+    font-size: clamp(36px, 10.5vw, 42px);
     line-height: 1;
   }
 
@@ -1129,7 +1168,16 @@
   }
 
   .landing-contact-card {
-    padding: 42px 20px 36px;
+    padding: 40px 16px 34px;
+  }
+
+  .landing-contact-form input,
+  .landing-contact-form textarea {
+    font-size: 16px;
+  }
+
+  .landing-contact-form textarea {
+    min-height: 145px;
   }
 
   .landing-contact-card h2,
@@ -1137,7 +1185,7 @@
   .landing-section-heading h2,
   .landing-treatment-copy h3,
   .landing-ready-copy h2 {
-    font-size: 42px;
+    font-size: clamp(36px, 10.5vw, 42px);
   }
 
   .landing-contact-card > p {
@@ -1183,6 +1231,17 @@
     font-size: 16px;
   }
 
+  .landing-testimonial-quote {
+    gap: 24px;
+    min-height: 300px;
+    padding: 58px 4px 34px;
+  }
+
+  .landing-open-quote,
+  .landing-close-quote {
+    font-size: 120px;
+  }
+
   .landing-open-quote {
     left: 0;
   }
@@ -1192,16 +1251,61 @@
   }
 
   .landing-ready {
-    min-height: 700px;
-    background-position: 27% center;
+    min-height: 0;
+  }
+
+  .landing-ready-image {
+    height: clamp(250px, 82vw, 320px);
+  }
+
+  .landing-ready-image img {
+    object-position: 21% center;
   }
 
   .landing-ready-copy {
-    bottom: 40px;
+    width: min(460px, calc(100% - 28px));
+    padding: 52px 0 64px;
+  }
+
+  .landing-ready-copy > p:last-of-type {
+    margin-bottom: 30px;
   }
 
   .landing-page .footer {
     padding-top: 72px;
+  }
+}
+
+@media (max-width: 420px) {
+  .landing-hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .landing-phone,
+  .landing-hero-actions .landing-gold-button {
+    width: 100%;
+    min-height: 52px;
+  }
+
+  .landing-hero-copy {
+    padding-top: 76px;
+  }
+
+  .landing-kicker {
+    letter-spacing: 0.15em;
+  }
+
+  .landing-testimonials {
+    padding-inline: 16px;
+  }
+
+  .landing-testimonial-heading h2 {
+    font-size: 38px;
+  }
+
+  .landing-wellness-copy h3 {
+    font-size: 35px;
   }
 }
 
