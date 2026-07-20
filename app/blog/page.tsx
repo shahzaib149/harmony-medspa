@@ -16,6 +16,7 @@ const posts = [
   {
     title: "What is Medical Weight Loss?",
     image: "/images/blogs/blog-1/4.jpg",
+    href: "/blog/how-glp-1-medications-support-medical-weight-loss",
     excerpt:
       "Are you struggling to lose weight and keep it off despite your best efforts? You're not alone. Millions of people around the world face similar challenges when it comes to achieving sustainable weight loss. The good news is that there's a solution that can help you reach your goals - medical weight loss."
   },
@@ -28,6 +29,7 @@ const posts = [
   {
     title: "Who is a Good Candidate for RF Microneedling?",
     image: "/images/blogs/blog-1/3.jpg",
+    href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
       "RF (radiofrequency) microneedling is a revolutionary cosmetic treatment that combines the power of radiofrequency energy with the precision of microneedling. This innovative technique has gained popularity in recent years due to its ability to address a wide range of skin concerns, from fine lines and wrinkles to acne scars and uneven skin tone."
   },
@@ -46,6 +48,7 @@ const posts = [
   {
     title: "Unlocking Radiant Skin: The Science Behind RF Microneedling",
     image: "/images/blogs/blog-1/7.jpg",
+    href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
       "Achieving radiant skin is a goal for many individuals seeking to enhance their appearance and boost their confidence. With the advancements in aesthetic technology, there are various treatments available to address common skin concerns. One such treatment that has gained popularity in recent years is RF Microneedling."
   },

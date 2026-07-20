@@ -18,7 +18,7 @@ const patientLinks = [
 
 export default function PatientCenterDropdown() {
   return (
-    <div className="nav-dropdown patient-dropdown relative pb-[14px] mb-[-14px] after:content-[''] after:absolute after:left-[-18px] after:right-[-18px] after:top-[100%] after:h-[14px] [&_.nav-dropdown-menu]:w-[140px] [&_.nav-dropdown-menu_a:first-child]:text-[#fff] [&_.nav-dropdown-menu_a:first-child]:bg-[#000]">
+    <div className="nav-dropdown patient-dropdown relative pb-[14px] mb-[-14px] after:content-[''] after:absolute after:left-[-18px] after:right-[-18px] after:top-[100%] after:h-[14px] [&_.nav-dropdown-menu]:w-[210px] [&_.nav-dropdown-menu_a]:justify-center [&_.nav-dropdown-menu_a:first-child]:text-[#fff] [&_.nav-dropdown-menu_a:first-child]:bg-[#000]">
       <button className="nav-dropdown-trigger inline-flex items-center gap-[6px] p-0 border-0 bg-[transparent] text-[inherit] cursor-pointer [font:inherit] list-none after:content-[''] after:w-[0] after:h-[0] after:[border-left:3px_solid_transparent] after:[border-right:3px_solid_transparent] after:[border-top:4px_solid_currentColor] after:[transform:translateY(1px)]" type="button" aria-haspopup="true">
         patient center
       </button>

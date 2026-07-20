@@ -27,6 +27,7 @@ const posts = [
   {
     title: "Who is a Good Candidate for RF Microneedling?",
     image: "/images/blogs/blog-3/4.jpg",
+    href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
       "RF (radiofrequency) microneedling is a revolutionary cosmetic treatment that combines the power of radiofrequency energy with the precision of microneedling. This innovative technique has gained popularity in recent years due to its ability to address a wide range of skin concerns, from fine lines and wrinkles to acne scars and uneven skin tone."
   },
@@ -45,6 +46,7 @@ const posts = [
   {
     title: "Unlocking Radiant Skin: The Science Behind RF Microneedling",
     image: "/images/blogs/blog-3/7.jpg",
+    href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
       "Achieving radiant skin is a goal for many individuals seeking to enhance their appearance and boost their confidence. With the advancements in aesthetic technology, there are various treatments available to address common skin concerns. One such treatment that has gained popularity in recent years is RF Microneedling. This innovative procedure combines the power of radiofrequency energy and microneedling to unlock radiant skin."
   },
@@ -81,9 +83,9 @@ export default function BlogPageThree() {
                 <div className="blog-post-copy [&_h3]:mt-0 [&_h3]:mb-[11px] [&_h3]:mx-0 [&_h3]:text-[#e2a719] [&_h3]:text-[length:24px] [&_h3]:leading-[1.02] [&_h3]:font-bold [&_p]:m-0 [&_p]:text-[#4f5966] [&_p]:text-[length:19px] [&_p]:leading-[1.82] [&_p]:font-normal max-[720px]:[&_h3]:text-[length:22px] max-[720px]:[&_p]:text-[length:16px] max-[720px]:[&_p]:leading-[1.65]">
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
-                  <a className="blog-read-more inline-flex justify-center min-w-[160px] mt-[24px] py-[14px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#000] text-[length:21px] leading-[1] [transition:color_160ms_ease,border-color_160ms_ease,transform_160ms_ease] hover:text-[#b98210] hover:border-[color:#b98210] hover:[transform:translateX(4px)] focus-visible:text-[#b98210] focus-visible:border-[color:#b98210] focus-visible:[transform:translateX(4px)] max-[720px]:text-[length:18px]" href="#">
+                  <Link className="blog-read-more inline-flex justify-center min-w-[160px] mt-[24px] py-[14px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#000] text-[length:21px] leading-[1] [transition:color_160ms_ease,border-color_160ms_ease,transform_160ms_ease] hover:text-[#b98210] hover:border-[color:#b98210] hover:[transform:translateX(4px)] focus-visible:text-[#b98210] focus-visible:border-[color:#b98210] focus-visible:[transform:translateX(4px)] max-[720px]:text-[length:18px]" href={post.href ?? "#"}>
                     Read More
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}

@@ -1156,12 +1156,20 @@
     flex-direction: column;
   }
 
-  .landing-hormone-feature .landing-wellness-copy,
+  .landing-hormone-feature .landing-wellness-copy {
+    order: 2;
+  }
+
+  .landing-hormone-feature .landing-wellness-image {
+    order: 1;
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
   .landing-treatment-copy-first .landing-treatment-copy {
     order: 1;
   }
 
-  .landing-hormone-feature .landing-wellness-image,
   .landing-treatment-copy-first .landing-treatment-image {
     order: 2;
     flex: 0 0 auto;

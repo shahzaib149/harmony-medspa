@@ -51,6 +51,7 @@ const posts = [
   {
     title: "Unlocking Radiant Skin: What is RF Micro-Needling and How It Transforms Your Complexion",
     image: "/images/blogs/blog-2/8.jpg",
+    href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
       "Are you looking for a way to revitalize your skin and restore a youthful, radiant glow? RF (Radiofrequency) Micro-Needling may be the answer. This innovative treatment combines the power of micro-needling and radiofrequency energy, creating a transformative skin rejuvenation method."
   },
@@ -93,9 +94,9 @@ export default function BlogPageTwo() {
                 <div className="blog-post-copy [&_h3]:mt-0 [&_h3]:mb-[11px] [&_h3]:mx-0 [&_h3]:text-[#e2a719] [&_h3]:text-[length:24px] [&_h3]:leading-[1.02] [&_h3]:font-bold [&_p]:m-0 [&_p]:text-[#4f5966] [&_p]:text-[length:19px] [&_p]:leading-[1.82] [&_p]:font-normal max-[720px]:[&_h3]:text-[length:22px] max-[720px]:[&_p]:text-[length:16px] max-[720px]:[&_p]:leading-[1.65]">
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
-                  <a className="blog-read-more inline-flex justify-center min-w-[160px] mt-[24px] py-[14px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#000] text-[length:21px] leading-[1] [transition:color_160ms_ease,border-color_160ms_ease,transform_160ms_ease] hover:text-[#b98210] hover:border-[color:#b98210] hover:[transform:translateX(4px)] focus-visible:text-[#b98210] focus-visible:border-[color:#b98210] focus-visible:[transform:translateX(4px)] max-[720px]:text-[length:18px]" href="#">
+                  <Link className="blog-read-more inline-flex justify-center min-w-[160px] mt-[24px] py-[14px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[#000] text-[length:21px] leading-[1] [transition:color_160ms_ease,border-color_160ms_ease,transform_160ms_ease] hover:text-[#b98210] hover:border-[color:#b98210] hover:[transform:translateX(4px)] focus-visible:text-[#b98210] focus-visible:border-[color:#b98210] focus-visible:[transform:translateX(4px)] max-[720px]:text-[length:18px]" href={post.href ?? "#"}>
                     Read More
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
