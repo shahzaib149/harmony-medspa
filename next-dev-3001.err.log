@@ -1,0 +1,8 @@
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          6600
+- Dir:          C:\Users\sm\Desktop\the final reckoning\harmony-medspa
+- Log:          .next\dev\logs\next-development.log
+
+Run taskkill /PID 6600 /F to stop it.

@@ -16,6 +16,11 @@ const treatments = [
     href: "/daxxify"
   },
   {
+    title: "Jeuveau",
+    image: "/images/blogs/blog-2/3.jpg",
+    href: "/blog/How-Jeuveau-Fits-Into-Your-Anti-Aging-Skincare-Routine"
+  },
+  {
     title: "Sculptra",
     image: "/images/services/injectables/sculptura_thumbnail_1.jpg",
     href: "/sculptra"
@@ -41,7 +46,7 @@ export default function InjectablesPage() {
           </p>
         </div>
 
-        <div className="treatment-card-grid treatment-card-grid-three grid justify-center gap-[16px] mt-[48px] grid-cols-[repeat(auto-fit,244px)] max-w-[764px] mx-auto max-[720px]:grid-cols-[minmax(244px,320px)] max-[720px]:gap-[22px]">
+        <div className="treatment-card-grid treatment-card-grid-three grid justify-center gap-[16px] mt-[48px] grid-cols-[repeat(auto-fit,244px)] max-w-[1024px] mx-auto max-[720px]:grid-cols-[minmax(244px,320px)] max-[720px]:gap-[22px]">
           {treatments.map((treatment) => (
             <Link className="treatment-card relative grid [place-items:end_center] w-[244px] h-[244px] overflow-hidden rounded-[14px] text-[var(--gold)] text-center shadow-[0_18px_42px_rgba(0,0,0,0.16)] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] after:content-[''] after:absolute after:inset-0 after:[background:linear-gradient(transparent_42%,rgba(0,0,0,0.76))] [&_span]:relative [&_span]:z-[1] [&_span]:max-w-[90%] [&_span]:pt-0 [&_span]:pb-[22px] [&_span]:px-[10px] [&_span]:text-[length:22px] [&_span]:leading-[1.05] [&_span]:font-thin max-[720px]:w-full" href={treatment.href ?? "/#contact"} key={treatment.title}>
               <Image src={treatment.image} alt="" fill sizes="(max-width: 720px) 82vw, 244px" />

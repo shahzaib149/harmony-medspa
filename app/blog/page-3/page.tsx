@@ -7,52 +7,74 @@ import TypewriterText from "@/components/ui/TypewriterText";
 
 const posts = [
   {
+    title: "Get Radiant Skin This Holiday Season with Skinbetter's Best-Selling Products",
+    image: "/images/blogs/get-radiant-skin/1.jpg",
+    imageAlt: "Cyber Skincare Week promotion with radiant skin model",
+    href: "/blog/get-radiant-skin-this-holiday-season-with-skinbetters-best-selling-products",
+    excerpt:
+      "The holiday season is around the corner, and at Harmony Med Spa, we're here to help you shine brighter than ever. Whether you're prepping for festive gatherings, pampering yourself as the year ends, or stocking up during Cyber Skincare Week, now is the perfect time to invest in radiant, holiday-ready skin."
+  },
+  {
     title: "Who is a Good Candidate for Injectables?",
-    image: "/images/blogs/blog-3/1.jpg",
+    image: "/images/blogs/good-candidate-injectables/1.jpg",
+    imageAlt: "Patient receiving an injectable aesthetic treatment",
+    href: "/blog/who-is-a-good-candidate-for-injectables",
     excerpt:
       "Injectables have revolutionized the cosmetic industry, offering a minimally invasive way to enhance your appearance, smooth wrinkles, and rejuvenate the skin. Whether you're looking to add volume, reduce the appearance of fine lines, or prevent the onset of aging, injectables may be an ideal option for you."
   },
   {
     title: "What is Medical Weight Loss?",
-    image: "/images/blogs/blog-3/2.jpg",
+    image: "/images/blogs/blog-3/3.jpg",
+    imageAlt: "Woman measuring her waist for medical weight loss",
+    href: "/blog/what-is-medical-weight-loss",
     excerpt:
       "Are you struggling to lose weight and keep it off despite your best efforts? You're not alone. Millions of people around the world face similar challenges when it comes to achieving sustainable weight loss. The good news is that there's a solution that can help you reach your goals - medical weight loss."
   },
   {
     title: "What Areas Can Be Treated with Dermal Fillers?",
-    image: "/images/blogs/blog-3/3.jpg",
+    image: "/images/blogs/blog-3/4.jpg",
+    imageAlt: "Dermal filler injection treatment",
+    href: "/blog/what-areas-can-be-treated-with-dermal-fillers",
     excerpt:
       "Dermal fillers have become increasingly popular in the world of aesthetic treatments, offering a non-surgical solution to address a variety of concerns. These versatile injectables can help restore volume, smooth wrinkles, and enhance facial features, providing a natural-looking and rejuvenated appearance. Whether you're looking to plump up your lips, sculpt your cheeks, or minimize the appearance of fine lines, dermal fillers may be the answer you've been seeking."
   },
   {
     title: "Who is a Good Candidate for RF Microneedling?",
-    image: "/images/blogs/blog-3/4.jpg",
-    href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
+    image: "/images/blogs/blog-3/5.jpg",
+    imageAlt: "Secret PRO RF microneedling technology",
+    href: "/blog/who-is-a-good-candidate-for-rf-microneedling",
     excerpt:
       "RF (radiofrequency) microneedling is a revolutionary cosmetic treatment that combines the power of radiofrequency energy with the precision of microneedling. This innovative technique has gained popularity in recent years due to its ability to address a wide range of skin concerns, from fine lines and wrinkles to acne scars and uneven skin tone."
   },
   {
     title: "What Causes Collagen to Decrease?",
-    image: "/images/blogs/blog-3/5.jpg",
+    image: "/images/blogs/blog-3/6.jpg",
+    imageAlt: "Secret PRO collagen support treatment graphic",
+    href: "/blog/what-causes-collagen-to-decrease",
     excerpt:
       "Collagen, a structural protein, plays a pivotal role in maintaining the integrity and youthful appearance of your skin. It forms an intricate network of fibers that provide strength, elasticity, and support to the skin's structure. Collagen's abundance in the dermis, the skin's middle layer, contributes to a smooth, plump, and radiant complexion. However, as time passes, collagen levels naturally decline, leading to visible signs of aging."
   },
   {
     title: "Benefits of Regular Facials: How They Improve Skin Health and Appearance",
-    image: "/images/blogs/blog-3/6.jpg",
+    image: "/images/blogs/blog-3/7.jpg",
+    imageAlt: "Facial treatment for skin health and appearance",
+    href: "/blog/benefits-of-regular-facials-how-they-improve-skin-health-and-appearance",
     excerpt:
       "Facials are specialized skincare treatments that focus on cleansing, exfoliating, and nourishing the skin on your face. These treatments are designed to address various skin concerns, ranging from dullness and dehydration to acne and signs of aging. Facials can be customized to meet your individual needs, and many spas offer a variety of specialized facials, such as anti-aging, acne-fighting, or brightening treatments."
   },
   {
     title: "Unlocking Radiant Skin: The Science Behind RF Microneedling",
-    image: "/images/blogs/blog-3/7.jpg",
+    image: "/images/blogs/blog-3/8.jpg",
+    imageAlt: "RF microneedling treatment in progress",
     href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
       "Achieving radiant skin is a goal for many individuals seeking to enhance their appearance and boost their confidence. With the advancements in aesthetic technology, there are various treatments available to address common skin concerns. One such treatment that has gained popularity in recent years is RF Microneedling. This innovative procedure combines the power of radiofrequency energy and microneedling to unlock radiant skin."
   },
   {
     title: "Understanding Semaglutide: How it Works to Aid Weight Loss",
-    image: "/images/blogs/blog-3/8.jpg",
+    image: "/images/blogs/blog-3/9.jpg",
+    imageAlt: "Semaglutide injection for medical weight loss",
+    href: "/blog/understanding-semaglutide-how-it-works-to-aid-weight-loss",
     excerpt:
       "Weight management is a complex and often frustrating journey for many. Amidst the myriad of solutions, medical weight loss has emerged as a promising avenue for those seeking sustainable results. Semaglutide has garnered significant attention due to its efficacy."
   }
@@ -77,8 +99,8 @@ export default function BlogPageThree() {
           <div className="blog-post-list grid">
             {posts.map((post) => (
               <article className="blog-post grid grid-cols-[205px_minmax(0,1fr)] gap-[40px] py-[36px] px-0 [border-bottom:1px_solid_#e4e4e4] first:pt-0 max-[720px]:grid-cols-[1fr] max-[720px]:gap-[18px]" key={post.title}>
-                <div className="blog-post-image relative h-[136px] mt-[4px] overflow-hidden bg-[#eee] [&_img]:block [&_img]:w-full [&_img]:h-full [&_img]:object-cover max-[720px]:w-[min(100%,320px)]">
-                  <img src={post.image} alt="" />
+                <div className="blog-post-image relative h-[136px] mt-[4px] overflow-hidden bg-[#eee] max-[720px]:w-[min(100%,320px)]">
+                  <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width: 720px) 320px, 205px" className="object-cover" />
                 </div>
                 <div className="blog-post-copy [&_h3]:mt-0 [&_h3]:mb-[11px] [&_h3]:mx-0 [&_h3]:text-[#e2a719] [&_h3]:text-[length:24px] [&_h3]:leading-[1.02] [&_h3]:font-bold [&_p]:m-0 [&_p]:text-[#4f5966] [&_p]:text-[length:19px] [&_p]:leading-[1.82] [&_p]:font-normal max-[720px]:[&_h3]:text-[length:22px] max-[720px]:[&_p]:text-[length:16px] max-[720px]:[&_p]:leading-[1.65]">
                   <h3>{post.title}</h3>

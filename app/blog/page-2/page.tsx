@@ -7,65 +7,84 @@ import TypewriterText from "@/components/ui/TypewriterText";
 
 const posts = [
   {
-    title: "Unlock the Benefits of Thermal Treatments for Skin Rejuvenation",
+    title: "Post-Summer Skin Recovery: Treating Sun Damage with Laser & The Perfect Derma Peel",
     image: "/images/blogs/blog-2/1.jpg",
+    imageAlt: "Laser treatment for post-summer skin recovery",
+    href: "/blog/post-summer-skin-recovery-treating-sun-damage-with-laser-the-perfect-derma-peel",
+    excerpt:
+      "Spending time in the sun is one of the best parts of summer, but too much exposure can take a toll on your skin. Even with sunscreen, UV rays can accelerate signs of aging, create uneven pigmentation, and leave your complexion looking dull or tired."
+  },
+  {
+    title: "Unlock the Benefits of Thermal Treatments for Skin Rejuvenation",
+    image: "/images/blogs/blog-2/2.jpg",
+    imageAlt: "Thermal skin rejuvenation treatment",
+    href: "/blog/unlock-the-benefits-of-thermal-treatments-for-skin-rejuvenation",
     excerpt:
       "In the world of modern aesthetics, advanced thermal treatments are transforming the way we care for our skin. We offer a curated selection of thermal-based skin rejuvenation procedures designed to restore youthful vitality, improve skin texture, and promote collagen production."
   },
   {
-    title: "How Jeuveau® Fits Into Your Anti-Aging Skincare Routine",
-    image: "/images/blogs/blog-2/2.jpg",
+    title: "How Jeuveau Fits Into Your Anti-Aging Skincare Routine",
+    image: "/images/blogs/blog-2/3.jpg",
+    imageAlt: "Woman reviewing her anti-aging skincare routine",
+    href: "/blog/How-Jeuveau-Fits-Into-Your-Anti-Aging-Skincare-Routine",
     excerpt:
       "When it comes to aging gracefully, a consistent skincare routine is only part of the equation. While high-quality products can improve skin tone and texture, they often fall short in addressing deeper expression lines caused by repetitive facial movements."
   },
   {
     title: "The Collagen Comeback: How Sculptra Rebuilds Your Skin from Within",
-    image: "/images/blogs/blog-2/3.jpg",
+    image: "/images/blogs/blog-2/4.jpg",
+    imageAlt: "Sculptra injectable consultation",
+    href: "/blog/the-collagen-comeback-how-sculptra-rebuilds-your-skin-from-within",
     excerpt:
       "As the years pass, subtle changes in our skin begin to appear. Fine lines become more noticeable, cheeks lose volume, and the smooth texture we once had starts to diminish. At Harmony Med Spa, we provide a solution that addresses more than just the surface. Sculptra is a specialized injectable treatment designed to work deep within the skin, stimulating your body's natural collagen production."
   },
   {
     title: "Restore Confidence After Weight Loss: How Dermal Fillers Help Rebuild Volume",
-    image: "/images/blogs/blog-2/4.jpg",
+    image: "/images/blogs/blog-2/5.jpg",
+    imageAlt: "Dermal filler treatment to restore facial volume",
+    href: "/blog/restore-confidence-after-weight-loss-how-dermal-fillers-help-rebuild-volume",
     excerpt:
       "Losing weight is an incredible achievement, one that reflects dedication and commitment to better health. However, for many people, dramatic weight loss can result in an unintended consequence such as volume loss in the face. Hollow cheeks, sagging skin, and a tired appearance are common post-weight-loss concerns that may affect your self-confidence."
   },
   {
     title: "Unlocking the Power of Nutraceuticals: Why HRT-Complete T & E Are Essential for Optimized BHRT",
-    image: "/images/blogs/blog-2/5.jpg",
+    image: "/images/blogs/blog-2/6.jpg",
+    imageAlt: "Woman taking wellness supplements at home",
+    href: "/blog/unlocking-the-power-of-nutraceuticals-why-hrt-complete-t-e-are-essential-for-optimized-bhrt",
     excerpt:
-      "Not all supplements are created equal, and not all hormone therapies deliver the same results. At Harmony Med Spa, we believe in using only the highest-quality, medically backed solutions to support your health. We offer HRT-Complete T & E, not as ordinary supplements, but as nutraceuticals."
+      "Not all supplements are created equal, and not all hormone therapies deliver the same results. At Harmony Med Spa, we believe in using only the highest-quality, medically backed solutions to support your health. We offer HRT-Complete T & E, not as ordinary supplements, but as nutraceuticals. These advanced formulations are designed to support and enhance your body's ability to process and utilize hormones as part of a comprehensive bio-identical hormone replacement therapy (BHRT) plan."
   },
   {
     title: "The Power of Vitamins A, D, & K: Benefits of ADK-10 for Your Health",
-    image: "/images/blogs/blog-2/6.jpg",
+    image: "/images/blogs/blog-2/7.jpg",
+    imageAlt: "Patient taking vitamins with water",
+    href: "/blog/the-power-of-vitamins-a-d-k-benefits-of-adk-10-for-your-health",
     excerpt:
-      "At Harmony Med Spa, we know that health isn't just about looking good-it's about feeling your best from the inside out. We offer Evexias Nutraceuticals, a high-quality line of supplements designed to support optimal wellness. One of our most recommended supplements is ADK-10, a powerhouse blend of Vitamins A, D, and K."
+      "At Harmony Med Spa, we know that health isn't just about looking good - it's about feeling your best from the inside out. We offer Evexias Nutraceuticals, a high-quality line of supplements designed to support optimal wellness. One of our most recommended supplements is ADK-10, a powerhouse blend of Vitamins A, D, and K that plays a critical role in bone strength, immune function, and cardiovascular health."
   },
   {
     title: "Feel the Love This Valentine's Day: Reignite Your Passion with Hormone Replacement Therapy",
-    image: "/images/blogs/blog-2/7.jpg",
+    image: "/images/blogs/blog-2/8.jpg",
+    imageAlt: "Couple sitting together outdoors",
+    href: "/blog/feel-the-love-this-valentines-day-reignite-your-passion-with-hormone-replacement-therapy",
     excerpt:
-      "Valentine's Day is a time to celebrate love, connection, and intimacy. But if you've been feeling a lack of energy, reduced libido, or a shift in mood that's affecting your relationships, it might not just be stress or aging-it could be a hormonal imbalance."
+      "Valentine's Day is a time to celebrate love, connection, and intimacy. But if you've been feeling a lack of energy, reduced libido, or a shift in mood that's affecting your relationships, it might not just be stress or aging - it could be a hormonal imbalance. Hormone Replacement Therapy (HRT) is a proven solution that helps restore balance, increase energy, and enhance your quality of life."
   },
   {
     title: "Unlocking Radiant Skin: What is RF Micro-Needling and How It Transforms Your Complexion",
-    image: "/images/blogs/blog-2/8.jpg",
+    image: "/images/blogs/blog-2/9.jpg",
+    imageAlt: "Secret PRO RF micro-needling handpiece",
     href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
-      "Are you looking for a way to revitalize your skin and restore a youthful, radiant glow? RF (Radiofrequency) Micro-Needling may be the answer. This innovative treatment combines the power of micro-needling and radiofrequency energy, creating a transformative skin rejuvenation method."
+      "Are you looking for a way to revitalize your skin and restore a youthful, radiant glow? RF (Radiofrequency) Micro-Needling may be the answer. This innovative treatment combines the power of micro-needling and radiofrequency energy, creating a transformative skin rejuvenation method that works below the skin's surface for lasting results."
   },
   {
     title: "Breaking Down Barriers: Addressing Common Misconceptions About GLP-1 Medications",
-    image: "/images/blogs/blog-2/9.jpg",
-    excerpt:
-      "Medical weight loss is transforming lives by providing safe and effective tools to support individuals in their weight management journey. Among these innovations, GLP-1 medications have garnered significant attention for their ability to help with weight loss and overall health improvement."
-  },
-  {
-    title: "Get Radiant Skin This Holiday Season with Skinbetter's Best-Selling Products",
     image: "/images/blogs/blog-2/10.jpg",
+    imageAlt: "GLP-1 medication injection for medical weight loss",
+    href: "/blog/breaking-down-barriers-addressing-common-misconceptions-about-glp-1-medications",
     excerpt:
-      "The holiday season is around the corner, and at Harmony Med Spa, we're here to help you shine brighter than ever! Whether it's prepping for festive gatherings, pampering yourself as the year ends, or finding the perfect gift set, now is the perfect time to invest in skin."
+      "Medical weight loss is transforming lives by providing safe and effective tools to support individuals in their weight management journey. Among these innovations, GLP-1 medications have garnered significant attention for their ability to help with weight loss and overall health improvement. However, despite their benefits, misconceptions about GLP-1 medications can create unnecessary barriers for those who might benefit the most."
   }
 ];
 
@@ -88,8 +107,8 @@ export default function BlogPageTwo() {
           <div className="blog-post-list grid">
             {posts.map((post) => (
               <article className="blog-post grid grid-cols-[205px_minmax(0,1fr)] gap-[40px] py-[36px] px-0 [border-bottom:1px_solid_#e4e4e4] first:pt-0 max-[720px]:grid-cols-[1fr] max-[720px]:gap-[18px]" key={post.title}>
-                <div className="blog-post-image relative h-[136px] mt-[4px] overflow-hidden bg-[#eee] [&_img]:block [&_img]:w-full [&_img]:h-full [&_img]:object-cover max-[720px]:w-[min(100%,320px)]">
-                  <img src={post.image} alt="" />
+                <div className="blog-post-image relative h-[136px] mt-[4px] overflow-hidden bg-[#eee] max-[720px]:w-[min(100%,320px)]">
+                  <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width: 720px) 320px, 205px" className="object-cover" />
                 </div>
                 <div className="blog-post-copy [&_h3]:mt-0 [&_h3]:mb-[11px] [&_h3]:mx-0 [&_h3]:text-[#e2a719] [&_h3]:text-[length:24px] [&_h3]:leading-[1.02] [&_h3]:font-bold [&_p]:m-0 [&_p]:text-[#4f5966] [&_p]:text-[length:19px] [&_p]:leading-[1.82] [&_p]:font-normal max-[720px]:[&_h3]:text-[length:22px] max-[720px]:[&_p]:text-[length:16px] max-[720px]:[&_p]:leading-[1.65]">
                   <h3>{post.title}</h3>

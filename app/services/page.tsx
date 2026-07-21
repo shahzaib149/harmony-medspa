@@ -21,6 +21,11 @@ const services = [
     href: "/daxxify"
   },
   {
+    title: "Jeuveau",
+    image: "/images/blogs/blog-2/3.jpg",
+    href: "/blog/How-Jeuveau-Fits-Into-Your-Anti-Aging-Skincare-Routine"
+  },
+  {
     title: "Sculptra",
     image: "/images/services/catalog/sculptra.jpg",
     href: "/sculptra"
