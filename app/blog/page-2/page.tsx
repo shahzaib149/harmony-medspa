@@ -74,7 +74,7 @@ const posts = [
     title: "Unlocking Radiant Skin: What is RF Micro-Needling and How It Transforms Your Complexion",
     image: "/images/blogs/blog-2/9.jpg",
     imageAlt: "Secret PRO RF micro-needling handpiece",
-    href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
+    href: "/blog/unlocking-radiant-skin-what-is-rf-micro-needling-and-how-it-transforms-your-complexion",
     excerpt:
       "Are you looking for a way to revitalize your skin and restore a youthful, radiant glow? RF (Radiofrequency) Micro-Needling may be the answer. This innovative treatment combines the power of micro-needling and radiofrequency energy, creating a transformative skin rejuvenation method that works below the skin's surface for lasting results."
   },

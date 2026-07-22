@@ -72,8 +72,8 @@ const posts = [
   },
   {
     title: "Micro-Needling + RF: The Power Duo for Accelerated Skin Rejuvenation",
-    image: "/images/blogs/blog-1/3.jpg",
-    imageAlt: "Secret PRO RF microneedling device and model",
+    image: "/images/blogs/blog-3/8.jpg",
+    imageAlt: "RF microneedling treatment in progress",
     href: "/blog/micro-needling-rf-accelerated-skin-rejuvenation",
     excerpt:
       "Healthy, youthful-looking skin starts with treatments that work beneath the surface - where real rejuvenation happens. At Harmony Med Spa, we're proud to offer one of the most effective solutions for skin renewal: Micro-Needling combined with Radiofrequency (RF)."
