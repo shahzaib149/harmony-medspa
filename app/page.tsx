@@ -1,4 +1,3 @@
-import { MapPin } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import ServicesGrid from "@/components/home/ServicesGrid";
@@ -6,7 +5,7 @@ import ProvidersSection from "@/components/home/ProvidersSection";
 import TestimonialCarousel from "@/components/home/TestimonialCarousel";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
-import { GOOGLE_MAPS_LOCATION_URL } from "@/lib/constants";
+import InteractiveLocationMap from "@/components/ui/InteractiveLocationMap";
 import TypewriterText from "@/components/ui/TypewriterText";
 
 const monthlySpecialsUrl = "https://mailchi.mp/harmonymedspafl/monthly-specials";
@@ -65,19 +64,7 @@ export default function Home() {
       <TestimonialCarousel />
 
       <section id="contact" className="contact">
-        <a
-          className="map-panel relative block overflow-hidden text-[inherit] [background:linear-gradient(rgba(0,0,0,0.78),rgba(0,0,0,0.78)),radial-gradient(circle_at_22%_35%,rgba(255,255,255,0.16),transparent_18%),radial-gradient(circle_at_56%_48%,rgba(255,255,255,0.14),transparent_20%),#303030] cursor-pointer focus-visible:[outline:2px_solid_var(--gold)] focus-visible:[outline-offset:-6px] max-[720px]:min-h-[360px]"
-          href={GOOGLE_MAPS_LOCATION_URL}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Open Harmony Med Spa, 2184 Gulf Gate Drive, Sarasota, Florida in Google Maps"
-        >
-          <div className="map-grid absolute inset-0 bg-[image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[length:190px_190px] opacity-[0.55]" />
-          <div className="map-pin absolute left-[53%] top-[46%] text-[var(--gold)] [transform:translate(-50%,-50%)] [filter:drop-shadow(0_0_0_#000)]">
-            <MapPin size={42} fill="currentColor" />
-          </div>
-          <span className="map-address absolute left-[53%] top-[calc(46%_+_52px)] w-[min(320px,80%)] text-[#fff] text-center text-[length:16px] leading-[1.35] font-bold [transform:translateX(-50%)] opacity-0 [transition:opacity_220ms_ease,transform_220ms_ease]">Harmony Med Spa<br />2184 Gulf Gate Dr, Sarasota, FL 34231</span>
-        </a>
+        <InteractiveLocationMap variant="home" />
         <ContactForm variant="home" />
       </section>
 

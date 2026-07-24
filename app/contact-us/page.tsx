@@ -2,7 +2,7 @@ import { Building2, Facebook, Instagram, MapPin, Phone, Search } from "lucide-re
 import ContactForm from "@/components/forms/ContactForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
-import { GOOGLE_MAPS_LOCATION_URL } from "@/lib/constants";
+import InteractiveLocationMap from "@/components/ui/InteractiveLocationMap";
 import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function ContactUsPage() {
@@ -22,20 +22,7 @@ export default function ContactUsPage() {
         </div>
 
         <aside className="contact-info-panel grid grid-rows-[313px_auto_1fr] [border:1px_solid_#e2e2e2] [border-left:0] bg-[#fff] max-[1050px]:grid-rows-[290px_auto_auto] max-[1050px]:[border-left:1px_solid_#e2e2e2] max-[1050px]:[border-top:0] max-[720px]:grid-rows-[250px_auto_auto]" aria-label="Harmony Med Spa contact details">
-          <a
-            className="contact-map-card relative block overflow-hidden [background:linear-gradient(rgba(34,34,34,0.88),rgba(34,34,34,0.88)),linear-gradient(90deg,transparent_0_47%,#cfd6df_47%_49%,transparent_49%_100%),linear-gradient(0deg,transparent_0_58%,#cfd6df_58%_60%,transparent_60%_100%),#2f3338]"
-            href={GOOGLE_MAPS_LOCATION_URL}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Open Harmony Med Spa location in Google Maps"
-          >
-            <div className="contact-map-roads absolute inset-0 [background:linear-gradient(90deg,transparent_5%,#dce4ee_5%_7%,transparent_7%_100%),linear-gradient(90deg,transparent_30%,#dce4ee_30%_32%,transparent_32%_100%),linear-gradient(90deg,transparent_62%,#dce4ee_62%_64%,transparent_64%_100%),linear-gradient(0deg,transparent_12%,#dce4ee_12%_14%,transparent_14%_100%),linear-gradient(0deg,transparent_36%,#dce4ee_36%_39%,transparent_39%_100%),linear-gradient(0deg,transparent_63%,#dce4ee_63%_66%,transparent_66%_100%)] opacity-[0.78] before:content-[''] before:absolute before:w-[120%] before:h-[14px] before:left-[-10%] before:bg-[#dce4ee] before:[transform:rotate(28deg)] after:content-[''] after:absolute after:w-[120%] after:h-[14px] after:left-[-10%] after:bg-[#dce4ee] before:top-[58%] after:top-[72%] after:[transform:rotate(-2deg)]" />
-            <div className="contact-map-pin absolute left-[19%] top-[31%] text-[#d49d19] [&_span]:absolute [&_span]:left-[22px] [&_span]:top-[13px] [&_span]:grid [&_span]:[place-items:center] [&_span]:w-[24px] [&_span]:h-[24px] [&_span]:[border:1px_solid_currentColor] [&_span]:rounded-full [&_span]:text-[#d49d19] [&_span]:[font-family:Georgia,serif] [&_span]:italic [&_span]:font-bold">
-              <MapPin size={70} />
-              <span>H</span>
-            </div>
-            <span className="contact-map-label absolute left-[8px] bottom-[6px] text-[#fff] text-[length:13px] [text-shadow:0_1px_2px_#000]">Google</span>
-          </a>
+          <InteractiveLocationMap variant="contact" />
 
           <div className="contact-info-list pt-[36px] pb-[31px] px-[37px] [&_p]:grid [&_p]:grid-cols-[34px_1fr] [&_p]:gap-[15px] [&_p]:items-center [&_p]:mt-0 [&_p]:mb-[30px] [&_p]:mx-0 [&_p]:text-[#3e3e3e] [&_p]:text-[length:14px] [&_p]:leading-[1.45] [&_p]:font-normal [&_small]:block [&_small]:mb-[4px] [&_small]:uppercase [&_small]:text-[#3d3d3d] [&_small]:text-[length:11px] [&_small]:leading-[1] [&_small]:font-bold [&_a]:block [&_a]:text-[#3d3d3d] [&_a]:text-[length:19px] [&_a]:leading-[1] [&_a]:font-bold max-[720px]:pl-[24px] max-[720px]:pr-[24px] max-[720px]:ml-0 max-[720px]:mr-0">
             <p>
