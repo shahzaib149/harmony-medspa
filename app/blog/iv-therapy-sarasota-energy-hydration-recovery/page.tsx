@@ -153,7 +153,7 @@ export default function IvTherapyBlogPage() {
           </p>
           <p>
             Ready to explore <Link href="/iv-therapy">IV therapy</Link> in Sarasota for hydration, energy, and recovery support? Call Harmony Med
-            Spa at (941) 923-8990 or <Link href="/contact-us">visit the website</Link> to book your consultation.
+            Spa at (941) 923-8990 or <Link href="/">visit the website</Link> to book your consultation.
           </p>
         </article>
 
