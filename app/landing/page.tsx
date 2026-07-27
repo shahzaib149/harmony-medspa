@@ -50,6 +50,7 @@ export default function LandingPage() {
               <span>Treatments You Can</span>
               <span>Trust</span>
             </h1>
+            <p className="landing-consultation-line">Book a Free Consultation Call Today</p>
             <p className="landing-eyebrow">Aesthetic and wellness care in Sarasota, FL</p>
             <p className="landing-hero-description">
               Harmony MedSpa provides personalized, non-surgical aesthetic and wellness services designed to support skin health,
