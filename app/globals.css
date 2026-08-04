@@ -1691,14 +1691,15 @@
 .footer {
   background: var(--soft-black);
   color: #fff;
-  padding: 92px 24px 26px;
+  padding: 104px 32px 36px;
 }
 
 .hours p {
   display: grid;
-  grid-template-columns: 118px 1fr;
+  grid-template-columns: 125px 1fr;
   column-gap: 24px;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
+  font-size: 15px;
 }
 
 .hours span,
@@ -1708,25 +1709,10 @@
   font-weight: 700;
 }
 
-.social div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.social a {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #333;
-}
-
 .copyright {
-  max-width: 960px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding-top: 22px;
+  padding-top: 24px;
   border-top: 1px solid var(--gold);
   font-size: 13px;
 }

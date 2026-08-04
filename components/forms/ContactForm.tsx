@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import { submitLead } from "@/lib/submitLead";
+import { trackLeadConversion } from "@/lib/analytics/gtag";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -62,6 +63,8 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
         message,
         source: "Website Contact Form"
       });
+
+      trackLeadConversion();
 
       setName("");
       setEmail("");
