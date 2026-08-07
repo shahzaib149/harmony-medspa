@@ -96,7 +96,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
 
   const submitButton = (
     <button className={variant === "home" ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" : undefined} type="submit" disabled={status === "submitting"}>
-      {status === "submitting" ? "Sending..." : variant === "landing" ? "Submit" : "Send Message"}
+      {status === "submitting" ? "Sending..." : variant === "landing" ? "Request an Appointment" : "Send Message"}
     </button>
   );
 
