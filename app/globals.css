@@ -2957,6 +2957,47 @@
   }
 }
 
+@media (min-width: 1051px) {
+  .landing-hero-copy {
+    max-width: 850px;
+  }
+
+  .landing-hero-copy h1 {
+    margin-bottom: 16px;
+    font-family: "Helvetica Neue", "Segoe UI Light", Arial, sans-serif;
+    font-size: clamp(36px, 3vw, 44px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+  }
+
+  .landing-consultation-line {
+    margin-bottom: 17px;
+    font-size: clamp(24px, 1.9vw, 29px);
+  }
+
+  .landing-eyebrow {
+    margin-bottom: 26px;
+    font-size: clamp(15px, 1.25vw, 18px);
+    font-weight: 400;
+    line-height: 1.45;
+    letter-spacing: 0.13em;
+  }
+
+  .landing-hero-description {
+    max-width: 830px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.58;
+  }
+}
+
+@media (min-width: 1380px) {
+  .landing-hero-copy h1 {
+    white-space: nowrap;
+  }
+}
+
 .section-inner.narrow {
   width: min(760px, calc(100% - 42px));
 }
