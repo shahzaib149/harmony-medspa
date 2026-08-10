@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import BlogSearchForm from "@/components/blog/BlogSearchForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import { listPublishedBlogs } from "@/lib/blogs/airtable";
+import { allLegacyBlogPosts } from "@/lib/blogs/legacy-posts";
 import { firstPublicBlogImage, imageSourceForSite } from "@/lib/blogs/types";
 
 const posts = [
@@ -84,9 +85,12 @@ const posts = [
 
 export const revalidate = 300;
 
-export default async function BlogPage() {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ search?: string | string[] }> }) {
+  const requestedSearch = (await searchParams).search;
+  const query = (Array.isArray(requestedSearch) ? requestedSearch[0] : requestedSearch || "").trim();
+  const normalizedQuery = query.toLowerCase();
   const publishedBlogs = await listPublishedBlogs();
-  const legacySlugs = new Set(posts.map((post) => post.href.replace(/^\/blog\//, "").toLowerCase()));
+  const legacySlugs = new Set(allLegacyBlogPosts.map((post) => post.href.replace(/^\/blog\//, "").toLowerCase()));
   const cmsPosts = publishedBlogs
     .filter((blog) => !legacySlugs.has(blog.slug.toLowerCase()))
     .map((blog) => {
@@ -99,7 +103,12 @@ export default async function BlogPage() {
         excerpt: blog.excerpt,
       };
     });
-  const visiblePosts = [...cmsPosts, ...posts];
+  const searchablePosts = [...new Map(
+    [...allLegacyBlogPosts, ...cmsPosts].map((post) => [post.href.toLowerCase(), post]),
+  ).values()];
+  const visiblePosts = normalizedQuery
+    ? searchablePosts.filter((post) => `${post.title} ${post.excerpt} ${post.imageAlt} ${post.href}`.toLowerCase().includes(normalizedQuery))
+    : [...cmsPosts, ...posts];
 
   return (
     <main className="blog-page min-h-[100vh] bg-[#fff] text-[#000]">
@@ -126,21 +135,25 @@ export default async function BlogPage() {
                 </div>
               </article>
             ))}
+            {normalizedQuery && visiblePosts.length === 0 ? (
+              <div className="py-[36px] text-[#4f5966] text-[length:19px] leading-[1.75]">
+                <h2 className="m-0 text-[#e9ad1d] text-[length:24px] font-bold">No articles found</h2>
+                <p className="mt-[12px] mb-0">Try a broader treatment, concern, or wellness keyword.</p>
+              </div>
+            ) : null}
           </div>
 
-          <nav className="blog-pagination flex mt-[72px] [&_a]:grid [&_a]:[place-items:center] [&_a]:w-[34px] [&_a]:h-[40px] [&_a]:[border:1px_solid_#ddd] [&_a]:[border-right:0] [&_a]:bg-[#fff] [&_a]:text-[#344356] [&_a]:text-[length:18px] [&_a]:font-normal [&_span]:grid [&_span]:[place-items:center] [&_span]:w-[34px] [&_span]:h-[40px] [&_span]:[border:1px_solid_#ddd] [&_span]:[border-right:0] [&_span]:text-[length:18px] [&_a:first-child]:rounded-[4px_0_0_4px] [&_span:first-child]:rounded-[4px_0_0_4px] [&_span]:border-[color:#000] [&_span]:bg-[#000] [&_span]:text-[#fff] [&_span]:font-bold [&_a:last-child]:[border-right:1px_solid_#ddd] [&_a:last-child]:rounded-[0_4px_4px_0] [&_span:last-child]:[border-right:1px_solid_#ddd] [&_span:last-child]:rounded-[0_4px_4px_0]" aria-label="Blog pages">
-            <span aria-current="page">1</span>
-            <Link href="/blog/page-2" aria-label="Page 2">2</Link>
-            <Link href="/blog/page-3" aria-label="Page 3">3</Link>
-          </nav>
+          {!normalizedQuery ? (
+            <nav className="blog-pagination flex mt-[72px] [&_a]:grid [&_a]:[place-items:center] [&_a]:w-[34px] [&_a]:h-[40px] [&_a]:[border:1px_solid_#ddd] [&_a]:[border-right:0] [&_a]:bg-[#fff] [&_a]:text-[#344356] [&_a]:text-[length:18px] [&_a]:font-normal [&_span]:grid [&_span]:[place-items:center] [&_span]:w-[34px] [&_span]:h-[40px] [&_span]:[border:1px_solid_#ddd] [&_span]:[border-right:0] [&_span]:text-[length:18px] [&_a:first-child]:rounded-[4px_0_0_4px] [&_span:first-child]:rounded-[4px_0_0_4px] [&_span]:border-[color:#000] [&_span]:bg-[#000] [&_span]:text-[#fff] [&_span]:font-bold [&_a:last-child]:[border-right:1px_solid_#ddd] [&_a:last-child]:rounded-[0_4px_4px_0] [&_span:last-child]:[border-right:1px_solid_#ddd] [&_span:last-child]:rounded-[0_4px_4px_0]" aria-label="Blog pages">
+              <span aria-current="page">1</span>
+              <Link href="/blog/page-2" aria-label="Page 2">2</Link>
+              <Link href="/blog/page-3" aria-label="Page 3">3</Link>
+            </nav>
+          ) : null}
         </div>
 
         <aside className="blog-sidebar grid [align-content:start] gap-[20px] [&_.about-search]:h-[70px] [&_.about-search]:mb-[15px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[1050px]:[&_.about-search]:col-[1_/_-1] max-[720px]:grid-cols-[1fr] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Blog links">
-          <label className="about-search flex items-center h-[56px] mb-[12px] py-0 pr-[20px] pl-[24px] [border:1px_solid_#c8d2dd] rounded-[8px] text-[var(--gold)] bg-[#fff] [&_input]:min-w-[0] [&_input]:flex-1 [&_input]:border-0 [&_input]:[outline:0] [&_input]:text-[#344356] [&_input]:bg-[transparent] [&_input]:[font:inherit] [&_input::placeholder]:text-[#425263] [&_input::placeholder]:opacity-[0.9] max-[1050px]:col-[1_/_-1]">
-            <span className="sr-only">Search keyword</span>
-            <input type="search" placeholder="Enter search keyword" />
-            <Search size={18} />
-          </label>
+          <BlogSearchForm defaultValue={query} />
 
           <Link className="about-side-card relative grid [place-items:center] min-h-[184px] overflow-hidden rounded-[10px] text-[#fff] text-center isolate before:content-[''] before:absolute before:inset-0 before:z-[-1] before:[background:rgba(0,0,0,0.34)] [&_img]:z-[-2] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] [&_span]:text-[length:25px] [&_span]:leading-[1.1] [&_span]:font-normal [&_small]:inline-flex [&_small]:min-w-[146px] [&_small]:justify-center [&_small]:mt-[10px] [&_small]:py-[12px] [&_small]:px-[18px] [&_small]:[border-top:1px_solid_var(--gold)] [&_small]:[border-bottom:1px_solid_var(--gold)] [&_small]:text-[length:16px]" href="/services" target="_blank" rel="noopener noreferrer">
             <Image src="/images/blogs/blog-1/img_1.png" alt="" fill sizes="390px" />
