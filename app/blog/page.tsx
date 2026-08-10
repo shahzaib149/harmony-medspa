@@ -4,6 +4,8 @@ import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { listPublishedBlogs } from "@/lib/blogs/airtable";
+import { firstPublicBlogImage, imageSourceForSite } from "@/lib/blogs/types";
 
 const posts = [
   {
@@ -80,7 +82,25 @@ const posts = [
   }
 ];
 
-export default function BlogPage() {
+export const revalidate = 300;
+
+export default async function BlogPage() {
+  const publishedBlogs = await listPublishedBlogs();
+  const legacySlugs = new Set(posts.map((post) => post.href.replace(/^\/blog\//, "").toLowerCase()));
+  const cmsPosts = publishedBlogs
+    .filter((blog) => !legacySlugs.has(blog.slug.toLowerCase()))
+    .map((blog) => {
+      const image = firstPublicBlogImage(blog);
+      return {
+        title: blog.title,
+        image: image ? imageSourceForSite(image.url) : "/images/logo.jpg",
+        imageAlt: image?.alt || `${blog.title} at Harmony Med Spa`,
+        href: `/blog/${blog.slug}`,
+        excerpt: blog.excerpt,
+      };
+    });
+  const visiblePosts = [...cmsPosts, ...posts];
+
   return (
     <main className="blog-page min-h-[100vh] bg-[#fff] text-[#000]">
       <SiteHeader className="contact-page-header" />
@@ -92,7 +112,7 @@ export default function BlogPage() {
       <section className="blog-content grid grid-cols-[minmax(0,810px)_390px] gap-[90px] w-[min(100%_-_48px,1300px)] my-0 mx-auto pt-[72px] pb-[126px] px-0 max-[1050px]:grid-cols-[minmax(0,680px)] max-[1050px]:justify-center max-[1050px]:gap-[46px] max-[1050px]:pt-[64px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:grid-cols-[1fr] max-[720px]:gap-[46px] max-[720px]:pt-[46px] max-[720px]:pb-[76px] max-[720px]:px-0">
         <div className="blog-main min-w-[0]">
           <div className="blog-post-list grid">
-            {posts.map((post) => (
+            {visiblePosts.map((post) => (
               <article className="blog-post grid grid-cols-[202px_minmax(0,1fr)] gap-[42px] py-[36px] px-0 [border-bottom:1px_solid_#e9e9e9] first:pt-0 max-[720px]:grid-cols-[1fr] max-[720px]:gap-[18px]" key={post.title}>
                 <div className="blog-post-image relative h-[144px] mt-[4px] overflow-hidden bg-[#eee] max-[720px]:w-[min(100%,320px)]">
                   <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width: 720px) 320px, 202px" className="object-cover" />
