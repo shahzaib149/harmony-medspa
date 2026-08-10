@@ -61,7 +61,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
         email,
         phone,
         message,
-        source: "Website Contact Form"
+        source: variant === "landing" ? "Landing Page Hero Form" : "Website Contact Form"
       });
 
       trackLeadConversion();
@@ -72,6 +72,12 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
       setMessage("");
       setErrors({});
       setStatus("success");
+
+      if (variant === "landing") {
+        if (typeof window !== "undefined") {
+          window.location.assign("/book-now");
+        }
+      }
     } catch {
       setStatus("error");
     }
@@ -79,7 +85,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
 
   const formClassName = variant === "home" ? "contact-form" : variant === "landing" ? "landing-contact-form" : "contact-page-form";
 
-  if (status === "success") {
+  if (status === "success" && variant !== "landing") {
     return (
       <div className={formClassName}>
         {variant === "home" ? <h2>let&apos;s chat!</h2> : null}
@@ -95,7 +101,17 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
   );
 
   const submitButton = (
-    <button className={variant === "home" ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" : undefined} type="submit" disabled={status === "submitting"}>
+    <button
+      className={
+        variant === "home"
+          ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer"
+          : variant === "landing"
+          ? "landing-form-submit-btn"
+          : undefined
+      }
+      type="submit"
+      disabled={status === "submitting"}
+    >
       {status === "submitting" ? "Sending..." : variant === "landing" ? "Request an Appointment" : "Send Message"}
     </button>
   );
@@ -143,7 +159,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
         {errors.email ? <p className="form-field-error">{errors.email}</p> : null}
         <input type="tel" name="phone" placeholder="Enter Number *" aria-label="Phone number" value={phone} onChange={(event) => setPhone(event.target.value)} />
         {errors.phone ? <p className="form-field-error">{errors.phone}</p> : null}
-        <textarea name="message" placeholder="Enter message" aria-label="Message" rows={6} value={message} onChange={(event) => setMessage(event.target.value)} />
+        <textarea name="message" placeholder="Enter message" aria-label="Message" rows={5} value={message} onChange={(event) => setMessage(event.target.value)} />
         {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at (941) 923-8990.</p> : null}
         <div className="form-button-row">{submitButton}</div>
       </form>

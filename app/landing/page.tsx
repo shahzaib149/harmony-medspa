@@ -1,41 +1,26 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
+import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingServicesCarousel from "@/components/home/LandingServicesCarousel";
 import LandingTestimonials from "@/components/home/LandingTestimonials";
 import SiteFooter from "@/components/layout/SiteFooter";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 
 const landingImages = "/images/landing";
 
 export default function LandingPage() {
   return (
     <main id="main-content" className="landing-page">
-      <section className="landing-hero" id="home">
-        <div className="landing-hero-top">
-          <Link className="landing-logo" href="#home" aria-label="Harmony Med Spa home">
-            <img src="/images/logo-transparent.png" alt="Harmony Med Spa" />
-          </Link>
-          <div className="landing-hero-actions">
-            <a className="landing-phone" href={`tel:${PHONE_TEL}`} aria-label={`Call ${PHONE_DISPLAY}`}>
-              <Phone className="landing-action-icon" size={19} aria-hidden="true" />
-              <span>{PHONE_TEL}</span>
-            </a>
-            <a className="landing-request-link" href="#contact">
-              Request an Appointment
-            </a>
-          </div>
-        </div>
+      <LandingNavbar />
 
+      <section className="landing-hero" id="home">
         <div className="landing-hero-grid">
           <div className="landing-hero-copy">
             <h1>
-              advanced skin treatments
-              <br />
-              you can trust
+              advanced skin<br />treatments you can trust
             </h1>
-            <p className="landing-eyebrow">Laser, thermal, and microneedling options in Sarasota, FL</p>
+            <p className="landing-consultation-line">Book a Free Consultation Call Today</p>
+            <p className="landing-eyebrow">LASER, THERMAL, AND MICRONEEDLING OPTIONS IN SARASOTA, FL</p>
             <p className="landing-hero-description">
               Harmony MedSpa offers personalized, non-surgical treatments to improve skin tone, texture, and elasticity.
               Our team uses advanced technology and evidence-based methods to help you achieve noticeable results without
