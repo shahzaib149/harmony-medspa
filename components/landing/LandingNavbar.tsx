@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Phone } from "lucide-react";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
+import { CalendarDays, Phone } from "lucide-react";
+import { ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 
 export default function LandingNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,16 +24,6 @@ export default function LandingNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const contactElem = document.getElementById("contact");
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: "smooth", block: "center" });
-    } else {
-      window.location.hash = "contact";
-    }
-  };
-
   return (
     <header className={`landing-navbar ${isScrolled ? "is-scrolled" : ""}`}>
       <div className="landing-navbar-inner">
@@ -52,11 +42,13 @@ export default function LandingNavbar() {
           </a>
           <a
             className="landing-nav-cta"
-            href="#contact"
-            onClick={handleCtaClick}
+            href={ONLINE_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Request an Appointment"
           >
-            Request an Appointment
+            <CalendarDays className="landing-calendar-icon" size={18} aria-hidden="true" />
+            <span className="landing-nav-cta-text">Request an Appointment</span>
           </a>
         </div>
       </div>

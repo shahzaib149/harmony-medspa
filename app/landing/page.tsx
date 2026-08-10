@@ -17,7 +17,7 @@ export default function LandingPage() {
         <div className="landing-hero-grid">
           <div className="landing-hero-copy">
             <h1>
-              advanced skin<br />treatments you can trust
+              advanced skin treatments you can trust
             </h1>
             <p className="landing-consultation-line">Book a Free Consultation Call Today</p>
             <p className="landing-eyebrow">LASER, THERMAL, AND MICRONEEDLING OPTIONS IN SARASOTA, FL</p>
@@ -42,7 +42,7 @@ export default function LandingPage() {
             <Image src={`${landingImages}/2.jpg`} alt="Woman touching healthy skin" fill sizes="(max-width: 800px) 100vw, 52vw" />
           </div>
           <div className="landing-about-copy">
-            <h2>Why Choose Harmony<br />Med Spa</h2>
+            <h2>Why Choose Harmony Med Spa</h2>
             <p className="landing-kicker">Experienced providers focused on your skin&apos;s long-term health</p>
             <p>
               Our approach is centered around informed, individualized care. You&apos;ll receive straightforward guidance
