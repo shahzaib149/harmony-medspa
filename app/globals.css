@@ -2752,12 +2752,12 @@
 
 @media (max-width: 560px) {
   .landing-navbar {
-    padding: 14px 0;
-    min-height: 120px;
+    padding: 10px 0;
+    min-height: 72px;
   }
 
   .landing-navbar.is-scrolled {
-    padding: 10px 0;
+    padding: 8px 0;
   }
 
   .landing-navbar-inner {
@@ -2765,12 +2765,12 @@
   }
 
   .landing-navbar .landing-logo {
-    flex: 0 0 190px;
-    width: 190px;
+    flex: 0 0 160px;
+    width: 160px;
   }
 
   .landing-navbar.is-scrolled .landing-logo {
-    width: 190px;
+    width: 160px;
   }
 
   .landing-navbar .landing-hero-actions {
@@ -2819,6 +2819,9 @@
     height: 40px;
     min-height: 40px;
     padding: 0;
+    border-radius: 999px;
+    background: var(--landing-gold);
+    color: #000000;
   }
 
   .landing-section-shell {
@@ -2826,21 +2829,26 @@
   }
 
   .landing-hero {
-    padding-top: 120px;
+    padding-top: 72px;
   }
 
   .landing-hero::after {
-    inset: 120px 0 auto;
-    height: 75vw;
+    inset: 72px 0 auto;
+    /* Use a taller image at narrow widths so the portrait fills the viewport */
+    height: min(90vw, 85svh);
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.92) 100%),
+      url("/images/landing/1.jpg") center top / cover no-repeat;
   }
 
   .landing-hero-grid {
     width: 100%;
-    padding-top: 75vw;
+    /* Push grid content below the portrait image */
+    padding-top: min(90vw, 85svh);
   }
 
   .landing-hero-copy {
-    padding: 128px 21px 82px;
+    padding: 32px 20px 60px;
   }
 
   .landing-hero-copy h1 {
