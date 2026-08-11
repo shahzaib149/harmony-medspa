@@ -59,10 +59,10 @@ export default function LandingTestimonials() {
         </div>
       </div>
       <div className="landing-testimonial-quote" aria-live="polite">
-        <span className="landing-open-quote" aria-hidden="true">"</span>
+        <span className="landing-open-quote" aria-hidden="true">“</span>
         <blockquote key={activeIndex}>{testimonials[activeIndex].quote}</blockquote>
         <span className="landing-close-quote" aria-hidden="true">”</span>
-        <div className="landing-stars" aria-label="Five star review">*****</div>
+        <div className="landing-stars" aria-label="Five star review">★★★★★</div>
         <p className="landing-reviewer">{testimonials[activeIndex].author}</p>
       </div>
     </section>
