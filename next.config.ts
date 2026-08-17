@@ -2,6 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'fcpqllxxplkmrbxayeuo.supabase.co',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
   async redirects() {
     return [
       {
