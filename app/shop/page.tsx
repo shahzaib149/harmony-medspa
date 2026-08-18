@@ -18,6 +18,11 @@ const shopItems = [
     title: "Revision Skincare",
     image: "/images/shop/shop_revision_skincare_thumbnail.jpg",
     href: "https://revisionskincare.com/?scpid=184249"
+  },
+  {
+    title: "Calroy Health Sciences",
+    image: "/images/shop/shop_calroy.jpg",
+    href: "https://lowlipid.calroy.com/"
   }
 ];
 
@@ -33,7 +38,7 @@ export default function ShopPage() {
       <section className="shop-content min-h-[526px] pt-[84px] pb-[126px] px-[24px] text-center [&_p]:my-0 [&_p]:mx-auto [&_p]:text-[#3f4650] [&_p]:text-[length:15px] [&_p]:leading-[1.45] [&_p]:font-normal max-[720px]:pt-[68px] max-[720px]:pb-[92px] max-[720px]:px-[20px]" aria-labelledby="shop-intro">
         <p id="shop-intro">Explore Our Range of Skincare and Supplements - Elevate Your Beauty and Wellness Routine Today!</p>
 
-        <div className="shop-card-grid grid grid-cols-[repeat(auto-fit,244px)] max-w-[764px] mx-auto justify-center gap-[16px] mt-[52px] max-[720px]:grid-cols-[minmax(244px,320px)] max-[720px]:gap-[22px]">
+        <div className="shop-card-grid grid grid-cols-[repeat(auto-fit,244px)] max-w-[1024px] mx-auto justify-center gap-[16px] mt-[52px] max-[720px]:grid-cols-[minmax(244px,320px)] max-[720px]:gap-[22px]">
           {shopItems.map((item) => (
             <a className="shop-card relative grid [place-items:end_center] w-[244px] h-[244px] overflow-hidden rounded-[14px] text-[var(--gold)] text-center shadow-[0_18px_42px_rgba(0,0,0,0.16)] [outline:0] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] after:content-[''] after:absolute after:inset-0 after:[background:linear-gradient(transparent_42%,rgba(0,0,0,0.76))] [&_span]:relative [&_span]:z-[1] [&_span]:max-w-[92%] [&_span]:pt-0 [&_span]:pb-[24px] [&_span]:px-[10px] [&_span]:text-[length:22px] [&_span]:leading-[1.05] [&_span]:font-thin max-[720px]:w-full" href={item.href} key={item.title} target="_blank" rel="noreferrer">
               <Image src={item.image} alt={item.title} fill sizes="(max-width: 720px) 82vw, 244px" />

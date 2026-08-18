@@ -4879,3 +4879,1088 @@
    END LANDING-V1 STYLES
    ============================================================ */
 
+/* ============================================================
+   MEDICAL WEIGHT LOSS LANDING PAGE  (/landing/medical-weight-loss)
+   All class names are prefixed wml- to avoid collision.
+   ============================================================ */
+
+/* ── Root ──────────────────────────────────────────────────────────────────── */
+
+.wml-page {
+  --wml-gold: #efb82f;
+  --wml-dark: #111;
+  --wml-body: #444;
+  --wml-muted: #777;
+  --wml-bg: #f5f4f2;
+  --wml-white: #fff;
+  --wml-section-bg-alt: #fff;
+  --wml-max-w: 1160px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  background: var(--wml-bg);
+  color: var(--wml-body);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.wml-page h1,
+.wml-page h2,
+.wml-page h3 {
+  margin-top: 0;
+  font-family: "Segoe UI Light", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.wml-page p {
+  margin-top: 0;
+}
+
+/* ── Shell ─────────────────────────────────────────────────────────────────── */
+
+.wml-section-inner {
+  width: min(var(--wml-max-w), calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* ── Section shared ────────────────────────────────────────────────────────── */
+
+.wml-section {
+  padding: 80px 0;
+}
+
+.wml-section-heading {
+  margin-bottom: 36px;
+  color: var(--wml-dark);
+  font-size: clamp(30px, 3.2vw, 42px);
+  line-height: 1.1;
+  text-align: center;
+}
+
+.wml-section-heading-left {
+  text-align: left;
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────────── */
+
+.wml-hero {
+  background: #0f0f0f;
+  color: #fff;
+  padding: 0;
+}
+
+.wml-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  gap: 0;
+  width: min(var(--wml-max-w), calc(100% - 48px));
+  min-height: 700px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ── Hero: left copy ───────────────────────────────────────────────────────── */
+
+.wml-hero-copy {
+  padding: 56px 48px 64px 0;
+  align-self: start;
+}
+
+.wml-logo {
+  display: block;
+  margin-bottom: 36px;
+  width: 220px;
+}
+
+.wml-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wml-h1 {
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: clamp(34px, 3.6vw, 52px);
+  line-height: 1.05;
+}
+
+.wml-hero-sub {
+  max-width: 520px;
+  margin-bottom: 32px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 18px;
+  line-height: 1.58;
+  font-weight: 400;
+}
+
+/* ── Trust row ─────────────────────────────────────────────────────────────── */
+
+.wml-trust-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.wml-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.wml-trust-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(239, 184, 47, 0.18);
+  color: var(--wml-gold);
+}
+
+/* ── Phone CTA ─────────────────────────────────────────────────────────────── */
+
+.wml-phone-cta {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--wml-gold);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  min-height: 44px;
+  padding: 4px 0;
+}
+
+.wml-phone-cta:hover,
+.wml-phone-cta:focus-visible {
+  text-decoration: underline;
+  outline: 2px solid var(--wml-gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.wml-phone-cta-large {
+  font-size: clamp(26px, 2.6vw, 34px);
+  color: var(--wml-dark);
+}
+
+.wml-phone-sub {
+  max-width: 400px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── Form card ─────────────────────────────────────────────────────────────── */
+
+.wml-form-card {
+  align-self: stretch;
+  margin: 40px 0;
+  padding: 44px 40px 48px;
+  background: var(--wml-white);
+  color: var(--wml-dark);
+  border-top: 4px solid var(--wml-gold);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+.wml-form-heading {
+  margin-bottom: 6px;
+  color: var(--wml-dark);
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.wml-form-subheading {
+  margin-bottom: 28px;
+  color: var(--wml-muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ── Form fields ───────────────────────────────────────────────────────────── */
+
+.wml-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  pointer-events: none;
+}
+
+.wml-form {
+  display: grid;
+  gap: 0;
+  position: relative;
+}
+
+.wml-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.wml-label {
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.wml-required {
+  color: #b52222;
+  margin-left: 2px;
+}
+
+.wml-optional {
+  color: var(--wml-muted);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.wml-input,
+.wml-select {
+  height: 50px;
+  padding: 0 16px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 0;
+  background: #fafafa;
+  color: #222;
+  font: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.wml-input:focus,
+.wml-select:focus {
+  border-color: var(--wml-gold);
+  box-shadow: 0 0 0 2px rgba(239, 184, 47, 0.22);
+  background: #fff;
+}
+
+.wml-input-error {
+  border-color: #b52222;
+}
+
+.wml-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.wml-field-error {
+  margin: 5px 0 0;
+  color: #b52222;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ── Submit button ─────────────────────────────────────────────────────────── */
+
+.wml-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 8px;
+  padding: 14px 24px;
+  border: 0;
+  background: var(--wml-gold);
+  color: #fff;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+  -webkit-appearance: none;
+}
+
+.wml-submit-btn:hover,
+.wml-submit-btn:focus-visible {
+  background: #d4a020;
+  transform: translateY(-1px);
+}
+
+.wml-submit-btn:disabled,
+.wml-submit-btn[aria-disabled="true"] {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.wml-form-disclaimer {
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: var(--wml-muted);
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.wml-form-error {
+  margin-top: 12px;
+  margin-bottom: 0;
+  padding: 12px 16px;
+  background: #fdf2f2;
+  border: 1px solid #f0c0c0;
+  color: #8b1a1a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.wml-form-error a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ── Success state ─────────────────────────────────────────────────────────── */
+
+.wml-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 0 4px;
+}
+
+.wml-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: #e8f5e8;
+  color: #2d7a2d;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.wml-success-heading {
+  margin-bottom: 12px;
+  color: var(--wml-dark);
+  font-size: 22px;
+  line-height: 1.2;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.wml-success-body {
+  margin-bottom: 24px;
+  color: var(--wml-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ── Steps section ─────────────────────────────────────────────────────────── */
+
+.wml-steps-section {
+  background: var(--wml-white);
+}
+
+.wml-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: steps;
+}
+
+.wml-step {
+  padding: 0 36px;
+  border-left: 1px solid #e8e8e8;
+}
+
+.wml-step:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.wml-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: var(--wml-gold);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.wml-step-title {
+  margin-bottom: 12px;
+  color: var(--wml-dark);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.wml-step-body {
+  color: var(--wml-body);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ── Includes section ──────────────────────────────────────────────────────── */
+
+.wml-includes-section {
+  background: var(--wml-bg);
+}
+
+.wml-includes-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 40px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.wml-includes-item {
+  padding-left: 22px;
+  position: relative;
+  color: var(--wml-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wml-includes-item::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--wml-gold);
+  font-weight: 700;
+}
+
+.wml-includes-disclaimer {
+  color: var(--wml-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* ── Provider section ──────────────────────────────────────────────────────── */
+
+.wml-provider-section {
+  background: var(--wml-white);
+}
+
+.wml-provider-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 52px;
+}
+
+.wml-provider-photo {
+  flex: 0 0 280px;
+  width: 280px;
+  height: 280px;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.wml-provider-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.wml-provider-name {
+  margin-bottom: 8px;
+  color: var(--wml-gold);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.wml-provider-bio {
+  max-width: 580px;
+  color: var(--wml-body);
+  font-size: 17px;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+/* ── Trust strip ───────────────────────────────────────────────────────────── */
+
+.wml-trust-strip {
+  background: var(--wml-bg);
+  padding: 40px 0;
+  border-top: 1px solid #e0ddd8;
+  border-bottom: 1px solid #e0ddd8;
+}
+
+.wml-trust-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.wml-badge {
+  flex: 0 0 auto;
+}
+
+.wml-badge-bns {
+  width: 110px;
+  height: 110px;
+  background: url("/images/footer/main.png") center / contain no-repeat;
+}
+
+.wml-badge-bbb {
+  width: 160px;
+  height: 44px;
+  background: url("/images/footer/bbb.png") center / contain no-repeat;
+}
+
+.wml-trust-strip-label {
+  color: var(--wml-muted);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+/* ── Testimonial ───────────────────────────────────────────────────────────── */
+
+.wml-testimonial-section {
+  background: #0f0f0f;
+  color: #fff;
+}
+
+.wml-testimonial-section .wml-section-heading {
+  color: var(--wml-gold);
+}
+
+.wml-testimonial {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto 16px;
+  padding: 40px 56px;
+  background: #191919;
+  text-align: center;
+}
+
+.wml-quote-mark {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  color: #2a2a2a;
+  font-family: Georgia, serif;
+  font-size: 100px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.wml-quote-body {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 24px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.wml-quote-attribution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.wml-stars {
+  color: var(--wml-gold);
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+
+.wml-quote-name {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wml-results-disclaimer {
+  text-align: center;
+  color: #555;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+/* ── FAQ ───────────────────────────────────────────────────────────────────── */
+
+.wml-faq-section {
+  background: var(--wml-white);
+}
+
+.wml-faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.wml-faq-item {
+  padding: 24px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.wml-faq-item:first-child {
+  border-top: 1px solid #e8e8e8;
+}
+
+.wml-faq-q {
+  margin: 0 0 10px;
+  color: var(--wml-dark);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.wml-faq-a {
+  margin: 0;
+  color: var(--wml-body);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* ── Closing section ───────────────────────────────────────────────────────── */
+
+.wml-closing-section {
+  background: var(--wml-bg);
+}
+
+.wml-closing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 60px;
+  align-items: start;
+}
+
+.wml-closing-phone-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 80px;
+}
+
+.wml-closing-phone-label {
+  color: var(--wml-muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0;
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────────── */
+
+.wml-footer {
+  background: #111;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 60px 0 48px;
+  font-size: 14px;
+  border-top: 1px solid #222;
+}
+
+.wml-footer-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Left: Awards / Badges (Bottom Left) */
+.wml-footer-awards {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.wml-award-bns {
+  width: 150px;
+  height: 150px;
+  background: url("/images/footer/main.png") center / contain no-repeat;
+}
+
+.wml-award-bbb {
+  width: 180px;
+  height: 44px;
+  background: url("/images/footer/bbb.png") center / contain no-repeat;
+}
+
+/* Center: Google Maps (Top) + Contact Info (Bottom Center) */
+.wml-footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.wml-footer-map {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.wml-footer-map iframe {
+  display: block;
+}
+
+.wml-map-zoom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px 12px;
+  background: #1e1e1e;
+  color: var(--wml-gold);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border-top: 1px solid #2e2e2e;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.wml-map-zoom-btn:hover,
+.wml-map-zoom-btn:focus-visible {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.wml-footer-contact {
+  text-align: center;
+  max-width: 480px;
+}
+
+.wml-footer-company {
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.wml-footer-address {
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.wml-footer-phone {
+  margin-bottom: 8px;
+}
+
+.wml-footer-phone a {
+  color: var(--wml-gold);
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.wml-footer-phone a:hover,
+.wml-footer-phone a:focus-visible {
+  text-decoration: underline;
+}
+
+.wml-footer-hours {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+/* Right: Legal & Privacy (Bottom Right) */
+.wml-footer-legal {
+  text-align: right;
+  padding-top: 10px;
+}
+
+.wml-footer-legal nav {
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.wml-footer-legal nav a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 140ms ease;
+}
+
+.wml-footer-legal nav a:hover,
+.wml-footer-legal nav a:focus-visible {
+  color: var(--wml-gold);
+}
+
+.wml-footer-copyright {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.wml-footer-disclaimer {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+/* ── Responsive: 1024px ────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .wml-hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.85fr);
+    gap: 0;
+  }
+
+  .wml-steps {
+    gap: 0;
+  }
+
+  .wml-step {
+    padding: 0 24px;
+  }
+
+  .wml-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    justify-items: center;
+  }
+
+  .wml-footer-awards {
+    align-items: center;
+  }
+
+  .wml-footer-legal {
+    text-align: center;
+  }
+}
+
+/* ── Responsive: 800px ─────────────────────────────────────────────────────── */
+
+@media (max-width: 800px) {
+  .wml-page {
+    overflow-x: clip;
+  }
+
+  .wml-hero-inner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .wml-hero-copy {
+    padding: 44px 0 0;
+    text-align: center;
+  }
+
+  .wml-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wml-hero-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wml-trust-row {
+    align-items: center;
+  }
+
+  .wml-phone-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wml-form-card {
+    margin-top: 36px;
+    padding: 36px 28px 40px;
+  }
+
+  .wml-steps {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .wml-step {
+    padding: 0;
+    border-left: 0;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 28px;
+  }
+
+  .wml-step:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .wml-includes-list {
+    grid-template-columns: 1fr;
+  }
+
+  .wml-provider-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .wml-provider-photo {
+    flex: 0 0 220px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+  }
+
+  .wml-provider-copy {
+    text-align: center;
+  }
+
+  .wml-section-heading-left {
+    text-align: center;
+  }
+
+  .wml-provider-bio {
+    max-width: none;
+  }
+
+  .wml-testimonial {
+    padding: 32px 24px;
+  }
+
+  .wml-quote-mark {
+    font-size: 72px;
+    top: 8px;
+    left: 12px;
+  }
+
+  .wml-closing-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .wml-closing-phone-block {
+    padding-top: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .wml-footer-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .wml-footer-legal {
+    text-align: center;
+  }
+
+  .wml-footer-disclaimer {
+    margin: 0 auto;
+    max-width: 420px;
+  }
+
+  .wml-trust-strip-inner {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+}
+
+/* ── Responsive: 480px ─────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .wml-section-inner {
+    width: calc(100% - 32px);
+  }
+
+  .wml-h1 {
+    font-size: clamp(28px, 9vw, 36px);
+  }
+
+  .wml-section-heading {
+    font-size: clamp(24px, 7vw, 32px);
+  }
+
+  .wml-hero-copy {
+    padding-top: 36px;
+  }
+
+  .wml-form-card {
+    padding: 28px 20px 36px;
+  }
+
+  .wml-submit-btn {
+    font-size: 16px;
+    min-height: 52px;
+  }
+
+  .wml-phone-cta {
+    font-size: clamp(24px, 7vw, 30px);
+  }
+
+  .wml-section {
+    padding: 56px 0;
+  }
+}
+
+/* ── Focus-visible global (matches existing site pattern) ──────────────────── */
+
+.wml-page *:focus-visible {
+  outline: 2px solid var(--wml-gold);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   END MEDICAL WEIGHT LOSS LANDING PAGE STYLES
+   ============================================================ */
