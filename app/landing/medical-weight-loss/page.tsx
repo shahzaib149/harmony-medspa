@@ -1,314 +1,247 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, ClipboardCheck, MapPin, Phone, ShieldCheck, Stethoscope } from "lucide-react";
 import WeightLossForm from "@/components/landing/WeightLossForm";
-import { PHONE_DISPLAY, PHONE_TEL, ADDRESS_LINE_1, ADDRESS_LINE_2 } from "@/lib/constants";
+import { ADDRESS_LINE_1, ADDRESS_LINE_2, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
-  description:
-    "Meet with a board-certified nurse practitioner for an individualized medical weight loss plan built around your health history and goals. Serving Sarasota, FL.",
+  description: "Explore individualized, medically supervised weight-loss care with Jessica Simone, AGNP-C, at Harmony Med Spa in Sarasota, Florida.",
+  openGraph: {
+    title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
+    description: "A medically guided plan built around your health, goals, and ongoing progress.",
+    images: ["https://www.harmonymedspafl.com/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png"],
+  },
   robots: { index: false, follow: false },
 };
 
-const PHONE_HREF = `tel:+1${PHONE_TEL}`;
+const phoneHref = `tel:+1${PHONE_TEL}`;
 
-// ── FAQ data (rendered as static HTML — no JS injection) ────────────────────
-
-const faqs = [
-  {
-    q: "What happens at the first appointment?",
-    a: "Mostly conversation. We'll go through your health history, what you've tried before, and what you're hoping for, then talk through what's realistically available for your situation. You'll leave understanding your options.",
-  },
-  {
-    q: "Is the consultation free?",
-    a: "[CONFIRM — Harmony currently advertises a free consultation elsewhere on the site. State the position for this program clearly and keep it accurate.]",
-  },
-  {
-    q: "Do I have to take medication?",
-    a: "No. Medication is one option among several and is only considered when it's medically appropriate for you. Plenty of patients are managed without it.",
-  },
-  {
-    q: "How much does it cost?",
-    a: "Cost depends on what your plan involves. We'll go through it in full during your consultation, before you commit to anything.",
-  },
-  {
-    q: "How long until I see results?",
-    a: "This varies considerably between individuals, and anyone who gives you a specific number before meeting you is guessing. Your provider can give you a realistic picture once they understand your situation.",
-  },
-  {
-    q: "Where are you located?",
-    a: `${ADDRESS_LINE_1}, ${ADDRESS_LINE_2}. Monday to Friday, 9:00am to 5:00pm.`,
-  },
+const trustPoints = [
+  { icon: Stethoscope, title: "Medical-provider led", detail: "Care with Jessica Simone, AGNP-C" },
+  { icon: MapPin, title: "Local Sarasota care", detail: "In-person support at Gulf Gate" },
+  { icon: ClipboardCheck, title: "Built around you", detail: "Evaluation, follow-up, and plan review" },
 ];
 
-// ── What program may include ─────────────────────────────────────────────────
+const pathway = [
+  { number: "01", label: "Evaluate", title: "Start with your full picture", body: "Discuss your health history, current medications, previous approaches, and the outcomes that matter to you." },
+  { number: "02", label: "Personalize", title: "Build the right plan", body: "Your provider explains the options that may fit your evaluation, including medication only when clinically appropriate." },
+  { number: "03", label: "Monitor", title: "Keep care responsive", body: "Regular check-ins, weigh-ins, and progress reviews help your provider understand how you are responding and adjust the plan." },
+];
 
 const programItems = [
-  "Initial medical evaluation and relevant lab work",
-  "Review of current medications that may affect weight",
-  "Assessment of thyroid and hormone factors, where indicated",
-  "Nutritional guidance built around your actual routine",
-  "Regular weigh-ins and progress monitoring",
-  "Medication options, when medically appropriate",
-  "Plan adjustments based on how you respond",
+  "A one-to-one provider consultation",
+  "Review of health history, medications, and goals",
+  "Discussion of GLP-1 options when appropriate",
+  "Regular weigh-ins and progress reviews",
+  "Plan adjustments based on your response",
+  "Optional wellness support available through Harmony",
 ];
 
-// ── How it works steps ───────────────────────────────────────────────────────
+const articles = [
+  {
+    href: "/blog/how-glp-1-medications-support-medical-weight-loss",
+    image: "/images/blogs/blog-1/4.jpg",
+    category: "Treatment guide",
+    title: "How GLP-1 Medications Support Medical Weight Loss",
+    description: "A plain-language look at how this class of medication works and where medical supervision fits.",
+  },
+  {
+    href: "/blog/breaking-down-barriers-addressing-common-misconceptions-about-glp-1-medications",
+    image: "/images/blogs/blog-2/10.jpg",
+    category: "Questions answered",
+    title: "Common Misconceptions About GLP-1 Medications",
+    description: "Separate common assumptions from the conversations you should have with a qualified provider.",
+  },
+  {
+    href: "/blog/what-is-medical-weight-loss",
+    image: "/images/blogs/blog-3/3.jpg",
+    category: "Getting started",
+    title: "What Is Medical Weight Loss?",
+    description: "Understand what makes medically guided care different from a general diet or template program.",
+  },
+];
 
-const steps = [
-  {
-    n: "1",
-    title: "Medical evaluation",
-    body: "We review your health history, current medications, and what you've already tried. Lab work is arranged where it's relevant.",
-  },
-  {
-    n: "2",
-    title: "Your individualized plan",
-    body: "Your provider builds a plan around what your evaluation actually shows, not a template. What's appropriate varies from person to person.",
-  },
-  {
-    n: "3",
-    title: "Ongoing check-ins",
-    body: "Regular visits with weigh-ins and progress review, so the plan can be adjusted when something isn't working.",
-  },
+const faqs = [
+  { question: "What happens at the first appointment?", answer: "Your first visit begins with a conversation about your health history, medications, previous weight-loss efforts, and goals. Jessica will explain which options may be appropriate and what ongoing care could look like before you decide how to proceed." },
+  { question: "Do I have to take weight-loss medication?", answer: "No. Medication is one possible part of care and is considered only when medically appropriate. Your consultation is designed to help you understand the available options, not pressure you into one approach." },
+  { question: "Does Harmony offer GLP-1 medication options?", answer: "GLP-1 medication options may be discussed as part of an individualized medical evaluation. Eligibility and recommendations depend on your health history and provider assessment." },
+  { question: "How much does the program cost?", answer: "Cost depends on the care and options included in your individualized plan. The team will explain applicable pricing before you commit to treatment." },
+  { question: "How quickly will I see results?", answer: "Response varies from person to person. Your provider can discuss realistic expectations after learning about your health, goals, and recommended plan. Individual results vary." },
+  { question: "Where is Harmony Med Spa located?", answer: `${ADDRESS_LINE_1}, ${ADDRESS_LINE_2}. The office is open Monday through Friday, 9:00 a.m. to 5:00 p.m.` },
 ];
 
 export default function MedicalWeightLossLandingPage() {
   return (
-    <main className="wml-page" id="main-content">
+    <div className={styles.page}>
+      <a className={styles.skipLink} href="#main-content">Skip to main content</a>
 
-      {/* ── Section 1: Hero ─────────────────────────────────────────────────── */}
-      <section className="wml-hero" id="hero" aria-labelledby="wml-h1">
-        <div className="wml-hero-inner">
+      <header className={styles.header}>
+        <a className={styles.brand} href="#top" aria-label="Harmony Med Spa medical weight loss">
+          <Image src="/images/logo-transparent.png" alt="Harmony Med Spa" width={180} height={74} priority />
+        </a>
+        <div className={styles.headerActions}>
+          <a className={styles.phoneLink} href={phoneHref}><Phone size={15} aria-hidden="true" /><span>{PHONE_DISPLAY}</span></a>
+          <a className={styles.headerCta} href="#consultation">Request a consultation <ArrowUpRight size={16} aria-hidden="true" /></a>
+        </div>
+      </header>
 
-          {/* Left column */}
-          <div className="wml-hero-copy">
-            {/* Logo — image only, not a link */}
-            <div className="wml-logo" aria-label="Harmony Med Spa">
-              <Image
-                src="/images/logo-transparent.png"
-                alt="Harmony Med Spa"
-                width={260}
-                height={70}
-                priority
-              />
+      <main id="main-content">
+        <section className={styles.hero} id="top" aria-labelledby="hero-heading">
+          <div className={styles.heroMedia}>
+            <Image
+              src="/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png"
+              alt="A private consultation with a Harmony Med Spa medical provider"
+              fill
+              sizes="(max-width: 900px) 100vw, 62vw"
+              className={styles.heroImage}
+              priority
+            />
+            <div className={styles.heroShade} />
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>Medical weight loss · Sarasota</p>
+              <h1 id="hero-heading">A weight-loss plan built around your biology—not a template.</h1>
+              <p className={styles.heroLead}>Meet one-to-one with Jessica Simone, AGNP-C, for individualized medical care, thoughtful options, and ongoing progress support.</p>
+              <div className={styles.heroLinks}>
+                <a className={styles.primaryCta} href="#consultation">Request a consultation <ArrowRight size={17} aria-hidden="true" /></a>
+                <a className={styles.textLink} href={phoneHref}>Prefer to talk? {PHONE_DISPLAY}</a>
+              </div>
             </div>
-
-            <h1 id="wml-h1" className="wml-h1">
-              Medical Weight Loss in Sarasota
-            </h1>
-
-            <p className="wml-hero-sub">
-              Meet with a board-certified nurse practitioner for an individualized plan built around your health,
-              your history, and your goals.
-            </p>
-
-            {/* Trust row */}
-            <ul className="wml-trust-row" aria-label="Trust indicators">
-              <li className="wml-trust-item">
-                <span className="wml-trust-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                </span>
-                In-person Sarasota care
-              </li>
-              <li className="wml-trust-item">
-                <span className="wml-trust-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92.92z"/></svg>
-                </span>
-                Board-certified nurse practitioner
-              </li>
-              <li className="wml-trust-item">
-                <span className="wml-trust-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                </span>
-                Ongoing progress support
-              </li>
-            </ul>
-
-            {/* Phone CTA */}
-            <a className="wml-phone-cta" href={PHONE_HREF} aria-label={`Call ${PHONE_DISPLAY}`}>
-              {PHONE_DISPLAY}
-            </a>
-            <p className="wml-phone-sub">
-              Prefer to talk first? Call us — we&apos;re happy to answer questions before you book anything.
-            </p>
+            <p className={styles.heroCaption}>Individualized care starts with listening.</p>
           </div>
 
-          {/* Right column — hero form */}
-          <WeightLossForm id="hero-form" />
-        </div>
-      </section>
+          <div className={styles.formColumn} id="consultation">
+            <WeightLossForm id="consultation-form" />
+          </div>
+        </section>
 
-      {/* ── Section 2: How it works ──────────────────────────────────────────── */}
-      <section className="wml-section wml-steps-section" aria-labelledby="wml-steps-heading">
-        <div className="wml-section-inner">
-          <h2 id="wml-steps-heading" className="wml-section-heading">
-            A Medical Plan, Not a One-Size-Fits-All Program
-          </h2>
-          <ol className="wml-steps" aria-label="How the program works">
-            {steps.map((step) => (
-              <li key={step.n} className="wml-step">
-                <span className="wml-step-number" aria-hidden="true">{step.n}</span>
-                <h3 className="wml-step-title">{step.title}</h3>
-                <p className="wml-step-body">{step.body}</p>
+        <section className={styles.trustRail} aria-label="Program highlights">
+          {trustPoints.map(({ icon: Icon, title, detail }) => (
+            <div className={styles.trustItem} key={title}>
+              <Icon size={20} strokeWidth={1.6} aria-hidden="true" />
+              <div><strong>{title}</strong><span>{detail}</span></div>
+            </div>
+          ))}
+        </section>
+
+        <section className={styles.introSection} aria-labelledby="different-heading">
+          <div className={styles.sectionNumber} aria-hidden="true">01 / CARE, DIFFERENTLY</div>
+          <div className={styles.introStatement}>
+            <p className={styles.eyebrowDark}>Beyond a quick prescription</p>
+            <h2 id="different-heading">The plan should fit the person. Not the other way around.</h2>
+          </div>
+          <div className={styles.introBody}>
+            <p>Medical weight loss is not simply a product or a number on a scale. At Harmony, it begins with a provider understanding the larger picture—your history, your goals, and what you have already tried.</p>
+            <p>From there, Jessica can help you consider medically appropriate options and stay involved as your plan progresses.</p>
+          </div>
+        </section>
+
+        <section className={styles.pathwaySection} aria-labelledby="pathway-heading">
+          <div className={styles.pathwayHeading}>
+            <p className={styles.eyebrowLight}>Your care pathway</p>
+            <h2 id="pathway-heading">Clear next steps.<br />Care that stays connected.</h2>
+          </div>
+          <ol className={styles.pathwayList}>
+            {pathway.map((step) => (
+              <li className={styles.pathwayStep} key={step.number}>
+                <div className={styles.pathMarker}><span>{step.number}</span></div>
+                <p className={styles.pathLabel}>{step.label}</p>
+                <h3>{step.title}</h3>
+                <p className={styles.pathBody}>{step.body}</p>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Section 3: What program may include ─────────────────────────────── */}
-      <section className="wml-section wml-includes-section" aria-labelledby="wml-includes-heading">
-        <div className="wml-section-inner">
-          <h2 id="wml-includes-heading" className="wml-section-heading">
-            What Your Program May Include
-          </h2>
-          <ul className="wml-includes-list">
-            {programItems.map((item) => (
-              <li key={item} className="wml-includes-item">{item}</li>
-            ))}
+        <section className={styles.providerSection} aria-labelledby="provider-heading">
+          <div className={styles.providerImageWrap}>
+            <Image src="/images/providers/clear_team_1.jpg" alt="Jessica Simone, AGNP-C, owner and medical provider at Harmony Med Spa" fill sizes="(max-width: 760px) 100vw, 44vw" className={styles.providerImage} />
+            <div className={styles.providerStamp}><ShieldCheck size={20} aria-hidden="true" /><span>Board-certified<br />provider care</span></div>
+          </div>
+          <div className={styles.providerCopy}>
+            <p className={styles.sectionNumber}>02 / MEET YOUR PROVIDER</p>
+            <p className={styles.eyebrowDark}>Jessica Simone, AGNP-C</p>
+            <h2 id="provider-heading">One provider who sees the whole picture.</h2>
+            <p>Jessica is the owner of Harmony Med Spa and an advanced practice nurse board-certified by the American Academy of Nurse Practitioners. She leads the medical weight-loss program with an emphasis on individualized care and ongoing support.</p>
+            <p className={styles.providerPrinciple}>A thoughtful evaluation first. Clear options second. Ongoing care after that.</p>
+            <a className={styles.inlineCta} href="#consultation">Request a consultation <ArrowUpRight size={17} aria-hidden="true" /></a>
+          </div>
+        </section>
+
+        <section className={styles.includesSection} aria-labelledby="includes-heading">
+          <div className={styles.includesHeading}>
+            <p className={styles.sectionNumber}>03 / YOUR PROGRAM</p>
+            <h2 id="includes-heading">What individualized care may include</h2>
+            <p>Your care is based on your provider evaluation. Not every item is right for every patient.</p>
+          </div>
+          <ul className={styles.includesList}>
+            {programItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}
           </ul>
-          <p className="wml-includes-disclaimer">
-            Not every element applies to every patient. What&apos;s appropriate is determined during your evaluation.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Section 4: Your provider ─────────────────────────────────────────── */}
-      <section className="wml-section wml-provider-section" aria-labelledby="wml-provider-heading">
-        <div className="wml-section-inner wml-provider-inner">
-          <Image
-            className="wml-provider-photo"
-            src="/images/providers/clear_team_1.jpg"
-            alt="Jessica Simone, AGNP-C, board-certified nurse practitioner at Harmony Med Spa"
-            width={280}
-            height={280}
-          />
-          <div className="wml-provider-copy">
-            <h2 id="wml-provider-heading" className="wml-section-heading wml-section-heading-left">
-              Care From a Board-Certified Nurse Practitioner
-            </h2>
-            <p className="wml-provider-name">Jessica Simone, AGNP-C</p>
-            <p className="wml-provider-bio">
-              Jessica is a board-certified adult-gerontology nurse practitioner and leads care at Harmony Med Spa in
-              Sarasota. Your evaluation, your plan, and your follow-up visits are handled by a medical provider —
-              not a coach or a sales consultant.
-            </p>
+        <section className={styles.testimonialSection} aria-labelledby="patient-heading">
+          <div className={styles.quoteMark} aria-hidden="true">“</div>
+          <div className={styles.testimonialCopy}>
+            <p className={styles.eyebrowLight}>A patient perspective</p>
+            <h2 id="patient-heading">Care that makes room for questions.</h2>
+            <blockquote>“Jessica addresses all of my questions and concerns thoughtfully. I highly recommend her and her delightful staff.”</blockquote>
+            <p className={styles.attribution}>Debi D. · Harmony patient</p>
+            <p className={styles.resultsNote}>Individual results vary.</p>
           </div>
-        </div>
-      </section>
+          <div className={styles.testimonialAside}><span>01</span><p>Real feedback from a medical weight-loss patient.</p></div>
+        </section>
 
-      {/* ── Section 5: Testimonial ───────────────────────────────────────────── */}
-      <section className="wml-section wml-testimonial-section" aria-labelledby="wml-testimonial-heading">
-        <div className="wml-section-inner">
-          <h2 id="wml-testimonial-heading" className="wml-section-heading">
-            What Patients Say
-          </h2>
-          <figure className="wml-testimonial">
-            <span className="wml-quote-mark" aria-hidden="true">&ldquo;</span>
-            <blockquote className="wml-quote-body">
-              I&apos;ve been to a few Med Spas in Sarasota, and Jessica is absolutely the best. She truly cares about
-              providing exceptional service and I am thrilled to have finally found a practitioner I can trust.
-              Her staff is fantastic and I couldn&apos;t be happier with my decision.
-            </blockquote>
-            <figcaption className="wml-quote-attribution">
-              <span className="wml-stars" aria-label="Five stars">★★★★★</span>
-              <span className="wml-quote-name">Ariel F.</span>
-            </figcaption>
-          </figure>
-          <p className="wml-results-disclaimer">Individual results vary.</p>
-        </div>
-      </section>
-
-      {/* ── Section 6: FAQs ─────────────────────────────────────────────────── */}
-      <section className="wml-section wml-faq-section" aria-labelledby="wml-faq-heading">
-        <div className="wml-section-inner">
-          <h2 id="wml-faq-heading" className="wml-section-heading">
-            Common Questions
-          </h2>
-          <dl className="wml-faq-list">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="wml-faq-item">
-                <dt className="wml-faq-q">{faq.q}</dt>
-                <dd className="wml-faq-a">{faq.a}</dd>
-              </div>
+        <section className={styles.articlesSection} aria-labelledby="articles-heading">
+          <div className={styles.articlesHeader}>
+            <div><p className={styles.eyebrowDark}>Read before your visit</p><h2 id="articles-heading">Useful, not overwhelming.</h2></div>
+            <Link className={styles.allArticles} href="/blog">Explore all articles <ArrowUpRight size={16} aria-hidden="true" /></Link>
+          </div>
+          <div className={styles.articleGrid}>
+            {articles.map((article, index) => (
+              <Link className={styles.articleCard} href={article.href} key={article.href}>
+                <div className={styles.articleImageWrap}><Image src={article.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" className={styles.articleImage} /></div>
+                <div className={styles.articleContent}>
+                  <p>{String(index + 1).padStart(2, "0")} · {article.category}</p>
+                  <h3>{article.title}</h3>
+                  <span>{article.description}</span>
+                  <strong>Read guide <ArrowUpRight size={15} aria-hidden="true" /></strong>
+                </div>
+              </Link>
             ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* ── Section 7: Footer ────────────────────────────────────────────────── */}
-      <footer className="wml-footer" role="contentinfo">
-        <div className="wml-section-inner">
-          
-          <div className="wml-footer-grid">
-
-            {/* Bottom Left: BNS & BBB Badges */}
-            <div className="wml-footer-awards">
-              <div
-                className="wml-award-bns"
-                role="img"
-                aria-label="BNS Best in Business 2024"
-              />
-              <div
-                className="wml-award-bbb"
-                role="img"
-                aria-label="BBB Accredited Business"
-              />
-            </div>
-
-            {/* Center Column: Google Maps (Zoomed In + Zoom Button) + Contact Info */}
-            <div className="wml-footer-center">
-              {/* Google Maps Location (Zoomed in view: 1d1000.0) */}
-              <div className="wml-footer-map">
-                <iframe
-                  title="Harmony Med Spa location map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000.0!2d-82.5174315!3d27.2585249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c341675072d051%3A0x57ec31e9ba2b5cac!2sHarmony%20Med%20Spa!5e0!3m2!1sen!2sus!4v1"
-                  width="100%"
-                  height="210"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-
-              {/* Contact Info (Blue Circled Area in Bottom Center) */}
-              <div className="wml-footer-contact">
-                <p className="wml-footer-company"><strong>Harmony Med Spa</strong></p>
-                <p className="wml-footer-address">
-                  {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
-                </p>
-                <p className="wml-footer-phone">
-                  <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
-                </p>
-                <p className="wml-footer-hours">
-                  Monday – Friday, 9:00am to 5:00pm
-                </p>
-              </div>
-            </div>
-
-            {/* Right Column: Privacy Policy & Legal */}
-            <div className="wml-footer-legal">
-              <nav aria-label="Legal navigation">
-                <a href="/privacy-policy">Privacy Policy</a>
-                {" · "}
-                <a href="/accessibility">Accessibility Statement</a>
-              </nav>
-              <p className="wml-footer-copyright">
-                © {new Date().getFullYear()} Harmony Med Spa. All rights reserved.
-              </p>
-              <p className="wml-footer-disclaimer">
-                This page is for general information and is not medical advice. Treatment recommendations are made
-                following an individual medical evaluation.
-              </p>
-            </div>
-
           </div>
+        </section>
 
-        </div>
+        <section className={styles.faqSection} aria-labelledby="faq-heading">
+          <div className={styles.faqIntro}><p className={styles.sectionNumber}>04 / BEFORE YOU BEGIN</p><h2 id="faq-heading">Questions worth asking.</h2><p>Clear information matters. If your question is not here, call the Harmony team and ask directly.</p><a href={phoneHref}>{PHONE_DISPLAY}</a></div>
+          <div className={styles.faqList}>
+            {faqs.map((faq, index) => (
+              <details className={styles.faqItem} key={faq.question}>
+                <summary><span>{String(index + 1).padStart(2, "0")}</span>{faq.question}<i aria-hidden="true" /></summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.finalCta} aria-labelledby="final-heading">
+          <div><p className={styles.eyebrowLight}>A private first conversation</p><h2 id="final-heading">Ready to understand your options?</h2></div>
+          <div><p>Request a consultation with Harmony&apos;s Sarasota team. No generic promises—just a thoughtful next step.</p><a className={styles.primaryCta} href="#consultation">Request a consultation <ArrowRight size={17} aria-hidden="true" /></a></div>
+        </section>
+      </main>
+
+      <footer className={styles.footer}>
+        <div className={styles.footerBrand}><Image src="/images/logo-transparent.png" alt="Harmony Med Spa" width={150} height={62} /><p>Medical aesthetics and wellness care in Sarasota, Florida.</p></div>
+        <div><p className={styles.footerLabel}>Visit</p><address>{ADDRESS_LINE_1}<br />{ADDRESS_LINE_2}</address></div>
+        <div><p className={styles.footerLabel}>Contact</p><a href={phoneHref}>{PHONE_DISPLAY}</a><span>Monday–Friday · 9:00 a.m.–5:00 p.m.</span></div>
+        <div className={styles.footerLegal}><p>© {new Date().getFullYear()} Harmony Med Spa.</p><p>This page provides general information and is not medical advice. Recommendations follow an individual medical evaluation.</p></div>
       </footer>
 
-    </main>
+      <nav className={styles.mobileBar} aria-label="Quick contact actions">
+        <a href={phoneHref}><Phone size={17} aria-hidden="true" /> Call</a>
+        <a href="#consultation">Request consultation <ArrowRight size={17} aria-hidden="true" /></a>
+      </nav>
+    </div>
   );
 }

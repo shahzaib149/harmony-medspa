@@ -1,20 +1,20 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Check, LockKeyhole } from "lucide-react";
 import { CONTACT_WEBHOOK_URL, ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import { formatUsPhoneE164 } from "@/lib/submitLead";
 import { trackLeadConversion } from "@/lib/analytics/gtag";
-
-// ─── Constants ────────────────────────────────────────────────────────────────
+import styles from "./WeightLossForm.module.css";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SESSION_KEY = "wml_utm_params";
 
-// UTM / click-id query-string params we capture
 const TRACKED_PARAMS = [
   "utm_source",
   "utm_medium",
   "utm_campaign",
+  "utm_ad_group",
   "utm_adgroup",
   "utm_content",
   "utm_term",
@@ -28,39 +28,34 @@ const TRACKED_PARAMS = [
 
 type TrackedParam = (typeof TRACKED_PARAMS)[number];
 type CapturedParams = Partial<Record<TrackedParam, string>>;
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+type Errors = { name?: string; phone?: string; email?: string };
+type Status = "idle" | "submitting" | "success" | "error";
+type BestTime = "" | "Morning" | "Afternoon" | "Evening" | "Any time";
 
 function readAndPersistParams(): CapturedParams {
   if (typeof window === "undefined") return {};
 
-  const qs = new URLSearchParams(window.location.search);
-  let fromSession: CapturedParams = {};
+  const query = new URLSearchParams(window.location.search);
+  let stored: CapturedParams = {};
 
   try {
-    const raw = sessionStorage.getItem(SESSION_KEY);
-    if (raw) fromSession = JSON.parse(raw) as CapturedParams;
+    const value = sessionStorage.getItem(SESSION_KEY);
+    if (value) stored = JSON.parse(value) as CapturedParams;
   } catch {
-    // sessionStorage unavailable or corrupt — proceed without it
+    // Attribution is helpful, but should never block the form.
   }
 
-  // Prefer live query string; fall back to sessionStorage for each param
   const merged: CapturedParams = {};
   for (const key of TRACKED_PARAMS) {
-    const live = qs.get(key);
-    merged[key] = live ?? fromSession[key] ?? "";
+    merged[key] = query.get(key) ?? stored[key] ?? "";
   }
 
-  // Persist merged values — survives soft navigations and refreshes
   try {
-    // Only write if there is at least one non-empty value (don't clobber a
-    // genuine session with an empty landing)
-    const hasValues = TRACKED_PARAMS.some((k) => merged[k]);
-    if (hasValues) {
+    if (TRACKED_PARAMS.some((key) => merged[key])) {
       sessionStorage.setItem(SESSION_KEY, JSON.stringify(merged));
     }
   } catch {
-    // ignore write failures
+    // Continue if storage is unavailable.
   }
 
   return merged;
@@ -68,35 +63,18 @@ function readAndPersistParams(): CapturedParams {
 
 function isValidUsPhone(value: string): boolean {
   const digits = value.replace(/\D/g, "");
-  // Accept 10-digit national or 11-digit with leading 1
   const national = digits.startsWith("1") && digits.length >= 11 ? digits.slice(1) : digits;
   return national.length >= 10;
 }
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-type Errors = {
-  name?: string;
-  phone?: string;
-  email?: string;
-};
-
-type Status = "idle" | "submitting" | "success" | "error";
-
-type BestTime = "" | "Morning" | "Afternoon" | "Evening" | "Any time";
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function WeightLossForm({ id }: { id: string }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [bestTime, setBestTime] = useState<BestTime>("");
-  const [honeypot, setHoneypot] = useState(""); // must stay empty
+  const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
-
-  // Captured on mount; stable for the life of the component
   const capturedParams = useRef<CapturedParams>({});
   const hasFiredConversion = useRef(false);
 
@@ -104,46 +82,26 @@ export default function WeightLossForm({ id }: { id: string }) {
     capturedParams.current = readAndPersistParams();
   }, []);
 
-  // ── Validation ──────────────────────────────────────────────────────────────
-
   function validate(): Errors {
-    const errs: Errors = {};
-
-    if (!name.trim()) {
-      errs.name = "Please enter your name.";
-    }
-
-    if (!phone.trim()) {
-      errs.phone = "Please enter your phone number.";
-    } else if (!isValidUsPhone(phone)) {
-      errs.phone = "Please enter a valid US phone number.";
-    }
-
-    if (email.trim() && !EMAIL_PATTERN.test(email.trim())) {
-      errs.email = "Please enter a valid email address.";
-    }
-
-    return errs;
+    const nextErrors: Errors = {};
+    if (!name.trim()) nextErrors.name = "Please enter your name.";
+    if (!phone.trim()) nextErrors.phone = "Please enter your phone number.";
+    else if (!isValidUsPhone(phone)) nextErrors.phone = "Please enter a valid US phone number.";
+    if (email.trim() && !EMAIL_PATTERN.test(email.trim())) nextErrors.email = "Please enter a valid email address.";
+    return nextErrors;
   }
-
-  // ── Submission ──────────────────────────────────────────────────────────────
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    // Silently discard honeypot-filled submissions
     if (honeypot) return;
 
-    const errs = validate();
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
+    const nextErrors = validate();
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
 
     setStatus("submitting");
-
-    const p = capturedParams.current;
-
+    const params = capturedParams.current;
     const payload = {
-      // ── Core lead fields (matching existing Airtable schema exactly) ──
       Name: name.trim(),
       Email: email.trim(),
       Phone: formatUsPhoneE164(phone),
@@ -153,24 +111,18 @@ export default function WeightLossForm({ id }: { id: string }) {
       "Best Time to Reach": bestTime,
       "Email Sent Status": "Pending",
       "SMS Sent Status": "Pending",
-
-      // ── UTM fields (matching existing schema) ──
-      "UTM Source": p.utm_source ?? "",
-      "UTM Medium": p.utm_medium ?? "",
-      "UTM Campaign": p.utm_campaign ?? "",
-
-      // ── Extended attribution fields (new — confirm Airtable columns exist) ──
-      "UTM Ad Group": p.utm_adgroup ?? "",
-      "UTM Content": p.utm_content ?? "",
-      "UTM Term": p.utm_term ?? "",
-      "Match Type": p.matchtype ?? "",
-      Device: p.device ?? "",
-      Network: p.network ?? "",
-      GCLID: p.gclid ?? "",
-      GBRAID: p.gbraid ?? "",
-      WBRAID: p.wbraid ?? "",
-
-      // ── Page context ──
+      "UTM Source": params.utm_source ?? "",
+      "UTM Medium": params.utm_medium ?? "",
+      "UTM Campaign": params.utm_campaign ?? "",
+      "UTM Ad Group": params.utm_ad_group || params.utm_adgroup || "",
+      "UTM Content": params.utm_content ?? "",
+      "UTM Term": params.utm_term ?? "",
+      "Match Type": params.matchtype ?? "",
+      Device: params.device ?? "",
+      Network: params.network ?? "",
+      GCLID: params.gclid ?? "",
+      GBRAID: params.gbraid ?? "",
+      WBRAID: params.wbraid ?? "",
       "Page URL": typeof window !== "undefined" ? window.location.href : "",
       "Landing URL": "/landing/medical-weight-loss",
       "Lead Created At": new Date().toISOString(),
@@ -182,148 +134,65 @@ export default function WeightLossForm({ id }: { id: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (!response.ok) throw new Error("Lead submission failed");
 
-      if (!response.ok) throw new Error("Webhook returned non-OK status");
-
-      // ── Fire conversion exactly once, only on confirmed success ──
       if (!hasFiredConversion.current) {
         hasFiredConversion.current = true;
         trackLeadConversion();
       }
-
       setStatus("success");
     } catch {
       setStatus("error");
-      // Intentionally no conversion fire on failure
     }
   }
 
-  // ── Success state ────────────────────────────────────────────────────────────
-
   if (status === "success") {
     return (
-      <div className="wml-form-card" id={id}>
-        <div className="wml-success">
-          <div className="wml-success-icon" aria-hidden="true">✓</div>
-          <h3 className="wml-success-heading">Thanks — we&apos;ve got your details.</h3>
-          <p className="wml-success-body">
-            Someone from our team will be in touch shortly. If you&apos;d rather book a time now, you can do that here:
-          </p>
-          <a
-            className="wml-submit-btn"
-            href={ONLINE_BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Book an Appointment
-          </a>
-        </div>
+      <div className={styles.card} id={id} role="status" aria-live="polite">
+        <div className={styles.successIcon} aria-hidden="true"><Check size={22} /></div>
+        <p className={styles.kicker}>Request received</p>
+        <h2 className={styles.successHeading}>We&apos;ll be in touch shortly.</h2>
+        <p className={styles.successBody}>A member of the Harmony team will contact you about the next step. Prefer to choose a time now?</p>
+        <a className={styles.submitButton} href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+          Book an appointment <ArrowUpRight size={18} aria-hidden="true" />
+        </a>
       </div>
     );
   }
 
-  // ── Form ─────────────────────────────────────────────────────────────────────
-
   return (
-    <div className="wml-form-card" id={id}>
-      <h2 className="wml-form-heading">Request Your Consultation</h2>
-      <p className="wml-form-subheading">Fill in the form and we&apos;ll call you back.</p>
+    <div className={styles.card} id={id}>
+      <p className={styles.kicker}>Private consultation request</p>
+      <h2 className={styles.heading}>Let&apos;s talk about your options.</h2>
+      <p className={styles.subheading}>Share the best way to reach you. Our Sarasota team will follow up personally.</p>
 
-      <form className="wml-form" onSubmit={handleSubmit} noValidate aria-label="Consultation request form">
-
-        {/* Honeypot — visually hidden, must stay empty */}
-        <div className="wml-honeypot" aria-hidden="true">
+      <form className={styles.form} onSubmit={handleSubmit} noValidate aria-label="Medical weight loss consultation request">
+        <div className={styles.honeypot} aria-hidden="true">
           <label htmlFor={`${id}-website`}>Leave this blank</label>
-          <input
-            id={`${id}-website`}
-            type="text"
-            name="website"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
-            autoComplete="off"
-            tabIndex={-1}
-          />
+          <input id={`${id}-website`} name="website" value={honeypot} onChange={(event) => setHoneypot(event.target.value)} autoComplete="off" tabIndex={-1} />
         </div>
 
-        {/* Name */}
-        <div className="wml-field">
-          <label className="wml-label" htmlFor={`${id}-name`}>
-            Name <span className="wml-required" aria-hidden="true">*</span>
-          </label>
-          <input
-            id={`${id}-name`}
-            className={`wml-input${errors.name ? " wml-input-error" : ""}`}
-            type="text"
-            name="name"
-            autoComplete="name"
-            placeholder="Your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            aria-required="true"
-            aria-describedby={errors.name ? `${id}-name-err` : undefined}
-          />
-          {errors.name ? (
-            <p id={`${id}-name-err`} className="wml-field-error" role="alert">{errors.name}</p>
-          ) : null}
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={`${id}-name`}>Full name <span aria-hidden="true">*</span></label>
+          <input id={`${id}-name`} className={`${styles.input} ${errors.name ? styles.inputError : ""}`} type="text" name="name" autoComplete="name" placeholder="Your name" value={name} onChange={(event) => setName(event.target.value)} aria-required="true" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? `${id}-name-error` : undefined} />
+          {errors.name ? <p id={`${id}-name-error`} className={styles.fieldError} role="alert">{errors.name}</p> : null}
         </div>
 
-        {/* Phone */}
-        <div className="wml-field">
-          <label className="wml-label" htmlFor={`${id}-phone`}>
-            Phone <span className="wml-required" aria-hidden="true">*</span>
-          </label>
-          <input
-            id={`${id}-phone`}
-            className={`wml-input${errors.phone ? " wml-input-error" : ""}`}
-            type="tel"
-            name="phone"
-            autoComplete="tel"
-            placeholder="(941) 555-0123"
-            inputMode="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            aria-required="true"
-            aria-describedby={errors.phone ? `${id}-phone-err` : undefined}
-          />
-          {errors.phone ? (
-            <p id={`${id}-phone-err`} className="wml-field-error" role="alert">{errors.phone}</p>
-          ) : null}
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={`${id}-phone`}>Phone <span aria-hidden="true">*</span></label>
+          <input id={`${id}-phone`} className={`${styles.input} ${errors.phone ? styles.inputError : ""}`} type="tel" name="phone" autoComplete="tel" placeholder="(941) 555-0123" inputMode="tel" value={phone} onChange={(event) => setPhone(event.target.value)} aria-required="true" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? `${id}-phone-error` : undefined} />
+          {errors.phone ? <p id={`${id}-phone-error`} className={styles.fieldError} role="alert">{errors.phone}</p> : null}
         </div>
 
-        {/* Email (optional) */}
-        <div className="wml-field">
-          <label className="wml-label" htmlFor={`${id}-email`}>
-            Email <span className="wml-optional">(optional)</span>
-          </label>
-          <input
-            id={`${id}-email`}
-            className={`wml-input${errors.email ? " wml-input-error" : ""}`}
-            type="email"
-            name="email"
-            autoComplete="email"
-            placeholder="Optional"
-            inputMode="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            aria-describedby={errors.email ? `${id}-email-err` : undefined}
-          />
-          {errors.email ? (
-            <p id={`${id}-email-err`} className="wml-field-error" role="alert">{errors.email}</p>
-          ) : null}
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={`${id}-email`}>Email <span className={styles.optional}>Optional</span></label>
+          <input id={`${id}-email`} className={`${styles.input} ${errors.email ? styles.inputError : ""}`} type="email" name="email" autoComplete="email" placeholder="you@example.com" inputMode="email" value={email} onChange={(event) => setEmail(event.target.value)} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? `${id}-email-error` : undefined} />
+          {errors.email ? <p id={`${id}-email-error`} className={styles.fieldError} role="alert">{errors.email}</p> : null}
         </div>
 
-        {/* Best time to reach */}
-        <div className="wml-field">
-          <label className="wml-label" htmlFor={`${id}-time`}>
-            Best time to reach you <span className="wml-optional">(optional)</span>
-          </label>
-          <select
-            id={`${id}-time`}
-            className="wml-select"
-            name="best_time"
-            value={bestTime}
-            onChange={(e) => setBestTime(e.target.value as BestTime)}
-          >
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={`${id}-time`}>Best time to reach you <span className={styles.optional}>Optional</span></label>
+          <select id={`${id}-time`} className={styles.select} name="best_time" value={bestTime} onChange={(event) => setBestTime(event.target.value as BestTime)}>
             <option value="">Select a time</option>
             <option value="Morning">Morning</option>
             <option value="Afternoon">Afternoon</option>
@@ -332,28 +201,14 @@ export default function WeightLossForm({ id }: { id: string }) {
           </select>
         </div>
 
-        {/* Submit button */}
-        <button
-          id={`${id}-submit`}
-          className="wml-submit-btn"
-          type="submit"
-          disabled={status === "submitting"}
-          aria-disabled={status === "submitting"}
-        >
-          {status === "submitting" ? "Sending\u2026" : "Request Your Consultation"}
+        <button className={styles.submitButton} type="submit" disabled={status === "submitting"} aria-busy={status === "submitting"}>
+          {status === "submitting" ? "Sending…" : "Request my consultation"}
+          {status !== "submitting" ? <ArrowUpRight size={18} aria-hidden="true" /> : null}
         </button>
 
-        <p className="wml-form-disclaimer">
-          We&apos;ll call or text you back. No obligation, and no pressure to book anything.
-        </p>
-
-        {/* Error state */}
-        {status === "error" ? (
-          <p className="wml-form-error" role="alert">
-            Something went wrong. Please call us on{" "}
-            <a href={`tel:+1${PHONE_TEL}`}>{PHONE_DISPLAY}</a> and we&apos;ll take your details.
-          </p>
-        ) : null}
+        <p className={styles.privacy}><LockKeyhole size={13} aria-hidden="true" /> Your information is sent securely and used only to follow up about your request.</p>
+        <p className={styles.consent}>By submitting, you agree Harmony Med Spa may contact you by phone or text. Message and data rates may apply. Consent is not a condition of purchase.</p>
+        {status === "error" ? <p className={styles.formError} role="alert">We couldn&apos;t send your request. Please call <a href={`tel:+1${PHONE_TEL}`}>{PHONE_DISPLAY}</a> and we&apos;ll help directly.</p> : null}
       </form>
     </div>
   );
