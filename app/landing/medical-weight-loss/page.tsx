@@ -6,13 +6,21 @@ import WeightLossForm from "@/components/landing/WeightLossForm";
 import { ADDRESS_LINE_1, ADDRESS_LINE_2, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import styles from "./page.module.css";
 
+const socialImage = "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png";
+
 export const metadata: Metadata = {
   title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
   description: "Explore individualized, medically supervised weight-loss care with Jessica Simone, AGNP-C, at Harmony Med Spa in Sarasota, Florida.",
   openGraph: {
     title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
     description: "A medically guided plan built around your health, goals, and ongoing progress.",
-    images: ["https://www.harmonymedspafl.com/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png"],
+    images: [socialImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
+    description: "A medically guided plan built around your health, goals, and ongoing progress.",
+    images: [socialImage],
   },
   robots: { index: false, follow: false },
 };
@@ -34,7 +42,7 @@ const pathway = [
 const programItems = [
   "A one-to-one provider consultation",
   "Review of health history, medications, and goals",
-  "Discussion of GLP-1 options when appropriate",
+  "Discussion of medication options when clinically appropriate",
   "Regular weigh-ins and progress reviews",
   "Plan adjustments based on your response",
   "Optional wellness support available through Harmony",
@@ -42,32 +50,18 @@ const programItems = [
 
 const articles = [
   {
-    href: "/blog/how-glp-1-medications-support-medical-weight-loss",
-    image: "/images/blogs/blog-1/4.jpg",
-    category: "Treatment guide",
-    title: "How GLP-1 Medications Support Medical Weight Loss",
-    description: "A plain-language look at how this class of medication works and where medical supervision fits.",
-  },
-  {
-    href: "/blog/breaking-down-barriers-addressing-common-misconceptions-about-glp-1-medications",
-    image: "/images/blogs/blog-2/10.jpg",
-    category: "Questions answered",
-    title: "Common Misconceptions About GLP-1 Medications",
-    description: "Separate common assumptions from the conversations you should have with a qualified provider.",
-  },
-  {
-    href: "/blog/what-is-medical-weight-loss",
-    image: "/images/blogs/blog-3/3.jpg",
-    category: "Getting started",
-    title: "What Is Medical Weight Loss?",
-    description: "Understand what makes medically guided care different from a general diet or template program.",
+    href: "/blog/restore-confidence-after-weight-loss-how-dermal-fillers-help-rebuild-volume",
+    image: "/images/blogs/blog-2/5.jpg",
+    category: "After weight loss",
+    title: "Restoring Facial Volume After Weight Loss",
+    description: "Learn why facial volume can change after significant weight loss and which aesthetic questions to ask.",
   },
 ];
 
 const faqs = [
   { question: "What happens at the first appointment?", answer: "Your first visit begins with a conversation about your health history, medications, previous weight-loss efforts, and goals. Jessica will explain which options may be appropriate and what ongoing care could look like before you decide how to proceed." },
   { question: "Do I have to take weight-loss medication?", answer: "No. Medication is one possible part of care and is considered only when medically appropriate. Your consultation is designed to help you understand the available options, not pressure you into one approach." },
-  { question: "Does Harmony offer GLP-1 medication options?", answer: "GLP-1 medication options may be discussed as part of an individualized medical evaluation. Eligibility and recommendations depend on your health history and provider assessment." },
+  { question: "Does Harmony offer medication options?", answer: "Medication options may be discussed as part of an individualized medical evaluation. Eligibility and recommendations depend on your health history and provider assessment." },
   { question: "How much does the program cost?", answer: "Cost depends on the care and options included in your individualized plan. The team will explain applicable pricing before you commit to treatment." },
   { question: "How quickly will I see results?", answer: "Response varies from person to person. Your provider can discuss realistic expectations after learning about your health, goals, and recommended plan. Individual results vary." },
   { question: "Where is Harmony Med Spa located?", answer: `${ADDRESS_LINE_1}, ${ADDRESS_LINE_2}. The office is open Monday through Friday, 9:00 a.m. to 5:00 p.m.` },
@@ -118,6 +112,10 @@ export default function MedicalWeightLossLandingPage() {
         </section>
 
         <section className={styles.trustRail} aria-label="Program highlights">
+          <div className={styles.awardItem} aria-label="Harmony Med Spa awards and accreditation">
+            <Image className={styles.bnsBadge} src="/images/footer/main.png" alt="BNS Best in Business 2024" width={84} height={84} />
+            <Image className={styles.bbbBadge} src="/images/footer/bbb.png" alt="BBB Accredited Business" width={132} height={28} />
+          </div>
           {trustPoints.map(({ icon: Icon, title, detail }) => (
             <div className={styles.trustItem} key={title}>
               <Icon size={20} strokeWidth={1.6} aria-hidden="true" />
@@ -143,7 +141,7 @@ export default function MedicalWeightLossLandingPage() {
             <p className={styles.eyebrowLight}>Your care pathway</p>
             <h2 id="pathway-heading">Clear next steps.<br />Care that stays connected.</h2>
           </div>
-          <ol className={styles.pathwayList}>
+          <ol className={styles.pathwayList} role="list">
             {pathway.map((step) => (
               <li className={styles.pathwayStep} key={step.number}>
                 <div className={styles.pathMarker}><span>{step.number}</span></div>
@@ -177,7 +175,7 @@ export default function MedicalWeightLossLandingPage() {
             <p>Your care is based on your provider evaluation. Not every item is right for every patient.</p>
           </div>
           <ul className={styles.includesList}>
-            {programItems.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}
+            {programItems.map((item, index) => <li key={item}><span className={styles.itemNumber}>{String(index + 1).padStart(2, "0")}</span><span className={styles.itemText}>{item}</span></li>)}
           </ul>
         </section>
 
@@ -198,7 +196,7 @@ export default function MedicalWeightLossLandingPage() {
             <div><p className={styles.eyebrowDark}>Read before your visit</p><h2 id="articles-heading">Useful, not overwhelming.</h2></div>
             <Link className={styles.allArticles} href="/blog">Explore all articles <ArrowUpRight size={16} aria-hidden="true" /></Link>
           </div>
-          <div className={styles.articleGrid}>
+          <div className={`${styles.articleGrid} ${articles.length === 1 ? styles.articleGridSingle : ""}`}>
             {articles.map((article, index) => (
               <Link className={styles.articleCard} href={article.href} key={article.href}>
                 <div className={styles.articleImageWrap}><Image src={article.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" className={styles.articleImage} /></div>
