@@ -1,0 +1,756 @@
+{
+  "schemaVersion": 1,
+  "articles": [
+    {
+      "title": "What Happens at Your First Visit to Harmony Med Spa",
+      "slug": "first-visit-med-spa-sarasota",
+      "status": "Draft",
+      "category": "Patient Guide",
+      "primaryKeyword": "med spa first visit what to expect",
+      "tags": ["Consultation", "First Visit", "Sarasota", "Patient Guide"],
+      "excerpt": "A walkthrough of your first appointment at Harmony Med Spa — what we ask, what we don't, how long it takes, and what happens if you decide not to book anything.",
+      "seoTitle": "Your First Med Spa Visit in Sarasota | Harmony Med Spa",
+      "metaDescription": "What actually happens at your first appointment at Harmony Med Spa in Sarasota — the conversation, the assessment, your options, and no pressure to book.",
+      "relatedServiceUrl": "https://harmony-medspa.vercel.app/services",
+      "relatedArticleUrls": [
+        "https://harmony-medspa.vercel.app/patient-forms",
+        "https://harmony-medspa.vercel.app/our-team"
+      ],
+      "ctaLabel": "Book your consultation",
+      "ctaUrl": "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx",
+      "content": [
+        {
+          "id": "first-visit-hero",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/first-visit-med-spa-sarasota.png",
+          "alt": "Welcoming med spa reception area with soft seating and natural daylight",
+          "caption": "Our Gulf Gate reception area. Most first appointments start with a conversation, not a treatment."
+        },
+        {
+          "id": "first-visit-intro",
+          "type": "paragraph",
+          "text": "A lot of people put off booking a first appointment at a med spa, and it's usually not about the treatment. It's not knowing what the room will be like, whether there'll be pressure to buy something, or whether they'll feel judged.\n\nSo here's exactly what happens, start to finish."
+        },
+        {
+          "id": "first-visit-h2-before",
+          "type": "heading2",
+          "text": "Before you arrive"
+        },
+        {
+          "id": "first-visit-before",
+          "type": "paragraph",
+          "text": "You'll get a confirmation with the appointment time and our address at 2184 Gulf Gate Dr. There's parking on site. If there are forms to complete beforehand, they'll be sent to you — filling them in at home means more of your appointment is spent talking rather than writing.\n\nCome as you are. You don't need to prepare anything or have decided what you want."
+        },
+        {
+          "id": "first-visit-h2-conversation",
+          "type": "heading2",
+          "text": "The conversation"
+        },
+        {
+          "id": "first-visit-conversation-image",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png",
+          "alt": "Provider listening and taking notes while seated with a patient during a consultation",
+          "caption": "Most of a first appointment is spent understanding what brought you in and what you've already tried."
+        },
+        {
+          "id": "first-visit-conversation",
+          "type": "paragraph",
+          "text": "Your first appointment is mostly talking. We'll ask what brought you in, what you've tried before, what's worked and what hasn't, and what you're actually hoping for.\n\nWe'll also ask about your medical history, medications, and any past treatments. This isn't box-ticking — it genuinely changes what's appropriate for you, and it's the reason a consultation with a medical provider is different from a sales appointment.\n\nThen we listen. Most people arrive with a specific concern and a rough idea of what they think they need. Sometimes those match, sometimes they don't, and it's better to find that out in conversation than after you've paid for something."
+        },
+        {
+          "id": "first-visit-h2-assessment",
+          "type": "heading2",
+          "text": "The assessment"
+        },
+        {
+          "id": "first-visit-assessment",
+          "type": "paragraph",
+          "text": "Depending on what you've come in for, this may include a physical assessment of the area you're concerned about, a skin analysis, or reviewing measurements and history relevant to a wellness plan.\n\nJessica Simone, AGNP-C, is a board-certified nurse practitioner, and the clinical side of this is handled accordingly. If something isn't appropriate for you, we'll say so — including when the honest answer is that we're not the right place for what you need."
+        },
+        {
+          "id": "first-visit-h2-options",
+          "type": "heading2",
+          "text": "Your options, explained"
+        },
+        {
+          "id": "first-visit-options",
+          "type": "paragraph",
+          "text": "We'll walk through what's realistically available for your situation. That includes what each option involves, roughly how many visits, what recovery looks like if any, what it costs, and what it can and can't do.\n\nThat last part matters. Individual results vary, and anyone promising you a specific outcome before knowing you is overselling."
+        },
+        {
+          "id": "first-visit-h2-nobooking",
+          "type": "heading2",
+          "text": "What if I don't want to book anything?"
+        },
+        {
+          "id": "first-visit-quote",
+          "type": "quote",
+          "text": "Leaving with information and no appointment is a completely normal outcome of a first visit."
+        },
+        {
+          "id": "first-visit-nobooking",
+          "type": "paragraph",
+          "text": "Then you don't book anything.\n\nWe'd rather you take a week to think, compare us with somewhere else, and come back when you're ready — or not come back at all — than commit to something you're unsure about. People who feel pushed into a decision rarely become long-term patients anyway."
+        },
+        {
+          "id": "first-visit-h2-length",
+          "type": "heading2",
+          "text": "How long it takes"
+        },
+        {
+          "id": "first-visit-length",
+          "type": "paragraph",
+          "text": "Plan for roughly [CONFIRM: typical consultation length]. Some treatments can be done the same day if you decide to go ahead and there's time; others need to be booked separately. We'll tell you which applies."
+        },
+        {
+          "id": "first-visit-h2-booking",
+          "type": "heading2",
+          "text": "Booking"
+        },
+        {
+          "id": "first-visit-booking",
+          "type": "paragraph",
+          "text": "We're at 2184 Gulf Gate Dr, Sarasota, open Monday to Friday, 9:00am to 5:00pm. You can book online or call (941) 923-8990 with questions first — that's a perfectly reasonable way to start."
+        },
+        {
+          "id": "first-visit-faq",
+          "type": "faq",
+          "items": [
+            {
+              "id": "first-visit-faq-1",
+              "question": "Will I be pressured to buy something?",
+              "answer": "No. You'll get options and pricing, and then it's your decision. Leaving without booking is a normal outcome and nobody will chase you about it."
+            },
+            {
+              "id": "first-visit-faq-2",
+              "question": "How long does the first appointment take?",
+              "answer": "[CONFIRM typical length.] Most of it is conversation and assessment rather than treatment."
+            },
+            {
+              "id": "first-visit-faq-3",
+              "question": "Can I have treatment on the same day?",
+              "answer": "Sometimes, depending on what you need and whether there's time in the schedule. Some treatments require preparation or a separate appointment. We'll be clear about which applies before you decide."
+            },
+            {
+              "id": "first-visit-faq-4",
+              "question": "Do I need to know what treatment I want beforehand?",
+              "answer": "Not at all. Plenty of people arrive knowing something bothers them without knowing what would help. Working that out is what the appointment is for."
+            },
+            {
+              "id": "first-visit-faq-5",
+              "question": "What should I bring?",
+              "answer": "A list of any medications you take, and any completed forms. That's it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How to Choose a Med Spa in Sarasota: 8 Questions to Ask First",
+      "slug": "how-to-choose-med-spa-sarasota",
+      "status": "Draft",
+      "category": "Patient Guide",
+      "primaryKeyword": "how to choose a med spa",
+      "tags": ["Med Spa", "Sarasota", "Patient Guide", "Safety"],
+      "excerpt": "Eight questions that reveal more about a med spa than any website will — covering credentials, safety, pricing transparency, and the answers that should make you walk away.",
+      "seoTitle": "How to Choose a Med Spa in Sarasota: 8 Questions to Ask",
+      "metaDescription": "Eight questions that reveal what a med spa website won't — credentials, medical oversight, safety, pricing transparency, and the answers that should make you walk away.",
+      "relatedServiceUrl": "https://harmony-medspa.vercel.app/services",
+      "relatedArticleUrls": [
+        "https://harmony-medspa.vercel.app/our-team",
+        "https://harmony-medspa.vercel.app/testimonials"
+      ],
+      "ctaLabel": "Ask us these questions",
+      "ctaUrl": "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx",
+      "content": [
+        {
+          "id": "choose-hero",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/how-to-choose-med-spa-sarasota.png",
+          "alt": "Person on a phone call taking notes while researching clinic options at home",
+          "caption": "Every question on this list can be asked over the phone before you book anything."
+        },
+        {
+          "id": "choose-intro",
+          "type": "paragraph",
+          "text": "Every med spa website says roughly the same things. Experienced team, latest technology, personalized care. None of it tells you much.\n\nThese eight questions do. You can ask them on the phone before you book anywhere."
+        },
+        {
+          "id": "choose-h2-1",
+          "type": "heading2",
+          "text": "1. Who will actually be treating me?"
+        },
+        {
+          "id": "choose-1",
+          "type": "paragraph",
+          "text": "Not who owns the clinic — who is in the room with you, and what are their qualifications. There's a real difference between a treatment performed by a nurse practitioner and one performed by staff with a weekend certification.\n\nA good answer names the person and their credential. A vague answer is itself an answer."
+        },
+        {
+          "id": "choose-h2-2",
+          "type": "heading2",
+          "text": "2. Is there a medical provider involved in my care?"
+        },
+        {
+          "id": "choose-2",
+          "type": "paragraph",
+          "text": "Med spas offer medical treatments, which means a physician or nurse practitioner should be involved. Ask whether they're on site, how involved they are in treatment planning, and who you'd reach if something went wrong afterwards."
+        },
+        {
+          "id": "choose-h2-3",
+          "type": "heading2",
+          "text": "3. Will someone review my medical history?"
+        },
+        {
+          "id": "choose-3",
+          "type": "paragraph",
+          "text": "If nobody asks about your medications, allergies, or medical conditions before treating you, that's a serious problem. Plenty of common medications and conditions affect what's safe.\n\nA clinic that treats you without asking is prioritizing throughput over your safety."
+        },
+        {
+          "id": "choose-h2-4",
+          "type": "heading2",
+          "text": "4. What happens if something goes wrong?"
+        },
+        {
+          "id": "choose-4",
+          "type": "paragraph",
+          "text": "Complications are uncommon but not impossible with any medical treatment. Ask what their process is, who you'd contact after hours, and whether follow-up for a complication is charged.\n\nAnyone who tells you complications never happen is either inexperienced or not being straight with you."
+        },
+        {
+          "id": "choose-credentials-image",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/med-spa-credentials-questions-sarasota.png",
+          "alt": "Provider credentials and certificates displayed on a clinic wall",
+          "caption": "Asking who is treating you, and what they're qualified in, is a reasonable question at any clinic."
+        },
+        {
+          "id": "choose-h2-5",
+          "type": "heading2",
+          "text": "5. Can you tell me the price before I come in?"
+        },
+        {
+          "id": "choose-5",
+          "type": "paragraph",
+          "text": "Some pricing genuinely depends on assessment. But a clinic should be able to give you a range and explain what moves it.\n\nIf the only answer is \"we'll discuss it at your consultation,\" you may be walking into a sales appointment rather than a medical one."
+        },
+        {
+          "id": "choose-h2-6",
+          "type": "heading2",
+          "text": "6. How many of these do you do?"
+        },
+        {
+          "id": "choose-6",
+          "type": "paragraph",
+          "text": "Experience with your specific treatment matters more than general experience. A clinic that performs a particular treatment weekly will handle it differently than one doing it occasionally."
+        },
+        {
+          "id": "choose-h2-7",
+          "type": "heading2",
+          "text": "7. What results are realistic for me?"
+        },
+        {
+          "id": "choose-7",
+          "type": "paragraph",
+          "text": "The right answer includes limits. Every treatment has them, results vary between individuals, and some concerns need more than one approach.\n\nAnyone guaranteeing you a specific outcome before assessing you is telling you what you want to hear."
+        },
+        {
+          "id": "choose-h2-8",
+          "type": "heading2",
+          "text": "8. What if this isn't the right treatment for me?"
+        },
+        {
+          "id": "choose-8",
+          "type": "paragraph",
+          "text": "The best answer is that they'd tell you, and refer you elsewhere if needed. A clinic willing to turn away business it shouldn't take is one you can trust with the business it should."
+        },
+        {
+          "id": "choose-quote",
+          "type": "quote",
+          "text": "A clinic willing to turn away business it shouldn't take is one you can trust with the business it should."
+        },
+        {
+          "id": "choose-h2-walkaway",
+          "type": "heading2",
+          "text": "Signs worth walking away from"
+        },
+        {
+          "id": "choose-walkaway-list",
+          "type": "bulleted-list",
+          "text": "Pressure to decide today, or a discount that expires when you leave\nGuaranteed results\nNo medical history taken before treatment\nVague or evasive answers about who is treating you\nPricing that only appears after you're committed\nDismissiveness when you ask about risks"
+        },
+        {
+          "id": "choose-h2-about",
+          "type": "heading2",
+          "text": "About Harmony Med Spa"
+        },
+        {
+          "id": "choose-about",
+          "type": "paragraph",
+          "text": "We're a Sarasota clinic at 2184 Gulf Gate Dr, led by Jessica Simone, AGNP-C, a board-certified nurse practitioner. We're happy to answer every question on this list over the phone before you book anything — call (941) 923-8990.\n\nAnd if what you need isn't something we're the right place for, we'll tell you."
+        },
+        {
+          "id": "choose-faq",
+          "type": "faq",
+          "items": [
+            {
+              "id": "choose-faq-1",
+              "question": "Are med spas regulated?",
+              "answer": "Regulation varies by state and by treatment type, and it's less uniform than most people assume. That's precisely why asking about credentials and medical oversight directly matters more than assuming a licence covers it."
+            },
+            {
+              "id": "choose-faq-2",
+              "question": "Should I choose based on price?",
+              "answer": "Price is a legitimate factor, but not on its own. Unusually low pricing for medical treatments usually reflects something — less experienced staff, less oversight, or fewer follow-ups. Compare what's included, not just the headline number."
+            },
+            {
+              "id": "choose-faq-3",
+              "question": "How much do online reviews matter?",
+              "answer": "They're useful for consistency and how a clinic handles problems. Read the middling reviews rather than the extremes — those tend to be the most honest."
+            },
+            {
+              "id": "choose-faq-4",
+              "question": "Is it rude to ask about credentials?",
+              "answer": "Not at all, and any good clinic expects it. You're asking who's performing a medical procedure on you. Hesitation to answer is the useful signal."
+            },
+            {
+              "id": "choose-faq-5",
+              "question": "Should I get more than one consultation?",
+              "answer": "If you're considering something significant, yes. Different providers may suggest different approaches, and comparing gives you a much clearer sense of what's realistic."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Med Spa vs. Day Spa vs. Dermatologist: Which One Do You Need?",
+      "slug": "med-spa-vs-day-spa-vs-dermatologist",
+      "status": "Draft",
+      "category": "Patient Guide",
+      "primaryKeyword": "med spa vs day spa",
+      "tags": ["Med Spa", "Day Spa", "Dermatology", "Sarasota", "Patient Guide"],
+      "excerpt": "The difference between a med spa, a day spa, and a dermatologist — who does what, who's qualified for which treatments, and how to work out which one your concern actually calls for.",
+      "seoTitle": "Med Spa vs Day Spa vs Dermatologist: Which Do You Need?",
+      "metaDescription": "Med spa, day spa, or dermatologist? Who does what, who's qualified for which treatments, and how to work out which one your concern actually calls for.",
+      "relatedServiceUrl": "https://harmony-medspa.vercel.app/services",
+      "relatedArticleUrls": [
+        "https://harmony-medspa.vercel.app/blog/medical-facial-spectra-skin-analysis-sarasota",
+        "https://harmony-medspa.vercel.app/our-team"
+      ],
+      "ctaLabel": "Talk to our medical team",
+      "ctaUrl": "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx",
+      "content": [
+        {
+          "id": "compare-hero",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/med-spa-vs-day-spa-vs-dermatologist.png",
+          "alt": "Three distinct treatment room settings representing different types of skin and wellness care",
+          "caption": "Three different settings, three different sets of qualifications, three different problems they solve."
+        },
+        {
+          "id": "compare-intro",
+          "type": "paragraph",
+          "text": "These three get used interchangeably and they shouldn't be. They're staffed differently, regulated differently, and suited to genuinely different things.\n\nPicking the wrong one usually means wasted money, or a treatment that was never going to address what was bothering you."
+        },
+        {
+          "id": "compare-h2-day",
+          "type": "heading2",
+          "text": "Day spa"
+        },
+        {
+          "id": "compare-day",
+          "type": "paragraph",
+          "text": "A day spa is a relaxation and beauty setting. Massage, standard facials, body treatments, nails. Staff are typically licensed estheticians, massage therapists, and nail technicians.\n\nDay spas work on the surface of the skin and on how you feel. There's no medical provider on site and no prescribing. If you want to relax, or want a facial that leaves your skin feeling good, this is the right place and you don't need anything more clinical."
+        },
+        {
+          "id": "compare-h2-med",
+          "type": "heading2",
+          "text": "Med spa"
+        },
+        {
+          "id": "compare-med",
+          "type": "paragraph",
+          "text": "A medical spa combines aesthetic treatment with medical oversight. There's a physician or nurse practitioner involved, which allows treatments a day spa can't offer — injectables, medical-grade lasers, prescription skincare, and medically supervised wellness programs.\n\nThe setting is usually comfortable rather than clinical, but the treatments are medical. That distinction is the entire point: you get results that require medical training, without the atmosphere of a hospital.\n\nAt Harmony Med Spa, Jessica Simone, AGNP-C, is a board-certified nurse practitioner, and treatments are provided under that oversight."
+        },
+        {
+          "id": "compare-h2-derm",
+          "type": "heading2",
+          "text": "Dermatologist"
+        },
+        {
+          "id": "compare-derm",
+          "type": "paragraph",
+          "text": "A dermatologist is a physician specializing in diseases of the skin. Suspicious moles, persistent rashes, severe or cystic acne, psoriasis, eczema, skin cancer screening — these are dermatology, not aesthetics.\n\nMany dermatologists also offer cosmetic treatments, and many med spas handle cosmetic concerns well. The dividing line is disease. If something might be a medical skin condition rather than a cosmetic concern, see a dermatologist first."
+        },
+        {
+          "id": "compare-quote",
+          "type": "quote",
+          "text": "The dividing line is disease. Cosmetic concern, med spa. Something that might be a medical condition, dermatologist — first."
+        },
+        {
+          "id": "compare-h2-which",
+          "type": "heading2",
+          "text": "Working out which you need"
+        },
+        {
+          "id": "compare-which-list",
+          "type": "bulleted-list",
+          "text": "You want to relax, or want a facial and a massage → day spa\nYou want smoother skin texture, softer lines, or help with pigmentation → med spa\nYou have a mole that's changed, a rash that won't clear, or severe acne → dermatologist\nYou want injectables or medical-grade laser treatment → med spa\nYou want medically supervised weight management or hormone support → med spa or physician\nYou need a skin cancer screening → dermatologist"
+        },
+        {
+          "id": "compare-choosing-image",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/choosing-skin-care-provider-sarasota.png",
+          "alt": "Person considering options while looking out a bright window in a calm waiting area",
+          "caption": "When a concern sits between categories, a consultation is usually the fastest way to find out where you belong."
+        },
+        {
+          "id": "compare-h2-unclear",
+          "type": "heading2",
+          "text": "When it's genuinely unclear"
+        },
+        {
+          "id": "compare-unclear",
+          "type": "paragraph",
+          "text": "Plenty of concerns sit in the middle. Acne can be cosmetic or medical depending on severity. Pigmentation can be sun damage or something that needs evaluating. Hair loss can be hormonal, genetic, or a symptom of something else.\n\nWhen it's unclear, a consultation with a medical provider is the efficient move — a med spa with a nurse practitioner or physician can assess and tell you whether you're in the right place. If you're not, we'll say so and point you somewhere appropriate. That's a better outcome than paying for a treatment that was never going to help."
+        },
+        {
+          "id": "compare-h2-questions",
+          "type": "heading2",
+          "text": "Questions worth asking any clinic"
+        },
+        {
+          "id": "compare-questions-list",
+          "type": "numbered-list",
+          "text": "Who will actually be performing my treatment, and what are their qualifications?\nIs there a medical provider on site?\nWill someone review my medical history before treatment?\nWhat happens if I have a reaction or a complication?"
+        },
+        {
+          "id": "compare-questions-close",
+          "type": "paragraph",
+          "text": "The answers tell you quickly which of the three you're actually standing in, regardless of what's on the sign."
+        },
+        {
+          "id": "compare-faq",
+          "type": "faq",
+          "items": [
+            {
+              "id": "compare-faq-1",
+              "question": "Is a med spa the same as a medical spa?",
+              "answer": "Yes — the same thing, used interchangeably. Both should mean medical oversight is in place. It's worth confirming rather than assuming, since the terms aren't uniformly regulated everywhere."
+            },
+            {
+              "id": "compare-faq-2",
+              "question": "Does a med spa need a doctor on site?",
+              "answer": "Requirements vary by state and by treatment. In practice, look for a physician or nurse practitioner involved in care rather than treatments delivered by unsupervised staff. Ask directly — a reputable clinic will answer without hesitation."
+            },
+            {
+              "id": "compare-faq-3",
+              "question": "Can a med spa treat acne?",
+              "answer": "Cosmetic acne concerns, often yes. Severe or cystic acne is usually better handled by a dermatologist, and a good med spa will tell you that rather than treat you anyway."
+            },
+            {
+              "id": "compare-faq-4",
+              "question": "Is a med spa more expensive than a day spa?",
+              "answer": "Generally yes, because you're paying for medical training and medical-grade equipment. Whether it's better value depends entirely on what you're trying to achieve — for relaxation, a day spa is the better buy."
+            },
+            {
+              "id": "compare-faq-5",
+              "question": "Can I go to a med spa for a massage?",
+              "answer": "Some offer it, many don't. Harmony Med Spa focuses on aesthetic and wellness treatments rather than massage and body relaxation services. For massage, a day spa is the right place."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Weight Loss Without Medication: What Are Your Options?",
+      "slug": "weight-loss-without-medication-sarasota",
+      "status": "Draft",
+      "category": "Weight Loss",
+      "primaryKeyword": "weight loss without medication",
+      "tags": ["Weight Loss", "Wellness", "Sarasota", "Consultation"],
+      "excerpt": "Not everyone wants or is a candidate for weight loss medication. Here's what medically supervised weight management looks like without it, and how to work out what fits your situation.",
+      "seoTitle": "Weight Loss Without Medication in Sarasota | Harmony Med Spa",
+      "metaDescription": "Medically supervised weight management without medication — what's involved, what it can realistically do, and how to work out whether it fits your situation.",
+      "relatedServiceUrl": "https://harmony-medspa.vercel.app/wellness",
+      "relatedArticleUrls": [
+        "https://harmony-medspa.vercel.app/blog/alleviate-perimenopause-symptoms-with-bhrt"
+      ],
+      "ctaLabel": "Book a weight loss consultation",
+      "ctaUrl": "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx",
+      "content": [
+        {
+          "id": "nomed-hero",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/weight-loss-without-medication-sarasota.png",
+          "alt": "Provider reviewing notes with a patient during a wellness consultation",
+          "caption": "Medical weight management starts with an evaluation, not a program you sign up for."
+        },
+        {
+          "id": "nomed-intro",
+          "type": "paragraph",
+          "text": "Most of the conversation about medical weight loss right now is about medication. That's understandable, but it leaves out a lot of people — those who aren't candidates, those whose insurance won't cover it, and those who simply don't want to go that route.\n\nMedical weight management existed before those medications and still works without them. Here's what that actually looks like."
+        },
+        {
+          "id": "nomed-h2-supervision",
+          "type": "heading2",
+          "text": "What medical supervision adds"
+        },
+        {
+          "id": "nomed-supervision",
+          "type": "paragraph",
+          "text": "The difference between a medically supervised approach and doing it alone isn't willpower. It's information and adjustment.\n\nA provider reviews your medical history, current medications, and relevant lab work to understand what's actually going on. Some things that make weight loss harder — thyroid function, hormone changes, medication side effects, sleep issues — aren't visible from the outside and don't respond to trying harder.\n\nThen there's follow-up. Regular check-ins mean the plan changes when it isn't working, rather than three months passing before anyone notices."
+        },
+        {
+          "id": "nomed-quote",
+          "type": "quote",
+          "text": "The difference isn't willpower. It's having someone qualified looking at the parts you can't see, and changing course when the plan isn't working."
+        },
+        {
+          "id": "nomed-h2-includes",
+          "type": "heading2",
+          "text": "What a non-medication plan may include"
+        },
+        {
+          "id": "nomed-includes-list",
+          "type": "bulleted-list",
+          "text": "Initial medical evaluation and relevant lab work\nReview of current medications that may affect weight\nAssessment of thyroid and hormone factors, where indicated\nNutritional guidance built around your actual life rather than a template\nRegular weigh-ins and progress monitoring\nAdjustment of the plan based on how you respond"
+        },
+        {
+          "id": "nomed-includes-close",
+          "type": "paragraph",
+          "text": "What's appropriate depends entirely on the individual, which is why this starts with an evaluation rather than a program you sign up for."
+        },
+        {
+          "id": "nomed-h2-hormone",
+          "type": "heading2",
+          "text": "The hormone connection"
+        },
+        {
+          "id": "nomed-hormone-image",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/hormone-factors-weight-management-sarasota.png",
+          "alt": "Laboratory results document on a clinic desk beside reading glasses and a pen",
+          "caption": "Where symptoms suggest it, thyroid and hormone factors are worth evaluating rather than assuming."
+        },
+        {
+          "id": "nomed-hormone",
+          "type": "paragraph",
+          "text": "For some patients, particularly those in midlife, hormonal changes affect body composition, energy, and how the body responds to the same diet and activity that used to work.\n\nThis isn't the explanation for everyone, and it's not a reason to skip the basics. But when someone reports that nothing has changed except the results, it's worth evaluating rather than assuming the problem is effort."
+        },
+        {
+          "id": "nomed-h2-realistic",
+          "type": "heading2",
+          "text": "Being realistic"
+        },
+        {
+          "id": "nomed-realistic",
+          "type": "paragraph",
+          "text": "A few honest points.\n\nNon-medication approaches generally work more gradually. If you're expecting rapid change, that expectation needs adjusting regardless of which route you take.\n\nIt requires ongoing participation. Medical supervision supports what you're doing; it doesn't replace it.\n\nAnd it doesn't work equally well for everyone. Individual results vary considerably. For some people, medication genuinely is the more appropriate option, and part of an honest evaluation is saying so."
+        },
+        {
+          "id": "nomed-h2-fit",
+          "type": "heading2",
+          "text": "Working out what fits you"
+        },
+        {
+          "id": "nomed-fit",
+          "type": "paragraph",
+          "text": "The consultation is where this gets decided. We'll go through your history, what you've tried, what's changed, and what's realistic — and you'll leave understanding your options rather than having been sold one.\n\nHarmony Med Spa is a Sarasota clinic led by Jessica Simone, AGNP-C, a board-certified nurse practitioner. Weight management is in-person, at our Gulf Gate location, with ongoing follow-up."
+        },
+        {
+          "id": "nomed-faq",
+          "type": "faq",
+          "items": [
+            {
+              "id": "nomed-faq-1",
+              "question": "Can medical weight loss work without medication?",
+              "answer": "For many people, yes. The medical part is the evaluation, monitoring, and adjustment — not necessarily a prescription. What's appropriate varies by individual, and results vary."
+            },
+            {
+              "id": "nomed-faq-2",
+              "question": "How long before I see results?",
+              "answer": "This varies too much between individuals for an honest general answer. Non-medication approaches are typically more gradual. Your provider can give you a more realistic picture once they know your situation."
+            },
+            {
+              "id": "nomed-faq-3",
+              "question": "What tests might be involved?",
+              "answer": "Depends on your history and what your provider finds relevant. Thyroid function and hormone levels are commonly evaluated where symptoms suggest it. Not everyone needs the same workup."
+            },
+            {
+              "id": "nomed-faq-4",
+              "question": "Is this just a diet plan?",
+              "answer": "No. Nutrition may be part of it, but the medical evaluation and ongoing monitoring are what distinguish it. If a clinic is only handing you a meal plan, you're paying clinic prices for something you could get cheaper elsewhere."
+            },
+            {
+              "id": "nomed-faq-5",
+              "question": "What if a non-medication approach doesn't work for me?",
+              "answer": "That's a conversation to have with your provider at follow-up. Plans get adjusted, and sometimes the appropriate recommendation changes based on how you've responded. That's the point of being monitored."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How Much Does Medical Weight Loss Cost in Sarasota?",
+      "slug": "medical-weight-loss-cost-sarasota",
+      "status": "Draft",
+      "category": "Weight Loss",
+      "primaryKeyword": "medical weight loss cost sarasota",
+      "tags": ["Weight Loss", "Cost", "Sarasota", "Consultation"],
+      "excerpt": "A straight answer on what medical weight loss costs in Sarasota, what's included in the price, what affects it, and how to compare programs without getting caught out by hidden fees.",
+      "seoTitle": "Medical Weight Loss Cost in Sarasota | Harmony Med Spa",
+      "metaDescription": "What medical weight loss actually costs in Sarasota, what's included, what affects the price, and the questions to ask any clinic before you commit.",
+      "relatedServiceUrl": "https://harmony-medspa.vercel.app/wellness",
+      "relatedArticleUrls": [
+        "https://harmony-medspa.vercel.app/blog/how-glp-1-medications-support-medical-weight-loss",
+        "https://harmony-medspa.vercel.app/blog/summer-ready-glp-1-bhrt"
+      ],
+      "ctaLabel": "Book a weight loss consultation",
+      "ctaUrl": "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx",
+      "content": [
+        {
+          "id": "cost-hero",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/medical-weight-loss-cost-sarasota.png",
+          "alt": "Provider and patient reviewing a printed treatment plan together across a consultation desk",
+          "caption": "You should be able to work out whether a program is worth it before you book the consultation."
+        },
+        {
+          "id": "cost-intro",
+          "type": "paragraph",
+          "text": "Most clinics won't tell you what medical weight loss costs until you're sitting in the consultation room. We think that's the wrong way round. If you're deciding whether this is worth your time and money, you should be able to work that out before you book anything.\n\nThis article covers what medical weight loss actually costs in the Sarasota area, what's usually included, what changes the price, and the questions worth asking any clinic before you commit."
+        },
+        {
+          "id": "cost-h2-paying",
+          "type": "heading2",
+          "text": "What you're actually paying for"
+        },
+        {
+          "id": "cost-paying",
+          "type": "paragraph",
+          "text": "Medical weight loss isn't a single product with a single price. It's a series of appointments with a medical provider, and the cost reflects that.\n\nA typical program includes an initial medical evaluation, an individualized plan, regular follow-up visits with weigh-ins and progress review, and adjustments to the plan over time based on how you respond. Some programs also include lab work, body composition measurement, or nutritional guidance.\n\nWhat this is not is a membership to a commercial diet program. You're paying for clinical time with a provider who reviews your medical history and monitors your progress."
+        },
+        {
+          "id": "cost-quote",
+          "type": "quote",
+          "text": "You're not buying a plan. You're buying someone qualified to look at your specific situation and change the plan when it isn't working."
+        },
+        {
+          "id": "cost-h2-structure",
+          "type": "heading2",
+          "text": "Typical cost structure"
+        },
+        {
+          "id": "cost-h3-harmony",
+          "type": "heading3",
+          "text": "At Harmony Med Spa"
+        },
+        {
+          "id": "cost-structure",
+          "type": "paragraph",
+          "text": "Initial consultation and medical evaluation: [CONFIRM PRICE]\nFollow-up visits: [CONFIRM PRICE]\nLab work, if indicated: [CONFIRM PRICE]\n\n[CONFIRM: does Harmony offer a bundled program price or membership rate? If so, state it here — bundled pricing is usually the clearest way for a patient to compare.]"
+        },
+        {
+          "id": "cost-h3-medication",
+          "type": "heading3",
+          "text": "Medication costs"
+        },
+        {
+          "id": "cost-medication",
+          "type": "paragraph",
+          "text": "Where medication is part of your plan, that cost is separate and depends on what is prescribed and your pharmacy coverage. This is the part most people underestimate, so it's worth asking about specifically rather than assuming it's folded into the program price."
+        },
+        {
+          "id": "cost-breakdown-image",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/weight-loss-program-costs-explained.png",
+          "alt": "Clipboard with a simple printed cost breakdown resting on a clinic desk beside a pen",
+          "caption": "Ask for the breakdown in writing. A clinic that can't produce one is telling you something."
+        },
+        {
+          "id": "cost-h2-changes",
+          "type": "heading2",
+          "text": "What changes the price"
+        },
+        {
+          "id": "cost-changes-list",
+          "type": "bulleted-list",
+          "text": "How often you're seen. More frequent monitoring costs more but gives your provider more to work with.\nWhether medication is part of your plan, and which one.\nWhether lab work is needed at the start or repeated during the program.\nHow long you stay in the program. Most people are not looking at a few weeks.\nWhether you combine it with other services, which some clinics discount and others don't."
+        },
+        {
+          "id": "cost-h2-questions",
+          "type": "heading2",
+          "text": "Questions to ask before you pay anything"
+        },
+        {
+          "id": "cost-questions-list",
+          "type": "numbered-list",
+          "text": "Is this a per-visit price or a program price, and what happens if I stop partway through?\nIs medication included, or billed separately?\nHow often will I be seen, and is each visit charged?\nIs lab work included in the consultation fee?\nWho will I actually be seeing — a physician, a nurse practitioner, or a coach?\nIs there a contract, and what are the cancellation terms?"
+        },
+        {
+          "id": "cost-questions-close",
+          "type": "paragraph",
+          "text": "That last one matters more than people expect. Some programs require a lengthy commitment up front. There's nothing wrong with that if the value is there, but you should know before you sign rather than after."
+        },
+        {
+          "id": "cost-h2-worth",
+          "type": "heading2",
+          "text": "Is it worth it?"
+        },
+        {
+          "id": "cost-worth",
+          "type": "paragraph",
+          "text": "Honestly, that depends on what you've already tried and what you need. If self-directed diet and exercise has worked for you before, a medical program may be more structure than you need. If you've done that repeatedly without the result holding, the value of medical weight loss is the evaluation and the monitoring — someone looking at your specific situation and adjusting as you go, rather than a generic plan.\n\nThe consultation is the right place to work that out. You should leave it knowing whether this is a fit, not feeling like you've been sold something."
+        },
+        {
+          "id": "cost-h2-harmony",
+          "type": "heading2",
+          "text": "Medical weight loss at Harmony Med Spa"
+        },
+        {
+          "id": "cost-room-image",
+          "type": "image",
+          "url": "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/harmony-medspa-sarasota-consultation-room.png",
+          "alt": "Calm, well-lit consultation room at a Sarasota medical spa with comfortable seating",
+          "caption": "Weight management at Harmony is in-person, at our Gulf Gate location, with ongoing follow-up."
+        },
+        {
+          "id": "cost-harmony",
+          "type": "paragraph",
+          "text": "Harmony Med Spa is a Sarasota clinic led by Jessica Simone, AGNP-C, a board-certified nurse practitioner. Weight management here starts with a medical evaluation and an individualized plan, with regular in-person follow-up at our Gulf Gate location.\n\nIf you want to know what a program would cost for your particular situation, the consultation is where we work that out together. Individual results vary, and we'll be straight with you about what to expect."
+        },
+        {
+          "id": "cost-faq",
+          "type": "faq",
+          "items": [
+            {
+              "id": "cost-faq-1",
+              "question": "Does insurance cover medical weight loss?",
+              "answer": "Coverage varies significantly by plan and by what services are involved. Some plans cover a portion of medical visits but not medication; others cover neither. It's worth calling your insurer directly and asking about coverage for medical weight management visits and any prescribed medication. We can tell you what codes to ask about."
+            },
+            {
+              "id": "cost-faq-2",
+              "question": "Why does medical weight loss cost more than a commercial diet program?",
+              "answer": "Because you're paying for time with a medical provider rather than access to a meal plan or app. The evaluation, the monitoring, and the ability to adjust your plan based on how your body actually responds are what you're buying. Whether that's worth the difference depends on your situation."
+            },
+            {
+              "id": "cost-faq-3",
+              "question": "Do I have to commit to a long program?",
+              "answer": "[CONFIRM Harmony's actual policy.] Ask any clinic this before you pay. Some require a multi-month commitment up front, others work visit by visit. Neither is inherently wrong, but you should know which you're signing up for."
+            },
+            {
+              "id": "cost-faq-4",
+              "question": "Is the initial consultation free?",
+              "answer": "[CONFIRM — state the current position clearly and keep this answer updated. This is the most-asked question and a wrong answer damages trust immediately.]"
+            },
+            {
+              "id": "cost-faq-5",
+              "question": "What if I stop partway through?",
+              "answer": "[CONFIRM cancellation and refund terms.] Ask about this before enrolling anywhere. A clinic that won't give you a clear answer on cancellation terms is telling you something."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
