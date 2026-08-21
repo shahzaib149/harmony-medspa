@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const dashboardOrigin = (
   process.env.DASHBOARD_ORIGIN ??
-  (process.env.NODE_ENV === "development" ? "http://localhost:3001" : "")
+  (process.env.NODE_ENV === "development"
+    ? "http://localhost:3001"
+    : "https://harmony-medspa-dashboard.vercel.app")
 ).replace(/\/$/, "");
 
 const dashboardPages = [
