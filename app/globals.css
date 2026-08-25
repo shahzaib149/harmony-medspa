@@ -2117,7 +2117,15 @@
 }
 
 .landing-centered-heading .landing-kicker {
-  font-size: 22px;
+  font-size: 18px;
+  max-width: 560px;
+  margin-inline: auto;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+}
+
+.landing-centered-heading .landing-promoted-subheading {
+  max-width: 520px;
 }
 
 .landing-promoted-image {

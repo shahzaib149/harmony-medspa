@@ -56,8 +56,8 @@ export default function LandingPage() {
       <section className="landing-promoted" aria-labelledby="landing-promoted-title">
         <div className="landing-section-shell">
           <header className="landing-centered-heading">
-            <h2 id="landing-promoted-title">Promoted Specific Service Here</h2>
-            <p className="landing-kicker">Subheading Here</p>
+            <h2 id="landing-promoted-title">Personalized Skin Consultations</h2>
+            <p className="landing-kicker landing-promoted-subheading">Guided skin analysis and treatment planning</p>
           </header>
           <div className="landing-promoted-image">
             <Image src={`${landingImages}/3.jpg`} alt="Skin treatment consultation" fill sizes="(max-width: 900px) 100vw, 90vw" />
