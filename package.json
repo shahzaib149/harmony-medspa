@@ -4,12 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "dev:website": "next dev -p 3000",
-    "dev:dashboard": "npm --prefix dashboard run dev -- -p 3001",
-    "dev:platform": "concurrently --kill-others-on-fail --names website,dashboard \"npm run dev:website\" \"npm run dev:dashboard\"",
     "build": "next build --webpack",
-    "build:dashboard": "npm --prefix dashboard run build",
-    "build:all": "npm run build && npm run build:dashboard",
     "start": "next start",
     "lint": "next lint"
   },
@@ -24,7 +19,6 @@
     "@types/node": "22.10.2",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.2",
-    "concurrently": "^10.0.5",
     "tailwindcss": "^4.3.2",
     "typescript": "5.7.2"
   },
