@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
         <article className="testimonials-main min-w-[0] [&_h2]:mt-0 [&_h2]:mb-[24px] [&_h2]:mx-0 [&_h2]:text-[#ebb35a] [&_h2]:text-[length:29px] [&_h2]:leading-[1.1] [&_h2]:font-thin max-[720px]:[&_h2]:text-[length:24px]" aria-labelledby="testimonials-title">
           <h2 id="testimonials-title"><TypewriterText text="Hear From Our Clients" startOnView /></h2>
           <p className="testimonials-intro mt-0 mb-[34px] mx-0 text-[#4f5966] text-[length:18px] leading-[1.85] font-normal max-[720px]:text-[length:16px]">
-            Read what our clients say about our office and patient care. We're proud of our 5 star reviews and the reputation we've
+            Read what our clients say about our office and patient care. We&apos;re proud of our 5 star reviews and the reputation we&apos;ve
             established in the community.
           </p>
 

@@ -27,9 +27,9 @@ export default function LandingTestimonials() {
         </div>
       </div>
       <div className="landing-testimonial-quote" aria-live="polite">
-        <span className="landing-open-quote" aria-hidden="true">"</span>
+        <span className="landing-open-quote" aria-hidden="true">&quot;</span>
         <blockquote>{testimonials[activeIndex]}</blockquote>
-        <span className="landing-close-quote" aria-hidden="true">"</span>
+        <span className="landing-close-quote" aria-hidden="true">&quot;</span>
         <div className="landing-stars" aria-label="Five star review">★★★★★</div>
       </div>
     </section>

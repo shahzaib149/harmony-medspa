@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Facebook, Instagram, Mail } from "lucide-react";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import TypewriterText from "@/components/ui/TypewriterText";
@@ -33,9 +34,9 @@ export default function SpecialsPage() {
   return (
     <main className="specials-page min-h-[100vh] bg-[#f5f1ea] text-[#111]">
       <header className="specials-header flex items-center justify-between gap-[32px] py-[22px] px-[clamp(18px,5vw,72px)] bg-[#050505] text-[#fff] max-[720px]:flex-col max-[720px]:gap-[14px] max-[720px]:text-center">
-        <a className="specials-brand block w-[min(270px,70vw)] [&_img]:block [&_img]:w-full [&_img]:h-auto" href="/" aria-label="Harmony Med Spa home">
+        <Link className="specials-brand block w-[min(270px,70vw)] [&_img]:block [&_img]:w-full [&_img]:h-auto" href="/" aria-label="Harmony Med Spa home">
           <img src="/images/logo-transparent.png" alt="Harmony Med Spa" />
-        </a>
+        </Link>
         <address className="not-italic text-[length:14px] leading-[1.55] font-normal max-[720px]:text-[length:13px] [&_a]:text-[#efbd33]">
           2184 Gulf Gate Dr. Unit B Sarasota, FL 34231
           <br />

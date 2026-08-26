@@ -2,9 +2,41 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  "https://harmony-medspa.vercel.app";
+const siteName = "Harmony Med Spa";
+const siteDescription =
+  "Harmony Med Spa is a full-service medical spa and wellness center in Sarasota, Florida, offering injectables, laser treatments, facials, weight loss, and hormone therapy.";
+
 export const metadata: Metadata = {
-  title: "Harmony Med Spa | Sarasota, FL",
-  description: "Medical spa and wellness center in Sarasota, Florida."
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteName} | Sarasota, FL`,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  applicationName: siteName,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName,
+    title: `${siteName} | Sarasota, FL`,
+    description: siteDescription,
+    url: siteUrl,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteName} | Sarasota, FL`,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

@@ -51,7 +51,7 @@ export default function GlpMedicationWeightLossPage() {
           </p>
           <p>
             At Harmony Med Spa, GLP-1 medications such as Semaglutide and Tirzepatide are used as part of a structured medical weight loss plan,
-            not as a shortcut or "quick fix." These medications are most effective when combined with nutrition support, realistic lifestyle
+            not as a shortcut or &quot;quick fix.&quot; These medications are most effective when combined with nutrition support, realistic lifestyle
             changes, and ongoing follow-up with a provider who understands your health history and goals.
           </p>
 
@@ -63,7 +63,7 @@ export default function GlpMedicationWeightLossPage() {
           <p>Patients in GLP-1 programs often report that treatment helps them:</p>
           <ul>
             <li>Feel comfortably full with smaller portions</li>
-            <li>Experience fewer intense cravings and "mindless" snacking</li>
+            <li>Experience fewer intense cravings and &quot;mindless&quot; snacking</li>
             <li>Focus more easily on balanced meals and regular eating patterns</li>
             <li>Build momentum with a structured plan and accountability</li>
           </ul>

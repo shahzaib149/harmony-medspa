@@ -13,7 +13,7 @@
 
 /*
  * Element defaults live in @layer base so that Tailwind utilities (in the
- * later `utilities` layer) override them â€” matching the original cascade,
+ * later `utilities` layer) override them — matching the original cascade,
  * where class selectors beat bare element selectors.
  */
 @layer base {
@@ -3683,7 +3683,7 @@
    the V1 page wrapper and cannot affect the V2 landing page.
    ============================================================ */
 
-/* â”€â”€ Root â”€â”€ */
+/* ── Root ── */
 .landing-v1-page {
   --landing-gold: #efb82f;
   --landing-gray: #e9e9e9;
@@ -3711,7 +3711,7 @@
   text-wrap: balance;
 }
 
-/* â”€â”€ Shared utilities â”€â”€ */
+/* ── Shared utilities ── */
 .landing-v1-page .landing-gold-button {
   display: inline-flex;
   align-items: center;
@@ -3768,7 +3768,7 @@
   min-width: 0;
 }
 
-/* â”€â”€ Hero â”€â”€ */
+/* ── Hero ── */
 .landing-v1-page .landing-hero {
   position: relative;
   min-height: 990px;
@@ -3867,7 +3867,7 @@
   font-weight: 600;
 }
 
-/* â”€â”€ Contact card â”€â”€ */
+/* ── Contact card ── */
 .landing-v1-page .landing-contact-card {
   align-self: start;
   min-height: 642px;
@@ -3964,7 +3964,7 @@
   line-height: 1.5;
 }
 
-/* â”€â”€ About â”€â”€ */
+/* ── About ── */
 .landing-v1-page .landing-about {
   padding: 120px 0 122px;
   background: #fff;
@@ -4021,7 +4021,7 @@
   color: #fff;
 }
 
-/* â”€â”€ Wellness â”€â”€ */
+/* ── Wellness ── */
 .landing-v1-page .landing-wellness {
   padding: 124px 0 128px;
   background: #000;
@@ -4100,7 +4100,7 @@
   min-width: 340px;
 }
 
-/* â”€â”€ Aesthetics â”€â”€ */
+/* ── Aesthetics ── */
 .landing-v1-page .landing-aesthetics {
   padding: 128px 0 126px;
   background: var(--landing-gray);
@@ -4165,7 +4165,7 @@
   min-width: 164px;
 }
 
-/* â”€â”€ Testimonials â”€â”€ */
+/* ── Testimonials ── */
 .landing-v1-page .landing-testimonials {
   display: grid;
   grid-template-columns: minmax(310px, 0.78fr) minmax(0, 1.7fr);
@@ -4270,7 +4270,7 @@
   letter-spacing: 3px;
 }
 
-/* â”€â”€ Ready / CTA â”€â”€ */
+/* ── Ready / CTA ── */
 .landing-v1-page .landing-ready {
   position: relative;
   min-height: 575px;
@@ -4320,7 +4320,7 @@
   min-width: 144px;
 }
 
-/* â”€â”€ Footer â”€â”€ */
+/* ── Footer ── */
 .landing-v1-page .footer {
   padding-top: 96px;
 }
@@ -4329,7 +4329,7 @@
   margin-bottom: 0;
 }
 
-/* â”€â”€ Responsive: 1100px â”€â”€ */
+/* ── Responsive: 1100px ── */
 @media (max-width: 1100px) {
   .landing-v1-page .landing-hero-grid {
     grid-template-columns: minmax(0, 1.3fr) minmax(380px, 1fr);
@@ -4368,7 +4368,7 @@
   }
 }
 
-/* â”€â”€ Responsive: 800px â”€â”€ */
+/* ── Responsive: 800px ── */
 @media (max-width: 800px) {
   .landing-v1-page {
     overflow-x: clip;
@@ -4643,7 +4643,7 @@
   }
 }
 
-/* â”€â”€ Responsive: 520px â”€â”€ */
+/* ── Responsive: 520px ── */
 @media (max-width: 520px) {
   .landing-v1-page .landing-section-shell,
   .landing-v1-page .landing-hero-top,
@@ -4821,7 +4821,7 @@
   }
 }
 
-/* â”€â”€ Responsive: 420px â”€â”€ */
+/* ── Responsive: 420px ── */
 @media (max-width: 420px) {
   .landing-v1-page .landing-hero-actions {
     flex-direction: row;
@@ -4858,7 +4858,7 @@
   }
 }
 
-/* â”€â”€ Responsive: 360px â”€â”€ */
+/* ── Responsive: 360px ── */
 @media (max-width: 360px) {
   .landing-v1-page .landing-section-shell,
   .landing-v1-page .landing-hero-top,
