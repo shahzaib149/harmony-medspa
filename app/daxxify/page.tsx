@@ -24,7 +24,7 @@ export default function DaxxifyPage() {
         <article className="min-w-0 text-[length:20px] leading-[1.45] font-normal max-[720px]:text-[length:17px]">
           <Image
             className="w-full h-auto rounded-[16px] mb-[70px]"
-            src="/images/services/daxxify/daxxify-img.jfif"
+            src="/images/services/daxxify/daxxify-img.jpg"
             alt="Daxxify treatment at Harmony Med Spa"
             width={1000}
             height={653}
@@ -55,7 +55,7 @@ export default function DaxxifyPage() {
             </p>
             <Image
               className="w-full h-auto rounded-[8px] mt-[34px]"
-              src="/images/services/daxxify/changes.jfif"
+              src="/images/services/daxxify/changes.jpg"
               alt="Daxxify before and after clinical result examples"
               width={1364}
               height={508}

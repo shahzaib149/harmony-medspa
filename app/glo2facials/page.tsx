@@ -60,7 +60,7 @@ export default function Glo2FacialsPage() {
 
           <Image
             className="w-full h-auto rounded-[16px] mb-[54px]"
-            src="/images/services/glo2facials/1.jfif"
+            src="/images/services/glo2facials/1.jpg"
             alt="Glo2Facial treatment mask at Harmony Med Spa"
             width={1000}
             height={650}
@@ -81,7 +81,7 @@ export default function Glo2FacialsPage() {
 
           <Image
             className="w-full h-auto rounded-[16px] mb-[54px]"
-            src="/images/services/glo2facials/2.jfif"
+            src="/images/services/glo2facials/2.jpg"
             alt="Glo2Facial body treatment"
             width={1000}
             height={650}
@@ -102,7 +102,7 @@ export default function Glo2FacialsPage() {
             <p className="mt-0 mb-[28px] max-w-[840px]">Dermaplane</p>
             <Image
               className="w-full h-auto rounded-[16px]"
-              src="/images/services/glo2facials/1.jfif"
+              src="/images/services/glo2facials/1.jpg"
               alt="Glo2Facial add-on treatment"
               width={1000}
               height={650}

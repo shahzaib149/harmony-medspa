@@ -45,55 +45,55 @@ const products = [
     title: "KeraFactorMD In-Office Serum",
     body:
       "Elevate your hair care routine with KeraFactor's professional-grade serum. Featuring a potent blend of six bioidentical growth factors, two skin proteins, and two revitalizing compounds, this serum targets common deficiencies associated with hair loss and scalp health. Experience rejuvenation at its finest as it promotes healthier, fuller-looking hair from the roots.",
-    image: "5.jfif"
+    image: "5.jpg"
   },
   {
     title: "The KeraFactor Combo System",
     body:
       "Combines a growth factor-rich solution, a 2-in-1 exfoliating shampoo + conditioner, and a scalp-stimulating brush to promote circulation, target scalp deficiencies, and transform hair from root to tip.",
-    image: "6.jfif"
+    image: "6.jpg"
   },
   {
     title: "KeraFactor Scalp Stimulating Solution",
     body:
       "Unlock the secret to stronger, thicker hair with KeraFactor's groundbreaking solution. Precisely formulated growth factors promote scalp and hair health, leading to a remarkable transformation in hair strength and thickness. Pair it with our KeraCap for an added boost in combating scalp issues.",
-    image: "7.jfif"
+    image: "7.jpg"
   },
   {
     title: "KeraFactor Scalp Stimulating 2-in-1 Shampoo + Conditioner",
     body:
       "KeraFactor's dynamic duo of shampoo and conditioner gently exfoliates and stimulates the scalp, enhancing circulation and revitalizing your hair foundation. Say goodbye to dull, lifeless hair and hello to smoother, thicker locks.",
-    image: "8.jfif"
+    image: "8.jpg"
   },
   {
     title: "KeraFactor Scalp Stimulating Brush",
     body:
       "Complement your hair care routine with KeraFactor's scalp-stimulating brush. Designed to enhance product effectiveness by promoting circulation, it ensures that our growth factors reach their destination for optimal results.",
-    image: "9.jfif"
+    image: "9.jpg"
   },
   {
     title: "KeraFlex Laser Cap",
     body:
       "Harness the power of 302 diodes and a 650nm wavelength with our KeraCap Laser Cap. This treatment stimulates hair growth by reducing inflammation and increasing blood flow, effectively combating scalp issues like DHT.",
-    image: "10.jfif"
+    image: "10.jpg"
   },
   {
     title: "Brows by KeraFactor",
     body:
       "Experience the revolution in brow care with KeraFactor's cutting-edge serum. Formulated with a potent blend of nine biomimetic growth factors, it nourishes brow follicles for fuller, thicker, and more defined looking brows. Activate dormant follicles and enhance existing ones with this powerful formula.",
-    image: "11.jfif"
+    image: "11.jpg"
   },
   {
     title: "Lashes by KeraFactor",
     body:
       "Transform your lashes with our revolutionary serum, meticulously crafted to nourish, strengthen, and enhance like never before. It features a blend of scientifically proven ingredients and biomimetic growth factors for lashes that appear longer, fuller, and healthier for an irresistible look.",
-    image: "12.jfif"
+    image: "12.jpg"
   },
   {
     title: "KeraSmooth Hair Brush",
     body:
       "Discover the ultimate solution for delicate detangling with the KeraSmooth Hair Brush. Designed specifically for thinning or fine hair, KeraSmooth features innovative soft-flex teeth that ensure minimal breakage and gentle care for your locks.",
-    image: "13.jfif"
+    image: "13.jpg"
   }
 ];
 
@@ -110,7 +110,7 @@ export default function HairRestorationPage() {
         <article className="min-w-0 text-[length:20px] leading-[1.45] font-normal text-[#4f5b68] max-[720px]:text-[length:17px]">
           <Image
             className="w-[min(808px,100%)] h-auto rounded-[14px] mb-[48px]"
-            src="/images/services/hair-restoration/1.jfif"
+            src="/images/services/hair-restoration/1.jpg"
             alt="Hair restoration clients"
             width={818}
             height={460}
@@ -140,8 +140,8 @@ export default function HairRestorationPage() {
               <li>Supports scalp health and prolongs in-office treatment results.</li>
             </ul>
             <div className="grid grid-cols-[1fr_1fr] gap-[40px] mb-[34px] max-[720px]:grid-cols-[1fr] max-[720px]:gap-[22px]">
-              <Image className="w-full h-auto rounded-[14px]" src="/images/services/hair-restoration/2.jfif" alt="KeraFactor home kit" width={400} height={325} />
-              <Image className="w-full h-auto rounded-[14px]" src="/images/services/hair-restoration/3.jfif" alt="KeraFactor shampoo and conditioner" width={400} height={325} />
+              <Image className="w-full h-auto rounded-[14px]" src="/images/services/hair-restoration/2.jpg" alt="KeraFactor home kit" width={400} height={325} />
+              <Image className="w-full h-auto rounded-[14px]" src="/images/services/hair-restoration/3.jpg" alt="KeraFactor shampoo and conditioner" width={400} height={325} />
             </div>
             <p className="m-0 text-[#4f5b68]">Services and products will also be offered as part of packages for discounts.</p>
           </section>
@@ -150,7 +150,7 @@ export default function HairRestorationPage() {
 
           <Image
             className="w-[min(808px,100%)] h-auto rounded-[14px] mb-[48px]"
-            src="/images/services/hair-restoration/4.jfif"
+            src="/images/services/hair-restoration/4.jpg"
             alt="KeraFactor skincare for hair serum"
             width={818}
             height={412}

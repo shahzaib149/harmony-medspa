@@ -42,7 +42,7 @@ export default function DermalFillersPage() {
         <article className="min-w-0 text-[length:20px] leading-[1.45] font-normal max-[720px]:text-[length:17px]">
           <Image
             className="w-full h-auto rounded-[16px] mb-[54px]"
-            src="/images/services/dermal-fillers/img.jfif"
+            src="/images/services/dermal-fillers/img.jpg"
             alt="Dermal filler injectable treatment at Harmony Med Spa"
             width={1000}
             height={650}
@@ -79,7 +79,7 @@ export default function DermalFillersPage() {
 
           <Image
             className="w-full h-auto rounded-[16px] mb-[54px]"
-            src="/images/services/dermal-fillers/img.jfif"
+            src="/images/services/dermal-fillers/img.jpg"
             alt="Dermal filler lip enhancement treatment"
             width={1000}
             height={650}
