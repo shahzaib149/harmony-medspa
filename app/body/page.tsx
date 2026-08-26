@@ -12,7 +12,8 @@ const treatments = [
   },
   {
     title: "Fractional CO2 Laser Treatments",
-    image: "/images/services/body/ServiceImg_FCO2.jpg"
+    image: "/images/services/body/ServiceImg_FCO2.jpg",
+    href: "/fractional-co2-laser-treatments"
   },
   {
     title: "Laser Hair Removal",
@@ -26,11 +27,13 @@ const treatments = [
   },
   {
     title: "Glo2Facial",
-    image: "/images/services/body/Glo2Facial_Service_Page_Image_1.jpg"
+    image: "/images/services/body/Glo2Facial_Service_Page_Image_1.jpg",
+    href: "/glo2facials"
   },
   {
     title: "Chemical Peels",
-    image: "/images/services/body/shutterstock_1991398268.jpg"
+    image: "/images/services/body/shutterstock_1991398268.jpg",
+    href: "/chemical-peels"
   },
   {
     title: "Sculptra",
@@ -39,7 +42,8 @@ const treatments = [
   },
   {
     title: "Medical Weight Loss",
-    image: "/images/services/body/medicalweightloss_thumbnail_1.pn.jpg"
+    image: "/images/services/body/medicalweightloss_thumbnail_1.pn.jpg",
+    href: "/medical-weight-loss"
   }
 ];
 

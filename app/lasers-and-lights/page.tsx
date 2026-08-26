@@ -7,7 +7,8 @@ import TypewriterText from "@/components/ui/TypewriterText";
 const treatments = [
   {
     title: "Fractional CO2 Laser Treatments",
-    image: "/images/services/lasers-and-lights/laser_new.jpg"
+    image: "/images/services/lasers-and-lights/laser_new.jpg",
+    href: "/fractional-co2-laser-treatments"
   },
   {
     title: "Laser Hair Removal",

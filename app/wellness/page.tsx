@@ -12,7 +12,8 @@ const treatments = [
   },
   {
     title: "Medical Weight Loss",
-    image: "/images/services/wellness/medicalweightloss_thumbnail_1.pn.jpg"
+    image: "/images/services/wellness/medicalweightloss_thumbnail_1.pn.jpg",
+    href: "/medical-weight-loss"
   }
 ];
 

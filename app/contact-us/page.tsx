@@ -4,6 +4,13 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import InteractiveLocationMap from "@/components/ui/InteractiveLocationMap";
 import TypewriterText from "@/components/ui/TypewriterText";
+import {
+  FACEBOOK_URL,
+  GOOGLE_MAPS_BUSINESS_URL,
+  INSTAGRAM_URL,
+  TWITTER_X_URL,
+  YELP_URL,
+} from "@/lib/constants";
 
 export default function ContactUsPage() {
   return (
@@ -42,11 +49,11 @@ export default function ContactUsPage() {
           <div className="contact-page-social my-0 mx-[37px] pt-[34px] pb-0 px-0 [border-top:1px_solid_#e3e3e3] [&_p]:mt-0 [&_p]:mb-[18px] [&_p]:mx-0 [&_p]:uppercase [&_p]:text-[#222] [&_p]:text-[length:12px] [&_p]:font-normal [&_div]:flex [&_div]:flex-wrap [&_div]:gap-[6px] [&_a]:grid [&_a]:[place-items:center] [&_a]:w-[37px] [&_a]:h-[37px] [&_a]:rounded-full [&_a]:bg-[#333] [&_a]:text-[#fff] [&_a]:text-[length:14px] [&_a]:font-bold max-[720px]:pl-[24px] max-[720px]:pr-[24px] max-[720px]:ml-0 max-[720px]:mr-0">
             <p>Follow Us:</p>
             <div>
-              <a href="#" aria-label="Facebook"><Facebook size={18} fill="currentColor" /></a>
-              <a href="#" aria-label="Google"><Search size={18} /></a>
-              <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
-              <a href="#" aria-label="X">X</a>
-              <a href="#" aria-label="Yelp">Y</a>
+              <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={18} fill="currentColor" /></a>
+              <a href={GOOGLE_MAPS_BUSINESS_URL} target="_blank" rel="noopener noreferrer" aria-label="Google"><Search size={18} /></a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={18} /></a>
+              <a href={TWITTER_X_URL} target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
+              <a href={YELP_URL} target="_blank" rel="noopener noreferrer" aria-label="Yelp">Y</a>
             </div>
           </div>
         </aside>

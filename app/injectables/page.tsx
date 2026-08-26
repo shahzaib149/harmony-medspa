@@ -18,7 +18,7 @@ const treatments = [
   {
     title: "Jeuveau",
     image: "/images/blogs/blog-2/3.jpg",
-    href: "/blog/How-Jeuveau-Fits-Into-Your-Anti-Aging-Skincare-Routine"
+    href: "/jeuveau"
   },
   {
     title: "Sculptra",
