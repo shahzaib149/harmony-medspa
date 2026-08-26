@@ -17,11 +17,13 @@ const treatments = [
   },
   {
     title: "Glo2Facials",
-    image: "/images/services/skincare/Glo2Facial_Service_Page_Image_3.jpg"
+    image: "/images/services/skincare/Glo2Facial_Service_Page_Image_3.jpg",
+    href: "/glo2facials"
   },
   {
     title: "Chemical Peels",
-    image: "/images/services/skincare/shutterstock_1991398268.jpg"
+    image: "/images/services/skincare/shutterstock_1991398268.jpg",
+    href: "/chemical-peels"
   },
   {
     title: "RF Microneedling",
@@ -30,11 +32,8 @@ const treatments = [
   },
   {
     title: "Fractional CO2 Laser Treatments",
-    image: "/images/services/skincare/ServiceImg_FCO2.jpg"
-  },
-  {
-    title: "Revivamask (Exosome Recovery Mask)",
-    image: "/images/services/skincare/mask.jpg"
+    image: "/images/services/skincare/ServiceImg_FCO2.jpg",
+    href: "/fractional-co2-laser-treatments"
   }
 ];
 

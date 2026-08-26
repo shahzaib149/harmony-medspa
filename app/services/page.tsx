@@ -61,11 +61,6 @@ const services = [
     href: "/fractional-co2-laser-treatments"
   },
   {
-    title: "RevivaMask(TM)",
-    image: "/images/services/catalog/revivamask.jpg",
-    href: "/revivamask"
-  },
-  {
     title: "Medical Weight Loss",
     image: "/images/services/catalog/medical-weight-loss.jpg",
     href: "/medical-weight-loss"
