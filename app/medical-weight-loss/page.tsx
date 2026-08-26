@@ -166,13 +166,13 @@ export default function MedicalWeightLossPage() {
             <div className="flex flex-wrap gap-[20px] mb-[38px]">
               <Link
                 className="inline-flex min-w-[232px] justify-center py-[14px] px-[24px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[length:18px]"
-                href="/book-now"
+                href="/semaglutide"
               >
                 Semaglutide Service
               </Link>
               <Link
                 className="inline-flex min-w-[222px] justify-center py-[14px] px-[24px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[length:18px]"
-                href="/book-now"
+                href="/tirzepatide"
               >
                 Tirzepatide Service
               </Link>
