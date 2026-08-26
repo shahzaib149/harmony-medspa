@@ -3,7 +3,7 @@ import { listPublishedBlogs } from "@/lib/blogs/airtable";
 
 const DEFAULT_SITE_URL = "https://harmony-medspa.vercel.app";
 const staticPaths = [
-  "", "/about-us", "/before-and-afters", "/blog", "/book-now", "/contact-us", "/facials",
+  "", "/about-us", "/before-and-afters", "/blog", "/contact-us", "/facials",
   "/facials-and-peels", "/hair-restoration", "/iv-therapy", "/membership", "/peptide-therapy",
   "/services", "/shop", "/skincare", "/wellness",
 ];

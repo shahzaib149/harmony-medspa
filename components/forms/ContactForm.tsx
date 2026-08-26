@@ -75,7 +75,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
 
       if (variant === "landing") {
         if (typeof window !== "undefined") {
-          window.location.assign("/book-now");
+          window.location.assign(ONLINE_BOOKING_URL);
         }
       }
     } catch {

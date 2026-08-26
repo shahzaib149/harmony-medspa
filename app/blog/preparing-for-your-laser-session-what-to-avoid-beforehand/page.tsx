@@ -97,7 +97,7 @@ export default function PreparingForLaserSessionBlogPage() {
           <h2><TypewriterText text="Discover How Fractional CO2 Laser Treatments Can Refresh Your Look" startOnView /></h2>
           <p>
             For personalized Fractional CO2 laser treatments and advanced skin rejuvenation in Sarasota, schedule your consultation with Harmony
-            Med Spa. Call (941) 923-8990 to <a href="https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx" target="_blank" rel="noopener noreferrer">book</a> an appointment today.
+            Med Spa. Call (941) 923-8990 to <a href="https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx?rwg_token=AFd1xnFT_kHlHeWFNIXMwAf3TLK1AxeHVlcMQ61FZdPxWhFYciZL0fRt3UMK2zrvrLi7F1GTDI4HCRPGl127Ac2dGDOiiEMlnA%3D%3D" target="_blank" rel="noopener noreferrer">book</a> an appointment today.
           </p>
         </article>
 

@@ -10,7 +10,8 @@ export const FAX_TEL = "9419239024";
 
 export const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-export const ONLINE_BOOKING_URL = "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx";
+export const ONLINE_BOOKING_URL =
+  "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx?rwg_token=AFd1xnFT_kHlHeWFNIXMwAf3TLK1AxeHVlcMQ61FZdPxWhFYciZL0fRt3UMK2zrvrLi7F1GTDI4HCRPGl127Ac2dGDOiiEMlnA%3D%3D";
 
 export const CONTACT_WEBHOOK_URL = "https://hook.us2.make.com/mj8bga3ohgj6l7l0fe35f1mqktlfob7a";
 
