@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: "/before-and-afters/:gallery",
+        destination: "/before-and-afters",
+        permanent: true,
+      },
+      {
         source: "/specials",
         destination: "https://mailchi.mp/harmonymedspafl/monthly-specials",
         permanent: false,

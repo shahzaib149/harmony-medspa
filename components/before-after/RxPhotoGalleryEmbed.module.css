@@ -1,0 +1,87 @@
+.galleryBlock {
+  width: 100%;
+}
+
+.frameShell {
+  position: relative;
+  min-height: 980px;
+  overflow: hidden;
+  border: 1px solid #dedbd4;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 22px 58px rgba(21, 33, 49, 0.12);
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  height: 980px;
+  border: 0;
+  background: #fff;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #fbfaf7, #f3f1eb);
+  color: #59616b;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(177, 125, 0, 0.22);
+  border-top-color: #b17d00;
+  border-radius: 999px;
+  animation: gallery-spin 750ms linear infinite;
+}
+
+.fallback {
+  margin: 18px 0 0;
+  text-align: center;
+  color: #686d73;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.fallback a {
+  color: #8f6500;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.fallback a:hover {
+  color: #5f4300;
+}
+
+@keyframes gallery-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 720px) {
+  .frameShell {
+    min-height: 1120px;
+    border-radius: 10px;
+  }
+
+  .frame {
+    height: 1120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
