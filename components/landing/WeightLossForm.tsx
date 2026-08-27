@@ -87,7 +87,8 @@ export default function WeightLossForm({ id }: { id: string }) {
     if (!name.trim()) nextErrors.name = "Please enter your name.";
     if (!phone.trim()) nextErrors.phone = "Please enter your phone number.";
     else if (!isValidUsPhone(phone)) nextErrors.phone = "Please enter a valid US phone number.";
-    if (email.trim() && !EMAIL_PATTERN.test(email.trim())) nextErrors.email = "Please enter a valid email address.";
+    if (!email.trim()) nextErrors.email = "Please enter your email address.";
+    else if (!EMAIL_PATTERN.test(email.trim())) nextErrors.email = "Please enter a valid email address.";
     return nextErrors;
   }
 
@@ -185,8 +186,8 @@ export default function WeightLossForm({ id }: { id: string }) {
         </div>
 
         <div className={styles.field}>
-          <label className={styles.label} htmlFor={`${id}-email`}>Email <span className={styles.optional}>Optional</span></label>
-          <input id={`${id}-email`} className={`${styles.input} ${errors.email ? styles.inputError : ""}`} type="email" name="email" autoComplete="email" placeholder="you@example.com" inputMode="email" value={email} onChange={(event) => setEmail(event.target.value)} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? `${id}-email-error` : undefined} />
+          <label className={styles.label} htmlFor={`${id}-email`}>Email <span aria-hidden="true">*</span></label>
+          <input id={`${id}-email`} className={`${styles.input} ${errors.email ? styles.inputError : ""}`} type="email" name="email" autoComplete="email" placeholder="you@example.com" inputMode="email" value={email} onChange={(event) => setEmail(event.target.value)} required aria-required="true" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? `${id}-email-error` : undefined} />
           {errors.email ? <p id={`${id}-email-error`} className={styles.fieldError} role="alert">{errors.email}</p> : null}
         </div>
 
