@@ -28,21 +28,21 @@ export default function BeforeAndAftersPage() {
       </section>
 
       <section
-        className="px-[24px] pb-[124px] pt-[86px] max-[720px]:px-[12px] max-[720px]:pb-[70px] max-[720px]:pt-[52px]"
+        className="bg-[#f7f5f0] px-[28px] pb-[112px] pt-[68px] max-[720px]:px-[12px] max-[720px]:pb-[64px] max-[720px]:pt-[46px]"
         aria-labelledby="before-after-title"
       >
-        <div className="mx-auto w-[min(1320px,100%)]">
-          <div className="mx-auto mb-[44px] max-w-[760px] text-center max-[720px]:mb-[30px]">
-            <p className="mb-[14px] text-[12px] font-bold uppercase tracking-[0.24em] text-[#b17d00]">
+        <div className="mx-auto w-[min(1480px,100%)]">
+          <div className="mx-auto mb-[42px] max-w-[880px] text-center max-[720px]:mb-[28px]">
+            <p className="mb-[13px] text-[12px] font-bold uppercase tracking-[0.28em] text-[#9d7000]">
               Real Harmony results
             </p>
             <h2
               id="before-after-title"
-              className="m-0 text-[length:clamp(27px,3vw,42px)] font-light leading-[1.12] text-[#152131]"
+              className="m-0 text-[length:clamp(34px,3.6vw,54px)] font-light leading-[1.08] tracking-[-0.025em] text-[#152131]"
             >
               Before &amp; After Gallery
             </h2>
-            <p className="mx-auto mb-0 mt-[18px] max-w-[650px] text-[15px] leading-[1.75] text-[#5e6268]">
+            <p className="mx-auto mb-0 mt-[20px] max-w-[720px] text-[16px] leading-[1.75] text-[#5e6268]">
               Browse Harmony Med Spa&apos;s live treatment gallery. Results vary by
               patient, treatment plan, and individual response.
             </p>
