@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { RXPHOTO_GALLERY_URL } from "@/lib/constants";
 
 export default function AboutDropdown() {
   return (
@@ -10,7 +9,7 @@ export default function AboutDropdown() {
       <div className="nav-dropdown-menu absolute top-[calc(100%_+_8px)] left-[50%] z-[30] grid w-[170px] bg-[#000] shadow-[0_16px_26px_rgba(0,0,0,0.32)] opacity-0 pointer-events-none [transform:translateX(calc(-50%_+_28px))] [transition:opacity_180ms_ease,transform_240ms_ease] [&_a]:flex [&_a]:items-center [&_a]:justify-center [&_a]:min-h-[48px] [&_a]:py-0 [&_a]:px-[24px] [&_a]:text-center [&_a]:text-[#fff] [&_a]:text-[length:14px] [&_a]:font-medium [&_a]:whitespace-nowrap [&_a]:opacity-0 [&_a]:[transform:translateX(34px)] [&_a]:[transition:opacity_220ms_ease,transform_260ms_ease] [&_a]:[transition-delay:0ms] [&_a:first-child]:text-[#000] [&_a:first-child]:bg-[#efbd33] [&_a:hover]:text-[#000] [&_a:hover]:bg-[var(--gold)] [&_a:focus-visible]:text-[#000] [&_a:focus-visible]:bg-[var(--gold)] [&_a:nth-child(1)]:[transition-delay:40ms] [&_a:nth-child(2)]:[transition-delay:85ms] [&_a:nth-child(3)]:[transition-delay:130ms] [&_a:nth-child(4)]:[transition-delay:175ms] [&_a:nth-child(5)]:[transition-delay:220ms] [&_a:nth-child(6)]:[transition-delay:265ms] [&_a:nth-child(7)]:[transition-delay:310ms] [&_a:nth-child(8)]:[transition-delay:355ms] [&_a:nth-child(9)]:[transition-delay:400ms]">
         <Link href="/about-us">our practice</Link>
         <Link href="/our-team">meet the team</Link>
-        <a href={RXPHOTO_GALLERY_URL}>before &amp; afters</a>
+        <Link href="/before-and-afters">before &amp; afters</Link>
       </div>
     </div>
   );

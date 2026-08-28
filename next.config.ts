@@ -28,16 +28,6 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: "/before-and-afters",
-        destination: "https://harmonymedfl.wpenginepowered.com/before-and-after/?iframe=iframe",
-        permanent: false,
-      },
-      {
-        source: "/before-and-afters/:gallery",
-        destination: "https://harmonymedfl.wpenginepowered.com/before-and-after/?iframe=iframe",
-        permanent: false,
-      },
-      {
         source: "/specials",
         destination: "https://mailchi.mp/harmonymedspafl/monthly-specials",
         permanent: false,

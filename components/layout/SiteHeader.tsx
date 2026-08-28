@@ -5,7 +5,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, Menu, Phone, X } from "lucide-
 import { useState } from "react";
 import AboutDropdown from "@/components/layout/AboutDropdown";
 import PatientCenterDropdown from "@/components/layout/PatientCenterDropdown";
-import { ONLINE_BOOKING_URL, PHONE_TEL, RXPHOTO_GALLERY_URL } from "@/lib/constants";
+import { ONLINE_BOOKING_URL, PHONE_TEL } from "@/lib/constants";
 
 type SiteHeaderProps = {
   /** Header style variant class (site-header | team-header | contact-page-header) plus utilities. */
@@ -95,7 +95,7 @@ export default function SiteHeader({ className, homeHref = "/", servicesHref = "
                     <>
                       <NavLink href="/about-us" onClick={closeMobileMenu}>our practice</NavLink>
                       <NavLink href="/our-team" onClick={closeMobileMenu}>meet the team</NavLink>
-                      <NavLink href={RXPHOTO_GALLERY_URL} onClick={closeMobileMenu}>before &amp; afters</NavLink>
+                      <NavLink href="/before-and-afters" onClick={closeMobileMenu}>before &amp; afters</NavLink>
                     </>
                   ) : (
                     patientCenterLinks.map((item) => (
