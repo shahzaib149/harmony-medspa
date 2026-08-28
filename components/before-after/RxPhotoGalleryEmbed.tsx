@@ -3,7 +3,8 @@
 import { useState } from "react";
 import styles from "./RxPhotoGalleryEmbed.module.css";
 
-const RXPHOTO_GALLERY_URL = "https://harmonymedfl.wpenginepowered.com/";
+const RXPHOTO_GALLERY_URL =
+  "https://harmonymedfl.wpenginepowered.com/before-and-after/?iframe=iframe";
 
 export default function RxPhotoGalleryEmbed() {
   const [loaded, setLoaded] = useState(false);
