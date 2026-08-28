@@ -28,9 +28,14 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: "/before-and-afters",
+        destination: "https://harmonymedfl.wpenginepowered.com/before-and-after/?iframe=iframe",
+        permanent: false,
+      },
+      {
         source: "/before-and-afters/:gallery",
-        destination: "/before-and-afters",
-        permanent: true,
+        destination: "https://harmonymedfl.wpenginepowered.com/before-and-after/?iframe=iframe",
+        permanent: false,
       },
       {
         source: "/specials",
