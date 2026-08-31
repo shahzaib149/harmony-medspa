@@ -18,6 +18,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [{ type: "host", value: "harmony-medspa.vercel.app" }],
+        destination: "https://www.harmonymedspafl.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/blog/revivamask-recovery-mask-sarasota",
+        destination: "/skincare",
+        permanent: true,
+      },
+      {
         source: "/landing/advanced-skin-and-wellness-treatments.html",
         destination: "/landing/advanced-skin-and-wellness-treatments",
         permanent: true,

@@ -6,7 +6,7 @@ import WeightLossForm from "@/components/landing/WeightLossForm";
 import { ADDRESS_LINE_1, ADDRESS_LINE_2, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import styles from "./page.module.css";
 
-const socialImage = "https://harmony-medspa.vercel.app/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png";
+const socialImage = "https://www.harmonymedspafl.com/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png";
 
 export const metadata: Metadata = {
   title: "Medical Weight Loss in Sarasota | Harmony Med Spa",

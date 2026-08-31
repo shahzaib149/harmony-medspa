@@ -3,23 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogSearchForm from "@/components/blog/BlogSearchForm";
+import ArticleImage from "@/components/blog/ArticleImage";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import { getPublishedBlogBySlug } from "@/lib/blogs/airtable";
-import { firstPublicBlogImage, imageSourceForSite, type PublicBlogBlock } from "@/lib/blogs/types";
+import { firstPublicBlogImage, type PublicBlogBlock } from "@/lib/blogs/types";
+import { canonicalPublicUrl, siteUrl } from "@/lib/site-url";
 
 export const revalidate = 300;
-
-const DEFAULT_SITE_URL = "https://harmony-medspa.vercel.app";
-
-function siteUrl() {
-  try {
-    return new URL(process.env.NEXT_PUBLIC_SITE_URL?.trim() || DEFAULT_SITE_URL).origin;
-  } catch {
-    return DEFAULT_SITE_URL;
-  }
-}
 
 function jsonLd(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
@@ -38,7 +30,7 @@ function BlogBlock({ block }: { block: PublicBlogBlock }) {
     return (
       <figure className="my-[36px] overflow-hidden rounded-[14px] bg-[#eee]">
         {/* CMS images are stored as stable public URLs; Harmony-hosted URLs resolve to local assets. */}
-        <img className="block h-auto w-full object-cover" src={imageSourceForSite(block.url)} alt={block.alt} loading="lazy" />
+        <ArticleImage className="block h-auto w-full object-cover" url={block.url} alt={block.alt} loading="lazy" />
       </figure>
     );
   }
@@ -70,26 +62,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!blog) return {};
   const canonical = `${siteUrl()}/blog/${blog.slug}`;
   const image = firstPublicBlogImage(blog);
+  const imageUrl = image ? canonicalPublicUrl(image.url) : null;
+  const seoTitle = blog.seoTitle || blog.title;
   return {
-    title: blog.seoTitle || blog.title,
+    title: { absolute: seoTitle },
     description: blog.metaDescription || blog.excerpt,
     keywords: [blog.primaryKeyword, ...blog.tags].filter(Boolean),
     alternates: { canonical },
     openGraph: {
       type: "article",
       siteName: "Harmony Med Spa",
-      title: blog.seoTitle || blog.title,
+      title: seoTitle,
       description: blog.metaDescription || blog.excerpt,
       url: canonical,
       publishedTime: blog.publishedAt || undefined,
       modifiedTime: blog.updatedAt || undefined,
-      images: image ? [{ url: image.url, alt: image.alt }] : undefined,
+      images: imageUrl ? [{ url: imageUrl, alt: image?.alt || "" }] : undefined,
     },
     twitter: {
       card: image ? "summary_large_image" : "summary",
-      title: blog.seoTitle || blog.title,
+      title: seoTitle,
       description: blog.metaDescription || blog.excerpt,
-      images: image ? [image.url] : undefined,
+      images: imageUrl ? [imageUrl] : undefined,
     },
   };
 }
@@ -124,9 +118,14 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
       url: origin,
       logo: { "@type": "ImageObject", url: `${origin}/images/logo-transparent.png` },
     },
+    author: {
+      "@type": "Organization",
+      name: "Harmony Med Spa Editorial Team",
+      url: origin,
+    },
     datePublished: blog.publishedAt || undefined,
     dateModified: blog.updatedAt || undefined,
-    image: image?.url || undefined,
+    image: image ? canonicalPublicUrl(image.url) : undefined,
     articleSection: blog.category || undefined,
     keywords: [blog.primaryKeyword, ...blog.tags].filter(Boolean).join(", "),
   };
@@ -160,7 +159,7 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
             </div>
             {image ? (
               <div className="blog-article-feature-image relative min-h-[212px] overflow-hidden rounded-[14px] bg-[#eee] [&_img]:object-cover">
-                <img className="absolute inset-0 h-full w-full object-cover" src={imageSourceForSite(image.url)} alt={image.alt} loading="eager" />
+                <ArticleImage className="absolute inset-0 h-full w-full object-cover" url={image.url} alt={image.alt} loading="eager" />
               </div>
             ) : null}
           </div>

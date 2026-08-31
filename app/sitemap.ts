@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { listPublishedBlogs } from "@/lib/blogs/airtable";
+import { siteUrl } from "@/lib/site-url";
 
-const DEFAULT_SITE_URL = "https://harmony-medspa.vercel.app";
 const staticPaths = [
   "", "/about-us", "/before-and-afters", "/blog", "/contact-us", "/facials",
   "/facials-and-peels", "/hair-restoration", "/iv-therapy", "/membership", "/peptide-therapy",
@@ -39,14 +39,14 @@ const legacyBlogSlugs = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || DEFAULT_SITE_URL;
+  const canonicalSiteUrl = siteUrl();
   const published = await listPublishedBlogs();
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [
-    ...staticPaths.map((path) => ({ url: `${siteUrl}${path}`, lastModified: now, changeFrequency: path === "/blog" ? "weekly" as const : "monthly" as const })),
-    ...legacyBlogSlugs.map((slug) => ({ url: `${siteUrl}/blog/${slug}`, changeFrequency: "monthly" as const })),
+    ...staticPaths.map((path) => ({ url: `${canonicalSiteUrl}${path}`, lastModified: now, changeFrequency: path === "/blog" ? "weekly" as const : "monthly" as const })),
+    ...legacyBlogSlugs.map((slug) => ({ url: `${canonicalSiteUrl}/blog/${slug}`, changeFrequency: "monthly" as const })),
     ...published.map((blog) => ({
-      url: `${siteUrl}/blog/${blog.slug}`,
+      url: `${canonicalSiteUrl}/blog/${blog.slug}`,
       lastModified: blog.updatedAt || blog.publishedAt || now,
       changeFrequency: "monthly" as const,
     })),
