@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/landing/advanced-skin-and-wellness-treatments.html",
+        destination: "/landing/advanced-skin-and-wellness-treatments",
+        permanent: true,
+      },
+      {
         source: "/dashboard",
         destination: crmOrigin,
         permanent: false,

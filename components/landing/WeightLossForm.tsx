@@ -67,7 +67,29 @@ function isValidUsPhone(value: string): boolean {
   return national.length >= 10;
 }
 
-export default function WeightLossForm({ id }: { id: string }) {
+type WeightLossFormProps = {
+  id: string;
+  source?: string;
+  treatmentInterest?: string;
+  landingUrl?: string;
+  ariaLabel?: string;
+  kicker?: string;
+  heading?: string;
+  subheading?: string;
+  submitLabel?: string;
+};
+
+export default function WeightLossForm({
+  id,
+  source = "Medical Weight Loss Landing Page",
+  treatmentInterest = "Medical Weight Loss",
+  landingUrl = "/landing/medical-weight-loss",
+  ariaLabel = "Medical weight loss consultation request",
+  kicker = "Private consultation request",
+  heading = "Let's talk about your options.",
+  subheading = "Share the best way to reach you. Our Sarasota team will follow up personally.",
+  submitLabel = "Request my consultation",
+}: WeightLossFormProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -106,9 +128,9 @@ export default function WeightLossForm({ id }: { id: string }) {
       Name: name.trim(),
       Email: email.trim(),
       Phone: formatUsPhoneE164(phone),
-      Source: "Medical Weight Loss Landing Page",
+      Source: source,
       Status: "New",
-      "Treatment Interest": "Medical Weight Loss",
+      "Treatment Interest": treatmentInterest,
       "Best Time to Reach": bestTime,
       "Email Sent Status": "Pending",
       "SMS Sent Status": "Pending",
@@ -125,7 +147,7 @@ export default function WeightLossForm({ id }: { id: string }) {
       GBRAID: params.gbraid ?? "",
       WBRAID: params.wbraid ?? "",
       "Page URL": typeof window !== "undefined" ? window.location.href : "",
-      "Landing URL": "/landing/medical-weight-loss",
+      "Landing URL": landingUrl,
       "Lead Created At": new Date().toISOString(),
     };
 
@@ -163,11 +185,11 @@ export default function WeightLossForm({ id }: { id: string }) {
 
   return (
     <div className={styles.card} id={id}>
-      <p className={styles.kicker}>Private consultation request</p>
-      <h2 className={styles.heading}>Let&apos;s talk about your options.</h2>
-      <p className={styles.subheading}>Share the best way to reach you. Our Sarasota team will follow up personally.</p>
+      <p className={styles.kicker}>{kicker}</p>
+      <h2 className={styles.heading}>{heading}</h2>
+      <p className={styles.subheading}>{subheading}</p>
 
-      <form className={styles.form} onSubmit={handleSubmit} noValidate aria-label="Medical weight loss consultation request">
+      <form className={styles.form} onSubmit={handleSubmit} noValidate aria-label={ariaLabel}>
         <div className={styles.honeypot} aria-hidden="true">
           <label htmlFor={`${id}-website`}>Leave this blank</label>
           <input id={`${id}-website`} name="website" value={honeypot} onChange={(event) => setHoneypot(event.target.value)} autoComplete="off" tabIndex={-1} />
@@ -203,7 +225,7 @@ export default function WeightLossForm({ id }: { id: string }) {
         </div>
 
         <button className={styles.submitButton} type="submit" disabled={status === "submitting"} aria-busy={status === "submitting"}>
-          {status === "submitting" ? "Sending…" : "Request my consultation"}
+          {status === "submitting" ? "Sending…" : submitLabel}
           {status !== "submitting" ? <ArrowUpRight size={18} aria-hidden="true" /> : null}
         </button>
 
