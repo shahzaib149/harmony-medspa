@@ -60,7 +60,12 @@ export default function LandingPage() {
             <p className="landing-kicker landing-promoted-subheading">Guided skin analysis and treatment planning</p>
           </header>
           <div className="landing-promoted-image">
-            <Image src={`${landingImages}/3.jpg`} alt="Skin treatment consultation" fill sizes="(max-width: 900px) 100vw, 90vw" />
+            <Image
+              src="/images/blogs/harmony-editorial/medical-facial-spectra-skin-analysis-sarasota.png"
+              alt="Professional skin analysis consultation at Harmony Med Spa in Sarasota"
+              fill
+              sizes="(max-width: 900px) 100vw, 90vw"
+            />
           </div>
         </div>
       </section>
