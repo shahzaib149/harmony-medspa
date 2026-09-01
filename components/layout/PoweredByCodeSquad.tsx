@@ -10,18 +10,18 @@ export default function PoweredByCodeSquad({ className = "" }: PoweredByCodeSqua
       href="https://codesquad.ai"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Powered by CodeSquad — visit codesquad.ai"
+      aria-label="Managed by CodeSquad — visit codesquad.ai"
       className={`group inline-flex w-fit items-center gap-2.5 no-underline ${className}`}
     >
       <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#858585] transition-colors group-hover:text-[#b5b5b5]">
-        Powered by
+        Managed by
       </span>
       <Image
         src="/images/footer/codesquad-logo.png"
         alt="CodeSquad"
         width={116}
         height={25}
-        className="h-[22px] w-auto opacity-90 transition-opacity group-hover:opacity-100"
+        className="h-[22px] w-auto opacity-100"
       />
     </a>
   );
