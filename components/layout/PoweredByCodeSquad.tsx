@@ -19,7 +19,7 @@ export default function PoweredByCodeSquad({ className = "" }: PoweredByCodeSqua
       <Image
         src="/images/footer/codesquad-logo.png"
         alt="CodeSquad"
-        width={116}
+        width={135}
         height={25}
         className="h-[22px] w-auto opacity-100"
       />
