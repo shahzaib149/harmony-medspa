@@ -1,0 +1,130 @@
+.premiumHeader {
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+}
+
+.premiumHeader :global(.nav-left > a),
+.premiumHeader :global(.nav-right > a),
+.premiumHeader :global(.nav-dropdown-trigger) {
+  position: relative;
+  padding-block: 0 9px;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: 1;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.72);
+  transition: color 180ms ease;
+}
+
+.premiumHeader :global(.nav-left > a)::after,
+.premiumHeader :global(.nav-right > a)::after,
+.premiumHeader :global(.nav-dropdown-trigger)::before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: #efbd33;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.35);
+  transform-origin: center;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.premiumHeader :global(.nav-left > a):hover,
+.premiumHeader :global(.nav-right > a):hover,
+.premiumHeader :global(.nav-dropdown-trigger):hover,
+.premiumHeader :global(.nav-dropdown):focus-within :global(.nav-dropdown-trigger) {
+  color: #ffffff;
+}
+
+.premiumHeader :global(.nav-left > a):hover::after,
+.premiumHeader :global(.nav-right > a):hover::after,
+.premiumHeader :global(.nav-left > a):focus-visible::after,
+.premiumHeader :global(.nav-right > a):focus-visible::after,
+.premiumHeader :global(.nav-dropdown-trigger):hover::before,
+.premiumHeader :global(.nav-dropdown-trigger):focus-visible::before,
+.premiumHeader :global(.nav-dropdown):focus-within :global(.nav-dropdown-trigger)::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.premiumHeader :global(.nav-left > a):focus-visible,
+.premiumHeader :global(.nav-right > a):focus-visible,
+.premiumHeader :global(.nav-dropdown-trigger):focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #efbd33;
+  outline-offset: 5px;
+}
+
+.premiumHeader :global(.nav-dropdown-menu) {
+  overflow: hidden;
+  border: 1px solid rgba(239, 189, 51, 0.24);
+  border-radius: 2px;
+  background: rgba(12, 12, 12, 0.98);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
+}
+
+.premiumHeader :global(.nav-dropdown-menu) a {
+  min-height: 46px;
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+
+.premiumHeader :global(.mobile-drawer-heading span) {
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.premiumHeader :global(.mobile-drawer-links) a,
+.premiumHeader :global(.mobile-drawer-links) button {
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  text-transform: none;
+}
+
+@media (min-width: 901px) {
+  .premiumHeader {
+    font-size: clamp(13px, 0.82vw, 15px);
+  }
+}
+
+@media (max-width: 900px) {
+  .premiumHeader {
+    letter-spacing: 0;
+  }
+
+  .premiumHeader :global(.mobile-drawer) {
+    background:
+      linear-gradient(180deg, rgba(239, 189, 51, 0.055), transparent 180px),
+      #171817;
+    box-shadow: 24px 0 60px rgba(0, 0, 0, 0.45);
+  }
+
+  .premiumHeader :global(.mobile-drawer-links) a,
+  .premiumHeader :global(.mobile-drawer-links) button {
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premiumHeader :global(.nav-left > a),
+  .premiumHeader :global(.nav-right > a),
+  .premiumHeader :global(.nav-dropdown-trigger),
+  .premiumHeader :global(.nav-left > a)::after,
+  .premiumHeader :global(.nav-right > a)::after,
+  .premiumHeader :global(.nav-dropdown-trigger)::before {
+    transition: none;
+  }
+}
