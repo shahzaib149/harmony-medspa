@@ -1,0 +1,28 @@
+import Image from "next/image";
+
+type PoweredByCodeSquadProps = {
+  className?: string;
+};
+
+export default function PoweredByCodeSquad({ className = "" }: PoweredByCodeSquadProps) {
+  return (
+    <a
+      href="https://codesquad.ai"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Powered by CodeSquad — visit codesquad.ai"
+      className={`group inline-flex w-fit items-center gap-2.5 no-underline ${className}`}
+    >
+      <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#858585] transition-colors group-hover:text-[#b5b5b5]">
+        Powered by
+      </span>
+      <Image
+        src="/images/footer/codesquad-logo.png"
+        alt="CodeSquad"
+        width={106}
+        height={23}
+        className="h-[20px] w-auto opacity-90 transition-opacity group-hover:opacity-100"
+      />
+    </a>
+  );
+}

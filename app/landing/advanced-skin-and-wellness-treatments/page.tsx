@@ -11,6 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import WeightLossForm from "@/components/landing/WeightLossForm";
+import PoweredByCodeSquad from "@/components/layout/PoweredByCodeSquad";
 import { ADDRESS_LINE_1, ADDRESS_LINE_2, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import styles from "../medical-weight-loss/page.module.css";
 
@@ -375,6 +376,7 @@ export default function AdvancedSkinWellnessLandingPage() {
         <div className={styles.footerLegal}>
           <p>© {new Date().getFullYear()} Harmony Med Spa.</p>
           <p>This page provides general information and is not medical advice. Recommendations follow an individual evaluation.</p>
+          <PoweredByCodeSquad className="mt-3" />
         </div>
       </footer>
 

@@ -1,4 +1,5 @@
 import { Building2, Instagram, MapPin, Phone } from "lucide-react";
+import PoweredByCodeSquad from "@/components/layout/PoweredByCodeSquad";
 import {
   ADDRESS_LINE_1,
   ADDRESS_LINE_2,
@@ -129,8 +130,9 @@ export default function SiteFooter({ variant, address = "linked" }: SiteFooterPr
           <FooterSocial />
         </div>
       </div>
-      <div className="copyright max-w-[1240px] mx-auto pt-[24px] border-t border-[var(--gold)] text-[#6f6f6f] font-bold text-[13px] leading-relaxed">
-        © 2026 Harmony Med Spa. All rights Reserved. Accessibility Statement - Privacy Policy - Sitemap
+      <div className="copyright max-w-[1240px] mx-auto flex flex-wrap items-center justify-between gap-5 pt-[24px] border-t border-[var(--gold)] text-[#6f6f6f] font-bold text-[13px] leading-relaxed max-[720px]:justify-center max-[720px]:text-center">
+        <span>© 2026 Harmony Med Spa. All rights Reserved. Accessibility Statement - Privacy Policy - Sitemap</span>
+        <PoweredByCodeSquad />
       </div>
     </footer>
   );

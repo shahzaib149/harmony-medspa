@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ClipboardCheck, MapPin, Phone, ShieldCheck, Stethoscope } from "lucide-react";
 import WeightLossForm from "@/components/landing/WeightLossForm";
+import PoweredByCodeSquad from "@/components/layout/PoweredByCodeSquad";
 import { ADDRESS_LINE_1, ADDRESS_LINE_2, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import styles from "./page.module.css";
 
@@ -233,7 +234,7 @@ export default function MedicalWeightLossLandingPage() {
         <div className={styles.footerBrand}><Image src="/images/logo-transparent.png" alt="Harmony Med Spa" width={150} height={62} /><p>Medical aesthetics and wellness care in Sarasota, Florida.</p></div>
         <div><p className={styles.footerLabel}>Visit</p><address>{ADDRESS_LINE_1}<br />{ADDRESS_LINE_2}</address></div>
         <div><p className={styles.footerLabel}>Contact</p><a href={phoneHref}>{PHONE_DISPLAY}</a><span>Monday–Friday · 9:00 a.m.–5:00 p.m.</span></div>
-        <div className={styles.footerLegal}><p>© {new Date().getFullYear()} Harmony Med Spa.</p><p>This page provides general information and is not medical advice. Recommendations follow an individual medical evaluation.</p></div>
+        <div className={styles.footerLegal}><p>© {new Date().getFullYear()} Harmony Med Spa.</p><p>This page provides general information and is not medical advice. Recommendations follow an individual medical evaluation.</p><PoweredByCodeSquad className="mt-3" /></div>
       </footer>
 
       <nav className={styles.mobileBar} aria-label="Quick contact actions">
