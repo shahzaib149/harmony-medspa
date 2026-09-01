@@ -19,7 +19,7 @@ export default function LandingTestimonials() {
   return (
     <section className="landing-testimonials" aria-labelledby="v1-landing-testimonial-title">
       <div className="landing-testimonial-heading">
-        <h2 id="v1-landing-testimonial-title">what our<br />patients say</h2>
+        <h2 id="v1-landing-testimonial-title">What Our<br />Patients Say</h2>
         <p className="landing-kicker">Trusted by patients<br />throughout Sarasota</p>
         <div className="landing-testimonial-controls">
           <button type="button" onClick={() => move(-1)} aria-label="Previous testimonial"><ChevronLeft /></button>

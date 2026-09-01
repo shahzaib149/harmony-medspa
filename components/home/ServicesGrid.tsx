@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const services = [
-  { file: "services_1.jpg", title: "lasers +\nlights", href: "/lasers-and-lights" },
-  { file: "services_2.jpg", title: "injectables", href: "/injectables" },
-  { file: "services_3.jpg", title: "facials +\npeels", href: "/facials-and-peels" },
-  { file: "services_4.jpg", title: "body", href: "/body" },
-  { file: "services_5.jpg", title: "skincare", href: "/skincare" },
-  { file: "services_6.jpg", title: "wellness", href: "/wellness" }
+  { file: "services_1.jpg", title: "Lasers +\nLights", href: "/lasers-and-lights" },
+  { file: "services_2.jpg", title: "Injectables", href: "/injectables" },
+  { file: "services_3.jpg", title: "Facials +\nPeels", href: "/facials-and-peels" },
+  { file: "services_4.jpg", title: "Body", href: "/body" },
+  { file: "services_5.jpg", title: "Skincare", href: "/skincare" },
+  { file: "services_6.jpg", title: "Wellness", href: "/wellness" }
 ];
 
 export default function ServicesGrid() {

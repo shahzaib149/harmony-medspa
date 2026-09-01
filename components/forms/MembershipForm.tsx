@@ -16,12 +16,12 @@ type Errors = {
 
 const formCopy: Record<FormKind, { title: string; source: string; interest: string }> = {
   pricing: {
-    title: "contact us for pricing",
+    title: "Contact Us for Pricing",
     source: "Membership Pricing Form",
     interest: "Membership Pricing"
   },
   membership: {
-    title: "request a membership",
+    title: "Request a Membership",
     source: "Membership Request Form",
     interest: "Membership"
   }

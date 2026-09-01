@@ -1,11 +1,47 @@
 "use client";
 
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 /** useLayoutEffect warns during SSR; fall back to useEffect on the server. */
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const systemPrefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const smallTitleWords = new Set(["a", "an", "and", "as", "at", "by", "for", "from", "in", "into", "of", "on", "or", "the", "to", "with"]);
+const titleAcronyms: Record<string, string> = {
+  "adk-10": "ADK-10",
+  daxxify: "DAXXIFY",
+  e: "E",
+  glo2facial: "Glo2Facial",
+  glo2facials: "Glo2Facials",
+  bhrt: "BHRT",
+  co2: "CO2",
+  fl: "FL",
+  "glp-1": "GLP-1",
+  hrt: "HRT",
+  kerafactor: "KeraFactor",
+  ipl: "IPL",
+  iv: "IV",
+  rf: "RF",
+  t: "T",
+  tm: "TM",
+};
+
+function formatHeading(text: string): string {
+  return text.replace(/[a-z0-9]+(?:[-'][a-z0-9]+)*/gi, (word, offset) => {
+    const lower = word.toLocaleLowerCase("en-US");
+    const acronym = titleAcronyms[lower];
+    if (acronym) return acronym;
+
+    const followsColon = text.slice(0, offset).trimEnd().endsWith(":");
+    if (offset > 0 && !followsColon && smallTitleWords.has(lower)) return lower;
+
+    return lower
+      .split("-")
+      .map((part) => part.charAt(0).toLocaleUpperCase("en-US") + part.slice(1))
+      .join("-");
+  });
+}
 
 type TypewriterTextProps = {
   text: string;
@@ -29,8 +65,9 @@ export default function TypewriterText({
   caret = false,
   ignoreReducedMotion = false
 }: TypewriterTextProps) {
-  const skipAnimation = () => !ignoreReducedMotion && systemPrefersReducedMotion();
-  const characters = Array.from(text);
+  const skipAnimation = useCallback(() => !ignoreReducedMotion && systemPrefersReducedMotion(), [ignoreReducedMotion]);
+  const displayText = formatHeading(text);
+  const characters = Array.from(displayText);
   const total = characters.length;
   const hostRef = useRef<HTMLSpanElement>(null);
 
@@ -42,12 +79,12 @@ export default function TypewriterText({
     if (!skipAnimation()) {
       setRevealed(0);
     }
-  }, [text]);
+  }, [skipAnimation, text]);
 
   useEffect(() => {
     if (skipAnimation()) {
-      setRevealed(total);
-      return;
+      const frame = window.requestAnimationFrame(() => setRevealed(total));
+      return () => window.cancelAnimationFrame(frame);
     }
 
     let startTimer: number | undefined;
@@ -101,10 +138,10 @@ export default function TypewriterText({
       observer.disconnect();
       stop();
     };
-  }, [initialDelay, letterDelay, startOnView, text, total]);
+  }, [initialDelay, letterDelay, skipAnimation, startOnView, text, total]);
 
   return (
-    <span className={className} ref={hostRef} aria-label={text}>
+    <span className={className} ref={hostRef} aria-label={displayText}>
       {/*
         Every character stays in flow and only toggles `visibility`, so the heading
         reserves its final size from the first frame and nothing below it reflows.

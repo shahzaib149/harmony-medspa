@@ -88,7 +88,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
   if (status === "success" && variant !== "landing") {
     return (
       <div className={formClassName}>
-        {variant === "home" ? <h2>let&apos;s chat!</h2> : null}
+        {variant === "home" ? <h2>Let&apos;s Chat!</h2> : null}
         <p className="form-success-message">Thank you! We&apos;ll be in touch with you shortly.</p>
       </div>
     );
@@ -119,26 +119,26 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
   if (variant === "home") {
     return (
       <form className={formClassName} onSubmit={handleSubmit} noValidate>
-        <h2>let&apos;s chat!</h2>
+        <h2>Let&apos;s Chat!</h2>
         <label>
-          <span>name</span>
+          <span>Name</span>
           <input type="text" name="name" value={name} onChange={(event) => setName(event.target.value)} />
         </label>
         {errors.name ? <p className="form-field-error">{errors.name}</p> : null}
         <div className="split grid grid-cols-[1fr_1fr] gap-[34px] max-[720px]:grid-cols-[1fr] max-[720px]:gap-[0]">
           <label>
-            <span>email</span>
+            <span>Email</span>
             <input type="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
           </label>
           <label>
-            <span>phone</span>
+            <span>Phone</span>
             <input type="tel" name="phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
           </label>
         </div>
         {errors.email ? <p className="form-field-error">{errors.email}</p> : null}
         {errors.phone ? <p className="form-field-error">{errors.phone}</p> : null}
         <label>
-          <span>message</span>
+          <span>Message</span>
           <textarea name="message" rows={4} value={message} onChange={(event) => setMessage(event.target.value)} />
         </label>
         {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at (941) 306-3696.</p> : null}

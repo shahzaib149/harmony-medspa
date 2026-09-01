@@ -31,7 +31,7 @@ export default function HeroCarousel() {
         <h1>
           <TypewriterText text="harmony med spa" letterDelay={110} caret ignoreReducedMotion />
         </h1>
-        <a className="line-button inline-flex justify-center min-w-[142px] py-[14px] px-[22px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:18px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer max-[720px]:min-w-[124px] max-[720px]:text-[length:16px]" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">book now</a>
+        <a className="line-button inline-flex justify-center min-w-[142px] py-[14px] px-[22px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:18px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer max-[720px]:min-w-[124px] max-[720px]:text-[length:16px]" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">Book Now</a>
       </div>
       <div className="hero-dots absolute right-[34px] bottom-[28px] flex gap-[8px] [&_button]:w-[32px] [&_button]:h-[3px] [&_button]:border-0 [&_button]:[background:rgba(255,255,255,0.42)] [&_button]:cursor-pointer [&_.is-active]:bg-[#fff]" aria-label="Carousel slides">
         {slides.map((_, index) => (

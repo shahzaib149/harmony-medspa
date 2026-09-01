@@ -38,7 +38,7 @@ export default function ProvidersSection() {
     <section className={`providers section-light bg-[var(--paper)] text-[var(--ink)] ${isVisible ? "is-visible" : ""}`} ref={sectionRef}>
       <div className="section-inner w-[min(1060px,calc(100%_-_42px))] my-0 mx-auto text-center">
         <div className="provider-heading-motion opacity-0 [transform:translateY(-34px)] [transition:opacity_720ms_ease,transform_720ms_cubic-bezier(0.2,0.78,0.22,1)]">
-          <h2>meet our providers</h2>
+          <h2>Meet Our Providers</h2>
           <p className="provider-copy max-w-[770px] mt-0 mb-[50px] mx-auto text-[length:16px] leading-[1.45] font-normal">
             Harmony Med Spa provides the highest quality service to ensure that you are healthy and happy. Meet our caring and compassionate
             team committed to providing exceptional service to you.

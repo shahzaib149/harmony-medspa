@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
+import "./typography-polish.css";
 
 const canonicalSiteUrl = siteUrl();
 const siteName = "Harmony Med Spa";

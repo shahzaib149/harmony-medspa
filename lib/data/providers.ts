@@ -2,7 +2,7 @@ export const providers = [
   {
     file: "clear_team_1.jpg",
     name: "Jessica N Simone, AGNP-C",
-    title: "owner, board certified, \"nurse practitioner of aesthetic & integrative medicine\"",
+    title: "Owner · Board-Certified Nurse Practitioner of Aesthetic & Integrative Medicine",
     bio: "Jessica Simone, AGNP-C, is an advanced practice nurse who is board-certified by the American Academy of Nurse Practitioners. Jessica delivers top-level aesthetic care to men and women at Harmony Med Spa.",
     fullBio: [
       "Jessica Simone, AGNP-C, is an advanced practice nurse who is board-certified by the American Academy of Nurse Practitioners. Jessica delivers top-level aesthetic care to men and women at Harmony Med Spa in Sarasota, Florida.",

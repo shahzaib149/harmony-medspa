@@ -30,7 +30,7 @@ export default function LandingV1() {
       <section className="landing-hero" id="home">
         <div className="landing-hero-top">
           <Link className="landing-logo" href="#home" aria-label="Harmony Med Spa home">
-            <img src="/images/logo-transparent.png" alt="Harmony Med Spa" />
+            <Image src="/images/logo-transparent.png" alt="Harmony Med Spa" width={270} height={111} priority />
           </Link>
           <div className="landing-hero-actions">
             <a className="landing-phone" href={`tel:${PHONE_TEL}`} aria-label={`Call ${PHONE_DISPLAY}`}>
@@ -39,7 +39,7 @@ export default function LandingV1() {
             </a>
             <a className="landing-gold-button" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer" aria-label="Book an appointment">
               <CalendarDays className="landing-action-icon" size={22} aria-hidden="true" />
-              <span>book an appointment</span>
+              <span>Book an Appointment</span>
             </a>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function LandingV1() {
             </p>
           </div>
           <div className="landing-contact-card" id="contact">
-            <h2>contact us</h2>
+            <h2>Contact Us</h2>
             <p>For non-urgent questions or to learn more<br />about our services, contact us today!</p>
             <ContactForm variant="landing" />
           </div>
@@ -74,7 +74,7 @@ export default function LandingV1() {
             <Image src={image5} alt="Woman with hands touching face, healthy glowing skin" fill sizes="(max-width: 800px) 100vw, 48vw" />
           </div>
           <div className="landing-about-copy">
-            <h2>why choose<br />harmony medspa</h2>
+            <h2>Why Choose<br />Harmony Med Spa</h2>
             <p className="landing-kicker">Experienced providers focused on<br />long-term health and natural results</p>
             <p>
               Harmony MedSpa takes a medically guided, individualized approach to both wellness and aesthetic care. Patients receive clear
@@ -82,8 +82,8 @@ export default function LandingV1() {
               sustainable results rather than aggressive procedures or sales-driven recommendations.
             </p>
             <div className="landing-button-row">
-              <GoldButton href="/about-us">about harmony medspa</GoldButton>
-              <GoldButton href="/our-team">meet the team</GoldButton>
+              <GoldButton href="/about-us">About Harmony Med Spa</GoldButton>
+              <GoldButton href="/our-team">Meet the Team</GoldButton>
             </div>
           </div>
         </div>
@@ -92,14 +92,14 @@ export default function LandingV1() {
       <section className="landing-wellness" id="wellness">
         <div className="landing-section-shell">
           <header className="landing-section-heading landing-section-heading-dark">
-            <h2>wellness services</h2>
+            <h2>Wellness Services</h2>
             <p className="landing-kicker">Medically supervised care focused on energy, balance, and metabolic health</p>
             <p>Our wellness services are designed to position Harmony MedSpa as a trusted resource for patients seeking<br className="landing-desktop-break" /> medically guided solutions that support how they feel and function.</p>
           </header>
 
           <article className="landing-wellness-feature landing-hormone-feature">
             <div className="landing-wellness-copy">
-              <h3>bioidentical hormone<br />replacement therapy<br />and nutraceuticals</h3>
+              <h3>Bioidentical Hormone<br />Replacement Therapy<br />and Nutraceuticals</h3>
               <p>
                 Personalized hormone optimization programs using bioidentical hormones, including Evexipel pellet therapy, along with
                 supportive nutraceuticals. Treatment plans are guided by medical evaluation and ongoing follow-up to address symptoms related
@@ -116,7 +116,7 @@ export default function LandingV1() {
               <Image src={`${landingImages}/4.jpg`} alt="Woman representing healthy medical weight loss" fill sizes="(max-width: 800px) 100vw, 50vw" />
             </div>
             <div className="landing-wellness-copy">
-              <h3>medical weight loss</h3>
+              <h3>Medical Weight Loss</h3>
               <p>
                 Physician-supervised weight loss programs focused on metabolic health, sustainable lifestyle changes, and realistic
                 expectations. Patients receive ongoing medical monitoring, education, and individualized plans designed to support long-term success.
@@ -125,7 +125,7 @@ export default function LandingV1() {
           </article>
 
           <div className="landing-wellness-cta">
-            <GoldButton href={ONLINE_BOOKING_URL}>Schedule a wellness consultation</GoldButton>
+            <GoldButton href={ONLINE_BOOKING_URL}>Schedule a Wellness Consultation</GoldButton>
           </div>
         </div>
       </section>
@@ -133,14 +133,14 @@ export default function LandingV1() {
       <section className="landing-aesthetics" id="aesthetics">
         <div className="landing-section-shell">
           <header className="landing-section-heading landing-section-heading-light">
-            <h2>aesthetic skin and facial treatments</h2>
+            <h2>Aesthetic Skin and Facial Treatments</h2>
             <p className="landing-kicker">Non-invasive options focused on skin quality, texture, and safety</p>
             <p>Our aesthetic services emphasize natural-looking results, patient education, and evidence-based treatment selection.</p>
           </header>
 
           <article className="landing-treatment-row landing-treatment-copy-first">
             <div className="landing-treatment-copy">
-              <h3>injectables and<br />biostimulators</h3>
+              <h3>Injectables and<br />Biostimulators</h3>
               <ul>
                 <li><strong>Dermal Fillers</strong> - RHA, Restylane, and other fillers we carry are used to restore volume, soften lines, and enhance facial balance with subtle, refreshed results. Treatment areas and product selection are guided by facial anatomy and patient goals.</li>
                 <li><strong>Daxxify Neuromodulator</strong> - Long-lasting neuromodulator treatments for forehead lines, frown lines, and crow&apos;s feet. Daxxify is positioned for patients seeking extended treatment duration with natural facial movement.</li>
@@ -157,7 +157,7 @@ export default function LandingV1() {
               <Image src={`${landingImages}/microneedling.jpg`} alt="Radiofrequency microneedling treatment" fill sizes="(max-width: 800px) 100vw, 50vw" />
             </div>
             <div className="landing-treatment-copy">
-              <h3>energy-based and<br />regenerative<br />treatments</h3>
+              <h3>Energy-Based and<br />Regenerative<br />Treatments</h3>
               <ul>
                 <li><strong>RF Microneedling</strong> - Targets skin texture, fine lines, and acne scars while supporting collagen production. This regenerative approach is commonly used for overall skin quality improvement.</li>
                 <li><strong>Fractional CO2 Laser</strong> - Laser resurfacing treatment for sun damage, uneven tone, and texture concerns. Education focuses on realistic outcomes, recovery expectations, and minimal downtime when appropriate.</li>
@@ -167,7 +167,7 @@ export default function LandingV1() {
 
           <article className="landing-treatment-row landing-treatment-copy-first">
             <div className="landing-treatment-copy">
-              <h3>facials and skin<br />maintenance</h3>
+              <h3>Facials and Skin<br />Maintenance</h3>
               <ul>
                 <li><strong>Glo2Facial and Signature Facial</strong> - Customized facials designed to cleanse, exfoliate, and refresh the skin. Available add-ons include microdermabrasion, dermaplaning, and hydrofacial-style exfoliation.</li>
                 <li><strong>Medical-Grade Skincare</strong> - We incorporate medical-grade skincare into both in-office treatments and home care recommendations. Brands include EltaMD, Skinbetter Science, and Revision Skincare, with guidance for pre- and post-procedure care.</li>
@@ -179,7 +179,7 @@ export default function LandingV1() {
           </article>
 
           <div className="landing-services-cta">
-            <GoldButton href="/services">our services</GoldButton>
+            <GoldButton href="/services">Our Services</GoldButton>
           </div>
         </div>
       </section>
@@ -196,13 +196,13 @@ export default function LandingV1() {
           />
         </div>
         <div className="landing-ready-copy">
-          <h2>ready to get started?</h2>
+          <h2>Ready to Get Started?</h2>
           <p className="landing-kicker">Schedule a consultation or learn more</p>
           <p>
             Whether you are researching treatment options or ready to begin care, our team is available to answer questions and help you
             determine the best next step. Schedule a consultation to discuss your goals and explore appropriate treatment options.
           </p>
-          <GoldButton href={ONLINE_BOOKING_URL}>book now</GoldButton>
+          <GoldButton href={ONLINE_BOOKING_URL}>Book Now</GoldButton>
         </div>
       </section>
 

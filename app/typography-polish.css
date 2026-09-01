@@ -1,0 +1,103 @@
+:root {
+  --harmony-body-font: "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --harmony-display-font: Georgia, "Times New Roman", serif;
+}
+
+body {
+  font-family: var(--harmony-body-font);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.intro h2,
+.services h2,
+.experience h2,
+.providers h2,
+.newsletter h2,
+.contact-form h2 {
+  font-family: var(--harmony-display-font);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.services h2,
+.providers h2 {
+  font-size: clamp(46px, 4.2vw, 68px);
+  line-height: 1.02;
+}
+
+.experience h2,
+.newsletter h2,
+.contact-form h2 {
+  font-size: clamp(44px, 4.2vw, 66px);
+  line-height: 1.03;
+}
+
+.intro p,
+.experience p,
+.newsletter p {
+  font-family: var(--harmony-body-font);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.65;
+}
+
+.intro p,
+.experience p,
+.newsletter p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.provider-copy {
+  color: #4f5350;
+  font-family: var(--harmony-body-font);
+  line-height: 1.65;
+}
+
+.service-title {
+  font-family: var(--harmony-body-font);
+  font-size: clamp(27px, 2.15vw, 36px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.service-detail-hero h1,
+.contact-page-hero h1,
+.testimonials-hero h1,
+.about-hero h1 {
+  font-family: var(--harmony-body-font);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.line-button {
+  font-family: var(--harmony-body-font);
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+
+.contact-form label span {
+  font-family: var(--harmony-body-font);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+}
+
+@media (max-width: 720px) {
+  .services h2,
+  .providers h2,
+  .experience h2,
+  .newsletter h2,
+  .contact-form h2 {
+    letter-spacing: -0.025em;
+  }
+
+  .service-title {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+}

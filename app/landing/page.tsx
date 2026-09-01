@@ -17,7 +17,7 @@ export default function LandingPage() {
         <div className="landing-hero-grid">
           <div className="landing-hero-copy">
             <h1>
-              advanced skin treatments you can trust
+              Advanced Skin Treatments You Can Trust
             </h1>
             <p className="landing-consultation-line">Book a Free Consultation Call Today</p>
             <p className="landing-eyebrow">LASER, THERMAL, AND MICRONEEDLING OPTIONS IN SARASOTA, FL</p>
@@ -29,7 +29,7 @@ export default function LandingPage() {
           </div>
 
           <div className="landing-contact-card" id="contact">
-            <h2>contact us</h2>
+            <h2>Contact Us</h2>
             <p>For non-urgent questions or to learn more about our services, contact us today!</p>
             <ContactForm variant="landing" />
           </div>
