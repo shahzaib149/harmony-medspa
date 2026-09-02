@@ -5,7 +5,7 @@ export function trackLeadConversion() {
   const gtag = (window as Window & { gtag?: GtagFn }).gtag;
   if (typeof gtag !== "function") return;
   const sendTo = process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_SEND_TO;
-  const ga4MeasurementId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
+  const ga4MeasurementId = "G-HRPTWTFKNB";
 
   if (sendTo) {
     gtag("event", "conversion", {

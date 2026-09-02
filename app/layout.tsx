@@ -45,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID?.trim();
-  const ga4MeasurementId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID?.trim();
+  const ga4MeasurementId = "G-HRPTWTFKNB";
   const validConversionId = conversionId?.match(/^AW-\d+$/) ? conversionId : null;
   const validGa4MeasurementId = ga4MeasurementId?.match(/^G-[A-Z0-9]+$/)
     ? ga4MeasurementId
