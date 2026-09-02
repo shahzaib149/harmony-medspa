@@ -33,9 +33,26 @@ export default function GoogleAnalytics({
       if (lastPage.current === pageLocation) return;
       lastPage.current = pageLocation;
 
+      const routeName =
+        pathname === "/"
+          ? "Home"
+          : pathname
+              .split("/")
+              .filter(Boolean)
+              .map((part) =>
+                part
+                  .replace(/[-_]+/g, " ")
+                  .replace(/w/g, (letter) => letter.toUpperCase()),
+              )
+              .join(" — ");
+      const genericTitle = document.title === "Harmony Med Spa | Sarasota, FL";
+      const pageTitle = genericTitle
+        ? `${routeName} | Harmony Med Spa`
+        : document.title;
+
       window.gtag?.("event", "page_view", {
         send_to: measurementId,
-        page_title: document.title,
+        page_title: pageTitle,
         page_location: pageLocation,
         page_path: `${window.location.pathname}${window.location.search}`,
       });
