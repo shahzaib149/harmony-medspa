@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 import "./typography-polish.css";
@@ -50,31 +50,11 @@ export default function RootLayout({
   const validGa4MeasurementId = ga4MeasurementId?.match(/^G-[A-Z0-9]+$/)
     ? ga4MeasurementId
     : null;
-  const googleTagId = validGa4MeasurementId ?? validConversionId;
-  const configCommands = [validConversionId, validGa4MeasurementId]
-    .filter((id): id is string => Boolean(id))
-    .map((id) => `gtag('config', '${id}');`)
-    .join("\n                ");
 
   return (
     <html lang="en">
       <body>
-        {googleTagId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-gtag-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                ${configCommands}
-              `}
-            </Script>
-          </>
-        ) : null}
+        <GoogleAnalytics measurementId={validGa4MeasurementId} conversionId={validConversionId} />
         {children}
       </body>
     </html>
