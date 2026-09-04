@@ -29,6 +29,21 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/blog/page-2",
+        destination: "/blog?page=2",
+        permanent: true,
+      },
+      {
+        source: "/blog/page-3",
+        destination: "/blog?page=3",
+        permanent: true,
+      },
+      {
+        source: "/blog/How-Jeuveau-Fits-Into-Your-Anti-Aging-Skincare-Routine",
+        destination: "/blog/how-jeuveau-fits-into-your-anti-aging-skincare-routine",
+        permanent: true,
+      },
+      {
         source: "/landing/advanced-skin-and-wellness-treatments.html",
         destination: "/landing/advanced-skin-and-wellness-treatments",
         permanent: true,

@@ -1,5 +1,5 @@
 import { listPublishedBlogs } from "@/lib/blogs/airtable";
-import { allLegacyBlogPosts } from "@/lib/blogs/legacy-posts";
+import { listArchivedLegacyBlogs } from "@/lib/blogs/archive";
 
 export const runtime = "nodejs";
 
@@ -8,14 +8,22 @@ export async function GET(request: Request) {
   if (!query) return Response.json({ results: [] });
 
   const publishedBlogs = await listPublishedBlogs();
+  const publishedSlugs = new Set(publishedBlogs.map((blog) => blog.slug.toLowerCase()));
   const posts = [
-    ...allLegacyBlogPosts,
     ...publishedBlogs.map((blog) => ({
       title: blog.title,
       href: `/blog/${blog.slug}`,
       excerpt: blog.excerpt,
-      imageAlt: "",
+      imageAlt: blog.primaryKeyword,
     })),
+    ...listArchivedLegacyBlogs()
+      .filter((blog) => !publishedSlugs.has(blog.slug.toLowerCase()))
+      .map((blog) => ({
+        title: blog.title,
+        href: `/blog/${blog.slug}`,
+        excerpt: blog.excerpt,
+        imageAlt: blog.primaryKeyword,
+      })),
   ];
   const unique = [...new Map(posts.map((post) => [post.href.toLowerCase(), post])).values()];
   const results = unique
