@@ -40,11 +40,16 @@ function toCard(blog: PublicBlog) {
   };
 }
 
-function pageHref(page: number) {
-  return page === 1 ? "/blog" : `/blog?page=${page}`;
+function pageHref(page: number, query: string, category: string) {
+  const params = new URLSearchParams();
+  if (page > 1) params.set("page", String(page));
+  if (query) params.set("search", query);
+  if (category) params.set("category", category);
+  const search = params.toString();
+  return search ? `/blog?${search}` : "/blog";
 }
 
-export default async function BlogPage({ searchParams }: { searchParams: Promise<{ search?: string | string[]; page?: string | string[] }> }) {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ search?: string | string[]; category?: string | string[]; page?: string | string[] }> }) {
   const values = await searchParams;
   const requestedSearch = values.search;
   const query = (Array.isArray(requestedSearch) ? requestedSearch[0] : requestedSearch || "").trim();
@@ -58,13 +63,19 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     ...publishedBlogs,
     ...listArchivedLegacyBlogs().filter((blog) => !publishedSlugs.has(blog.slug.toLowerCase())),
   ];
-  const matchingBlogs = normalizedQuery
-    ? blogs.filter((blog) => `${blog.title} ${blog.excerpt} ${blog.category} ${blog.primaryKeyword} ${blog.tags.join(" ")}`.toLowerCase().includes(normalizedQuery))
+  const categories = [...new Set(blogs.map((blog) => blog.category).filter(Boolean))].sort();
+  const requestedCategory = Array.isArray(values.category) ? values.category[0] : values.category || "";
+  const selectedCategory = categories.find((category) => category.toLowerCase() === requestedCategory.trim().toLowerCase()) || "";
+  const categoryBlogs = selectedCategory
+    ? blogs.filter((blog) => blog.category.toLowerCase() === selectedCategory.toLowerCase())
     : blogs;
+  const matchingBlogs = normalizedQuery
+    ? categoryBlogs.filter((blog) => `${blog.title} ${blog.excerpt} ${blog.category} ${blog.primaryKeyword} ${blog.tags.join(" ")}`.toLowerCase().includes(normalizedQuery))
+    : categoryBlogs;
   const totalPages = Math.max(1, Math.ceil(matchingBlogs.length / PAGE_SIZE));
   const currentPage = Math.min(requestedPage, totalPages);
-  const cards = (normalizedQuery ? matchingBlogs : matchingBlogs.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)).map(toCard);
-  const categories = [...new Set(blogs.map((blog) => blog.category).filter(Boolean))].sort();
+  const cards = matchingBlogs.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map(toCard);
+  const hasFilters = Boolean(normalizedQuery || selectedCategory);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f8f7f4] text-[#26313c]">
@@ -86,30 +97,34 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
             <h2 className="mb-3 mt-3 text-[clamp(2rem,4vw,3.35rem)] font-light leading-tight text-[#26313c]">Useful answers for real treatment decisions</h2>
             <p className="m-0 max-w-[720px] text-[17px] leading-8 text-[#606a74]">Explore clinically grounded topics across aesthetics, wellness, hormones, and weight management—written for people, not search engines.</p>
           </div>
-          <BlogSearchForm defaultValue={query} />
+          <BlogSearchForm defaultValue={query} category={selectedCategory} />
         </div>
 
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_270px] lg:gap-14">
           <div className="min-w-0">
-            {normalizedQuery ? (
+            {hasFilters ? (
               <div className="mb-7 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#e3ddd2] bg-white px-5 py-4">
-                <p className="m-0 text-[#4f5964]"><strong className="text-[#27323d]">{matchingBlogs.length}</strong> result{matchingBlogs.length === 1 ? "" : "s"} for “{query}”</p>
-                <Link href="/blog" className="text-sm font-semibold text-[#a77515] hover:underline">Clear search</Link>
+                <p className="m-0 text-[#4f5964]">
+                  <strong className="text-[#27323d]">{matchingBlogs.length}</strong> article{matchingBlogs.length === 1 ? "" : "s"}
+                  {normalizedQuery ? <> matching “{query}”</> : null}
+                  {selectedCategory ? <> in <strong className="font-semibold text-[#27323d]">{selectedCategory}</strong></> : null}
+                </p>
+                <Link href="/blog" className="text-sm font-semibold text-[#a77515] hover:underline">Clear filters</Link>
               </div>
             ) : null}
 
             {cards.length ? (
               <div className="grid gap-6 md:grid-cols-2">
                 {cards.map((post, index) => (
-                  <article className={`group overflow-hidden rounded-[24px] border border-[#e6e0d6] bg-white shadow-[0_15px_45px_rgba(47,40,29,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(47,40,29,0.12)] ${!normalizedQuery && currentPage === 1 && index === 0 ? "md:col-span-2 md:grid md:grid-cols-[1.08fr_.92fr]" : ""}`} key={post.href}>
-                    <Link href={post.href} className={`relative block overflow-hidden bg-[#eee] ${!normalizedQuery && currentPage === 1 && index === 0 ? "min-h-[280px] md:min-h-[390px]" : "aspect-[16/10]"}`} aria-label={`Read ${post.title}`}>
-                      <Image src={post.image} alt={post.imageAlt} fill sizes={!normalizedQuery && currentPage === 1 && index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 34vw"} className="object-cover transition duration-500 group-hover:scale-[1.035]" priority={!normalizedQuery && currentPage === 1 && index === 0} />
+                  <article className={`group overflow-hidden rounded-[24px] border border-[#e6e0d6] bg-white shadow-[0_15px_45px_rgba(47,40,29,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(47,40,29,0.12)] ${!hasFilters && currentPage === 1 && index === 0 ? "md:col-span-2 md:grid md:grid-cols-[1.08fr_.92fr]" : ""}`} key={post.href}>
+                    <Link href={post.href} className={`relative block overflow-hidden bg-[#eee] ${!hasFilters && currentPage === 1 && index === 0 ? "min-h-[280px] md:min-h-[390px]" : "aspect-[16/10]"}`} aria-label={`Read ${post.title}`}>
+                      <Image src={post.image} alt={post.imageAlt} fill sizes={!hasFilters && currentPage === 1 && index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 34vw"} className="object-cover transition duration-500 group-hover:scale-[1.035]" priority={!hasFilters && currentPage === 1 && index === 0} />
                     </Link>
-                    <div className={`flex flex-col p-6 ${!normalizedQuery && currentPage === 1 && index === 0 ? "justify-center sm:p-9" : ""}`}>
+                    <div className={`flex flex-col p-6 ${!hasFilters && currentPage === 1 && index === 0 ? "justify-center sm:p-9" : ""}`}>
                       <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.14em]">
                         <span className="text-[#a57415]">{post.category}</span><span className="h-1 w-1 rounded-full bg-[#cab98f]" /><span className="text-[#7b838b]">{post.minutes} min read</span>
                       </div>
-                      <h3 className={`m-0 text-balance font-medium leading-[1.22] text-[#27323d] ${!normalizedQuery && currentPage === 1 && index === 0 ? "text-[clamp(1.7rem,3.2vw,2.5rem)]" : "text-[1.45rem]"}`}><Link href={post.href} className="transition hover:text-[#a57415]">{post.title}</Link></h3>
+                      <h3 className={`m-0 text-balance font-medium leading-[1.22] text-[#27323d] ${!hasFilters && currentPage === 1 && index === 0 ? "text-[clamp(1.7rem,3.2vw,2.5rem)]" : "text-[1.45rem]"}`}><Link href={post.href} className="transition hover:text-[#a57415]">{post.title}</Link></h3>
                       <p className="mb-0 mt-4 line-clamp-4 text-[16px] leading-7 text-[#626b74]">{post.excerpt}</p>
                       <Link className="mt-6 inline-flex w-fit items-center gap-2 border-b border-[#c59129] pb-1 text-sm font-bold text-[#7c5a17] transition group-hover:gap-3" href={post.href}>Read the guide <span aria-hidden="true">→</span></Link>
                     </div>
@@ -123,13 +138,13 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
               </div>
             )}
 
-            {!normalizedQuery && totalPages > 1 ? (
+            {totalPages > 1 ? (
               <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label="Blog pages">
-                {currentPage > 1 ? <Link className="mr-2 rounded-full border border-[#dcd4c6] bg-white px-5 py-3 text-sm font-semibold text-[#4c5660] hover:border-[#c4922c]" href={pageHref(currentPage - 1)}>← Previous</Link> : null}
+                {currentPage > 1 ? <Link className="mr-2 rounded-full border border-[#dcd4c6] bg-white px-5 py-3 text-sm font-semibold text-[#4c5660] hover:border-[#c4922c]" href={pageHref(currentPage - 1, query, selectedCategory)}>← Previous</Link> : null}
                 {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => page === currentPage
                   ? <span key={page} aria-current="page" className="grid h-11 w-11 place-items-center rounded-full bg-[#1e211f] text-sm font-bold text-white">{page}</span>
-                  : <Link key={page} aria-label={`Page ${page}`} className="grid h-11 w-11 place-items-center rounded-full border border-[#dcd4c6] bg-white text-sm font-semibold text-[#4c5660] hover:border-[#c4922c] hover:text-[#946812]" href={pageHref(page)}>{page}</Link>)}
-                {currentPage < totalPages ? <Link className="ml-2 rounded-full border border-[#dcd4c6] bg-white px-5 py-3 text-sm font-semibold text-[#4c5660] hover:border-[#c4922c]" href={pageHref(currentPage + 1)}>Next →</Link> : null}
+                  : <Link key={page} aria-label={`Page ${page}`} className="grid h-11 w-11 place-items-center rounded-full border border-[#dcd4c6] bg-white text-sm font-semibold text-[#4c5660] hover:border-[#c4922c] hover:text-[#946812]" href={pageHref(page, query, selectedCategory)}>{page}</Link>)}
+                {currentPage < totalPages ? <Link className="ml-2 rounded-full border border-[#dcd4c6] bg-white px-5 py-3 text-sm font-semibold text-[#4c5660] hover:border-[#c4922c]" href={pageHref(currentPage + 1, query, selectedCategory)}>Next →</Link> : null}
               </nav>
             ) : null}
           </div>
@@ -138,7 +153,11 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
             <section className="rounded-[22px] border border-[#e4ddd2] bg-white p-6">
               <p className="m-0 text-xs font-bold uppercase tracking-[0.16em] text-[#9f741d]">Explore by topic</p>
               <div className="mt-5 grid gap-1">
-                {categories.map((category) => <Link key={category} href={`/blog?search=${encodeURIComponent(category)}`} className="flex items-center justify-between rounded-xl px-3 py-2.5 text-[15px] text-[#4f5964] transition hover:bg-[#f7f1e5] hover:text-[#8d6414]"><span>{category}</span><span aria-hidden="true">→</span></Link>)}
+                <Link href="/blog" aria-current={!selectedCategory ? "page" : undefined} className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-[15px] transition ${!selectedCategory ? "bg-[#f7f1e5] font-semibold text-[#8d6414]" : "text-[#4f5964] hover:bg-[#f7f1e5] hover:text-[#8d6414]"}`}><span>All articles</span><span aria-hidden="true">→</span></Link>
+                {categories.map((category) => {
+                  const isActive = category === selectedCategory;
+                  return <Link key={category} href={`/blog?category=${encodeURIComponent(category)}`} aria-current={isActive ? "page" : undefined} className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-[15px] transition ${isActive ? "bg-[#f7f1e5] font-semibold text-[#8d6414]" : "text-[#4f5964] hover:bg-[#f7f1e5] hover:text-[#8d6414]"}`}><span>{category}</span><span aria-hidden="true">→</span></Link>;
+                })}
               </div>
             </section>
             <Link className="group relative grid min-h-[260px] place-items-center overflow-hidden rounded-[22px] text-center text-white shadow-[0_18px_48px_rgba(30,27,22,0.15)]" href="/services">

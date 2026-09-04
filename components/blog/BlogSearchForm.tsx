@@ -12,7 +12,13 @@ type SearchResult = {
   href: string;
 };
 
-export default function BlogSearchForm({ defaultValue = "" }: { defaultValue?: string }) {
+export default function BlogSearchForm({
+  defaultValue = "",
+  category = "",
+}: {
+  defaultValue?: string;
+  category?: string;
+}) {
   const router = useRouter();
   const listId = useId();
   const [value, setValue] = useState(defaultValue);
@@ -57,8 +63,12 @@ export default function BlogSearchForm({ defaultValue = "" }: { defaultValue?: s
 
   function submitSearch() {
     const query = value.trim();
+    const nextParams = new URLSearchParams();
+    if (query) nextParams.set("search", query);
+    if (category) nextParams.set("category", category);
     setOpen(false);
-    router.push(query ? `/blog?search=${encodeURIComponent(query)}` : "/blog");
+    const nextQuery = nextParams.toString();
+    router.push(nextQuery ? `/blog?${nextQuery}` : "/blog");
   }
 
   return (
@@ -75,6 +85,7 @@ export default function BlogSearchForm({ defaultValue = "" }: { defaultValue?: s
         if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
       }}
     >
+      {category ? <input type="hidden" name="category" value={category} /> : null}
       <label className="contents">
         <span className="sr-only">Search blog articles</span>
         <input
