@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://www.harmonymedspafl.com/shop",
+  },
+};
 
 const shopItems = [
   {

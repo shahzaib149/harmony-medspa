@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/shop.html",
+        destination: "/shop",
+        statusCode: 301,
+      },
+      {
         source: "/blog/page-2",
         destination: "/blog?page=2",
         permanent: true,
