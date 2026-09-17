@@ -7,11 +7,12 @@
 .label { color: #2c2e29; font-size: .74rem; font-weight: 700; letter-spacing: .045em; text-transform: uppercase; }
 .label > span:not(.optional) { color: #a71f1f; }
 .optional { margin-left: .3rem; color: #8b8f87; font-size: .64rem; font-weight: 500; letter-spacing: .025em; text-transform: none; }
-.input, .select { width: 100%; min-height: 3.25rem; padding: 0 .95rem; color: #161714; background: #f5f6f2; border: 1px solid #d8dbd4; border-radius: 0; outline: none; font: inherit; font-size: .95rem; transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease; }
+.input, .select, .textarea { width: 100%; min-height: 3.25rem; padding: 0 .95rem; color: #161714; background: #f5f6f2; border: 1px solid #d8dbd4; border-radius: 0; outline: none; font: inherit; font-size: .95rem; transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease; }
 .select { cursor: pointer; }
-.input::placeholder { color: #8a8e86; }
-.input:hover, .select:hover { border-color: #aeb3a9; }
-.input:focus-visible, .select:focus-visible { background: #fff; border-color: #a97b08; box-shadow: 0 0 0 3px rgba(201, 155, 19, .17); }
+.textarea { min-height: 5.75rem; padding: .8rem .95rem; line-height: 1.5; resize: vertical; }
+.input::placeholder, .textarea::placeholder { color: #8a8e86; }
+.input:hover, .select:hover, .textarea:hover { border-color: #aeb3a9; }
+.input:focus-visible, .select:focus-visible, .textarea:focus-visible { background: #fff; border-color: #a97b08; box-shadow: 0 0 0 3px rgba(201, 155, 19, .17); }
 .inputError { border-color: #b3261e; }
 .fieldError { margin: 0; color: #9b1c1c; font-size: .76rem; line-height: 1.35; }
 .submitButton { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; width: 100%; min-height: 3.55rem; margin-top: .25rem; padding: .85rem 1.1rem; color: #11120f; background: #d4aa32; border: 1px solid #d4aa32; border-radius: 0; font: inherit; font-size: .77rem; font-weight: 800; letter-spacing: .095em; text-decoration: none; text-transform: uppercase; cursor: pointer; transition: background 160ms ease, border-color 160ms ease, transform 160ms ease; }
@@ -27,4 +28,4 @@
 .successHeading { max-width: 11ch; }
 .successBody { margin-bottom: 1.5rem; }
 @media (max-width: 480px) { .card { padding: 1.35rem; } .heading, .successHeading { font-size: 2rem; } }
-@media (prefers-reduced-motion: reduce) { .input, .select, .submitButton { scroll-behavior: auto; transition: none; } }
+@media (prefers-reduced-motion: reduce) { .input, .select, .textarea, .submitButton { scroll-behavior: auto; transition: none; } }

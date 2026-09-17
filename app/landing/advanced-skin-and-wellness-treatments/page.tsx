@@ -190,6 +190,14 @@ export default function AdvancedSkinWellnessLandingPage() {
               heading="Let's find the right next step."
               subheading="Tell us how to reach you. Our Sarasota team will follow up personally."
               submitLabel="Request my consultation"
+              treatmentOptions={[
+                "Advanced Skin and Wellness Treatments",
+                "Skin consultation",
+                "RF microneedling",
+                "Facials or chemical peels",
+                "Wellness consultation",
+                "Not sure — I’d like guidance",
+              ]}
             />
           </div>
         </section>

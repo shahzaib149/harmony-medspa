@@ -77,6 +77,7 @@ type WeightLossFormProps = {
   heading?: string;
   subheading?: string;
   submitLabel?: string;
+  treatmentOptions?: readonly string[];
 };
 
 export default function WeightLossForm({
@@ -89,16 +90,22 @@ export default function WeightLossForm({
   heading = "Let's talk about your options.",
   subheading = "Share the best way to reach you. Our Sarasota team will follow up personally.",
   submitLabel = "Request my consultation",
+  treatmentOptions,
 }: WeightLossFormProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [bestTime, setBestTime] = useState<BestTime>("");
+  const [selectedTreatment, setSelectedTreatment] = useState(treatmentInterest);
+  const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
   const capturedParams = useRef<CapturedParams>({});
   const hasFiredConversion = useRef(false);
+  const availableTreatments = treatmentOptions?.length
+    ? treatmentOptions
+    : [treatmentInterest, "Not sure — I’d like guidance"];
 
   useEffect(() => {
     capturedParams.current = readAndPersistParams();
@@ -130,7 +137,8 @@ export default function WeightLossForm({
       Phone: formatUsPhoneE164(phone),
       Source: source,
       Status: "New",
-      "Treatment Interest": treatmentInterest,
+      "Treatment Interest": selectedTreatment || treatmentInterest,
+      Message: message.trim(),
       "Best Time to Reach": bestTime,
       "Email Sent Status": "Pending",
       "SMS Sent Status": "Pending",
@@ -211,6 +219,18 @@ export default function WeightLossForm({
           <label className={styles.label} htmlFor={`${id}-email`}>Email <span aria-hidden="true">*</span></label>
           <input id={`${id}-email`} className={`${styles.input} ${errors.email ? styles.inputError : ""}`} type="email" name="email" autoComplete="email" placeholder="you@example.com" inputMode="email" value={email} onChange={(event) => setEmail(event.target.value)} required aria-required="true" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? `${id}-email-error` : undefined} />
           {errors.email ? <p id={`${id}-email-error`} className={styles.fieldError} role="alert">{errors.email}</p> : null}
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={`${id}-treatment`}>What are you interested in?</label>
+          <select id={`${id}-treatment`} className={styles.select} name="treatment_interest" value={selectedTreatment} onChange={(event) => setSelectedTreatment(event.target.value)}>
+            {availableTreatments.map((option) => <option value={option} key={option}>{option}</option>)}
+          </select>
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor={`${id}-message`}>Anything you&apos;d like us to know? <span className={styles.optional}>Optional</span></label>
+          <textarea id={`${id}-message`} className={styles.textarea} name="message" rows={3} maxLength={1000} placeholder="Tell us about your goals, questions, or what you booked." value={message} onChange={(event) => setMessage(event.target.value)} />
         </div>
 
         <div className={styles.field}>

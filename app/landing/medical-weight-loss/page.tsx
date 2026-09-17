@@ -108,7 +108,15 @@ export default function MedicalWeightLossLandingPage() {
           </div>
 
           <div className={styles.formColumn} id="consultation">
-            <WeightLossForm id="consultation-form" />
+            <WeightLossForm
+              id="consultation-form"
+              treatmentOptions={[
+                "Medical Weight Loss",
+                "Female Weight Loss Consult",
+                "Male Weight Loss Consult",
+                "Not sure — I’d like guidance",
+              ]}
+            />
           </div>
         </section>
 

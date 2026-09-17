@@ -134,6 +134,13 @@ export default function InjectablesLandingPage() {
               heading="Let's talk about your goals."
               subheading="Tell us how to reach you. Our Sarasota team will follow up personally."
               submitLabel="Request my consultation"
+              treatmentOptions={[
+                "Injectables",
+                "Wrinkle relaxers",
+                "Dermal fillers",
+                "Lip enhancement",
+                "Not sure — I’d like guidance",
+              ]}
             />
           </div>
         </section>
