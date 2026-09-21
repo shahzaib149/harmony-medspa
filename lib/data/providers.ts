@@ -6,7 +6,6 @@ export const providers = [
     bio: "Jessica Simone, AGNP-C, is an advanced practice nurse who is board-certified by the American Academy of Nurse Practitioners. Jessica delivers top-level aesthetic care to men and women at Harmony Med Spa.",
     fullBio: [
       "Jessica Simone, AGNP-C, is an advanced practice nurse who is board-certified by the American Academy of Nurse Practitioners. Jessica delivers top-level aesthetic care to men and women at Harmony Med Spa in Sarasota, Florida.",
-      "Jessica Simone, AGNP-C, is an advanced practice nurse who is board-certified by the American Academy of Nurse Practitioners. Jessica delivers top-level aesthetic care to men and women at Harmony Med Spa in Sarasota, Florida.",
       "After serving several years as a pain management provider, Jessica switched her medical focus to regenerative medicine and aesthetics. She has a passion for providing minimally invasive therapies that help her clients look and feel their best.",
       "She's certified in injection therapies such as dermal fillers, Botox(R) and other neurotoxins, and PDO thread lifts. Jessica also offers bioidentical hormone replacement therapy and is a certified Evexipel provider.",
       "Other aesthetic treatments Jessica offers at Harmony Med Spa include signature facials, RF microneedling, microblading, and laser hair removal. As part of her commitment to overall health and well-being, she also offers a medical weight loss program that takes a supportive approach to rapid but healthy weight reduction."
@@ -32,7 +31,6 @@ export const providers = [
     title: "Certified IV Technician and Phlebotomist",
     bio: "Tylah Balian is the welcoming face and organizational powerhouse behind Harmony Med Spa. As Certified IV Technician and Phlebotomist, she bridges the gap between patient experience and clinical care.",
     fullBio: [
-      "Tylah Balian is the welcoming face and organizational powerhouse behind Harmony Med Spa. As Certified IV Technician and Phlebotomist, she bridges the gap between patient experience and clinical care with professionalism and warmth.",
       "Tylah Balian is the welcoming face and organizational powerhouse behind Harmony Med Spa. As Certified IV Technician and Phlebotomist, she bridges the gap between patient experience and clinical care with professionalism and warmth. Tylah's background in aesthetic practice management and customer service makes her an invaluable asset to both the front desk and treatment rooms.",
       "Known for her positive energy and meticulous attention to detail, Tylah ensures the day-to-day operations run smoothly and patients feel supported from the moment they walk in. Her commitment to excellence and friendly demeanor embody the values that make Harmony Med Spa a trusted destination for wellness and beauty."
     ]
@@ -54,7 +52,6 @@ export const providers = [
     title: "Chief Operating Officer & Registered Medical Assistant",
     bio: "Hayden is the Chief Operating Officer and one of two Registered Medical Assistants at Harmony Med Spa. He earned his Bachelor's degree in Industrial Engineering from the University of South Florida.",
     fullBio: [
-      "Hayden is the Chief Operating Officer and one of two Registered Medical Assistants at Harmony Med Spa. He earned his Bachelor's degree in Industrial Engineering from the University of South Florida in 2018.",
       "Hayden is the Chief Operating Officer and one of two Registered Medical Assistants at Harmony Med Spa. He earned his Bachelor's degree in Industrial Engineering from the University of South Florida in 2018. With a sharp mind for optimization and a passion for delivering high-quality results, Hayden specializes in streamlining medical operations without compromising patient care. His innovative approach and data-driven strategies help ensure every experience at Harmony Med Spa is seamless and efficient.",
       "Outside the office, Hayden is a passionate music producer, crafting Hip-hop, R&B, and Electronic tracks in his home studio. He also enjoys strength training and bodybuilding at EOS Fitness, where he pushes his limits with the same dedication he brings to his work."
     ]
