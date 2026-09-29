@@ -20,9 +20,9 @@ const productLines = [
     text: "Skinbetter Science offers scientifically advanced skincare solutions designed to target specific skin concerns. From aging and hyperpigmentation to acne, their products utilize innovative ingredients and technologies to deliver transformative results. Achieve healthier, more radiant skin with Skinbetter Science."
   },
   {
-    title: "Elta MD",
+    title: "EltaMD",
     subtitle: "Protect Your Skin with Trusted Sunscreen Formulas",
-    text: "Elta MD is your go-to brand for superior sun protection. Their range of broad-spectrum sunscreens offers lightweight, non-comedogenic formulas suitable for all skin types. With Elta MD, you can shield your skin from harmful UV rays and maintain a healthy complexion every day."
+    text: "EltaMD is your go-to brand for superior sun protection. Their range of broad-spectrum sunscreens offers lightweight, non-comedogenic formulas suitable for all skin types. With EltaMD, you can shield your skin from harmful UV rays and maintain a healthy complexion every day."
   },
   {
     title: "Revision Skincare",
