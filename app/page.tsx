@@ -1,4 +1,5 @@
 import ContactForm from "@/components/forms/ContactForm";
+import HomeOffers, { HomeOfferBand } from "@/components/home/HomeOffers";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import ServicesGrid from "@/components/home/ServicesGrid";
 import ProvidersSection from "@/components/home/ProvidersSection";
@@ -17,6 +18,7 @@ export default function Home() {
       <SiteHeader className="site-header" homeHref="#home" />
 
       <HeroCarousel />
+      <HomeOfferBand />
 
       <section id="about" className="intro section-dark bg-[var(--black)] text-[#fff] pt-[150px] pb-[180px] px-0 [&_h2]:text-[length:clamp(48px,4.6vw,70px)] [&_h2]:leading-[1.03] [&_h2_span]:block [&_h2_span]:text-[var(--gold)]">
         <div className="section-inner narrow w-[min(1060px,calc(100%_-_42px))] my-0 mx-auto text-center">
@@ -52,6 +54,7 @@ export default function Home() {
       </section>
 
       <ProvidersSection />
+      <HomeOffers />
 
       <section id="specials" className="newsletter section-dark bg-[var(--black)] text-[#fff]">
         <div className="section-inner narrow w-[min(1060px,calc(100%_-_42px))] my-0 mx-auto text-center">
