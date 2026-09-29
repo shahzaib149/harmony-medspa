@@ -26,10 +26,9 @@ export const metadata: Metadata = {
   // would be inherited by every page and point them all at the homepage.
   // No sitewide og:url, for the same reason as the canonical. Pages use openGraphFor().
   openGraph: sharedOpenGraph,
+  // No sitewide twitter title/description: X falls back to each page's own OpenGraph.
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} | Sarasota, FL`,
-    description: siteDescription,
   },
   robots: {
     index: true,

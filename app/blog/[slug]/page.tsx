@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: [blog.primaryKeyword, ...blog.tags].filter(Boolean),
     alternates: { canonical },
     openGraph: {
-      type: "article", siteName: "Harmony Med Spa", title: seoTitle,
+      type: "article", siteName: "Harmony Med Spa", locale: "en_US", title: seoTitle,
       description: blog.metaDescription || blog.excerpt, url: canonical,
       publishedTime: blog.publishedAt || undefined, modifiedTime: blog.updatedAt || undefined,
       images: imageUrl ? [{ url: imageUrl, alt: image?.alt || "" }] : undefined,

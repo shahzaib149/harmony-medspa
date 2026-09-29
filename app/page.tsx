@@ -1,4 +1,4 @@
-export const metadata = { title: { absolute: `Home | ${SITE_NAME}` }, alternates: { canonical: "/" }, openGraph: openGraphFor("/") };
+export const metadata = { title: { absolute: `Home | ${SITE_NAME}` }, alternates: { canonical: "/" }, openGraph: openGraphFor("/", { title: `${SITE_NAME} | Sarasota, FL` }) };
 
 import ContactForm from "@/components/forms/ContactForm";
 import HeroCarousel from "@/components/home/HeroCarousel";
