@@ -11,15 +11,15 @@ export const homeOffers: HomeOffer[] = [
     id: "september-2026-facial", title: "25% off any facial + a free add-on",
     treatment: "Facial", description: "Make time for your skin. Let the Harmony team help you choose a facial for your needs.",
     eligibility: "For new and existing patients",
-    terms: "Ends September 30, 2026. The included add-on, exclusions and combination rules must be confirmed before publication.",
-    startsOn: "2026-09-01", endsOn: "2026-09-30", featured: true, approved: false,
+    terms: "Ends September 30, 2026. For new and existing patients. Contact Harmony for details about the included add-on.",
+    startsOn: "2026-09-01", endsOn: "2026-09-30", featured: true, approved: true,
   },
   {
     id: "september-2026-perfect-derma", title: "Buy two peels. Your third is on us.",
-    treatment: "Perfect Derma Peel", description: "Explore a Perfect Derma Peel series with a consultation tailored to your skin.",
+    treatment: "Peel", description: "Explore a Perfect Derma Peel series with a consultation tailored to your skin.",
     eligibility: "Consultation and eligibility required",
-    terms: "Purchase by September 30, 2026. Redemption dates, exclusions and combination rules must be confirmed before publication.",
-    startsOn: "2026-09-01", endsOn: "2026-09-30", featured: false, approved: false,
+    terms: "Purchase by September 30, 2026. Consultation and eligibility required.",
+    startsOn: "2026-09-01", endsOn: "2026-09-30", featured: false, approved: true,
   },
 ];
 
