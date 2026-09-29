@@ -1,4 +1,4 @@
-export const metadata = { title: "Fractional Co2 Laser Treatments", alternates: { canonical: "/fractional-co2-laser-treatments" }, openGraph: openGraphFor("/fractional-co2-laser-treatments") };
+export const metadata = { title: "Fractional CO2 Laser Treatments", alternates: { canonical: "/fractional-co2-laser-treatments" }, openGraph: openGraphFor("/fractional-co2-laser-treatments") };
 
 import Image from "next/image";
 import Link from "next/link";

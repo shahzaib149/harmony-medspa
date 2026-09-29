@@ -58,7 +58,7 @@ export const INDEXABLE_ROUTES: IndexableRoute[] = [
   { path: "/chemical-peels", name: "Chemical Peels", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "treatment" },
   { path: "/facials", name: "Facials", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "treatment" },
   { path: "/facials-and-peels", name: "Facials and Peels", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "category" },
-  { path: "/glo2facials", name: "Glo2Facials", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "treatment" },
+  { path: "/glo2facials", name: "Glo2Facial", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "treatment" },
   { path: "/body", name: "Body", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "category" },
   { path: "/skincare", name: "Skincare", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "category" },
   { path: "/wellness", name: "Wellness", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "category" },

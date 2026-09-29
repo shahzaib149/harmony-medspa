@@ -1,4 +1,4 @@
-export const metadata = { title: "Rf Microneedling", alternates: { canonical: "/rf-microneedling" }, openGraph: openGraphFor("/rf-microneedling") };
+export const metadata = { title: "RF Microneedling", alternates: { canonical: "/rf-microneedling" }, openGraph: openGraphFor("/rf-microneedling") };
 
 import Image from "next/image";
 import Link from "next/link";

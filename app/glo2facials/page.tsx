@@ -1,4 +1,4 @@
-export const metadata = { title: "Glo2facials", alternates: { canonical: "/glo2facials" }, openGraph: openGraphFor("/glo2facials") };
+export const metadata = { title: "Glo2Facial", alternates: { canonical: "/glo2facials" }, openGraph: openGraphFor("/glo2facials") };
 
 import Image from "next/image";
 import Link from "next/link";
