@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import AnalyticsNavigation from "@/components/AnalyticsNavigation";
 import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildMedicalClinicSchema, buildWebSiteSchema } from "@/lib/schema";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 import "./typography-polish.css";
@@ -19,9 +21,8 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   applicationName: siteName,
-  alternates: {
-    canonical: "/",
-  },
+  // No sitewide canonical: each indexable page declares its own. A canonical here
+  // would be inherited by every page and point them all at the homepage.
   openGraph: {
     type: "website",
     siteName,
@@ -50,6 +51,7 @@ export default function RootLayout({
     <html lang="en">
       <head><GoogleAnalytics /></head>
       <body>
+        <JsonLd data={[buildMedicalClinicSchema(), buildWebSiteSchema()]} />
         <Suspense fallback={null}><AnalyticsNavigation /></Suspense>
         {children}
       </body>

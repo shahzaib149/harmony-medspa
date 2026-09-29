@@ -1,3 +1,5 @@
+export const metadata = { title: { absolute: `Home | ${SITE_NAME}` }, alternates: { canonical: "/" } };
+
 import ContactForm from "@/components/forms/ContactForm";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import ServicesGrid from "@/components/home/ServicesGrid";
@@ -7,6 +9,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import InteractiveLocationMap from "@/components/ui/InteractiveLocationMap";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { SITE_NAME } from "@/lib/constants";
 
 const monthlySpecialsUrl = "https://mailchi.mp/harmonymedspafl/monthly-specials";
 const newsletterOptInUrl = "https://mailchi.mp/harmonymedspafl/newsletter-opt-in";

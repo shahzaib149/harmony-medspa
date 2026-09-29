@@ -1,4 +1,4 @@
-export const metadata = { title: "Contact Us" };
+export const metadata = { title: "Contact Us", alternates: { canonical: "/contact-us" } };
 
 import { Building2, Facebook, Instagram, MapPin, Phone, Search } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";

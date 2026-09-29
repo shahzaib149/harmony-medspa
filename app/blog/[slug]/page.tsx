@@ -6,16 +6,14 @@ import ArticleImage from "@/components/blog/ArticleImage";
 import BlogSearchForm from "@/components/blog/BlogSearchForm";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteHeader from "@/components/layout/SiteHeader";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildBlogPostingSchema, buildBreadcrumbSchema, buildFaqPageSchema } from "@/lib/schema";
 import { getArchivedLegacyBlogBySlug } from "@/lib/blogs/archive";
 import { getPublishedBlogBySlug } from "@/lib/blogs/airtable";
 import { firstPublicBlogImage, type PublicBlog, type PublicBlogBlock } from "@/lib/blogs/types";
 import { canonicalPublicUrl, siteUrl } from "@/lib/site-url";
 
 export const revalidate = 300;
-
-function jsonLd(value: unknown) {
-  return JSON.stringify(value).replace(/</g, "\\u003c");
-}
 
 function lines(text: string) {
   return text.split("\n").map((item) => item.trim()).filter(Boolean);
@@ -109,35 +107,30 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
   const headings = contentWithoutFeature.flatMap((block) => block.type === "heading2" ? [block.text] : []);
   const faqItems = blog.content.flatMap((block) => block.type === "faq" ? block.items : []);
   const minutes = readingTime(blog);
-  const articleSchema = {
-    "@context": "https://schema.org", "@type": "BlogPosting", headline: blog.title,
+  const articleSchema = buildBlogPostingSchema({
+    headline: blog.title,
     description: blog.metaDescription || blog.excerpt,
-    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
-    publisher: { "@type": "Organization", name: "Harmony Med Spa", url: origin, logo: { "@type": "ImageObject", url: `${origin}/images/logo-transparent.png` } },
-    author: { "@type": "Organization", name: "Harmony Med Spa Editorial Team", url: origin },
-    datePublished: blog.publishedAt || undefined, dateModified: blog.updatedAt || undefined,
+    url: canonical,
+    // Legacy posts have no real publish date; leave it out rather than use the migration date.
+    datePublished: blog.publishedAt || undefined,
+    dateModified: blog.updatedAt || undefined,
     image: image ? canonicalPublicUrl(image.url) : undefined,
-    articleSection: blog.category || undefined,
+    section: blog.category || undefined,
     keywords: [blog.primaryKeyword, ...blog.tags].filter(Boolean).join(", "),
-  };
-  const breadcrumbSchema = {
-    "@context": "https://schema.org", "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: origin },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${origin}/blog` },
-      { "@type": "ListItem", position: 3, name: blog.title, item: canonical },
-    ],
-  };
-  const faqSchema = faqItems.length ? {
-    "@context": "https://schema.org", "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })),
-  } : null;
+  });
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Blog", url: "/blog" },
+    { name: blog.title, url: canonical },
+  ]);
+  // The FAQ blocks render visibly above, so their schema matches the page.
+  const faqSchema = buildFaqPageSchema(faqItems);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f8f7f4] text-[#26313c]">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbSchema) }} />
-      {faqSchema ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }} /> : null}
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      {faqSchema ? <JsonLd data={faqSchema} /> : null}
       <SiteHeader className="contact-page-header" />
 
       <header className="relative isolate overflow-hidden bg-[#11110f] px-6 py-20 text-white sm:py-24">

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Medical Weight Loss in Sarasota",
   description: "Explore individualized, medically supervised weight-loss care with Jessica Simone, AGNP-C, at Harmony Med Spa in Sarasota, Florida.",
   alternates: { canonical: "/landing/medical-weight-loss" },
+  robots: { index: false, follow: false },
   openGraph: {
     title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
     description: "A medically guided plan built around your health, goals, and ongoing progress.",

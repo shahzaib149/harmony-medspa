@@ -1,4 +1,4 @@
-export const metadata = { title: "Landing" };
+export const metadata = { title: "Landing", robots: { index: false, follow: false } };
 
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";

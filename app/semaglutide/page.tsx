@@ -5,9 +5,11 @@ import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
+import RouteSchema from "@/components/seo/RouteSchema";
 
 export const metadata: Metadata = {
   title: "Semaglutide Weight Loss in Sarasota, FL",
+  alternates: { canonical: "/semaglutide" },
   description:
     "Semaglutide is a GLP-1 medication offered as part of the medical weight loss program at Harmony Med Spa in Sarasota, Florida.",
 };
@@ -61,6 +63,7 @@ const faqs = [
 export default function SemaglutidePage() {
   return (
     <main className="semaglutide-page min-h-[100vh] bg-[#fff] text-[#4f5b68]">
+      <RouteSchema path="/semaglutide" faqs={faqs} />
       <SiteHeader
         className="team-header"
         servicesHref="/#services"

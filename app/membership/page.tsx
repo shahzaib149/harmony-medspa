@@ -1,4 +1,4 @@
-export const metadata = { title: "Membership" };
+export const metadata = { title: "Membership", alternates: { canonical: "/membership" } };
 
 import MembershipForm from "@/components/forms/MembershipForm";
 import SiteHeader from "@/components/layout/SiteHeader";

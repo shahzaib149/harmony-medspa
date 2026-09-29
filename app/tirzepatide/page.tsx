@@ -5,9 +5,11 @@ import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
+import RouteSchema from "@/components/seo/RouteSchema";
 
 export const metadata: Metadata = {
   title: "Tirzepatide Weight Loss in Sarasota, FL",
+  alternates: { canonical: "/tirzepatide" },
   description:
     "Tirzepatide is a dual GIP/GLP-1 medication offered as part of the medical weight loss program at Harmony Med Spa in Sarasota, Florida.",
 };
@@ -61,6 +63,7 @@ const faqs = [
 export default function TirzepatidePage() {
   return (
     <main className="tirzepatide-page min-h-[100vh] bg-[#fff] text-[#4f5b68]">
+      <RouteSchema path="/tirzepatide" faqs={faqs} />
       <SiteHeader
         className="team-header"
         servicesHref="/#services"

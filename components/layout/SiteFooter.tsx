@@ -11,6 +11,7 @@ import {
   PHONE_DISPLAY,
   SITE_NAME,
   TWITTER_X_URL,
+  WEEKDAY_HOURS_DISPLAY,
   WEEKDAYS,
   YELP_URL
 } from "@/lib/constants";
@@ -121,7 +122,7 @@ export default function SiteFooter({ variant, address = "linked" }: SiteFooterPr
         </div>
         <div className="hours text-[15px]">
           {WEEKDAYS.map((day) => (
-            <p key={day}><span>{day}</span><strong>9:00am to 5:00pm</strong></p>
+            <p key={day}><span>{day}</span><strong>{WEEKDAY_HOURS_DISPLAY}</strong></p>
           ))}
           <p><span>Saturday</span><strong>Closed</strong></p>
           <p><span>Sunday</span><strong>Closed</strong></p>

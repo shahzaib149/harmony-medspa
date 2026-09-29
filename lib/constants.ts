@@ -1,7 +1,12 @@
 export const SITE_NAME = "Harmony Med Spa";
 
-export const ADDRESS_LINE_1 = "2184 Gulf Gate Dr.";
-export const ADDRESS_LINE_2 = "Sarasota, FL 34231";
+export const ADDRESS_STREET = "2184 Gulf Gate Dr.";
+export const ADDRESS_CITY = "Sarasota";
+export const ADDRESS_REGION = "FL";
+export const ADDRESS_POSTAL_CODE = "34231";
+export const ADDRESS_COUNTRY = "US";
+export const ADDRESS_LINE_1 = ADDRESS_STREET;
+export const ADDRESS_LINE_2 = `${ADDRESS_CITY}, ${ADDRESS_REGION} ${ADDRESS_POSTAL_CODE}`;
 
 export const PHONE_DISPLAY = "(941) 923-8990";
 export const PHONE_TEL = "9419238990";
@@ -9,6 +14,17 @@ export const FAX_DISPLAY = "(941) 923-9024";
 export const FAX_TEL = "9419239024";
 
 export const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+// Weekday hours, 24-hour clock. Saturday and Sunday are closed.
+export const OPENING_TIME = "09:00";
+export const CLOSING_TIME = "17:00";
+export const WEEKDAY_HOURS_DISPLAY = "9:00am to 5:00pm";
+
+// Pin of the Google Business Profile listing (from GOOGLE_MAPS_BUSINESS_URL, !3d/!4d).
+export const GEO_LATITUDE = 27.2585249;
+export const GEO_LONGITUDE = -82.5174315;
+
+export const AREA_SERVED = ["Sarasota County, FL", "Manatee County, FL", "Charlotte County, FL"];
+export const LOGO_PATH = "/images/logo-transparent.png";
 
 export const ONLINE_BOOKING_URL =
   "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx?rwg_token=AFd1xnFT_kHlHeWFNIXMwAf3TLK1AxeHVlcMQ61FZdPxWhFYciZL0fRt3UMK2zrvrLi7F1GTDI4HCRPGl127Ac2dGDOiiEMlnA%3D%3D";

@@ -1,4 +1,4 @@
-export const metadata = { title: "Peptide Therapy" };
+export const metadata = { title: "Peptide Therapy", alternates: { canonical: "/peptide-therapy" } };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import faqData from "@/Images/Services/Peptide/peptide_therapy_faqs.json";
 import PeptideFaqAccordion from "./PeptideFaqAccordion";
+import RouteSchema from "@/components/seo/RouteSchema";
 
 const benefits = [
   "Support for recovery and tissue repair",
@@ -22,6 +23,7 @@ const peptideMenu = ["AOD 9604", "BPC-157", "CJC-1295/Ipamorelin", "GHK-Cu", "PT
 export default function PeptideTherapyPage() {
   return (
     <main className="peptide-therapy-page min-h-[100vh] bg-[#fff] text-[#4f5b68]">
+      <RouteSchema path="/peptide-therapy" />
       <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
 
       <section className="service-detail-hero grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.64),rgba(0,0,0,0.64)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(40px,4vw,58px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">

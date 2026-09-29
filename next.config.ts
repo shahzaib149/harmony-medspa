@@ -40,6 +40,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // Keep REDIRECTED_BLOG_SLUGS in lib/seo/routes.ts in sync with blog redirects.
         source: "/blog/revivamask-recovery-mask-sarasota",
         destination: "/skincare",
         permanent: true,
@@ -57,11 +58,6 @@ const nextConfig: NextConfig = {
       {
         source: "/blog/page-3",
         destination: "/blog?page=3",
-        permanent: true,
-      },
-      {
-        source: "/blog/How-Jeuveau-Fits-Into-Your-Anti-Aging-Skincare-Routine",
-        destination: "/blog/how-jeuveau-fits-into-your-anti-aging-skincare-routine",
         permanent: true,
       },
       {

@@ -1,4 +1,4 @@
-export const metadata = { title: "Specials" };
+export const metadata = { title: "Specials", alternates: { canonical: "/specials" } };
 
 import Image from "next/image";
 import Link from "next/link";
