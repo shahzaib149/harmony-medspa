@@ -76,12 +76,6 @@ export const INDEXABLE_ROUTES: IndexableRoute[] = [
   { path: "/payment-plans", name: "Payment Plans", priority: 0.4, changeFrequency: "yearly", lastModified: "2026-09-29" },
 ];
 
-/**
- * Blog slugs that next.config.ts permanently redirects elsewhere. Keep in sync with
- * its redirects() list so the sitemap never lists a URL that redirects.
- */
-export const REDIRECTED_BLOG_SLUGS = new Set(["revivamask-recovery-mask-sarasota"]);
-
 export function indexableRoute(path: string) {
   const route = INDEXABLE_ROUTES.find((entry) => entry.path === path);
   if (!route) throw new Error(`No indexable route registered for ${path}`);

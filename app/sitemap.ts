@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { listArchivedLegacyBlogs } from "@/lib/blogs/archive";
 import { listPublishedBlogs } from "@/lib/blogs/airtable";
 import type { PublicBlog } from "@/lib/blogs/types";
-import { INDEXABLE_ROUTES, REDIRECTED_BLOG_SLUGS } from "@/lib/seo/routes";
+import { REDIRECTED_BLOG_SLUGS } from "@/lib/blogs/redirects";
+import { INDEXABLE_ROUTES } from "@/lib/seo/routes";
 import { siteUrl } from "@/lib/site-url";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

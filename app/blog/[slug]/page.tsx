@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import ArticleImage from "@/components/blog/ArticleImage";
 import BlogSearchForm from "@/components/blog/BlogSearchForm";
 import SiteFooter from "@/components/layout/SiteFooter";
@@ -9,6 +9,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBlogPostingSchema, buildBreadcrumbSchema, buildFaqPageSchema } from "@/lib/schema";
 import { getArchivedLegacyBlogBySlug } from "@/lib/blogs/archive";
+import { blogRedirectTarget } from "@/lib/blogs/redirects";
 import { getPublishedBlogBySlug } from "@/lib/blogs/airtable";
 import { firstPublicBlogImage, type PublicBlog, type PublicBlogBlock } from "@/lib/blogs/types";
 import { canonicalPublicUrl, siteUrl } from "@/lib/site-url";
@@ -71,6 +72,7 @@ function BlogBlock({ block }: { block: PublicBlogBlock }) {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  if (blogRedirectTarget(slug)) return {};
   const blog = await findBlog(slug);
   if (!blog) return {};
   const canonical = `${siteUrl()}/blog/${blog.slug}`;
@@ -97,6 +99,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function PublishedBlogPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const redirectTo = blogRedirectTarget(slug);
+  if (redirectTo) permanentRedirect(`/blog/${redirectTo}`);
   const blog = await findBlog(slug);
   if (!blog) notFound();
 

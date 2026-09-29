@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        // Keep REDIRECTED_BLOG_SLUGS in lib/seo/routes.ts in sync with blog redirects.
+        // Keep CONFIG_REDIRECTED_BLOG_SLUGS in lib/blogs/redirects.ts in sync with blog redirects.
         source: "/blog/revivamask-recovery-mask-sarasota",
         destination: "/skincare",
         permanent: true,
