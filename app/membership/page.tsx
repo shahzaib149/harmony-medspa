@@ -1,3 +1,5 @@
+export const metadata = { title: "Membership" };
+
 import MembershipForm from "@/components/forms/MembershipForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";

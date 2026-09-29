@@ -1,3 +1,5 @@
+export const metadata = { title: "Laser Hair Removal" };
+
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";

@@ -10,7 +10,7 @@ import styles from "./page.module.css";
 const socialImage = "https://www.harmonymedspafl.com/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png";
 
 export const metadata: Metadata = {
-  title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
+  title: "Medical Weight Loss in Sarasota",
   description: "Explore individualized, medically supervised weight-loss care with Jessica Simone, AGNP-C, at Harmony Med Spa in Sarasota, Florida.",
   openGraph: {
     title: "Medical Weight Loss in Sarasota | Harmony Med Spa",

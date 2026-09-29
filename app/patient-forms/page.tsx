@@ -1,3 +1,5 @@
+export const metadata = { title: "Patient Forms" };
+
 import Image from "next/image";
 import Link from "next/link";
 import { FileText, Search } from "lucide-react";

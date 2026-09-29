@@ -1,9 +1,9 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
+import { trackLead } from "@/lib/analytics";
 import { submitLead } from "@/lib/submitLead";
-import { trackLeadConversion } from "@/lib/analytics/gtag";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -43,8 +43,12 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
 
+  const submitting = useRef(false);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
+    if (status === "submitting" || status === "success") return;
 
     const validationErrors = validate(name, email, phone);
     setErrors(validationErrors);
@@ -53,10 +57,11 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
       return;
     }
 
+    submitting.current = true;
     setStatus("submitting");
 
     try {
-      await submitLead({
+      const response = await submitLead({
         name,
         email,
         phone,
@@ -64,7 +69,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
         source: variant === "landing" ? "Landing Page Hero Form" : "Website Contact Form"
       });
 
-      trackLeadConversion();
+      trackLead(response);
 
       setName("");
       setEmail("");
@@ -80,6 +85,8 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
       }
     } catch {
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   }
 

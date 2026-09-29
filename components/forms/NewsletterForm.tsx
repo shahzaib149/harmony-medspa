@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+import { trackLead } from "@/lib/analytics";
 import { submitLead } from "@/lib/submitLead";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,8 +16,12 @@ export default function NewsletterForm() {
   const [emailError, setEmailError] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
+  const submitting = useRef(false);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
+    if (status === "submitting" || status === "success") return;
 
     if (!email.trim()) {
       setEmailError("Email is required.");
@@ -29,10 +34,11 @@ export default function NewsletterForm() {
     }
 
     setEmailError("");
+    submitting.current = true;
     setStatus("submitting");
 
     try {
-      await submitLead({
+      const response = await submitLead({
         name: `${firstName.trim()} ${lastName.trim()}`.trim(),
         email,
         phone,
@@ -40,6 +46,7 @@ export default function NewsletterForm() {
         source: "Newsletter Signup Form",
         treatmentInterest: "Newsletter"
       });
+      trackLead(response);
 
       setFirstName("");
       setLastName("");
@@ -48,6 +55,8 @@ export default function NewsletterForm() {
       setStatus("success");
     } catch {
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   }
 

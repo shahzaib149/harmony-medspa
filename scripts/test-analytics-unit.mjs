@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import ts from 'typescript';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const source=fs.readFileSync('lib/analytics.ts','utf8');const js=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
+const calls=[];const storage=new Map();const document={title:'Test | Harmony Med Spa',referrer:'',getElementById:()=>true};
+const sandbox={exports:{},process:{env:{NEXT_PUBLIC_GA4_MEASUREMENT_ID:'G-TEST123',NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID:'AW-11396978687',NEXT_PUBLIC_GOOGLE_ADS_LEAD_SEND_TO:'AW-11396978687/R0vKCKrFz9kcEP-vwLoq'}},window:{location:{href:'https://example.com/',search:''},localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)},gtag:(...args)=>calls.push(args)},document,URLSearchParams,Symbol,WeakSet,Date};
+vm.runInNewContext(js,sandbox);const api=sandbox.exports;
+api.initializeAnalytics({measurement:'G-TEST123',conversion:'AW-11396978687'});calls.length=0;
+assert.throws(()=>api.confirmLeadResponse(new Response('fail',{status:500})));
+api.trackLead(new Response('unregistered',{status:200}));api.trackLead(new Response('fail',{status:500}));api.trackLead(undefined);assert.equal(calls.length,0);
+const success=api.confirmLeadResponse(new Response('Accepted',{status:200}));api.trackLead(success);api.trackLead(success);assert.deepEqual(calls.map(c=>c[1]),['conversion','generate_lead']);
+console.log('Lead guard: failed, unregistered, missing response rejected; confirmed success tracked exactly once.');
+
+const transportSource=fs.readFileSync('lib/submitLead.ts','utf8');
+const transportJs=ts.transpileModule(transportSource,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
+const transport={exports:{},require:name=>name.includes('attribution')?{attributionFields:()=>({})}:name.endsWith('/analytics')?api:{CONTACT_WEBHOOK_URL:'https://example.test'},window:sandbox.window,fetch:async()=>{throw new Error('Network rejected');},Date};
+vm.runInNewContext(transportJs,transport);calls.length=0;
+await assert.rejects(transport.exports.submitLead({name:'Test',email:'test@example.com',phone:'9415550123',source:'Test'}));
+assert.equal(calls.length,0);
+console.log('Rejected submission produces no conversion.');

@@ -1,3 +1,5 @@
+export const metadata = { title: "Learn More" };
+
 import Image from "next/image";
 import { Facebook, Instagram } from "lucide-react";
 import TypewriterText from "@/components/ui/TypewriterText";

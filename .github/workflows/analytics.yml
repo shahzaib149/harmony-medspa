@@ -1,0 +1,22 @@
+name: Analytics regression checks
+on: [push, pull_request]
+jobs:
+  analytics:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_GA4_MEASUREMENT_ID: G-TEST123
+      NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID: AW-11396978687
+      NEXT_PUBLIC_GOOGLE_ADS_LEAD_SEND_TO: AW-11396978687/R0vKCKrFz9kcEP-vwLoq
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chrome
+      - run: npm run lint
+      - run: npm run test:analytics
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - run: node scripts/test-analytics-production.mjs

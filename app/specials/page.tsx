@@ -1,3 +1,5 @@
+export const metadata = { title: "Specials" };
+
 import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Mail } from "lucide-react";

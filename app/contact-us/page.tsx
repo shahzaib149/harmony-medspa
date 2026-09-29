@@ -1,3 +1,5 @@
+export const metadata = { title: "Contact Us" };
+
 import { Building2, Facebook, Instagram, MapPin, Phone, Search } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import SiteHeader from "@/components/layout/SiteHeader";

@@ -1,65 +1,16 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { ArrowUpRight, Check, LockKeyhole } from "lucide-react";
-import { CONTACT_WEBHOOK_URL, ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
-import { formatUsPhoneE164 } from "@/lib/submitLead";
-import { trackLeadConversion } from "@/lib/analytics/gtag";
+import { ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
+import { formatUsPhoneE164, submitLeadPayload } from "@/lib/submitLead";
+import { trackLead } from "@/lib/analytics";
 import styles from "./WeightLossForm.module.css";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const SESSION_KEY = "wml_utm_params";
-
-const TRACKED_PARAMS = [
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_ad_group",
-  "utm_adgroup",
-  "utm_content",
-  "utm_term",
-  "matchtype",
-  "device",
-  "network",
-  "gclid",
-  "gbraid",
-  "wbraid",
-] as const;
-
-type TrackedParam = (typeof TRACKED_PARAMS)[number];
-type CapturedParams = Partial<Record<TrackedParam, string>>;
 type Errors = { name?: string; phone?: string; email?: string };
 type Status = "idle" | "submitting" | "success" | "error";
 type BestTime = "" | "Morning" | "Afternoon" | "Evening" | "Any time";
-
-function readAndPersistParams(): CapturedParams {
-  if (typeof window === "undefined") return {};
-
-  const query = new URLSearchParams(window.location.search);
-  let stored: CapturedParams = {};
-
-  try {
-    const value = sessionStorage.getItem(SESSION_KEY);
-    if (value) stored = JSON.parse(value) as CapturedParams;
-  } catch {
-    // Attribution is helpful, but should never block the form.
-  }
-
-  const merged: CapturedParams = {};
-  for (const key of TRACKED_PARAMS) {
-    merged[key] = query.get(key) ?? stored[key] ?? "";
-  }
-
-  try {
-    if (TRACKED_PARAMS.some((key) => merged[key])) {
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify(merged));
-    }
-  } catch {
-    // Continue if storage is unavailable.
-  }
-
-  return merged;
-}
 
 function isValidUsPhone(value: string): boolean {
   const digits = value.replace(/\D/g, "");
@@ -101,15 +52,10 @@ export default function WeightLossForm({
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
-  const capturedParams = useRef<CapturedParams>({});
-  const hasFiredConversion = useRef(false);
   const availableTreatments = treatmentOptions?.length
     ? treatmentOptions
     : [treatmentInterest, "Not sure — I’d like guidance"];
 
-  useEffect(() => {
-    capturedParams.current = readAndPersistParams();
-  }, []);
 
   function validate(): Errors {
     const nextErrors: Errors = {};
@@ -121,16 +67,20 @@ export default function WeightLossForm({
     return nextErrors;
   }
 
+  const submitting = useRef(false);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (honeypot) return;
+    if (submitting.current) return;
+    if (honeypot || status === "submitting" || status === "success") return;
 
     const nextErrors = validate();
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
+    submitting.current = true;
     setStatus("submitting");
-    const params = capturedParams.current;
+
     const payload = {
       Name: name.trim(),
       Email: email.trim(),
@@ -142,38 +92,19 @@ export default function WeightLossForm({
       "Best Time to Reach": bestTime,
       "Email Sent Status": "Pending",
       "SMS Sent Status": "Pending",
-      "UTM Source": params.utm_source ?? "",
-      "UTM Medium": params.utm_medium ?? "",
-      "UTM Campaign": params.utm_campaign ?? "",
-      "UTM Ad Group": params.utm_ad_group || params.utm_adgroup || "",
-      "UTM Content": params.utm_content ?? "",
-      "UTM Term": params.utm_term ?? "",
-      "Match Type": params.matchtype ?? "",
-      Device: params.device ?? "",
-      Network: params.network ?? "",
-      GCLID: params.gclid ?? "",
-      GBRAID: params.gbraid ?? "",
-      WBRAID: params.wbraid ?? "",
       "Page URL": typeof window !== "undefined" ? window.location.href : "",
       "Landing URL": landingUrl,
       "Lead Created At": new Date().toISOString(),
     };
 
     try {
-      const response = await fetch(CONTACT_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) throw new Error("Lead submission failed");
-
-      if (!hasFiredConversion.current) {
-        hasFiredConversion.current = true;
-        trackLeadConversion();
-      }
+      const response = await submitLeadPayload(payload);
+      trackLead(response);
       setStatus("success");
     } catch {
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   }
 

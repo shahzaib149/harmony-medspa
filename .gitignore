@@ -34,3 +34,6 @@ next-env.d.ts
 
 # Local browser/test artifacts
 .codex-artifacts/
+
+/test-results/
+/playwright-report/

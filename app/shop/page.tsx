@@ -5,6 +5,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 
 export const metadata: Metadata = {
+  title: "Shop",
   alternates: {
     canonical: "https://www.harmonymedspafl.com/shop",
   },

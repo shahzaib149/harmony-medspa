@@ -19,7 +19,7 @@ const pageUrl = "https://www.harmonymedspafl.com/landing/injectables";
 const socialImage = "https://www.harmonymedspafl.com/images/landing/injectables.jpg";
 
 export const metadata: Metadata = {
-  title: "Injectables in Sarasota, FL | Harmony Med Spa",
+  title: "Injectables in Sarasota, FL",
   description:
     "Explore personalized injectable treatments in Sarasota with a careful facial assessment and a plan designed around natural-looking results.",
   alternates: { canonical: pageUrl },

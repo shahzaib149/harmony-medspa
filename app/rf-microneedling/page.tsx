@@ -1,3 +1,5 @@
+export const metadata = { title: "Rf Microneedling" };
+
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";

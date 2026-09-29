@@ -14,7 +14,7 @@ const PAGE_SIZE = 9;
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: { absolute: "Harmony Med Spa Blog | Sarasota Treatment Guides" },
+  title: "Blog | Sarasota Treatment Guides",
   description: "Read practical Sarasota guides to injectables, skin treatments, medical weight loss, hormones, IV therapy, safety, recovery, and treatment planning.",
   alternates: { canonical: `${siteUrl()}/blog` },
 };

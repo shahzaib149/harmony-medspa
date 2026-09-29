@@ -1,3 +1,5 @@
+export const metadata = { title: "Lasers And Lights" };
+
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";

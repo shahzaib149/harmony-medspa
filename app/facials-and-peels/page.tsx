@@ -1,3 +1,5 @@
+export const metadata = { title: "Facials And Peels" };
+
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";

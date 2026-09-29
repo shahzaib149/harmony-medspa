@@ -1,3 +1,5 @@
+export const metadata = { title: "Our Team" };
+
 import TeamList from "@/components/team/TeamList";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";

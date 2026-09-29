@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
+import { trackLead } from "@/lib/analytics";
 import { submitLead } from "@/lib/submitLead";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,8 +56,12 @@ export default function MembershipForm({ kind }: { kind: FormKind }) {
   const [status, setStatus] = useState<Status>("idle");
   const copy = formCopy[kind];
 
+  const submitting = useRef(false);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return;
+    if (status === "submitting" || status === "success") return;
 
     const validationErrors = validate(name, email, phone);
     setErrors(validationErrors);
@@ -65,10 +70,11 @@ export default function MembershipForm({ kind }: { kind: FormKind }) {
       return;
     }
 
+    submitting.current = true;
     setStatus("submitting");
 
     try {
-      await submitLead({
+      const response = await submitLead({
         name,
         email,
         phone,
@@ -76,6 +82,7 @@ export default function MembershipForm({ kind }: { kind: FormKind }) {
         source: copy.source,
         treatmentInterest: copy.interest
       });
+      trackLead(response);
 
       setName("");
       setEmail("");
@@ -84,6 +91,8 @@ export default function MembershipForm({ kind }: { kind: FormKind }) {
       setStatus("success");
     } catch {
       setStatus("error");
+    } finally {
+      submitting.current = false;
     }
   }
 

@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import AnalyticsNavigation from "@/components/AnalyticsNavigation";
 import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { siteUrl } from "@/lib/site-url";
@@ -12,7 +14,7 @@ const siteDescription =
 export const metadata: Metadata = {
   metadataBase: new URL(canonicalSiteUrl),
   title: {
-    default: `${siteName} | Sarasota, FL`,
+    default: `Home | ${siteName}`,
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
@@ -44,17 +46,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const conversionId = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID?.trim();
-  const ga4MeasurementId = "G-HRPTWTFKNB";
-  const validConversionId = conversionId?.match(/^AW-\d+$/) ? conversionId : null;
-  const validGa4MeasurementId = ga4MeasurementId?.match(/^G-[A-Z0-9]+$/)
-    ? ga4MeasurementId
-    : null;
-
   return (
     <html lang="en">
+      <head><GoogleAnalytics /></head>
       <body>
-        <GoogleAnalytics measurementId={validGa4MeasurementId} conversionId={validConversionId} />
+        <Suspense fallback={null}><AnalyticsNavigation /></Suspense>
         {children}
       </body>
     </html>

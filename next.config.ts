@@ -1,10 +1,26 @@
 import type { NextConfig } from "next";
 
+// A production deployment must never silently ship without tracking IDs.
+if (process.env.VERCEL_ENV === "production") {
+  const required = [
+    ["NEXT_PUBLIC_GA4_MEASUREMENT_ID", /^G-[A-Z0-9]+$/],
+    ["NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID", /^AW-\d+$/],
+    ["NEXT_PUBLIC_GOOGLE_ADS_LEAD_SEND_TO", /^AW-\d+\/[A-Za-z0-9_-]+$/],
+  ] as const;
+  for (const [name, pattern] of required) {
+    if (!pattern.test(process.env[name]?.trim() || "")) throw new Error(
+      "Missing or invalid Production analytics environment variable: " + name,
+    );
+  }
+}
+
 const crmOrigin = "https://crm.harmonymedspafl.com";
 
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
   reactStrictMode: true,
+  // Correct titles must arrive before initial/manual SPA page views.
+  htmlLimitedBots: /.*/,
   images: {
     remotePatterns: [
       {

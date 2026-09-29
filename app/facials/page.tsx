@@ -1,3 +1,5 @@
+export const metadata = { title: "Facials" };
+
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";

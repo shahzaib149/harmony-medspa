@@ -1,3 +1,5 @@
+export const metadata = { title: "Book Now" };
+
 import { redirect } from "next/navigation";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 

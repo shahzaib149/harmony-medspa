@@ -78,9 +78,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const canonical = `${siteUrl()}/blog/${blog.slug}`;
   const image = firstPublicBlogImage(blog);
   const imageUrl = image ? canonicalPublicUrl(image.url) : null;
-  const seoTitle = blog.seoTitle || blog.title;
+  const seoTitle = (blog.seoTitle || blog.title).replace(/(?:\s*[|–—-]\s*Harmony Med Spa)+\s*$/i, "");
   return {
-    title: { absolute: seoTitle },
+    title: seoTitle,
     description: blog.metaDescription || blog.excerpt,
     keywords: [blog.primaryKeyword, ...blog.tags].filter(Boolean),
     alternates: { canonical },

@@ -19,7 +19,7 @@ const pageUrl = "https://www.harmonymedspafl.com/landing/advanced-skin-and-welln
 const socialImage = "https://www.harmonymedspafl.com/images/blogs/harmony-editorial/harmony-medspa-sarasota-consultation-room.png";
 
 export const metadata: Metadata = {
-  title: "Advanced Skin & Wellness Treatments in Sarasota | Harmony Med Spa",
+  title: "Advanced Skin & Wellness Treatments in Sarasota",
   description:
     "Explore personalized skin, aesthetic, and wellness treatments with Harmony Med Spa's experienced Sarasota team.",
   alternates: { canonical: pageUrl },
