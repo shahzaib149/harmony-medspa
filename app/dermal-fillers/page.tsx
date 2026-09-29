@@ -1,4 +1,4 @@
-export const metadata = { title: "Dermal Fillers", alternates: { canonical: "/dermal-fillers" } };
+export const metadata = { title: "Dermal Fillers", alternates: { canonical: "/dermal-fillers" }, openGraph: openGraphFor("/dermal-fillers") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const benefits = [
   {

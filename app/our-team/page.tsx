@@ -1,4 +1,4 @@
-export const metadata = { title: "Our Team", alternates: { canonical: "/our-team" } };
+export const metadata = { title: "Our Team", alternates: { canonical: "/our-team" }, openGraph: openGraphFor("/our-team") };
 
 import TeamList from "@/components/team/TeamList";
 import SiteHeader from "@/components/layout/SiteHeader";
@@ -6,6 +6,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { providers } from "@/lib/data/providers";
 import { buildBreadcrumbSchema, buildPersonSchema } from "@/lib/schema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 // Jessica's card on this page: name, credential, title and the visible card bio
 // (not fullBio, which sits behind the modal).

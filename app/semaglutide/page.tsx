@@ -6,10 +6,12 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = {
   title: "Semaglutide Weight Loss in Sarasota, FL",
   alternates: { canonical: "/semaglutide" },
+  openGraph: openGraphFor("/semaglutide"),
   description:
     "Semaglutide is a GLP-1 medication offered as part of the medical weight loss program at Harmony Med Spa in Sarasota, Florida.",
 };

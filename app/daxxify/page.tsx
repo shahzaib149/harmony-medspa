@@ -1,4 +1,4 @@
-export const metadata = { title: "Daxxify", alternates: { canonical: "/daxxify" } };
+export const metadata = { title: "Daxxify", alternates: { canonical: "/daxxify" }, openGraph: openGraphFor("/daxxify") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const studyPoints = [
   "There were no serious treatment-related side effects in clinical trials for DAXXIFY(TM).",

@@ -14,12 +14,14 @@ export const FAX_DISPLAY = "(941) 923-9024";
 export const FAX_TEL = "9419239024";
 
 export const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-// Weekday hours, 24-hour clock. Saturday and Sunday are closed.
+// Weekday hours, 24-hour clock. Saturday and Sunday are closed. Awaiting client
+// confirmation before these are used in structured data.
 export const OPENING_TIME = "09:00";
 export const CLOSING_TIME = "17:00";
 export const WEEKDAY_HOURS_DISPLAY = "9:00am to 5:00pm";
 
 // Pin of the Google Business Profile listing (from GOOGLE_MAPS_BUSINESS_URL, !3d/!4d).
+// Awaiting client confirmation before use in structured data.
 export const GEO_LATITUDE = 27.2585249;
 export const GEO_LONGITUDE = -82.5174315;
 

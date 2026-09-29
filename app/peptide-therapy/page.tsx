@@ -1,4 +1,4 @@
-export const metadata = { title: "Peptide Therapy", alternates: { canonical: "/peptide-therapy" } };
+export const metadata = { title: "Peptide Therapy", alternates: { canonical: "/peptide-therapy" }, openGraph: openGraphFor("/peptide-therapy") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import faqData from "@/Images/Services/Peptide/peptide_therapy_faqs.json";
 import PeptideFaqAccordion from "./PeptideFaqAccordion";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const benefits = [
   "Support for recovery and tissue repair",

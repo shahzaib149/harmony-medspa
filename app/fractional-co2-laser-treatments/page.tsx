@@ -1,4 +1,4 @@
-export const metadata = { title: "Fractional Co2 Laser Treatments", alternates: { canonical: "/fractional-co2-laser-treatments" } };
+export const metadata = { title: "Fractional Co2 Laser Treatments", alternates: { canonical: "/fractional-co2-laser-treatments" }, openGraph: openGraphFor("/fractional-co2-laser-treatments") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const targetAreas = [
   "Face: Address wrinkles, lines, and pigmentation irregularities.",

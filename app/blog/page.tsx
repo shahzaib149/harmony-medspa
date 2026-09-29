@@ -8,6 +8,7 @@ import { listArchivedLegacyBlogs } from "@/lib/blogs/archive";
 import { listPublishedBlogs } from "@/lib/blogs/airtable";
 import { firstPublicBlogImage, imageSourceForSite, type PublicBlog } from "@/lib/blogs/types";
 import { siteUrl } from "@/lib/site-url";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const PAGE_SIZE = 9;
 
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   title: "Blog | Sarasota Treatment Guides",
   description: "Read practical Sarasota guides to injectables, skin treatments, medical weight loss, hormones, IV therapy, safety, recovery, and treatment planning.",
   alternates: { canonical: `${siteUrl()}/blog` },
+  openGraph: openGraphFor("/blog"),
 };
 
 function wordCount(blog: PublicBlog) {

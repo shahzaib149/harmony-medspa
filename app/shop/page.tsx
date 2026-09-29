@@ -3,12 +3,14 @@ import Image from "next/image";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = {
   title: "Shop",
   alternates: {
     canonical: "https://www.harmonymedspafl.com/shop",
   },
+  openGraph: openGraphFor("/shop"),
 };
 
 const shopItems = [

@@ -1,4 +1,4 @@
-export const metadata = { title: "About Us", alternates: { canonical: "/about-us" } };
+export const metadata = { title: "About Us", alternates: { canonical: "/about-us" }, openGraph: openGraphFor("/about-us") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const galleryImages = [
   "about_1.jpg",
@@ -33,7 +34,7 @@ export default function AboutUsPage() {
         <article className="about-story [&_h2]:mt-0 [&_h2]:mb-[22px] [&_h2]:mx-0 [&_h2]:text-[#dfad39] [&_h2]:text-[length:20px] [&_h2]:font-thin [&_p]:mt-0 [&_p]:mb-[26px] [&_p]:mx-0 [&_p]:text-[#000] [&_p]:text-[length:16px] [&_p]:leading-[1.48]">
           <h2><TypewriterText text="Our Story" startOnView /></h2>
           <p>
-            Harmony Med Spa is a full-service medical spa in Sarasota, Florida. Board-certified nurse practitioner Jessica Simone, APRN,
+            Harmony Med Spa is a full-service medical spa in Sarasota, Florida. Board-certified nurse practitioner Jessica Simone, AGNP-C,
             and her team take a natural approach to beauty that provides men and women of all ages the most effective and innovative
             aesthetic treatments available in a relaxed and welcoming setting.
           </p>

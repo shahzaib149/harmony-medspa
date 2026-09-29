@@ -1,10 +1,11 @@
-export const metadata = { title: "Membership", alternates: { canonical: "/membership" } };
+export const metadata = { title: "Membership", alternates: { canonical: "/membership" }, openGraph: openGraphFor("/membership") };
 
 import MembershipForm from "@/components/forms/MembershipForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const facialMemberships = [
   {

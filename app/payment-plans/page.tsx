@@ -1,4 +1,4 @@
-export const metadata = { title: "Payment Plans", alternates: { canonical: "/payment-plans" } };
+export const metadata = { title: "Payment Plans", alternates: { canonical: "/payment-plans" }, openGraph: openGraphFor("/payment-plans") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import PaymentCalculator from "@/components/ui/PaymentCalculator";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const youtubeEmbedUrl = "https://www.youtube.com/embed/4gueRZVcjCs?start=26";
 

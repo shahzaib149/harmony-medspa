@@ -1,4 +1,4 @@
-export const metadata = { title: "Hormone Replacement Therapy", alternates: { canonical: "/hormone-replacement-therapy" } };
+export const metadata = { title: "Hormone Replacement Therapy", alternates: { canonical: "/hormone-replacement-therapy" }, openGraph: openGraphFor("/hormone-replacement-therapy") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const benefits = [
   "Alleviates symptoms of menopause, including hot flashes, mood swings, and insomnia",

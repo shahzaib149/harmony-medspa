@@ -1,4 +1,4 @@
-export const metadata = { title: "Laser Hair Removal", alternates: { canonical: "/laser-hair-removal" } };
+export const metadata = { title: "Laser Hair Removal", alternates: { canonical: "/laser-hair-removal" }, openGraph: openGraphFor("/laser-hair-removal") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const treatmentAreas = ["Face (upper lip, chin, cheeks)", "Neck", "Arms", "Underarms", "Chest", "Back", "Bikini area", "Legs"];
 

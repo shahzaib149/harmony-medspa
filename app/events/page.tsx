@@ -1,4 +1,4 @@
-export const metadata = { title: "Events", alternates: { canonical: "/events" } };
+export const metadata = { title: "Events", alternates: { canonical: "/events" }, openGraph: openGraphFor("/events") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 export default function EventsPage() {
   return (

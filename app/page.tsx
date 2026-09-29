@@ -1,4 +1,4 @@
-export const metadata = { title: { absolute: `Home | ${SITE_NAME}` }, alternates: { canonical: "/" } };
+export const metadata = { title: { absolute: `Home | ${SITE_NAME}` }, alternates: { canonical: "/" }, openGraph: openGraphFor("/") };
 
 import ContactForm from "@/components/forms/ContactForm";
 import HeroCarousel from "@/components/home/HeroCarousel";
@@ -10,6 +10,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import InteractiveLocationMap from "@/components/ui/InteractiveLocationMap";
 import TypewriterText from "@/components/ui/TypewriterText";
 import { SITE_NAME } from "@/lib/constants";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const monthlySpecialsUrl = "https://mailchi.mp/harmonymedspafl/monthly-specials";
 const newsletterOptInUrl = "https://mailchi.mp/harmonymedspafl/newsletter-opt-in";
@@ -29,7 +30,7 @@ export default function Home() {
             in Sarasota, Florida.
           </h2>
           <p>
-            Board-certified nurse practitioner Jessica Simone, APRN, and her team take a natural approach to beauty that provides men and women
+            Board-certified nurse practitioner Jessica Simone, AGNP-C, and her team take a natural approach to beauty that provides men and women
             of all ages the most effective and innovative aesthetic treatments available in a relaxed and welcoming setting.
           </p>
           <a className="line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" href={monthlySpecialsUrl}>Specials</a>

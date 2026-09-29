@@ -1,4 +1,4 @@
-export const metadata = { title: "Iv Therapy", alternates: { canonical: "/iv-therapy" } };
+export const metadata = { title: "Iv Therapy", alternates: { canonical: "/iv-therapy" }, openGraph: openGraphFor("/iv-therapy") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import faqData from "@/Images/Services/IV therapy/iv_therapy_faqs.json";
 import IvFaqAccordion from "./IvFaqAccordion";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const ivServices = [
   {

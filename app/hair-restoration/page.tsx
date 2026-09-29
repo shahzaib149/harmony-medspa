@@ -1,4 +1,4 @@
-export const metadata = { title: "Hair Restoration", alternates: { canonical: "/hair-restoration" } };
+export const metadata = { title: "Hair Restoration", alternates: { canonical: "/hair-restoration" }, openGraph: openGraphFor("/hair-restoration") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const includes = [
   {

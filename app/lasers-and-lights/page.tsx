@@ -1,4 +1,4 @@
-export const metadata = { title: "Lasers And Lights", alternates: { canonical: "/lasers-and-lights" } };
+export const metadata = { title: "Lasers And Lights", alternates: { canonical: "/lasers-and-lights" }, openGraph: openGraphFor("/lasers-and-lights") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const treatments = [
   {

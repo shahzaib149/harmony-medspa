@@ -8,17 +8,11 @@ import {
   ADDRESS_REGION,
   ADDRESS_STREET,
   AREA_SERVED,
-  CLOSING_TIME,
   FACEBOOK_URL,
-  GEO_LATITUDE,
-  GEO_LONGITUDE,
-  GOOGLE_MAPS_BUSINESS_URL,
   INSTAGRAM_URL,
   LOGO_PATH,
-  OPENING_TIME,
   PHONE_TEL,
   SITE_NAME,
-  WEEKDAYS,
   YELP_URL,
 } from "@/lib/constants";
 import type { IndexableRoute } from "@/lib/seo/routes";
@@ -60,11 +54,8 @@ export function buildMedicalClinicSchema(): JsonLdObject {
       postalCode: ADDRESS_POSTAL_CODE,
       addressCountry: ADDRESS_COUNTRY,
     },
-    geo: { "@type": "GeoCoordinates", latitude: GEO_LATITUDE, longitude: GEO_LONGITUDE },
-    hasMap: GOOGLE_MAPS_BUSINESS_URL,
-    openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: WEEKDAYS, opens: OPENING_TIME, closes: CLOSING_TIME },
-    ],
+    // geo, hasMap (Google Business Profile) and openingHoursSpecification are left out
+    // until the client confirms GEO_*, GOOGLE_MAPS_BUSINESS_URL and the hours constants.
     areaServed: AREA_SERVED.map((name) => ({ "@type": "AdministrativeArea", name })),
     sameAs: [FACEBOOK_URL, INSTAGRAM_URL, YELP_URL],
   };
@@ -122,13 +113,25 @@ export function buildServiceSchema({ name, url, description }: { name: string; u
 
 export type FaqItem = { question: string; answer: string };
 
+/**
+ * Visible FAQs kept out of structured data. Schema is machine-read as fact, so these
+ * unsourced medical safety claims stay out until the provider reviews the page copy.
+ * Schema may be a subset of the visible FAQ, never a superset.
+ */
+export const SCHEMA_EXCLUDED_FAQ_QUESTIONS = new Set([
+  "Are GLP-1 medications safe?", // /medical-weight-loss
+  "Is Semaglutide safe?", // /semaglutide
+  "Is Tirzepatide safe?", // /tirzepatide
+]);
+
 /** Build only from the same FAQ array the page renders, so schema never outruns the page. */
 export function buildFaqPageSchema(faqs: readonly FaqItem[]): JsonLdObject | null {
-  if (!faqs.length) return null;
+  const included = faqs.filter((faq) => !SCHEMA_EXCLUDED_FAQ_QUESTIONS.has(faq.question));
+  if (!included.length) return null;
   return {
     "@context": CONTEXT,
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: included.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: { "@type": "Answer", text: faq.answer },

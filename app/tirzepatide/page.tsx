@@ -6,10 +6,12 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = {
   title: "Tirzepatide Weight Loss in Sarasota, FL",
   alternates: { canonical: "/tirzepatide" },
+  openGraph: openGraphFor("/tirzepatide"),
   description:
     "Tirzepatide is a dual GIP/GLP-1 medication offered as part of the medical weight loss program at Harmony Med Spa in Sarasota, Florida.",
 };

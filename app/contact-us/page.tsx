@@ -1,4 +1,4 @@
-export const metadata = { title: "Contact Us", alternates: { canonical: "/contact-us" } };
+export const metadata = { title: "Contact Us", alternates: { canonical: "/contact-us" }, openGraph: openGraphFor("/contact-us") };
 
 import { Building2, Facebook, Instagram, MapPin, Phone, Search } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
@@ -6,6 +6,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import InteractiveLocationMap from "@/components/ui/InteractiveLocationMap";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { openGraphFor } from "@/lib/seo/metadata";
 import {
   FACEBOOK_URL,
   GOOGLE_MAPS_BUSINESS_URL,

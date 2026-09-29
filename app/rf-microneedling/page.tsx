@@ -1,4 +1,4 @@
-export const metadata = { title: "Rf Microneedling", alternates: { canonical: "/rf-microneedling" } };
+export const metadata = { title: "Rf Microneedling", alternates: { canonical: "/rf-microneedling" }, openGraph: openGraphFor("/rf-microneedling") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const sections = [
   {

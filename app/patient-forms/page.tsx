@@ -1,4 +1,4 @@
-export const metadata = { title: "Patient Forms", alternates: { canonical: "/patient-forms" } };
+export const metadata = { title: "Patient Forms", alternates: { canonical: "/patient-forms" }, openGraph: openGraphFor("/patient-forms") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import { FileText, Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const forms = [
   {

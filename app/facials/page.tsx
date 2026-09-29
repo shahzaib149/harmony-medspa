@@ -1,4 +1,4 @@
-export const metadata = { title: "Facials", alternates: { canonical: "/facials" } };
+export const metadata = { title: "Facials", alternates: { canonical: "/facials" }, openGraph: openGraphFor("/facials") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const browLashMenu = ["Brow Tint", "Brow Lamination", "Lash Tint", "Brow Shaping / Maintenance"];
 

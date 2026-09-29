@@ -1,4 +1,4 @@
-export const metadata = { title: "Injectables", alternates: { canonical: "/injectables" } };
+export const metadata = { title: "Injectables", alternates: { canonical: "/injectables" }, openGraph: openGraphFor("/injectables") };
 
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import { openGraphFor } from "@/lib/seo/metadata";
 
 const treatments = [
   {
