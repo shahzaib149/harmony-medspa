@@ -5,6 +5,7 @@ import { ArrowRight, ArrowUpRight, ClipboardCheck, MapPin, Phone, ShieldCheck, S
 import WeightLossForm from "@/components/landing/WeightLossForm";
 import PoweredByCodeSquad from "@/components/layout/PoweredByCodeSquad";
 import { ADDRESS_LINE_1, ADDRESS_LINE_2, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
+import { CONSULTATION_OFFER, consultationPriceLabel, consultationPricingAnswer, HAS_CONSULTATION_OFFER, MONTHLY_SPECIALS, OFFERS_ACTIVE } from "@/lib/data/landingOffers";
 import styles from "./page.module.css";
 
 const socialImage = "https://www.harmonymedspafl.com/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png";
@@ -12,6 +13,7 @@ const socialImage = "https://www.harmonymedspafl.com/images/blogs/harmony-editor
 export const metadata: Metadata = {
   title: "Medical Weight Loss in Sarasota",
   description: "Explore individualized, medically supervised weight-loss care with Jessica Simone, AGNP-C, at Harmony Med Spa in Sarasota, Florida.",
+  alternates: { canonical: "/landing/medical-weight-loss" },
   openGraph: {
     title: "Medical Weight Loss in Sarasota | Harmony Med Spa",
     description: "A medically guided plan built around your health, goals, and ongoing progress.",
@@ -23,7 +25,6 @@ export const metadata: Metadata = {
     description: "A medically guided plan built around your health, goals, and ongoing progress.",
     images: [socialImage],
   },
-  robots: { index: false, follow: false },
 };
 
 const phoneHref = `tel:+1${PHONE_TEL}`;
@@ -63,7 +64,7 @@ const faqs = [
   { question: "What happens at the first appointment?", answer: "Your first visit begins with a conversation about your health history, medications, previous weight-loss efforts, and goals. Jessica will explain which options may be appropriate and what ongoing care could look like before you decide how to proceed." },
   { question: "Do I have to take weight-loss medication?", answer: "No. Medication is one possible part of care and is considered only when medically appropriate. Your consultation is designed to help you understand the available options, not pressure you into one approach." },
   { question: "Does Harmony offer medication options?", answer: "Medication options may be discussed as part of an individualized medical evaluation. Eligibility and recommendations depend on your health history and provider assessment." },
-  { question: "How much does the program cost?", answer: "Cost depends on the care and options included in your individualized plan. The team will explain applicable pricing before you commit to treatment." },
+  { question: "How much does the program cost?", answer: consultationPricingAnswer },
   { question: "How quickly will I see results?", answer: "Response varies from person to person. Your provider can discuss realistic expectations after learning about your health, goals, and recommended plan. Individual results vary." },
   { question: "Where is Harmony Med Spa located?", answer: `${ADDRESS_LINE_1}, ${ADDRESS_LINE_2}. The office is open Monday through Friday, 9:00 a.m. to 5:00 p.m.` },
 ];
@@ -98,25 +99,25 @@ export default function MedicalWeightLossLandingPage() {
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>Medical weight loss · Sarasota</p>
               <h1 id="hero-heading">A weight-loss plan built around your biology—not a template.</h1>
-              <p className={styles.heroLead}>Meet one-to-one with Jessica Simone, AGNP-C, for individualized medical care, thoughtful options, and ongoing progress support.</p>
+              <p className={styles.offerStrip}>
+                <span className={styles.offerLabel}>{HAS_CONSULTATION_OFFER ? "Offer" : "Next step"}</span>
+                <span>{CONSULTATION_OFFER}</span>
+                {consultationPriceLabel ? <strong>{consultationPriceLabel}</strong> : null}
+              </p>
               <div className={styles.heroLinks}>
                 <a className={styles.primaryCta} href="#consultation">Request a consultation <ArrowRight size={17} aria-hidden="true" /></a>
-                <a className={styles.textLink} href={phoneHref}>Prefer to talk? {PHONE_DISPLAY}</a>
+                <div className={styles.callBlock}>
+                  <a className={styles.phoneCta} href={phoneHref}><Phone size={17} aria-hidden="true" /> {PHONE_DISPLAY}</a>
+                  <p className={styles.heroHours}>Call us — Monday to Friday, 9am to 5pm</p>
+                </div>
               </div>
+              <p className={styles.heroLead}>Meet one-to-one with Jessica Simone, AGNP-C, for individualized medical care, thoughtful options, and ongoing progress support.</p>
             </div>
             <p className={styles.heroCaption}>Individualized care starts with listening.</p>
           </div>
 
           <div className={styles.formColumn} id="consultation">
-            <WeightLossForm
-              id="consultation-form"
-              treatmentOptions={[
-                "Medical Weight Loss",
-                "Female Weight Loss Consult",
-                "Male Weight Loss Consult",
-                "Not sure — I’d like guidance",
-              ]}
-            />
+            <WeightLossForm id="consultation-form" fields="essential" />
           </div>
         </section>
 
@@ -132,6 +133,21 @@ export default function MedicalWeightLossLandingPage() {
             </div>
           ))}
         </section>
+
+        {OFFERS_ACTIVE ? (
+          <section className={styles.specialsSection} aria-labelledby="specials-heading">
+            <h2 id="specials-heading">{MONTHLY_SPECIALS.heading}</h2>
+            <ul className={styles.specialsGrid} role="list">
+              {MONTHLY_SPECIALS.offers.map((offer) => (
+                <li className={styles.specialCard} key={offer.title}>
+                  <strong>{offer.title}</strong>
+                  {offer.detail ? <span>{offer.detail}</span> : null}
+                </li>
+              ))}
+            </ul>
+            <p className={styles.specialsNote}>{MONTHLY_SPECIALS.validThrough}</p>
+          </section>
+        ) : null}
 
         <section className={styles.introSection} aria-labelledby="different-heading">
           <div className={styles.sectionNumber} aria-hidden="true">01 / CARE, DIFFERENTLY</div>

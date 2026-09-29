@@ -29,6 +29,10 @@ type WeightLossFormProps = {
   subheading?: string;
   submitLabel?: string;
   treatmentOptions?: readonly string[];
+  /** "essential" shows only name, phone, email and message. The treatment and best-time
+   * keys are still posted (treatment = the page's fixed interest, best time = "") so the
+   * Make scenario and Airtable schema are unchanged. */
+  fields?: "full" | "essential";
 };
 
 export default function WeightLossForm({
@@ -42,7 +46,9 @@ export default function WeightLossForm({
   subheading = "Share the best way to reach you. Our Sarasota team will follow up personally.",
   submitLabel = "Request my consultation",
   treatmentOptions,
+  fields = "full",
 }: WeightLossFormProps) {
+  const essential = fields === "essential";
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -152,28 +158,32 @@ export default function WeightLossForm({
           {errors.email ? <p id={`${id}-email-error`} className={styles.fieldError} role="alert">{errors.email}</p> : null}
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label} htmlFor={`${id}-treatment`}>What are you interested in?</label>
-          <select id={`${id}-treatment`} className={styles.select} name="treatment_interest" value={selectedTreatment} onChange={(event) => setSelectedTreatment(event.target.value)}>
-            {availableTreatments.map((option) => <option value={option} key={option}>{option}</option>)}
-          </select>
-        </div>
+        {essential ? null : (
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor={`${id}-treatment`}>What are you interested in?</label>
+            <select id={`${id}-treatment`} className={styles.select} name="treatment_interest" value={selectedTreatment} onChange={(event) => setSelectedTreatment(event.target.value)}>
+              {availableTreatments.map((option) => <option value={option} key={option}>{option}</option>)}
+            </select>
+          </div>
+        )}
 
         <div className={styles.field}>
-          <label className={styles.label} htmlFor={`${id}-message`}>Anything you&apos;d like us to know? <span className={styles.optional}>Optional</span></label>
-          <textarea id={`${id}-message`} className={styles.textarea} name="message" rows={3} maxLength={1000} placeholder="Tell us about your goals, questions, or what you booked." value={message} onChange={(event) => setMessage(event.target.value)} />
+          <label className={styles.label} htmlFor={`${id}-message`}>{essential ? "Message" : <>Anything you&apos;d like us to know?</>} <span className={styles.optional}>Optional</span></label>
+          <textarea id={`${id}-message`} className={styles.textarea} name="message" rows={essential ? 2 : 3} maxLength={1000} placeholder={essential ? "Questions or anything you'd like us to know." : "Tell us about your goals, questions, or what you booked."} value={message} onChange={(event) => setMessage(event.target.value)} />
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label} htmlFor={`${id}-time`}>Best time to reach you <span className={styles.optional}>Optional</span></label>
-          <select id={`${id}-time`} className={styles.select} name="best_time" value={bestTime} onChange={(event) => setBestTime(event.target.value as BestTime)}>
-            <option value="">Select a time</option>
-            <option value="Morning">Morning</option>
-            <option value="Afternoon">Afternoon</option>
-            <option value="Evening">Evening</option>
-            <option value="Any time">Any time</option>
-          </select>
-        </div>
+        {essential ? null : (
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor={`${id}-time`}>Best time to reach you <span className={styles.optional}>Optional</span></label>
+            <select id={`${id}-time`} className={styles.select} name="best_time" value={bestTime} onChange={(event) => setBestTime(event.target.value as BestTime)}>
+              <option value="">Select a time</option>
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+              <option value="Any time">Any time</option>
+            </select>
+          </div>
+        )}
 
         <button className={styles.submitButton} type="submit" disabled={status === "submitting"} aria-busy={status === "submitting"}>
           {status === "submitting" ? "Sending…" : submitLabel}
