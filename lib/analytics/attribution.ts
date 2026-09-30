@@ -3,6 +3,12 @@ import { trackingRuntime } from "../analytics";
 export function readAttribution() { return trackingRuntime()?.read() ?? {}; }
 export function captureAttribution() { return trackingRuntime()?.capture() ?? {}; }
 
+/** Raw first external referrer for the lead, or "direct" when none was seen (or during SSR). */
+export function referrerSource() {
+  if (typeof window === "undefined") return "direct";
+  return trackingRuntime()?.referrer() || "direct";
+}
+
 export function attributionFields() {
   const p = readAttribution();
   return {

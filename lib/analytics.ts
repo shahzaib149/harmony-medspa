@@ -19,7 +19,7 @@ type TrackingConfig = { measurement: string; conversion: string };
 
 // All references inside this function are local. It is serialized into the head,
 // so it must remain self-contained even after production minification.
-type TrackingRuntime = { capture: () => Record<string, string>; read: () => Record<string, string>; event: (name: string, parameters: EventParameters) => void; pageView: () => void };
+type TrackingRuntime = { capture: () => Record<string, string>; read: () => Record<string, string>; referrer: () => string; event: (name: string, parameters: EventParameters) => void; pageView: () => void };
 export function initializeAnalytics(config: TrackingConfig): TrackingRuntime {
   if (window.__harmonyTracking) return window.__harmonyTracking;
   const key = "harmony_attribution_v1";
@@ -52,6 +52,28 @@ export function initializeAnalytics(config: TrackingConfig): TrackingRuntime {
     }
     return values;
   };
+  // First external referrer, kept separately from campaign attribution so its
+  // rules never interact. Recorded at landing (a later internal page load would
+  // report this site as the referrer). Raw string; classification happens in
+  // the dashboard. Empty means no external referrer has been seen.
+  const referrerKey = "harmony_referrer_v1";
+  let referrerMemory: { value: string; expires: number } | undefined;
+  const referrer = (): string => {
+    try {
+      const raw = window.localStorage.getItem(referrerKey);
+      if (raw) referrerMemory = JSON.parse(raw);
+    } catch { /* Storage denial must not prevent a lead. */ }
+    if (!referrerMemory || !Number.isFinite(referrerMemory.expires) || referrerMemory.expires <= Date.now() || typeof referrerMemory.value !== "string") return "";
+    return referrerMemory.value;
+  };
+  const captureReferrer = () => {
+    if (referrer()) return;
+    let host = "";
+    try { host = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch { host = ""; }
+    if (!host || host === window.location.hostname.replace(/^www\./, "")) return;
+    referrerMemory = { value: document.referrer, expires: Date.now() + ttl };
+    try { window.localStorage.setItem(referrerKey, JSON.stringify(referrerMemory)); } catch { /* memory fallback */ }
+  };
   window.dataLayer = window.dataLayer || [];
   // Google's documented command queue uses Arguments objects, not event arrays.
   // eslint-disable-next-line prefer-rest-params
@@ -65,9 +87,10 @@ export function initializeAnalytics(config: TrackingConfig): TrackingRuntime {
     event("page_view", { send_to: config.measurement, page_title: document.title,
       page_location: location, page_referrer: referrer });
   };
-  const runtime = { capture, read, event, pageView };
+  const runtime = { capture, read, referrer, event, pageView };
   window.__harmonyTracking = runtime;
   capture();
+  captureReferrer();
   window.gtag("js", new Date());
   // Manual page views own BOTH initial and client navigations. GA4 Admin >
   // Web stream > Enhanced measurement > Page views > history MUST be OFF.

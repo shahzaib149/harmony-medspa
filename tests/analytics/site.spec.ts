@@ -94,3 +94,28 @@ for(const kind of ['newsletter','specials','membership','pricing','weight-loss']
  expect(payloads).toHaveLength(2);
  expect(payloads[1]).toMatchObject({GCLID:'TEST123',GBRAID:'TEST',WBRAID:'TEST',utm_custom:'preserved'});
 });
+
+test('first external referrer survives internal page loads and is sent once as referrerSource',async({page})=>{
+ await page.goto('/services',{referer:'https://chatgpt.com/'});
+ await page.goto('/landing/medical-weight-loss',{referer:'http://localhost:3101/services'});
+ const payloads:Record<string,string>[]=[];
+ await page.route(/hook\..*make\.com/,async r=>{payloads.push(r.request().postDataJSON());await r.fulfill({status:200,body:'Accepted'});});
+ const form=page.locator('form').first();
+ await form.locator('[name=name]').fill('Analytics Test');await form.locator('[name=email]').fill('analytics@example.com');await form.locator('[name=phone]').fill('9415550123');
+ await form.locator('button[type=submit]').click();
+ await expect.poll(async()=> (await leads(page)).length).toBe(2);
+ expect(payloads).toHaveLength(1);
+ expect(payloads[0].referrerSource).toMatch(/^https:\/\/chatgpt\.com\//);
+ expect((await leads(page)).map(e=>e[1])).toEqual(['conversion','generate_lead']);
+});
+
+test('a visit with no external referrer sends referrerSource "direct"',async({page})=>{
+ await page.goto('/landing/medical-weight-loss');
+ const payloads:Record<string,string>[]=[];
+ await page.route(/hook\..*make\.com/,async r=>{payloads.push(r.request().postDataJSON());await r.fulfill({status:200,body:'Accepted'});});
+ const form=page.locator('form').first();
+ await form.locator('[name=name]').fill('Analytics Test');await form.locator('[name=email]').fill('analytics@example.com');await form.locator('[name=phone]').fill('9415550123');
+ await form.locator('button[type=submit]').click();
+ await expect.poll(()=>payloads.length).toBe(1);
+ expect(payloads[0].referrerSource).toBe('direct');
+});

@@ -1,4 +1,4 @@
-import { attributionFields } from "./analytics/attribution";
+import { attributionFields, referrerSource } from "./analytics/attribution";
 import { confirmLeadResponse } from "./analytics";
 import { CONTACT_WEBHOOK_URL } from "@/lib/constants";
 
@@ -35,6 +35,7 @@ export async function submitLead(fields: LeadFields) {
       Status: "New",
       "Treatment Interest": fields.treatmentInterest ?? "",
       ...attributionFields(),
+      referrerSource: referrerSource(),
       "Page URL": window.location.href,
       "Lead Created At": new Date().toISOString(),
       "Email Sent Status": "Pending",
@@ -48,7 +49,7 @@ export async function submitLead(fields: LeadFields) {
 export async function submitLeadPayload(payload: Record<string, unknown>) {
   const response = await fetch(CONTACT_WEBHOOK_URL, {
     method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...payload, ...attributionFields() }),
+    body: JSON.stringify({ ...payload, ...attributionFields(), referrerSource: referrerSource() }),
   });
   return confirmLeadResponse(response);
 }
