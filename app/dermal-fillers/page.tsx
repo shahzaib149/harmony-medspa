@@ -7,6 +7,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
+import RevaRewards from "@/components/service/RevaRewards";
 import { openGraphFor } from "@/lib/seo/metadata";
 
 const benefits = [
@@ -118,6 +119,8 @@ export default function DermalFillersPage() {
           </Link>
         </aside>
       </section>
+
+      <RevaRewards variant="dermal-fillers" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

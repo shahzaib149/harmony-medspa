@@ -37,6 +37,7 @@ export const INDEXABLE_ROUTES: IndexableRoute[] = [
   // Core and primary revenue pages
   { path: "/medical-weight-loss", name: "Medical Weight Loss", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "treatment" },
   { path: "/injectables", name: "Injectables", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-09-29", schema: "category" },
+  { path: "/pricing", name: "Pricing", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-10-13", parent: "/" },
   { path: "/our-team", name: "Our Team", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-09-29" },
   { path: "/services", name: "Services", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-09-29" },
   { path: "/contact-us", name: "Contact Us", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-09-29" },
