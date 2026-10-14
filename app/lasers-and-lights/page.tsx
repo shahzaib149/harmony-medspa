@@ -1,9 +1,16 @@
-export const metadata = { title: "Lasers And Lights", alternates: { canonical: "/lasers-and-lights" }, openGraph: openGraphFor("/lasers-and-lights") };
+export const metadata = {
+  title: "Laser Treatments in Sarasota, FL",
+  description:
+    "Fractional CO2 laser resurfacing and laser hair removal at Harmony Med Spa in Sarasota, FL. View laser treatment pricing, request a quote, or book online.",
+  alternates: { canonical: "/lasers-and-lights" },
+  openGraph: openGraphFor("/lasers-and-lights"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -50,6 +57,8 @@ export default function LasersAndLightsPage() {
           ))}
         </div>
       </section>
+
+      <ServicePricing path="/lasers-and-lights" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

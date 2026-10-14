@@ -25,7 +25,7 @@ export default function ContactUsPage() {
       </section>
 
       <section className="contact-page-main grid grid-cols-[minmax(520px,660px)_313px] justify-center items-stretch w-[min(980px,calc(100%_-_48px))] mt-[75px] mb-[76px] mx-auto max-[1050px]:grid-cols-[minmax(0,660px)] max-[720px]:w-[min(100%_-_32px,560px)] max-[720px]:mt-[48px] max-[720px]:mb-[58px] max-[720px]:mx-auto" aria-labelledby="contact-page-title">
-        <div className="contact-page-form-panel pt-[74px] pb-[82px] px-[78px] bg-[#f4f4f4] [&_h2]:mt-0 [&_h2]:mb-[8px] [&_h2]:mx-0 [&_h2]:text-[#ebb13d] [&_h2]:text-[length:38px] [&_h2]:leading-[1] [&_h2]:font-thin [&_p]:max-w-[500px] [&_p]:mt-0 [&_p]:mb-[27px] [&_p]:mx-0 [&_p]:uppercase [&_p]:text-[#000] [&_p]:text-[length:15px] [&_p]:leading-[1.38] [&_p]:font-normal [&_p]:tracking-[0.46em] max-[720px]:pt-[44px] max-[720px]:pb-[50px] max-[720px]:px-[24px] max-[720px]:[&_p]:tracking-[0.22em]">
+        <div className="contact-page-form-panel pt-[74px] pb-[82px] px-[78px] bg-[#f4f4f4] [&_h2]:mt-0 [&_h2]:mb-[8px] [&_h2]:mx-0 [&_h2]:text-[#ebb13d] [&_h2]:text-[length:38px] [&_h2]:leading-[1] [&_h2]:font-thin [&_p]:max-w-[500px] [&_p]:mt-0 [&_p]:mb-[27px] [&_p]:mx-0 [&_p]:text-[#555] [&_p]:text-[length:16px] [&_p]:leading-[1.55] [&_p]:font-normal [&_p]:tracking-normal max-[720px]:pt-[44px] max-[720px]:pb-[50px] max-[720px]:px-[24px]">
           <h2 id="contact-page-title"><TypewriterText text="Contact Us" startOnView /></h2>
           <p>For non-urgent questions or to learn more about our services, contact us today!</p>
           <ContactForm variant="page" />

@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 //
 // Signup buttons link straight to REVA's registration/wallet so a patient lands on the
 // enrollment page, not a marketing page. This is a separate Revance program, not a
-// Harmony membership, so copy never implies it stacks with Harmony specials.
+// Harmony membership, so copy never says whether it combines with Harmony offers.
 
 const REVA_SIGNUP_URL = "https://app.revarewards.com/welcome";
 const REVA_SITE_URL = "https://www.revarewards.com/";
@@ -17,47 +17,67 @@ type RevaVariant = "daxxify" | "dermal-fillers";
 
 type RevaCopy = {
   treatLabel: string;
-  intro: ReactNode;
+  headline: string;
+  subheadline: string;
+  body: ReactNode[];
+  tagline: string;
   earning: string[];
+  ctaNote: string;
   disclaimer: string;
 };
+
+// Separate program wording: say what REVA is, never whether it combines with Harmony offers.
+const SEPARATE_PROGRAM =
+  "REVA Rewards is a separate manufacturer loyalty program from Revance and is not part of Harmony Med Spa memberships or specials. REVA program rules and eligibility requirements apply.";
+
+const MORE_WAYS_TO_EARN = [
+  "50 points ($5) for consecutive treatments with the same provider and product brand",
+  "25 points ($2.50) for returning for treatment within the program's eligible timeframe",
+  "25 birthday points ($2.50) each year with a verified birth date",
+  "Redeem points in $5 increments toward eligible treatments",
+];
 
 const COPY: Record<RevaVariant, RevaCopy> = {
   daxxify: {
     treatLabel: "an eligible Daxxify treatment",
-    intro: (
+    headline: "Get Rewarded for Your Daxxify Treatments!",
+    subheadline: "Join REVA Rewards and receive $25 in welcome savings!",
+    body: [
+      "At Harmony Med Spa, your beauty routine can be even more rewarding.",
       <>
-        Join REVA Rewards and receive <strong>250 welcome points ($25 value)</strong>. Then keep
-        earning another <strong>250 points ($25 value)</strong> with every qualifying Daxxify
-        treatment, plus extra points for returning to your provider, staying consistent, and
-        celebrating your birthday.
-      </>
-    ),
+        When you join REVA Rewards, you&apos;ll receive <strong>250 welcome points ($25 value)</strong> and can
+        continue earning another <strong>250 points ($25 value)</strong> with every qualifying Daxxify treatment.
+      </>,
+      "Plus, enjoy opportunities to earn additional points for returning to your favorite provider, maintaining your treatment routine, and celebrating your birthday!",
+    ],
+    tagline: "Treat. Earn. Save.",
     earning: [
       "250 welcome points ($25) just for joining",
       "250 points ($25) per eligible Daxxify treatment, earned once every 90 days",
-      "Extra points for consecutive visits, loyalty, and your birthday",
     ],
-    disclaimer:
-      "Daxxify rewards are available to patients 18 and older. REVA Rewards is a Revance manufacturer program, separate from Harmony Med Spa memberships, and cannot be combined with our other specials or discounts. Eligibility and program terms apply.",
+    ctaNote: "Eligibility and program terms apply.",
+    disclaimer: `Daxxify rewards are available to patients 18 and older. ${SEPARATE_PROGRAM}`,
   },
   "dermal-fillers": {
     treatLabel: "a qualifying RHA treatment",
-    intro: (
+    headline: "Love Your Look. Earn Rewards!",
+    subheadline: "Get $25 in welcome savings with REVA Rewards!",
+    body: [
+      "Beautiful, natural-looking results are even more rewarding at Harmony Med Spa.",
       <>
-        Join REVA Rewards and receive <strong>250 welcome points ($25 value)</strong> toward an
-        eligible treatment. Then earn <strong>200 points ($20 value)</strong> for every qualifying
-        Teoxane RHA&reg; filler syringe, up to five syringes per eligible treatment, plus extra
-        points for staying consistent with your care.
-      </>
-    ),
+        Join REVA Rewards and receive <strong>250 welcome points ($25 value)</strong> toward an eligible treatment.
+        Then earn <strong>200 points ($20 value)</strong> for every qualifying Teoxane RHA&reg; filler syringe, up to
+        five syringes per eligible treatment.
+      </>,
+      "Keep earning additional rewards for staying consistent with your treatments, returning to your provider, and celebrating your birthday.",
+    ],
+    tagline: "Your favorite treatments deserve rewarding benefits!",
     earning: [
       "250 welcome points ($25) just for joining",
-      "200 points ($20) per qualifying RHA syringe (RHA 2, 3, 4 & Redensity), up to 5 syringes, once every 30 days",
-      "Extra points for consecutive visits, loyalty, and your birthday",
+      "200 points ($20) per qualifying RHA syringe (RHA 2, RHA 3, RHA 4 and RHA Redensity), up to five syringes per treatment, earned once every 30 days",
     ],
-    disclaimer:
-      "Rewards apply only to qualifying Teoxane RHA® Collection fillers, not all dermal filler brands. RHA treatment rewards are available to patients 22 and older. REVA Rewards is a Revance manufacturer program, separate from Harmony Med Spa memberships, and cannot be combined with our other specials or discounts. Eligibility and program terms apply.",
+    ctaNote: "Available for qualifying RHA Collection treatments. Eligibility and program terms apply.",
+    disclaimer: `Rewards apply only to qualifying Teoxane RHA® Collection fillers (RHA 2, RHA 3, RHA 4 and RHA Redensity), not every dermal filler brand. RHA treatment rewards are available to patients 22 and older. ${SEPARATE_PROGRAM}`,
   },
 };
 
@@ -110,7 +130,7 @@ export default function RevaRewards({ variant }: { variant: RevaVariant }) {
   const steps = [
     { title: "Join", text: "Sign up for REVA Rewards and receive 250 welcome points." },
     { title: "Treat", text: `Receive ${copy.treatLabel} at Harmony Med Spa.` },
-    { title: "Earn & Save", text: "Collect points and redeem them toward future treatments." },
+    { title: "Earn & Save", text: "Collect points and redeem eligible rewards toward future treatments." },
   ];
 
   return (
@@ -130,11 +150,15 @@ export default function RevaRewards({ variant }: { variant: RevaVariant }) {
               id="reva-rewards-heading"
               className="mt-[18px] mb-[16px] text-[#16130f] text-[length:clamp(30px,3.4vw,44px)] leading-[1.06] font-thin"
             >
-              Get $25 in Welcome Rewards
+              {copy.headline}
             </h2>
-            <p className="mt-0 mb-[34px] max-w-[620px] text-[length:18px] leading-[1.55] text-[#514a40] max-[720px]:text-[length:16px]">
-              {copy.intro}
-            </p>
+            <p className="mt-0 mb-[16px] text-[length:20px] leading-[1.4] font-semibold text-[#9a7530] max-[720px]:text-[length:18px]">{copy.subheadline}</p>
+            <div className="mb-[18px] max-w-[640px] text-[length:17px] leading-[1.55] text-[#514a40] max-[720px]:text-[length:16px]">
+              {copy.body.map((paragraph, index) => (
+                <p key={index} className="mt-0 mb-[12px]">{paragraph}</p>
+              ))}
+            </div>
+            <p className="mt-0 mb-[30px] text-[length:18px] italic text-[#16130f]">{copy.tagline}</p>
 
             {/* Three-step process */}
             <ol className="grid grid-cols-3 gap-[18px] list-none p-0 m-0 mb-[36px] max-[560px]:grid-cols-1">
@@ -168,12 +192,22 @@ export default function RevaRewards({ variant }: { variant: RevaVariant }) {
                 </li>
               ))}
             </ul>
+
+            <h3 className="mt-[30px] mb-[12px] text-[length:13px] font-bold uppercase tracking-[0.16em] text-[#9a7530]">More ways to earn</h3>
+            <ul className="grid gap-[8px] list-none p-0 m-0">
+              {MORE_WAYS_TO_EARN.map((item) => (
+                <li key={item} className="grid grid-cols-[14px_1fr] gap-[10px] items-baseline text-[length:15px] leading-[1.5] text-[#514a40]">
+                  <span aria-hidden="true" className="text-[#c99b13]">&bull;</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* CTA panel */}
           <aside className="grid [align-content:center] gap-[18px] p-[44px] text-center text-[#f6efe1] [background:radial-gradient(circle_at_30%_20%,#2a2319,transparent_60%),linear-gradient(160deg,#1b1711,#0d0b08)] max-[900px]:p-[36px]">
             <span className="text-[length:13px] font-semibold uppercase tracking-[0.2em] text-[#d9b977]">New member bonus</span>
-            <strong className="text-[length:clamp(26px,3vw,34px)] leading-[1.08] font-thin">Get $25 in welcome rewards</strong>
+            <strong className="text-[length:clamp(26px,3vw,34px)] leading-[1.08] font-thin uppercase tracking-[0.04em]">Get $25 in Welcome Rewards</strong>
             <p className="m-0 text-[length:15px] leading-[1.5] text-[#c9c0b0]">
               Enroll with your phone number through REVA&apos;s online wallet in minutes.
             </p>
@@ -185,6 +219,7 @@ export default function RevaRewards({ variant }: { variant: RevaVariant }) {
             >
               Join REVA Rewards – Get $25
             </a>
+            <p className="m-0 text-[length:13px] leading-[1.5] text-[#a99f8e]">{copy.ctaNote}</p>
             <a
               href={REVA_SITE_URL}
               target="_blank"

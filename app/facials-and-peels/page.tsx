@@ -1,9 +1,16 @@
-export const metadata = { title: "Facials And Peels", alternates: { canonical: "/facials-and-peels" }, openGraph: openGraphFor("/facials-and-peels") };
+export const metadata = {
+  title: "Facials and Peels in Sarasota, FL",
+  description:
+    "Facials, Glo2Facial, and chemical peels at Harmony Med Spa in Sarasota's Gulf Gate area. View facial pricing, request a personalized quote, or book online.",
+  alternates: { canonical: "/facials-and-peels" },
+  openGraph: openGraphFor("/facials-and-peels"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -54,6 +61,8 @@ export default function FacialsAndPeelsPage() {
           ))}
         </div>
       </section>
+
+      <ServicePricing path="/facials-and-peels" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

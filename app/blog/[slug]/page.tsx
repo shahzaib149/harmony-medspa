@@ -131,7 +131,7 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
   const faqSchema = buildFaqPageSchema(faqItems);
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#f8f7f4] text-[#26313c]">
+    <main className="min-h-screen overflow-x-clip bg-[#f8f7f4] text-[#26313c]">
       <JsonLd data={articleSchema} />
       <JsonLd data={breadcrumbSchema} />
       {faqSchema ? <JsonLd data={faqSchema} /> : null}
@@ -173,7 +173,7 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
               </nav>
             ) : null}
 
-            <div className="text-[18px] leading-[1.9] text-[#4c5864] sm:text-[19px] [&_a]:font-medium [&_a]:text-[#a87412] [&_a]:underline-offset-4 hover:[&_a]:underline [&_blockquote]:my-10 [&_blockquote]:rounded-r-2xl [&_blockquote]:border-l-4 [&_blockquote]:border-[#d5a23d] [&_blockquote]:bg-[#fbf8f1] [&_blockquote]:px-6 [&_blockquote]:py-5 [&_h2]:mb-5 [&_h2]:mt-16 [&_h2]:scroll-mt-24 [&_h2]:text-[clamp(1.8rem,3vw,2.45rem)] [&_h2]:font-medium [&_h2]:leading-[1.2] [&_h2]:text-[#a8730e] [&_h3]:mb-4 [&_h3]:mt-10 [&_h3]:text-[1.35rem] [&_h3]:font-semibold [&_h3]:text-[#2e3944] [&_li]:mb-3 [&_ol]:my-8 [&_p]:mb-7 [&_p]:mt-0 [&_ul]:my-8">
+            <div className="text-[18px] leading-[1.9] text-[#4c5864] sm:text-[19px] [&_a]:font-medium [&_a]:text-[#a87412] [&_a]:underline-offset-4 hover:[&_a]:underline [&_blockquote]:my-10 [&_blockquote]:rounded-r-2xl [&_blockquote]:border-l-4 [&_blockquote]:border-[#d5a23d] [&_blockquote]:bg-[#fbf8f1] [&_blockquote]:px-6 [&_blockquote]:py-5 [&_h2]:mb-5 [&_h2]:mt-16 [&_h2]:scroll-mt-4 [&_h2]:text-[clamp(1.8rem,3vw,2.45rem)] [&_h2]:font-medium [&_h2]:leading-[1.2] [&_h2]:text-[#a8730e] [&_h3]:mb-4 [&_h3]:mt-10 [&_h3]:text-[1.35rem] [&_h3]:font-semibold [&_h3]:text-[#2e3944] [&_li]:mb-3 [&_ol]:my-8 [&_p]:mb-7 [&_p]:mt-0 [&_ul]:my-8">
               {contentWithoutFeature.map((block) => <BlogBlock block={block} key={block.id} />)}
 
               {blog.relatedServiceUrl || blog.relatedArticleUrls.length ? (
@@ -198,12 +198,12 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
           </div>
         </article>
 
-        <aside className="grid gap-6 lg:sticky lg:top-8" aria-label="Blog tools">
+        <aside className="blog-side-sticky blog-side-post grid gap-6" aria-label="Blog tools">
           <section className="rounded-[24px] border border-[#e7e1d7] bg-white p-6 shadow-[0_16px_45px_rgba(55,47,35,0.06)]">
             <p className="mb-4 mt-0 text-xs font-bold uppercase tracking-[0.16em] text-[#9f741d]">Find an article</p>
             <BlogSearchForm />
           </section>
-          <Link className="group relative grid min-h-[260px] place-items-center overflow-hidden rounded-[24px] text-center text-white shadow-[0_18px_48px_rgba(30,27,22,0.16)]" href="/services">
+          <Link className="blog-side-card group relative grid min-h-[260px] place-items-center overflow-hidden rounded-[24px] text-center text-white shadow-[0_18px_48px_rgba(30,27,22,0.16)]" href="/services">
             <Image src="/images/blogs/blog-1/img_1.png" alt="Harmony Med Spa treatment room" fill sizes="300px" className="object-cover transition duration-500 group-hover:scale-105" />
             <span className="absolute inset-0 bg-black/50" />
             <span className="relative px-6"><strong className="block text-2xl font-medium">Explore services</strong><small className="mt-3 inline-block border-b border-[#ddb04e] pb-1 text-sm">View all treatments</small></span>

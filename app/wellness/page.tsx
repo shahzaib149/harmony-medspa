@@ -1,9 +1,16 @@
-export const metadata = { title: "Wellness", alternates: { canonical: "/wellness" }, openGraph: openGraphFor("/wellness") };
+export const metadata = {
+  title: "Wellness Services in Sarasota, FL",
+  description:
+    "Medical weight loss and hormone optimization at Harmony Med Spa in Sarasota, FL. View wellness treatment pricing, request a personalized quote, or book online.",
+  alternates: { canonical: "/wellness" },
+  openGraph: openGraphFor("/wellness"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -49,6 +56,8 @@ export default function WellnessPage() {
           ))}
         </div>
       </section>
+
+      <ServicePricing path="/wellness" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

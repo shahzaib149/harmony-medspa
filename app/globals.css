@@ -3315,6 +3315,18 @@
   padding: 0 19px;
 }
 
+.contact-page-form select {
+  width: 100%;
+  height: 48px;
+  padding: 0 15px 0 17px;
+  border: 1px solid #c9c9c9;
+  background: #fff;
+  color: #333;
+  font: inherit;
+  font-size: 14px;
+  outline: 0;
+}
+
 .contact-page-form textarea {
   min-height: 217px;
   padding: 16px 19px;
@@ -5972,3 +5984,246 @@
 /* ============================================================
    END MEDICAL WEIGHT LOSS LANDING PAGE STYLES
    ============================================================ */
+
+/* ============================================================
+   Sticky glass header
+   Every SiteHeader stays at the top of the window. Over a dark hero it starts fully
+   transparent and floats on the hero; once the page scrolls (.is-scrolled, set in
+   SiteHeader) it becomes frosted glass. --site-header-h is the header's measured height.
+   ============================================================ */
+.site-header,
+.team-header,
+.contact-page-header {
+  z-index: 80;
+  transition: background-color 260ms ease;
+}
+
+/* On phones the home header stays in the page flow (sticky, from the mobile rules). */
+@media (min-width: 901px) {
+  .site-header {
+    position: fixed;
+  }
+}
+
+.team-header,
+.contact-page-header {
+  position: sticky;
+  top: 0;
+}
+
+.site-header::before,
+.team-header::before,
+.contact-page-header::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-bottom: 1px solid transparent;
+  content: "";
+  pointer-events: none;
+  transition: background-color 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+}
+
+/* The home header is a centred 1320px column; its glass spans the full window. */
+.site-header::before {
+  right: auto;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+}
+
+.site-header.is-scrolled::before,
+.team-header.is-scrolled::before,
+.contact-page-header.is-scrolled::before {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(12, 12, 12, 0.66);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+}
+
+.site-header.is-scrolled,
+.team-header.is-scrolled,
+.contact-page-header.is-scrolled {
+  background-color: transparent;
+}
+
+/* Over a hero (a section, or the blog's header band): float on it, and give the hero a
+   transparent top border of the header's height so the hero keeps its original size and
+   its background runs behind the header. */
+.team-header:has(+ section, + header),
+.contact-page-header:has(+ section, + header) {
+  position: fixed;
+  right: 0;
+  left: 0;
+  background-color: transparent;
+}
+
+.team-header + section,
+.team-header + header,
+.contact-page-header + section,
+.contact-page-header + header {
+  box-sizing: content-box;
+  border-top: var(--site-header-h) solid transparent;
+  background-origin: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .team-header,
+  .contact-page-header,
+  .site-header::before,
+  .team-header::before,
+  .contact-page-header::before {
+    transition: none;
+  }
+}
+
+/* Compact header: smaller logo, nav centred on it, no extra space above. The default
+   --site-header-h matches these sizes until SiteHeader measures the real height. */
+:root {
+  --site-header-h: 86px;
+}
+
+@media (min-width: 901px) {
+  .site-header,
+  .team-header,
+  .contact-page-header {
+    align-items: center;
+    min-height: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .site-header .nav-left,
+  .site-header .nav-right,
+  .team-header .nav-left,
+  .team-header .nav-right,
+  .contact-page-header .nav-left,
+  .contact-page-header .nav-right {
+    padding-top: 0;
+  }
+
+  .site-header .brand,
+  .team-header .brand,
+  .contact-page-header .brand {
+    width: 160px;
+  }
+}
+
+/* Small laptops: keep the header on one row (it used to stack into three). */
+@media (min-width: 901px) and (max-width: 1050px) {
+  .site-header,
+  .team-header,
+  .contact-page-header {
+    grid-template-columns: 1fr auto 1fr;
+    justify-items: stretch;
+    gap: 24px;
+    padding-inline: 24px;
+  }
+
+  .site-header .nav-left,
+  .team-header .nav-left,
+  .contact-page-header .nav-left {
+    justify-content: flex-start;
+  }
+
+  .site-header .nav-right,
+  .team-header .nav-right,
+  .contact-page-header .nav-right {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --site-header-h: 72px;
+  }
+
+  .site-header,
+  .team-header,
+  .contact-page-header {
+    min-height: 72px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+}
+
+/* Page sidebar (search + two link cards) stays in view below the sticky header while the
+   article scrolls, on two-column layouts. Card height shrinks with the window height
+   (Windows display scaling leaves laptops with short viewports) so the whole sidebar fits.
+   --side-fixed = 24px gap under the header + 24px bottom + padding + search + 2 gaps. */
+@media (min-width: 1051px) and (min-height: 540px) {
+  .service-side-sticky {
+    --side-fixed: 204px; /* 16px padding, 70px search, 35px gaps */
+    --side-card-max: 269px;
+    position: sticky;
+    top: calc(var(--site-header-h) + 24px);
+    align-self: start;
+  }
+
+  .service-side-sticky.side-compact {
+    --side-fixed: 158px; /* no padding, 70px search, 20px gaps */
+  }
+
+  .service-side-sticky.side-about {
+    --side-fixed: 136px; /* no padding, 56px search, 16px gaps */
+    --side-card-max: 184px;
+  }
+
+  .service-side-sticky .about-side-card {
+    min-height: clamp(120px, calc((100vh - var(--side-fixed) - var(--site-header-h)) / 2), var(--side-card-max));
+  }
+}
+
+/* Blog sidebars: sticky below the header from Tailwind's lg breakpoint. The image card
+   shrinks with the window height; if the sidebar is still taller than the window it
+   scrolls on its own. --blog-side-fixed = 48px spacing + the sidebar's other blocks. */
+@media (min-width: 1024px) {
+  .blog-side-sticky {
+    --blog-side-fixed: 669px; /* listing: 361px topics, 220px guidance, 2 x 20px gaps */
+    position: sticky;
+    top: calc(var(--site-header-h) + 24px);
+    align-self: start;
+    max-height: calc(100vh - var(--site-header-h) - 24px);
+    margin: 0 -48px;
+    padding: 0 48px 48px; /* room for the cards' 48px shadows inside the scroll box */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: #d8cbb2 transparent;
+    scrollbar-width: thin;
+  }
+
+  .blog-side-sticky.blog-side-post {
+    --blog-side-fixed: 416px; /* article: 150px search, 170px note, 2 x 24px gaps */
+  }
+
+  .blog-side-sticky .blog-side-card {
+    min-height: clamp(150px, calc(100vh - var(--site-header-h) - var(--blog-side-fixed)), 260px);
+  }
+}
+
+/* In-page anchors land below the sticky header, including on first load before
+   SiteHeader has measured itself. */
+html:has(.site-header, .team-header, .contact-page-header) {
+  scroll-padding-top: calc(var(--site-header-h) + 16px);
+}
+
+/* Image cards (services, category pages, shop): a deeper shade under the title so it reads
+   on light photos, and a visible keyboard focus ring. */
+.treatment-card::after,
+.shop-card::after {
+  background: linear-gradient(180deg, rgba(12, 10, 7, 0) 36%, rgba(12, 10, 7, 0.58) 66%, rgba(12, 10, 7, 0.9) 100%);
+}
+
+.treatment-card span,
+.shop-card span {
+  color: #f2c95e;
+  font-weight: 400;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.6);
+}
+
+.treatment-card:focus-visible,
+.shop-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}

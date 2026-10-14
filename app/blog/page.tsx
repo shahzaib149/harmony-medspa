@@ -80,7 +80,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
   const hasFilters = Boolean(normalizedQuery || selectedCategory);
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#f8f7f4] text-[#26313c]">
+    <main className="min-h-screen overflow-x-clip bg-[#f8f7f4] text-[#26313c]">
       <SiteHeader className="contact-page-header" />
 
       <header className="relative isolate overflow-hidden bg-[#11110f] px-6 py-20 text-white sm:py-24">
@@ -151,7 +151,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
             ) : null}
           </div>
 
-          <aside className="grid gap-5 lg:sticky lg:top-6" aria-label="Blog categories and links">
+          <aside className="blog-side-sticky blog-side-list grid gap-5" aria-label="Blog categories and links">
             <section className="rounded-[22px] border border-[#e4ddd2] bg-white p-6">
               <p className="m-0 text-xs font-bold uppercase tracking-[0.16em] text-[#9f741d]">Explore by topic</p>
               <div className="mt-5 grid gap-1">
@@ -162,7 +162,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                 })}
               </div>
             </section>
-            <Link className="group relative grid min-h-[260px] place-items-center overflow-hidden rounded-[22px] text-center text-white shadow-[0_18px_48px_rgba(30,27,22,0.15)]" href="/services">
+            <Link className="blog-side-card group relative grid min-h-[260px] place-items-center overflow-hidden rounded-[22px] text-center text-white shadow-[0_18px_48px_rgba(30,27,22,0.15)]" href="/services">
               <Image src="/images/blogs/blog-1/img_1.png" alt="Harmony Med Spa treatment room" fill sizes="270px" className="object-cover transition duration-500 group-hover:scale-105" />
               <span className="absolute inset-0 bg-black/50" />
               <span className="relative px-6"><strong className="block text-2xl font-medium">Explore services</strong><small className="mt-3 inline-block border-b border-[#ddb04e] pb-1 text-sm">View all treatments</small></span>

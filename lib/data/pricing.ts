@@ -1,10 +1,13 @@
-// Single source of truth for published treatment pricing shown on /pricing (and reusable
-// on individual service pages). Prices are plain text so Google can index them; never ship
-// a price here that the clinic has not approved. Values below are from the 2026 Harmony Med
-// Spa Price Menu and 2026 Clinical IV Therapy Menu.
+// Single source of truth for published treatment pricing shown on /pricing, on individual
+// service pages and on /membership. Prices are plain text so Google can index them; never
+// ship a price here that the clinic has not approved. Values below are from the 2026 Harmony
+// Med Spa Price Menu and 2026 Clinical IV Therapy Menu.
 //
 // `needsConfirmation: true` marks a figure the clinic flagged as differing between source
-// materials — surface it for sign-off before publishing, do not treat it as final.
+// materials. It is never shown to patients and is left out of structured data; get sign-off
+// before publishing, then remove the flag.
+
+export const PRICING_PATH = "/pricing";
 
 export type PriceItem = {
   name: string;
@@ -12,6 +15,8 @@ export type PriceItem = {
   price: string;
   /** Short qualifier shown under the price, e.g. "typically every 3–4 months". */
   note?: string;
+  /** Service page for this specific item, when it differs from the category's page. */
+  href?: string;
   needsConfirmation?: boolean;
 };
 
@@ -35,11 +40,11 @@ export const PRICING_CATEGORIES: PriceCategory[] = [
     serviceHref: "/injectables",
     serviceLinkText: "Explore our injectable treatments in Sarasota",
     items: [
-      { name: "Daxxify", price: "$12 per unit" },
-      { name: "Dermal Filler – Full Syringe", price: "$714" },
-      { name: "Dermal Filler – Half Syringe", price: "$382.50" },
-      { name: "Sculptra – 1 Vial", price: "$867" },
-      { name: "Sculptra – 2 Vials", price: "$1,632" },
+      { name: "Daxxify", price: "$12 per unit", href: "/daxxify" },
+      { name: "Dermal Filler – Full Syringe", price: "$714", href: "/dermal-fillers" },
+      { name: "Dermal Filler – Half Syringe", price: "$382.50", href: "/dermal-fillers" },
+      { name: "Sculptra – 1 Vial", price: "$867", href: "/sculptra" },
+      { name: "Sculptra – 2 Vials", price: "$1,632", href: "/sculptra" },
     ],
     footnote: "Complimentary injectable consultations available.",
   },
@@ -52,10 +57,10 @@ export const PRICING_CATEGORIES: PriceCategory[] = [
     serviceLinkText: "Learn about medical weight loss in Sarasota",
     items: [
       { name: "Initial Medical Exam", price: "$163.20" },
-      { name: "Semaglutide – 1 Month", price: "$367.20" },
-      { name: "Semaglutide – 3 Months", price: "$985" },
-      { name: "Tirzepatide – 1 Month", price: "$612" },
-      { name: "Tirzepatide – 3 Months", price: "$1,500" },
+      { name: "Semaglutide – 1 Month", price: "$367.20", href: "/semaglutide" },
+      { name: "Semaglutide – 3 Months", price: "$985", href: "/semaglutide" },
+      { name: "Tirzepatide – 1 Month", price: "$612", href: "/tirzepatide" },
+      { name: "Tirzepatide – 3 Months", price: "$1,500", href: "/tirzepatide" },
     ],
     footnote: "Medically supervised programs with ongoing support and wellness coaching.",
   },
@@ -102,8 +107,8 @@ export const PRICING_CATEGORIES: PriceCategory[] = [
     id: "rf-microneedling-co2-combination",
     title: "RF Microneedling + CO2 Laser Combination",
     blurb: "A combined resurfacing protocol pairing RF microneedling with fractional CO2 laser.",
-    serviceHref: "/rf-microneedling",
-    serviceLinkText: "Learn about RF microneedling in Sarasota",
+    serviceHref: "/fractional-co2-laser-treatments",
+    serviceLinkText: "Learn about fractional CO2 laser resurfacing in Sarasota",
     items: [
       { name: "Face – Single Treatment", price: "$1,326" },
       { name: "Face – Package of 3", price: "$3,468" },
@@ -124,8 +129,8 @@ export const PRICING_CATEGORIES: PriceCategory[] = [
       { name: "Gentleman's Facial", price: "$76.50" },
       { name: "Teen Facial", price: "$56.10" },
       { name: "Purifying Back Facial", price: "$86.70" },
-      { name: "Glo2Facial", price: "$204" },
-      { name: "Glo2Facial + Dermaplane", price: "$229.50" },
+      { name: "Glo2Facial", price: "$204", href: "/glo2facials" },
+      { name: "Glo2Facial + Dermaplane", price: "$229.50", href: "/glo2facials" },
     ],
   },
   {
@@ -178,6 +183,19 @@ export const PRICING_CATEGORIES: PriceCategory[] = [
     ],
   },
 ];
+
+function category(id: string) {
+  const found = PRICING_CATEGORIES.find((entry) => entry.id === id);
+  if (!found) throw new Error(`Unknown pricing category: ${id}`);
+  return found;
+}
+
+/** Display price of one item, so other pages (e.g. /membership) never restate a figure. */
+export function priceOf(categoryId: string, itemName: string) {
+  const item = category(categoryId).items.find((entry) => entry.name === itemName);
+  if (!item) throw new Error(`Unknown price item: ${categoryId} / ${itemName}`);
+  return item.price;
+}
 
 export type IvInfusion = {
   name: string;
@@ -260,3 +278,139 @@ export const IV_CLINICAL_DISCLAIMER =
 
 export const PRICING_GENERAL_DISCLAIMER =
   "Pricing is subject to change. Final treatment costs depend on individual needs, provider recommendations, and treatment eligibility. Consultation may be required.";
+
+/**
+ * Menu graphics supplied by the clinic. A graphic renders only once its file exists under
+ * public/, so drop the approved files at these exact paths to publish them. The IV menu
+ * must be the revised version with the updated Radiance IV ingredients.
+ */
+export type MenuImage = { src: string; alt: string; width: number; height: number };
+
+export const PRICE_MENU_IMAGES: MenuImage[] = [
+  {
+    src: "/images/pricing/harmony-price-menu-2026-page-1.jpg",
+    alt: "Harmony Med Spa 2026 price menu, page 1, with injectable, medical weight loss, and hormone optimization prices",
+    width: 1275,
+    height: 1650,
+  },
+  {
+    src: "/images/pricing/harmony-price-menu-2026-page-2.jpg",
+    alt: "Harmony Med Spa 2026 price menu, page 2, with skin resurfacing, facial, and membership prices",
+    width: 1275,
+    height: 1650,
+  },
+];
+
+export const IV_MENU_IMAGE: MenuImage = {
+  src: "/images/pricing/harmony-iv-therapy-menu-2026.jpg",
+  alt: "Harmony Med Spa 2026 Clinical IV Therapy menu with Athlete's Edge, Immunity, and Radiance IV prices and ingredients",
+  width: 1275,
+  height: 1650,
+};
+
+/** Contact page link that tells the form, and the lead, which treatment the patient asked about. */
+export function requestPricingHref(service?: string) {
+  return service ? `/contact-us?service=${encodeURIComponent(service)}` : "/contact-us";
+}
+
+export type ServicePricing = {
+  /** Treatment name shown in headings and sent as the lead's Treatment Interest. */
+  service: string;
+  /** Section of /pricing to link to. */
+  pricingAnchor?: string;
+  /** Published prices for this page. Empty means pricing is set at consultation. */
+  groups: { title: string; items: PriceItem[]; footnote?: string }[];
+  /** The page lists its own published prices elsewhere, so lead with booking, not a quote. */
+  pricesOnPage?: boolean;
+};
+
+function pick(categoryId: string, itemNames?: string[], title?: string) {
+  const source = category(categoryId);
+  const items = itemNames
+    ? itemNames.map((name) => {
+        const item = source.items.find((entry) => entry.name === name);
+        if (!item) throw new Error(`Unknown price item: ${categoryId} / ${name}`);
+        return item;
+      })
+    : source.items;
+  return { title: title ?? source.title, items, footnote: itemNames ? undefined : source.footnote };
+}
+
+/** Pricing block for every service page, keyed by the page's path. */
+export const SERVICE_PRICING: Record<string, ServicePricing> = {
+  "/injectables": { service: "Injectables", pricingAnchor: "injectables", groups: [pick("injectables")] },
+  "/daxxify": {
+    service: "Daxxify",
+    pricingAnchor: "injectables",
+    groups: [{ ...pick("injectables", ["Daxxify"], "Daxxify"), footnote: "Complimentary injectable consultations available." }],
+  },
+  "/dermal-fillers": {
+    service: "Dermal Fillers",
+    pricingAnchor: "injectables",
+    groups: [
+      {
+        ...pick("injectables", ["Dermal Filler – Full Syringe", "Dermal Filler – Half Syringe"], "Dermal Fillers"),
+        footnote: "Complimentary injectable consultations available.",
+      },
+    ],
+  },
+  "/sculptra": {
+    service: "Sculptra",
+    pricingAnchor: "injectables",
+    groups: [{ ...pick("injectables", ["Sculptra – 1 Vial", "Sculptra – 2 Vials"], "Sculptra"), footnote: "Complimentary injectable consultations available." }],
+  },
+  "/rf-microneedling": {
+    service: "RF Microneedling",
+    pricingAnchor: "rf-microneedling",
+    groups: [pick("rf-microneedling"), pick("rf-microneedling-co2-combination")],
+  },
+  "/fractional-co2-laser-treatments": {
+    service: "Fractional CO2 Laser",
+    pricingAnchor: "fractional-co2-laser",
+    groups: [pick("fractional-co2-laser"), pick("rf-microneedling-co2-combination")],
+  },
+  "/facials": {
+    service: "Facials",
+    pricingAnchor: "facials",
+    groups: [pick("facials"), pick("facial-enhancements"), pick("facial-memberships")],
+  },
+  "/glo2facials": {
+    service: "Glo2Facial",
+    pricingAnchor: "facials",
+    groups: [pick("facials", ["Glo2Facial", "Glo2Facial + Dermaplane"], "Glo2Facial"), pick("glo2facial-memberships")],
+  },
+  "/facials-and-peels": { service: "Facials and Peels", pricingAnchor: "facials", groups: [pick("facials"), pick("facial-enhancements")] },
+  "/chemical-peels": { service: "Chemical Peels", groups: [] },
+  "/medical-weight-loss": { service: "Medical Weight Loss", pricingAnchor: "medical-weight-loss", groups: [pick("medical-weight-loss")] },
+  "/semaglutide": {
+    service: "Semaglutide",
+    pricingAnchor: "medical-weight-loss",
+    groups: [pick("medical-weight-loss", ["Initial Medical Exam", "Semaglutide – 1 Month", "Semaglutide – 3 Months"], "Semaglutide Weight Loss")],
+  },
+  "/tirzepatide": {
+    service: "Tirzepatide",
+    pricingAnchor: "medical-weight-loss",
+    groups: [pick("medical-weight-loss", ["Initial Medical Exam", "Tirzepatide – 1 Month", "Tirzepatide – 3 Months"], "Tirzepatide Weight Loss")],
+  },
+  "/hormone-replacement-therapy": { service: "Hormone Optimization", pricingAnchor: "hormone-optimization", groups: [pick("hormone-optimization")] },
+  // The IV page renders the full IV menu itself, so its block only adds the buttons.
+  "/iv-therapy": { service: "IV Therapy", pricingAnchor: "iv-therapy", groups: [], pricesOnPage: true },
+  "/lasers-and-lights": {
+    service: "Laser and Light Treatments",
+    pricingAnchor: "fractional-co2-laser",
+    groups: [pick("fractional-co2-laser")],
+  },
+  "/laser-hair-removal": { service: "Laser Hair Removal", groups: [] },
+  "/peptide-therapy": { service: "Peptide Therapy", groups: [] },
+  "/hair-restoration": { service: "Hair Restoration", groups: [] },
+  "/body": { service: "Body Treatments", groups: [] },
+  "/skincare": { service: "Skincare Treatments", pricingAnchor: "facials", groups: [] },
+  "/wellness": { service: "Wellness", pricingAnchor: "medical-weight-loss", groups: [] },
+};
+
+/** Options for the contact form's treatment-of-interest field. */
+export const TREATMENT_INTEREST_OPTIONS = [
+  ...new Set(Object.values(SERVICE_PRICING).map((entry) => entry.service)),
+  "Memberships",
+  "Other / Not sure",
+];

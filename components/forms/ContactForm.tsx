@@ -1,7 +1,9 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
-import { ONLINE_BOOKING_URL } from "@/lib/constants";
+import { FormEvent, Suspense, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { ONLINE_BOOKING_URL, PHONE_DISPLAY } from "@/lib/constants";
+import { TREATMENT_INTEREST_OPTIONS } from "@/lib/data/pricing";
 import { trackLead } from "@/lib/analytics";
 import { submitLead } from "@/lib/submitLead";
 
@@ -35,6 +37,27 @@ function validate(name: string, email: string, phone: string): Errors {
   return errors;
 }
 
+function ServiceSelect({ defaultValue }: { defaultValue: string }) {
+  return (
+    <select name="service" aria-label="Service or treatment of interest" defaultValue={defaultValue}>
+      <option value="">Service or treatment of interest</option>
+      {TREATMENT_INTEREST_OPTIONS.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+// Service pages link here with ?service=<treatment>, so the lead arrives tagged with the
+// page the patient asked from. Only listed treatments are accepted.
+function ServiceSelectFromQuery() {
+  const requested = useSearchParams().get("service")?.toLowerCase() ?? "";
+  const match = TREATMENT_INTEREST_OPTIONS.find((option) => option.toLowerCase() === requested) ?? "";
+  return <ServiceSelect key={match} defaultValue={match} />;
+}
+
 export default function ContactForm({ variant }: { variant: "home" | "page" | "landing" }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,6 +80,8 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
       return;
     }
 
+    const service = new FormData(event.currentTarget).get("service");
+
     submitting.current = true;
     setStatus("submitting");
 
@@ -66,7 +91,8 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
         email,
         phone,
         message,
-        source: variant === "landing" ? "Landing Page Hero Form" : "Website Contact Form"
+        source: variant === "landing" ? "Landing Page Hero Form" : "Website Contact Form",
+        treatmentInterest: typeof service === "string" && service ? service : undefined
       });
 
       trackLead(response);
@@ -148,7 +174,7 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
           <span>Message</span>
           <textarea name="message" rows={4} value={message} onChange={(event) => setMessage(event.target.value)} />
         </label>
-        {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at (941) 306-3696.</p> : null}
+        {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at {PHONE_DISPLAY}.</p> : null}
         <div className="form-button-row">
           {submitButton}
           {bookNowButton}
@@ -181,15 +207,18 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
       {errors.email ? <p className="form-field-error">{errors.email}</p> : null}
       <input type="tel" name="phone" placeholder="Phone" aria-label="Phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
       {errors.phone ? <p className="form-field-error">{errors.phone}</p> : null}
+      <Suspense fallback={<ServiceSelect defaultValue="" />}>
+        <ServiceSelectFromQuery />
+      </Suspense>
       <textarea
         name="message"
-        placeholder="Message"
-        aria-label="Message"
+        placeholder="Additional questions or comments"
+        aria-label="Additional questions or comments"
         rows={9}
         value={message}
         onChange={(event) => setMessage(event.target.value)}
       />
-      {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at (941) 306-3696.</p> : null}
+      {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at {PHONE_DISPLAY}.</p> : null}
       <div className="form-button-row">
         {submitButton}
         {bookNowButton}

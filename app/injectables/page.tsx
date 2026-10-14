@@ -1,9 +1,16 @@
-export const metadata = { title: "Injectables", alternates: { canonical: "/injectables" }, openGraph: openGraphFor("/injectables") };
+export const metadata = {
+  title: "Injectables in Sarasota, FL",
+  description:
+    "Daxxify, dermal fillers, and Sculptra at Harmony Med Spa in Sarasota's Gulf Gate area. View injectable pricing, including Daxxify at $12 per unit, and book online.",
+  alternates: { canonical: "/injectables" },
+  openGraph: openGraphFor("/injectables"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -60,6 +67,8 @@ export default function InjectablesPage() {
           ))}
         </div>
       </section>
+
+      <ServicePricing path="/injectables" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

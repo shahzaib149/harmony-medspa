@@ -144,7 +144,7 @@ export default function MembershipForm({ kind }: { kind: FormKind }) {
       {status === "error" ? <span className="membership-form-error [justify-self:start] mt-[6px] mb-0 mx-0 text-[#c0392b] text-left text-[length:13px] font-normal">Something went wrong. Please try again or call us.</span> : null}
 
       <button type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "sending..." : "submit"}
+        {status === "submitting" ? "Sending..." : "Send Request"}
       </button>
     </form>
   );

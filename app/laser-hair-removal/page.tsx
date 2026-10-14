@@ -1,10 +1,17 @@
-export const metadata = { title: "Laser Hair Removal", alternates: { canonical: "/laser-hair-removal" }, openGraph: openGraphFor("/laser-hair-removal") };
+export const metadata = {
+  title: "Laser Hair Removal in Sarasota, FL",
+  description:
+    "Laser hair removal at Harmony Med Spa in Sarasota's Gulf Gate area, planned around your treatment areas. Request personalized pricing or book online.",
+  alternates: { canonical: "/laser-hair-removal" },
+  openGraph: openGraphFor("/laser-hair-removal"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -98,7 +105,7 @@ export default function LaserHairRemovalPage() {
           </section>
         </article>
 
-        <aside className="grid [align-content:start] gap-[35px] pt-[16px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[720px]:grid-cols-[1fr] max-[720px]:gap-[22px] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Laser hair removal links">
+        <aside className="service-side-sticky grid [align-content:start] gap-[35px] pt-[16px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[720px]:grid-cols-[1fr] max-[720px]:gap-[22px] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Laser hair removal links">
           <label className="about-search flex items-center h-[70px] mb-0 py-0 pr-[24px] pl-[30px] [border:1px_solid_#c8d2dd] rounded-[8px] text-[var(--gold)] bg-[#fff] [&_input]:min-w-[0] [&_input]:flex-1 [&_input]:border-0 [&_input]:[outline:0] [&_input]:text-[#344356] [&_input]:bg-[transparent] [&_input]:[font:inherit] [&_input::placeholder]:text-[#425263] [&_input::placeholder]:opacity-[0.9] max-[1050px]:col-[1_/_-1]">
             <span className="sr-only">Search keyword</span>
             <input type="search" placeholder="Enter search keyword" />
@@ -118,6 +125,8 @@ export default function LaserHairRemovalPage() {
           </Link>
         </aside>
       </section>
+
+      <ServicePricing path="/laser-hair-removal" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

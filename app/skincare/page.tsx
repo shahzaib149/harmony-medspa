@@ -1,9 +1,16 @@
-export const metadata = { title: "Skincare", alternates: { canonical: "/skincare" }, openGraph: openGraphFor("/skincare") };
+export const metadata = {
+  title: "Skincare Treatments in Sarasota, FL",
+  description:
+    "Facials, Glo2Facial, chemical peels, RF microneedling, and CO2 laser treatments at Harmony Med Spa in Sarasota, FL. View skin treatment pricing.",
+  alternates: { canonical: "/skincare" },
+  openGraph: openGraphFor("/skincare"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -69,6 +76,8 @@ export default function SkincarePage() {
           ))}
         </div>
       </section>
+
+      <ServicePricing path="/skincare" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

@@ -15,6 +15,7 @@ import {
   SITE_NAME,
   YELP_URL,
 } from "@/lib/constants";
+import { IV_INFUSIONS, PRICING_CATEGORIES, PRICING_PATH, type PriceItem } from "@/lib/data/pricing";
 import type { IndexableRoute } from "@/lib/seo/routes";
 import { INDEXABLE_ROUTES } from "@/lib/seo/routes";
 import { siteUrl } from "@/lib/site-url";
@@ -98,7 +99,43 @@ export function buildPersonSchema(provider: ProviderInput): JsonLdObject {
   };
 }
 
-export function buildServiceSchema({ name, url, description }: { name: string; url: string; description?: string }): JsonLdObject {
+/**
+ * Offers for prices the page shows as text. Figures still awaiting the clinic's sign-off
+ * (needsConfirmation) are left out, and so are prices that are not a plain amount.
+ */
+function buildOffers(items: readonly PriceItem[], url: string) {
+  return items.flatMap((item) => {
+    const amount = item.price.match(/^\$([\d,]+(?:\.\d{2})?)/);
+    if (item.needsConfirmation || !amount) return [];
+    const price = Number(amount[1].replaceAll(",", "")).toFixed(2);
+    const unitText = /per unit/i.test(item.price) ? "unit" : /month/i.test(item.price) ? "month" : undefined;
+    return [
+      {
+        "@type": "Offer",
+        name: item.name,
+        url: absoluteUrl(url),
+        priceCurrency: "USD",
+        price,
+        ...(unitText ? { priceSpecification: { "@type": "UnitPriceSpecification", price, priceCurrency: "USD", unitText } } : {}),
+        seller: clinicRef(),
+      },
+    ];
+  });
+}
+
+export function buildServiceSchema({
+  name,
+  url,
+  description,
+  prices,
+}: {
+  name: string;
+  url: string;
+  description?: string;
+  /** Only prices rendered visibly on the same page. */
+  prices?: readonly PriceItem[];
+}): JsonLdObject {
+  const offers = prices ? buildOffers(prices, url) : [];
   return {
     "@context": CONTEXT,
     "@type": "Service",
@@ -108,6 +145,30 @@ export function buildServiceSchema({ name, url, description }: { name: string; u
     ...(description ? { description } : {}),
     provider: clinicRef(),
     areaServed: AREA_SERVED.map((area) => ({ "@type": "AdministrativeArea", name: area })),
+    ...(offers.length ? { offers } : {}),
+  };
+}
+
+/** OfferCatalog of every published price on /pricing, grouped like the page. */
+export function buildPriceCatalogSchema(): JsonLdObject {
+  const ivOffers = buildOffers(
+    IV_INFUSIONS.map((infusion) => ({ name: infusion.name, price: infusion.price })),
+    `${PRICING_PATH}#iv-therapy`,
+  );
+  return {
+    "@context": CONTEXT,
+    "@type": "OfferCatalog",
+    name: `${SITE_NAME} Treatment Pricing`,
+    url: absoluteUrl(PRICING_PATH),
+    provider: clinicRef(),
+    itemListElement: [
+      ...PRICING_CATEGORIES.map((category) => ({
+        "@type": "OfferCatalog",
+        name: category.title,
+        itemListElement: buildOffers(category.items, `${PRICING_PATH}#${category.id}`),
+      })),
+      { "@type": "OfferCatalog", name: "Clinical IV Therapy", itemListElement: ivOffers },
+    ].filter((group) => group.itemListElement.length),
   };
 }
 

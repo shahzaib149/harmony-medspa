@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/tirzepatide" },
   openGraph: openGraphFor("/tirzepatide"),
   description:
-    "Tirzepatide is a dual GIP/GLP-1 medication offered as part of the medical weight loss program at Harmony Med Spa in Sarasota, Florida.",
+    "Tirzepatide weight loss at Harmony Med Spa in Sarasota, FL: $612 for one month or $1,500 for three months, after an initial medical exam. View pricing and book.",
 };
 
 const benefits = [
@@ -168,7 +169,7 @@ export default function TirzepatidePage() {
           </section>
         </article>
 
-        <aside className="grid [align-content:start] gap-[35px] pt-[16px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[720px]:grid-cols-[1fr] max-[720px]:gap-[22px] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Tirzepatide links">
+        <aside className="service-side-sticky grid [align-content:start] gap-[35px] pt-[16px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[720px]:grid-cols-[1fr] max-[720px]:gap-[22px] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Tirzepatide links">
           <label className="about-search flex items-center h-[70px] mb-0 py-0 pr-[24px] pl-[30px] [border:1px_solid_#c8d2dd] rounded-[8px] text-[var(--gold)] bg-[#fff] [&_input]:min-w-[0] [&_input]:flex-1 [&_input]:border-0 [&_input]:[outline:0] [&_input]:text-[#344356] [&_input]:bg-[transparent] [&_input]:[font:inherit] [&_input::placeholder]:text-[#425263] [&_input::placeholder]:opacity-[0.9] max-[1050px]:col-[1_/_-1]">
             <span className="sr-only">Search keyword</span>
             <input type="search" placeholder="Enter search keyword" />
@@ -212,6 +213,8 @@ export default function TirzepatidePage() {
           </Link>
         </aside>
       </section>
+
+      <ServicePricing path="/tirzepatide" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>
