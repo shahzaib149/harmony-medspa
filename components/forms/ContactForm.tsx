@@ -2,10 +2,12 @@
 
 import { FormEvent, Suspense, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { ArrowUpRight, Check } from "lucide-react";
 import { ONLINE_BOOKING_URL, PHONE_DISPLAY } from "@/lib/constants";
 import { TREATMENT_INTEREST_OPTIONS } from "@/lib/data/pricing";
 import { trackLead } from "@/lib/analytics";
 import { submitLead } from "@/lib/submitLead";
+import homeStyles from "./HomeContactForm.module.css";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -116,32 +118,39 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
     }
   }
 
-  const formClassName = variant === "home" ? "contact-form" : variant === "landing" ? "landing-contact-form" : "contact-page-form";
+  const formClassName = variant === "landing" ? "landing-contact-form" : "contact-page-form";
+
+  if (status === "success" && variant === "home") {
+    return (
+      <div className={homeStyles.success} role="status">
+        <Check aria-hidden="true" />
+        <h3 className={homeStyles.heading}>Thank you!</h3>
+        <p>We&apos;ll be in touch with you shortly. To pick a time now, you can also book online.</p>
+        <a className={homeStyles.book} href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+          Book Online
+          <ArrowUpRight size={17} aria-hidden="true" />
+        </a>
+      </div>
+    );
+  }
 
   if (status === "success" && variant !== "landing") {
     return (
       <div className={formClassName}>
-        {variant === "home" ? <h2>Let&apos;s Chat!</h2> : null}
         <p className="form-success-message">Thank you! We&apos;ll be in touch with you shortly.</p>
       </div>
     );
   }
 
   const bookNowButton = (
-    <a className={variant === "home" ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer" : "form-book-now-button"} href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+    <a className="form-book-now-button" href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
       Book Now
     </a>
   );
 
   const submitButton = (
     <button
-      className={
-        variant === "home"
-          ? "line-button inline-flex justify-center min-w-[116px] py-[13px] px-[18px] [border-top:1px_solid_var(--gold)] [border-bottom:1px_solid_var(--gold)] text-[inherit] text-[length:16px] font-normal bg-[transparent] [border-left:0] [border-right:0] cursor-pointer"
-          : variant === "landing"
-          ? "landing-form-submit-btn"
-          : undefined
-      }
+      className={variant === "landing" ? "landing-form-submit-btn" : undefined}
       type="submit"
       disabled={status === "submitting"}
     >
@@ -151,33 +160,77 @@ export default function ContactForm({ variant }: { variant: "home" | "page" | "l
 
   if (variant === "home") {
     return (
-      <form className={formClassName} onSubmit={handleSubmit} noValidate>
-        <h2>Let&apos;s Chat!</h2>
-        <label>
-          <span>Name</span>
-          <input type="text" name="name" value={name} onChange={(event) => setName(event.target.value)} />
+      <form className={homeStyles.form} onSubmit={handleSubmit} noValidate>
+        <h3 className={homeStyles.heading}>Send us a message</h3>
+        <p className={homeStyles.intro}>Fields marked * are required.</p>
+        <label className={homeStyles.field}>
+          <span>Full name *</span>
+          <input
+            type="text"
+            name="name"
+            autoComplete="name"
+            placeholder="Your name"
+            aria-invalid={errors.name ? true : undefined}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
         </label>
-        {errors.name ? <p className="form-field-error">{errors.name}</p> : null}
-        <div className="split grid grid-cols-[1fr_1fr] gap-[34px] max-[720px]:grid-cols-[1fr] max-[720px]:gap-[0]">
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-          </label>
-          <label>
-            <span>Phone</span>
-            <input type="tel" name="phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
-          </label>
+        {errors.name ? <p className={homeStyles.error}>{errors.name}</p> : null}
+        <div className={homeStyles.row}>
+          <div className={homeStyles.field}>
+            <label className={homeStyles.field}>
+              <span>Email *</span>
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                aria-invalid={errors.email ? true : undefined}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </label>
+            {errors.email ? <p className={homeStyles.error}>{errors.email}</p> : null}
+          </div>
+          <div className={homeStyles.field}>
+            <label className={homeStyles.field}>
+              <span>Phone *</span>
+              <input
+                type="tel"
+                name="phone"
+                autoComplete="tel"
+                placeholder="(941) 000-0000"
+                aria-invalid={errors.phone ? true : undefined}
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+              />
+            </label>
+            {errors.phone ? <p className={homeStyles.error}>{errors.phone}</p> : null}
+          </div>
         </div>
-        {errors.email ? <p className="form-field-error">{errors.email}</p> : null}
-        {errors.phone ? <p className="form-field-error">{errors.phone}</p> : null}
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows={4} value={message} onChange={(event) => setMessage(event.target.value)} />
+        <label className={homeStyles.field}>
+          <span>Treatment of interest</span>
+          <ServiceSelect defaultValue="" />
         </label>
-        {status === "error" ? <p className="form-error-message">Something went wrong. Please try again or call us at {PHONE_DISPLAY}.</p> : null}
-        <div className="form-button-row">
-          {submitButton}
-          {bookNowButton}
+        <label className={homeStyles.field}>
+          <span>Message</span>
+          <textarea
+            name="message"
+            rows={4}
+            placeholder="Questions, goals or a good time to reach you"
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
+          />
+        </label>
+        {status === "error" ? <p className={homeStyles.error}>Something went wrong. Please try again or call us at {PHONE_DISPLAY}.</p> : null}
+        <div className={homeStyles.actions}>
+          <button className={homeStyles.submit} type="submit" disabled={status === "submitting"}>
+            {status === "submitting" ? "Sending..." : "Send Message"}
+          </button>
+          <a className={homeStyles.book} href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer">
+            Book Online
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
         </div>
       </form>
     );

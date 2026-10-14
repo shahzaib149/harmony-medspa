@@ -1,0 +1,210 @@
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.heading {
+  margin: 0;
+  color: #1d1712;
+  font-family: var(--font-home-display), Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.intro {
+  margin: -8px 0 6px;
+  color: #6f655a;
+  font-size: 14px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field > span {
+  color: #3d342b;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 54px;
+  padding: 14px 18px;
+  border: 1px solid #e3d7c3;
+  border-radius: 14px;
+  background: #fffdf9;
+  color: #1d1712;
+  font: inherit;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.field select {
+  appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239c7620' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-position: right 18px center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #a3988a;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: #cdb68a;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #c99b13;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(201, 155, 19, 0.16);
+}
+
+.field input[aria-invalid="true"] {
+  border-color: #c0483b;
+}
+
+.error {
+  margin: -8px 0 0;
+  color: #b23b2e;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.submit,
+.book {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 240ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.submit {
+  flex: 1 1 200px;
+  border: 0;
+  background: linear-gradient(135deg, #e6c470 0%, #c99b13 55%, #b8860b 100%);
+  box-shadow: 0 12px 26px rgba(201, 155, 19, 0.3);
+  color: #1d1712;
+}
+
+.submit:hover:not(:disabled) {
+  box-shadow: 0 16px 34px rgba(201, 155, 19, 0.42);
+  transform: translateY(-2px);
+}
+
+.submit:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.book {
+  border: 1px solid #cdb68a;
+  background: transparent;
+  color: #1d1712;
+}
+
+.book:hover {
+  border-color: #c99b13;
+  background: #f4ead6;
+  transform: translateY(-2px);
+}
+
+.submit:focus-visible,
+.book:focus-visible {
+  outline: 2px solid #c99b13;
+  outline-offset: 3px;
+}
+
+.note {
+  margin: 0;
+  color: #8a7f71;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.success {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.success svg {
+  width: 56px;
+  height: 56px;
+  padding: 14px;
+  border-radius: 50%;
+  background: #f4ead6;
+  color: #9c7620;
+}
+
+.success p {
+  margin: 0;
+  color: #514a40;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .actions > * {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit,
+  .book {
+    transition: none;
+  }
+}

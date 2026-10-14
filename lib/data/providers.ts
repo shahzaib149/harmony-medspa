@@ -38,7 +38,7 @@ export const providers = [
   {
     file: "Dr._Andarcia_square.jpg",
     name: "Dr. Victoria Andarcia, MD",
-    title: "",
+    title: "Board-Certified Internal Medicine Physician · Integrative & Hormonal Health",
     bio: "Dr. Victoria Andarcia, MD is a board-certified Internal Medicine physician with advanced training in integrative and functional medicine. She completed her Internal Medicine residency at Florida.",
     fullBio: [
       "Dr. Victoria Andarcia, MD is a board-certified Internal Medicine physician with advanced training in integrative and functional medicine.",
