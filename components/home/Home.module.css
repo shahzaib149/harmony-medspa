@@ -196,14 +196,13 @@
 .btnDark:focus-visible,
 .serviceCard:focus-visible,
 .priceCard:focus-visible,
-.teamCard:focus-visible,
-.heroDots button:focus-visible {
+.teamCard:focus-visible {
   outline: 2px solid var(--h-gold);
   outline-offset: 3px;
 }
 
 /* ---------- Hero ----------
-   Minimal full-screen slideshow of black-and-white portraits. "Harmony Med Spa" types in
+   Minimal full-screen slideshow of portrait photography. "Harmony Med Spa" types in
    once, then the line under it keeps typing, erasing and retyping its last words. */
 
 .hero {
@@ -230,7 +229,7 @@
 
 .heroSlide img {
   object-fit: cover;
-  filter: grayscale(0.35) brightness(1.12) saturate(1.08);
+  filter: brightness(1.04) contrast(1.04) saturate(0.92);
   transform: scale(1.1);
   transition: transform 8000ms linear;
 }
@@ -310,39 +309,6 @@
   gap: 14px;
   margin-top: 8px;
   animation: rise 900ms var(--h-ease) 900ms both;
-}
-
-.heroDots {
-  position: absolute;
-  right: 34px;
-  bottom: 30px;
-  z-index: 1;
-  display: flex;
-  gap: 8px;
-}
-
-.heroDots button {
-  position: relative;
-  width: 36px;
-  height: 3px;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.35);
-  cursor: pointer;
-}
-
-.heroDots button span {
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
-.heroDots button[aria-current="true"] span {
-  animation: progress var(--slide-ms, 6000ms) linear forwards;
 }
 
 /* ---------- About ---------- */
@@ -1257,12 +1223,6 @@
   }
 }
 
-@keyframes progress {
-  to {
-    transform: scaleX(1);
-  }
-}
-
 @keyframes blink {
   50% {
     opacity: 0;
@@ -1297,12 +1257,6 @@
   /* Phones: the header sits above the hero in the page flow. */
   .hero {
     min-height: max(520px, calc(100svh - var(--site-header-h, 72px)));
-  }
-
-  .heroDots {
-    right: 50%;
-    bottom: 22px;
-    transform: translateX(50%);
   }
 
   .aboutGrid,
@@ -1449,8 +1403,7 @@
   .heroLine,
   .heroActions,
   .typed::after,
-  .aboutBadge,
-  .heroDots button span {
+  .aboutBadge {
     animation: none;
   }
 

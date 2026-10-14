@@ -2,15 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import TypewriterText from "@/components/ui/TypewriterText";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import styles from "./Home.module.css";
 
-// Real portrait photography (not generated), shown as a slow crossfading slideshow.
-const slides = ["/images/carousel/heroimage_1.jpg", "/images/carousel/heroimage_2.jpg", "/images/landing/1-v1.jpg"];
-const SLIDE_MS = 6000;
+// Real portrait photography (not generated), alternating black-and-white and colour. The
+// photo changes each time the typed phrase changes. `position` keeps each face in frame.
+const slides = [
+  { src: "/images/landing/1-v1.jpg", position: "40% 18%" },
+  { src: "/images/about-us/img_1.png", position: "38% 60%" },
+  { src: "/images/landing/1.jpg", position: "42% 22%" },
+  { src: "/images/about-us/Img_2.png", position: "58% 100%" },
+];
 
 // The end of the line under the title types, erases and retypes through these.
 const phrases = [
@@ -28,8 +33,11 @@ const ERASE_MS = 35;
 const HOLD_MS = 1900;
 const GAP_MS = 350;
 
-/** Types a phrase letter by letter, holds it, erases it, then moves on to the next one. */
-function RotatingPhrase() {
+/**
+ * Types a phrase letter by letter, holds it, erases it, then moves on to the next one,
+ * calling `onNext` as each new phrase starts.
+ */
+function RotatingPhrase({ onNext }: { onNext: () => void }) {
   const [index, setIndex] = useState(0);
   const [shown, setShown] = useState(phrases[0].length);
   const [erasing, setErasing] = useState(false);
@@ -42,6 +50,7 @@ function RotatingPhrase() {
         const nextIndex = (index + 1) % phrases.length;
         setIndex(nextIndex);
         setShown(phrases[nextIndex].length);
+        onNext();
       }, HOLD_MS + 800);
       return () => window.clearTimeout(timer);
     }
@@ -62,30 +71,26 @@ function RotatingPhrase() {
       next = () => {
         setErasing(false);
         setIndex((current) => (current + 1) % phrases.length);
+        onNext();
       };
     }
     const timer = window.setTimeout(next, delay);
     return () => window.clearTimeout(timer);
-  }, [index, shown, erasing]);
+  }, [index, shown, erasing, onNext]);
 
   return <span className={styles.typed}>{phrases[index].slice(0, shown)}</span>;
 }
 
 export default function HomeHero() {
   const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setTimeout(() => setActive((current) => (current + 1) % slides.length), SLIDE_MS);
-    return () => window.clearTimeout(timer);
-  }, [active]);
+  const nextSlide = useCallback(() => setActive((current) => (current + 1) % slides.length), []);
 
   return (
     <section id="home" className={styles.hero} aria-labelledby="home-title">
       <div className={styles.heroSlides} aria-hidden="true">
-        {slides.map((src, index) => (
-          <figure key={src} className={`${styles.heroSlide}${index === active ? ` ${styles.isActive}` : ""}`}>
-            <Image src={src} alt="" fill preload={index === 0} sizes="100vw" />
+        {slides.map((slide, index) => (
+          <figure key={slide.src} className={`${styles.heroSlide}${index === active ? ` ${styles.isActive}` : ""}`}>
+            <Image src={slide.src} alt="" fill preload={index === 0} sizes="100vw" style={{ objectPosition: slide.position }} />
           </figure>
         ))}
       </div>
@@ -97,7 +102,7 @@ export default function HomeHero() {
         </h1>
         <p className={styles.heroLine}>
           <span aria-hidden="true">
-            Sarasota&apos;s med spa for <RotatingPhrase />
+            Sarasota&apos;s med spa for <RotatingPhrase onNext={nextSlide} />
           </span>
           <span className="sr-only">
             Sarasota&apos;s med spa for natural-looking results, injectables, skin treatments, hormone therapy, medical weight loss and IV
@@ -113,21 +118,6 @@ export default function HomeHero() {
             Explore Treatments
           </Link>
         </div>
-      </div>
-
-      <div className={styles.heroDots} role="group" aria-label="Choose a photo">
-        {slides.map((src, index) => (
-          <button
-            key={src}
-            type="button"
-            aria-label={`Show photo ${index + 1}`}
-            aria-current={index === active}
-            onClick={() => setActive(index)}
-            style={{ "--slide-ms": `${SLIDE_MS}ms` } as React.CSSProperties}
-          >
-            <span key={index === active ? `on-${active}` : "off"} />
-          </button>
-        ))}
       </div>
     </section>
   );
