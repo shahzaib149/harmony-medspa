@@ -261,7 +261,7 @@ export default function MembershipPage() {
         </div>
       </section>
 
-      <SiteFooter variant="membership-footer" social="membership" />
+      <SiteFooter />
     </main>
   );
 }

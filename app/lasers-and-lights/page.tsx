@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Laser Treatments in Sarasota, FL",
   description:
-    "Fractional CO2 laser resurfacing and laser hair removal at Harmony Med Spa in Sarasota, FL. View laser treatment pricing, request a quote, or book online.",
+    "Fractional CO2 laser resurfacing, IPL photofacials and laser hair removal at Harmony Med Spa in Sarasota, FL. View laser treatment pricing, request a quote, or book online.",
   alternates: { canonical: "/lasers-and-lights" },
   openGraph: openGraphFor("/lasers-and-lights"),
 };
@@ -27,6 +27,11 @@ const treatments = [
     title: "Laser Hair Removal",
     image: "/images/services/lasers-and-lights/Laser_Hair_Removal.jpg",
     href: "/laser-hair-removal"
+  },
+  {
+    title: "IPL Photofacial",
+    image: "/images/services/catalog/ipl-photofacial.jpg",
+    href: "/ipl-photofacial"
   }
 ];
 
@@ -34,7 +39,7 @@ export default function LasersAndLightsPage() {
   return (
     <main className="service-detail-page min-h-[100vh] bg-[#fff]">
       <RouteSchema path="/lasers-and-lights" />
-      <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
+      <SiteHeader className="team-header" />
 
       <section className="service-detail-hero has-media grid [place-items:center] min-h-[270px] [background:linear-gradient(rgba(0,0,0,0.58),rgba(0,0,0,0.58)),radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.08),transparent_20%),radial-gradient(circle_at_72%_42%,rgba(255,255,255,0.07),transparent_24%),linear-gradient(135deg,#2a2a2a,#111_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,3.4vw,56px)] [&_h1]:leading-[1] [&_h1]:font-thin">
         <HeroMedia path="/lasers-and-lights" />
@@ -51,7 +56,7 @@ export default function LasersAndLightsPage() {
           </p>
         </div>
 
-        <div className="treatment-card-grid grid grid-cols-[repeat(auto-fit,244px)] max-w-[504px] mx-auto justify-center gap-[16px] mt-[48px] max-[720px]:grid-cols-[minmax(244px,320px)] max-[720px]:gap-[22px]">
+        <div className="treatment-card-grid grid grid-cols-[repeat(auto-fit,244px)] max-w-[772px] mx-auto justify-center gap-[16px] mt-[48px] max-[720px]:grid-cols-[minmax(244px,320px)] max-[720px]:gap-[22px]">
           {treatments.map((treatment) => (
             <Link className="treatment-card relative grid [place-items:end_center] w-[244px] h-[244px] overflow-hidden rounded-[14px] text-[var(--gold)] text-center shadow-[0_18px_42px_rgba(0,0,0,0.16)] [&_img]:object-cover [&_img]:[transition:transform_420ms_ease] after:content-[''] after:absolute after:inset-0 after:[background:linear-gradient(transparent_42%,rgba(0,0,0,0.76))] [&_span]:relative [&_span]:z-[1] [&_span]:max-w-[90%] [&_span]:pt-0 [&_span]:pb-[22px] [&_span]:px-[10px] [&_span]:text-[length:22px] [&_span]:leading-[1.05] [&_span]:font-thin max-[720px]:w-full" href={treatment.href ?? "/#contact"} key={treatment.title}>
               <Image src={treatment.image} alt="" fill sizes="(max-width: 720px) 82vw, 244px" />
@@ -65,7 +70,7 @@ export default function LasersAndLightsPage() {
 
       <ServicePricing path="/lasers-and-lights" />
 
-      <SiteFooter address="linked-name" copyright="plain" />
+      <SiteFooter />
     </main>
   );
 }

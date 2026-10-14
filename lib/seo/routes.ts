@@ -54,6 +54,7 @@ export const INDEXABLE_ROUTES: IndexableRoute[] = [
   { path: "/rf-microneedling", name: "RF Microneedling", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment" },
   { path: "/lasers-and-lights", name: "Lasers and Lights", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "category" },
   { path: "/laser-hair-removal", name: "Laser Hair Removal", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment" },
+  { path: "/ipl-photofacial", name: "IPL Photofacial", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment" },
   { path: "/fractional-co2-laser-treatments", name: "Fractional CO2 Laser Treatments", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment" },
   { path: "/hair-restoration", name: "Hair Restoration", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment" },
   { path: "/chemical-peels", name: "Chemical Peels", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment" },

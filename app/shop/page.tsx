@@ -60,7 +60,7 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <SiteFooter address="linked-name" copyright="plain" />
+      <SiteFooter />
     </main>
   );
 }

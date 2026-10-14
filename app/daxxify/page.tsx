@@ -28,7 +28,7 @@ export default function DaxxifyPage() {
   return (
     <main className="daxxify-page min-h-[100vh] bg-[#fff] text-[#4b5663]">
       <RouteSchema path="/daxxify" />
-      <SiteHeader className="team-header" servicesHref="/#services" contactHref="/#contact" />
+      <SiteHeader className="team-header" />
 
       <section className="service-detail-hero has-media grid [place-items:center] min-h-[320px] [background:linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),radial-gradient(circle_at_28%_32%,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_72%_46%,rgba(255,255,255,0.07),transparent_26%),repeating-linear-gradient(18deg,rgba(255,255,255,0.022)_0_2px,transparent_2px_8px),linear-gradient(135deg,#292929,#111_54%,#262626)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(44px,4vw,60px)] [&_h1]:leading-[1.05] [&_h1]:font-thin max-[720px]:min-h-[230px] max-[720px]:px-[20px] max-[720px]:text-center">
         <HeroMedia path="/daxxify" />
@@ -119,6 +119,9 @@ export default function DaxxifyPage() {
             <p>
               These are not all possible side effects. For more information, talk with your provider. You may report side effects to the FDA at 1-800-FDA-1088 or visit <a className="text-[var(--gold)]" href="https://www.fda.gov/medwatch" target="_blank" rel="noopener noreferrer">www.fda.gov/medwatch</a>.
             </p>
+            <p>
+              Read the full <a className="text-[var(--gold)]" href="https://www.daxxify.com/#isi" target="_blank" rel="noopener noreferrer">DAXXIFY(TM) Important Safety Information, including Boxed Warning, and Medication Guide</a>.
+            </p>
             <h3 className="mt-[46px] mb-[12px] text-[#4b5663] text-[length:20px] leading-[1.25] font-bold">Approved Use</h3>
             <p>
               DAXXIFY(TM) is a prescription medicine injected into muscles and used in adults to temporarily improve the look of moderate to severe frown lines between the eyebrows.
@@ -151,7 +154,7 @@ export default function DaxxifyPage() {
 
       <RevaRewards variant="daxxify" />
 
-      <SiteFooter address="linked-name" copyright="plain" />
+      <SiteFooter />
     </main>
   );
 }

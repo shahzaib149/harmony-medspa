@@ -44,7 +44,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // data-scroll-behavior lets Next jump straight to the top on page changes instead of
+    // smooth-scrolling up from the old position (which also played the scroll animations).
+    <html lang="en" data-scroll-behavior="smooth">
       <head><GoogleAnalytics /></head>
       <body>
         <JsonLd data={[buildMedicalClinicSchema(), buildWebSiteSchema()]} />

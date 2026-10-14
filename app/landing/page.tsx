@@ -96,7 +96,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <SiteFooter address="plain" social="membership" />
+      <SiteFooter />
     </main>
   );
 }

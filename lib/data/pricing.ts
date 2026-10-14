@@ -280,9 +280,10 @@ export const PRICING_GENERAL_DISCLAIMER =
   "Pricing is subject to change. Final treatment costs depend on individual needs, provider recommendations, and treatment eligibility. Consultation may be required.";
 
 /**
- * Menu graphics supplied by the clinic. A graphic renders only once its file exists under
- * public/, so drop the approved files at these exact paths to publish them. The IV menu
- * must be the revised version with the updated Radiance IV ingredients.
+ * Menu graphics. A graphic renders only once its file exists under public/. The current files
+ * are rendered from this module by scripts/render-price-menus.mjs (rerun it after a price
+ * change) and stand in for the clinic's own designed menus; when the clinic supplies those,
+ * save them over these exact paths. The IV menu must show the revised Radiance IV ingredients.
  */
 export type MenuImage = { src: string; alt: string; width: number; height: number };
 
@@ -401,6 +402,7 @@ export const SERVICE_PRICING: Record<string, ServicePricing> = {
     groups: [pick("fractional-co2-laser")],
   },
   "/laser-hair-removal": { service: "Laser Hair Removal", groups: [] },
+  "/ipl-photofacial": { service: "IPL Photofacial", groups: [] },
   "/peptide-therapy": { service: "Peptide Therapy", groups: [] },
   "/hair-restoration": { service: "Hair Restoration", groups: [] },
   "/body": { service: "Body Treatments", groups: [] },

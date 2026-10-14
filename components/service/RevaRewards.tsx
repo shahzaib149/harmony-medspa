@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 // REVA Rewards (Revance Rewards) — an ongoing manufacturer loyalty program, shown on
@@ -8,22 +9,30 @@ import type { ReactNode } from "react";
 // Signup buttons link straight to REVA's registration/wallet so a patient lands on the
 // enrollment page, not a marketing page. This is a separate Revance program, not a
 // Harmony membership, so copy never says whether it combines with Harmony offers.
+// The logo is Revance's own REVA Rewards mark, taken from the REVA patient portal.
+//
+// Kept compact so it supports the treatment page rather than competing with it: the
+// $25 offer and three steps are always visible, the bonus rules sit in a closed
+// "More ways to earn" panel (still in the HTML for search engines).
 
 const REVA_SIGNUP_URL = "https://app.revarewards.com/welcome";
 const REVA_SITE_URL = "https://www.revarewards.com/";
 const REVA_TERMS_URL = "https://www.revarewards.com/terms-and-conditions";
+// Official product safety pages. Linked rather than copied so the wording stays current.
+const DAXXIFY_SAFETY_URL = "https://www.daxxify.com/#isi";
+const RHA_SAFETY_URL = "https://www.rhacollection.com/";
+const TEOXANE_PATIENT_SAFETY_URL = "https://eifu.teoxane.com/";
 
 type RevaVariant = "daxxify" | "dermal-fillers";
 
 type RevaCopy = {
-  treatLabel: string;
   headline: string;
-  subheadline: string;
-  body: ReactNode[];
-  tagline: string;
-  earning: string[];
+  intro: ReactNode;
+  treatStep: string;
+  earnStep: string;
   ctaNote: string;
   disclaimer: string;
+  safety: ReactNode;
 };
 
 // Separate program wording: say what REVA is, never whether it combines with Harmony offers.
@@ -39,55 +48,62 @@ const MORE_WAYS_TO_EARN = [
 
 const COPY: Record<RevaVariant, RevaCopy> = {
   daxxify: {
-    treatLabel: "an eligible Daxxify treatment",
     headline: "Get Rewarded for Your Daxxify Treatments!",
-    subheadline: "Join REVA Rewards and receive $25 in welcome savings!",
-    body: [
-      "At Harmony Med Spa, your beauty routine can be even more rewarding.",
+    intro: (
       <>
-        When you join REVA Rewards, you&apos;ll receive <strong>250 welcome points ($25 value)</strong> and can
-        continue earning another <strong>250 points ($25 value)</strong> with every qualifying Daxxify treatment.
-      </>,
-      "Plus, enjoy opportunities to earn additional points for returning to your favorite provider, maintaining your treatment routine, and celebrating your birthday!",
-    ],
-    tagline: "Treat. Earn. Save.",
-    earning: [
-      "250 welcome points ($25) just for joining",
-      "250 points ($25) per eligible Daxxify treatment, earned once every 90 days",
-    ],
+        Join REVA Rewards for <strong>250 welcome points ($25)</strong>, then earn another{" "}
+        <strong>250 points ($25)</strong> with every qualifying Daxxify treatment.
+      </>
+    ),
+    treatStep: "Get an eligible Daxxify treatment at Harmony Med Spa.",
+    earnStep: "Earn 250 points ($25) per treatment, once every 90 days.",
     ctaNote: "Eligibility and program terms apply.",
     disclaimer: `Daxxify rewards are available to patients 18 and older. ${SEPARATE_PROGRAM}`,
+    safety: (
+      <>
+        Read the full{" "}
+        <a href={DAXXIFY_SAFETY_URL} target="_blank" rel="noopener noreferrer" className="text-[#9a7530] underline underline-offset-2">
+          DAXXIFY&reg; Important Safety Information, including Boxed Warning, and Medication Guide
+        </a>
+        .
+      </>
+    ),
   },
   "dermal-fillers": {
-    treatLabel: "a qualifying RHA treatment",
     headline: "Love Your Look. Earn Rewards!",
-    subheadline: "Get $25 in welcome savings with REVA Rewards!",
-    body: [
-      "Beautiful, natural-looking results are even more rewarding at Harmony Med Spa.",
+    intro: (
       <>
-        Join REVA Rewards and receive <strong>250 welcome points ($25 value)</strong> toward an eligible treatment.
-        Then earn <strong>200 points ($20 value)</strong> for every qualifying Teoxane RHA&reg; filler syringe, up to
-        five syringes per eligible treatment.
-      </>,
-      "Keep earning additional rewards for staying consistent with your treatments, returning to your provider, and celebrating your birthday.",
-    ],
-    tagline: "Your favorite treatments deserve rewarding benefits!",
-    earning: [
-      "250 welcome points ($25) just for joining",
-      "200 points ($20) per qualifying RHA syringe (RHA 2, RHA 3, RHA 4 and RHA Redensity), up to five syringes per treatment, earned once every 30 days",
-    ],
+        Join REVA Rewards for <strong>250 welcome points ($25)</strong>, then earn <strong>200 points ($20)</strong> for
+        every qualifying Teoxane RHA&reg; syringe, up to five per treatment.
+      </>
+    ),
+    treatStep: "Get a qualifying RHA filler treatment (RHA 2, 3, 4 or Redensity).",
+    earnStep: "Earn 200 points ($20) per RHA syringe, once every 30 days.",
     ctaNote: "Available for qualifying RHA Collection treatments. Eligibility and program terms apply.",
     disclaimer: `Rewards apply only to qualifying Teoxane RHA® Collection fillers (RHA 2, RHA 3, RHA 4 and RHA Redensity), not every dermal filler brand. RHA treatment rewards are available to patients 22 and older. ${SEPARATE_PROGRAM}`,
+    safety: (
+      <>
+        Read the{" "}
+        <a href={RHA_SAFETY_URL} target="_blank" rel="noopener noreferrer" className="text-[#9a7530] underline underline-offset-2">
+          Teoxane RHA&reg; Collection Important Safety Information
+        </a>{" "}
+        and{" "}
+        <a href={TEOXANE_PATIENT_SAFETY_URL} target="_blank" rel="noopener noreferrer" className="text-[#9a7530] underline underline-offset-2">
+          patient safety information
+        </a>
+        .
+      </>
+    ),
   },
 };
 
 const iconProps = {
-  width: 26,
-  height: 26,
+  width: 20,
+  height: 20,
   viewBox: "0 0 24 24",
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 1.6,
+  strokeWidth: 1.7,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
   "aria-hidden": true,
@@ -123,14 +139,12 @@ function SaveIcon() {
   );
 }
 
-const STEP_ICONS = [<JoinIcon key="join" />, <TreatIcon key="treat" />, <SaveIcon key="save" />];
-
 export default function RevaRewards({ variant }: { variant: RevaVariant }) {
   const copy = COPY[variant];
   const steps = [
-    { title: "Join", text: "Sign up for REVA Rewards and receive 250 welcome points." },
-    { title: "Treat", text: `Receive ${copy.treatLabel} at Harmony Med Spa.` },
-    { title: "Earn & Save", text: "Collect points and redeem eligible rewards toward future treatments." },
+    { title: "Join", text: "Sign up and get 250 welcome points ($25).", icon: <JoinIcon /> },
+    { title: "Treat", text: copy.treatStep, icon: <TreatIcon /> },
+    { title: "Earn & Save", text: copy.earnStep, icon: <SaveIcon /> },
   ];
 
   return (
@@ -138,106 +152,96 @@ export default function RevaRewards({ variant }: { variant: RevaVariant }) {
       aria-labelledby="reva-rewards-heading"
       className="reva-rewards [background:linear-gradient(180deg,#f6efe2,#efe5d3)] text-[#2c2620]"
     >
-      <div className="w-[min(100%_-_48px,1180px)] my-0 mx-auto py-[84px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:py-[56px]">
-        <div className="grid grid-cols-[minmax(0,1fr)_380px] gap-[0] rounded-[24px] overflow-hidden [border:1px_solid_#e0d2b4] shadow-[0_26px_70px_rgba(60,45,20,0.12)] bg-[#fbf7ef] max-[900px]:grid-cols-[1fr]">
+      <div className="w-[min(100%_-_48px,1080px)] my-0 mx-auto py-[56px] max-[720px]:w-[min(100%_-_32px,640px)] max-[720px]:py-[40px]">
+        <div className="grid grid-cols-[320px_minmax(0,1fr)] rounded-[22px] overflow-hidden [border:1px_solid_#e0d2b4] shadow-[0_20px_50px_rgba(60,45,20,0.1)] bg-[#fbf7ef] max-[860px]:grid-cols-[1fr]">
+          {/* Signup panel */}
+          <div className="grid [align-content:center] justify-items-center gap-[12px] p-[32px_28px] text-center text-[#f6efe1] [background:radial-gradient(circle_at_30%_20%,#2a2319,transparent_60%),linear-gradient(160deg,#1b1711,#0d0b08)] max-[720px]:p-[28px]">
+            <Image
+              src="/images/brands/reva-rewards-logo.svg"
+              alt="REVA Rewards by Revance"
+              width={667}
+              height={250}
+              unoptimized
+              className="w-[132px] h-auto mb-[6px]"
+            />
+            <span className="text-[length:12px] font-semibold uppercase tracking-[0.2em] text-[#d9b977]">New member bonus</span>
+            <strong className="text-[length:clamp(24px,2.4vw,28px)] leading-[1.1] font-thin uppercase tracking-[0.04em]">
+              Get $25 in Welcome Rewards
+            </strong>
+            <a
+              href={REVA_SIGNUP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex justify-center items-center mt-[6px] py-[13px] px-[22px] rounded-full bg-[var(--gold)] text-[#16130f] text-[length:15px] font-semibold whitespace-nowrap no-underline [transition:transform_200ms_ease,background_200ms_ease] hover:bg-[#e4bd6c] hover:-translate-y-[1px]"
+            >
+              Join REVA Rewards – Get $25
+            </a>
+            <p className="m-0 text-[length:12px] leading-[1.5] text-[#a99f8e]">{copy.ctaNote}</p>
+          </div>
+
           {/* Program details */}
-          <div className="p-[48px] max-[720px]:p-[30px]">
-            <span className="inline-flex items-center gap-[10px] text-[length:13px] font-semibold uppercase tracking-[0.18em] text-[#9a7530]">
-              <span className="inline-block px-[11px] py-[5px] rounded-full bg-[#16130f] text-[#e9d4a7] tracking-[0.22em]">REVA</span>
-              Rewards · Loyalty Program
-            </span>
+          <div className="p-[34px_38px] max-[720px]:p-[26px_22px]">
+            <span className="text-[length:12px] font-semibold uppercase tracking-[0.18em] text-[#9a7530]">Revance loyalty program</span>
             <h2
               id="reva-rewards-heading"
-              className="mt-[18px] mb-[16px] text-[#16130f] text-[length:clamp(30px,3.4vw,44px)] leading-[1.06] font-thin"
+              className="mt-[10px] mb-[10px] text-[#16130f] text-[length:clamp(24px,2.4vw,32px)] leading-[1.12] font-thin"
             >
               {copy.headline}
             </h2>
-            <p className="mt-0 mb-[16px] text-[length:20px] leading-[1.4] font-semibold text-[#9a7530] max-[720px]:text-[length:18px]">{copy.subheadline}</p>
-            <div className="mb-[18px] max-w-[640px] text-[length:17px] leading-[1.55] text-[#514a40] max-[720px]:text-[length:16px]">
-              {copy.body.map((paragraph, index) => (
-                <p key={index} className="mt-0 mb-[12px]">{paragraph}</p>
-              ))}
-            </div>
-            <p className="mt-0 mb-[30px] text-[length:18px] italic text-[#16130f]">{copy.tagline}</p>
+            <p className="mt-0 mb-[22px] max-w-[600px] text-[length:16px] leading-[1.55] text-[#514a40]">{copy.intro}</p>
 
             {/* Three-step process */}
-            <ol className="grid grid-cols-3 gap-[18px] list-none p-0 m-0 mb-[36px] max-[560px]:grid-cols-1">
+            <ol className="grid grid-cols-3 gap-[12px] list-none p-0 m-0 max-[620px]:grid-cols-1 max-[620px]:gap-[8px]">
               {steps.map((step, index) => (
                 <li
                   key={step.title}
-                  className="grid gap-[10px] p-[20px] rounded-[16px] bg-[#f4ecdc] [border:1px_solid_#e6d9bd] text-center max-[560px]:text-left max-[560px]:grid-cols-[auto_1fr] max-[560px]:items-center"
+                  className="grid grid-cols-[auto_1fr] gap-[12px] items-start p-[14px] rounded-[14px] bg-[#f4ecdc] [border:1px_solid_#e6d9bd] max-[620px]:items-center max-[620px]:py-[10px] max-[620px]:px-[12px]"
                 >
-                  <span className="justify-self-center grid place-items-center w-[52px] h-[52px] rounded-full bg-[#16130f] text-[#e4bd6c] max-[560px]:justify-self-start">
-                    {STEP_ICONS[index]}
+                  <span className="grid place-items-center w-[38px] h-[38px] rounded-full bg-[#16130f] text-[#e4bd6c]">
+                    {step.icon}
                   </span>
                   <div>
-                    <strong className="block text-[length:15px] uppercase tracking-[0.12em] text-[#16130f]">
+                    <strong className="block text-[length:13px] uppercase tracking-[0.12em] text-[#16130f]">
                       {index + 1}. {step.title}
                     </strong>
-                    <span className="block mt-[6px] text-[length:14px] leading-[1.45] text-[#6b6151]">{step.text}</span>
+                    <span className="block mt-[4px] text-[length:13px] leading-[1.45] text-[#6b6151]">{step.text}</span>
                   </div>
                 </li>
               ))}
             </ol>
 
-            {/* Earning details */}
-            <ul className="grid gap-[12px] list-none p-0 m-0">
-              {copy.earning.map((item) => (
-                <li key={item} className="grid grid-cols-[22px_1fr] gap-[12px] items-start text-[length:16px] leading-[1.5] text-[#433d34]">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="mt-[1px]">
-                    <circle cx="12" cy="12" r="11" fill="#16130f" />
-                    <path d="M7.5 12.5l3 3 6-6.5" stroke="#e4bd6c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="mt-[30px] mb-[12px] text-[length:13px] font-bold uppercase tracking-[0.16em] text-[#9a7530]">More ways to earn</h3>
-            <ul className="grid gap-[8px] list-none p-0 m-0">
-              {MORE_WAYS_TO_EARN.map((item) => (
-                <li key={item} className="grid grid-cols-[14px_1fr] gap-[10px] items-baseline text-[length:15px] leading-[1.5] text-[#514a40]">
-                  <span aria-hidden="true" className="text-[#c99b13]">&bull;</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <details className="group mt-[16px] rounded-[12px] [border:1px_solid_#e6d9bd] bg-[#fffdf8]">
+              <summary className="flex items-center justify-between gap-[12px] py-[12px] px-[16px] cursor-pointer list-none text-[length:13px] font-semibold uppercase tracking-[0.14em] text-[#9a7530] [&::-webkit-details-marker]:hidden">
+                More ways to earn
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" className="[transition:transform_240ms_ease] group-open:rotate-180">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
+              <ul className="grid gap-[6px] list-none m-0 pt-0 px-[16px] pb-[14px]">
+                {MORE_WAYS_TO_EARN.map((item) => (
+                  <li key={item} className="grid grid-cols-[12px_1fr] gap-[8px] items-baseline text-[length:14px] leading-[1.5] text-[#514a40]">
+                    <span aria-hidden="true" className="text-[#c99b13]">&bull;</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
           </div>
-
-          {/* CTA panel */}
-          <aside className="grid [align-content:center] gap-[18px] p-[44px] text-center text-[#f6efe1] [background:radial-gradient(circle_at_30%_20%,#2a2319,transparent_60%),linear-gradient(160deg,#1b1711,#0d0b08)] max-[900px]:p-[36px]">
-            <span className="text-[length:13px] font-semibold uppercase tracking-[0.2em] text-[#d9b977]">New member bonus</span>
-            <strong className="text-[length:clamp(26px,3vw,34px)] leading-[1.08] font-thin uppercase tracking-[0.04em]">Get $25 in Welcome Rewards</strong>
-            <p className="m-0 text-[length:15px] leading-[1.5] text-[#c9c0b0]">
-              Enroll with your phone number through REVA&apos;s online wallet in minutes.
-            </p>
-            <a
-              href={REVA_SIGNUP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex justify-center items-center mt-[6px] py-[15px] px-[26px] rounded-full bg-[var(--gold)] text-[#16130f] text-[length:16px] font-semibold no-underline [transition:transform_200ms_ease,background_200ms_ease] hover:bg-[#e4bd6c] hover:-translate-y-[1px]"
-            >
-              Join REVA Rewards – Get $25
-            </a>
-            <p className="m-0 text-[length:13px] leading-[1.5] text-[#a99f8e]">{copy.ctaNote}</p>
-            <a
-              href={REVA_SITE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[length:14px] text-[#cfc6b6] underline underline-offset-4 hover:text-[#fff]"
-            >
-              Learn about REVA Rewards
-            </a>
-          </aside>
         </div>
 
         {/* Eligibility disclaimer */}
-        <p className="mt-[22px] mb-0 max-w-[1180px] text-[length:13px] leading-[1.6] text-[#6f6757]">
+        <p className="mt-[16px] mb-0 text-[length:12px] leading-[1.6] text-[#6f6757]">
           {copy.disclaimer}{" "}
           <a href={REVA_TERMS_URL} target="_blank" rel="noopener noreferrer" className="text-[#9a7530] underline underline-offset-2">
             View REVA Rewards terms &amp; conditions
+          </a>{" "}
+          ·{" "}
+          <a href={REVA_SITE_URL} target="_blank" rel="noopener noreferrer" className="text-[#9a7530] underline underline-offset-2">
+            Learn about REVA Rewards
           </a>
-          .
+        </p>
+        <p className="mt-[6px] mb-0 text-[length:12px] leading-[1.6] text-[#6f6757]">
+          <strong className="font-semibold text-[#514a40]">Product safety:</strong> {copy.safety}
         </p>
       </div>
     </section>

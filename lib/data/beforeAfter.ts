@@ -33,8 +33,8 @@ export const BEFORE_AFTER_CATEGORIES: BeforeAfterCategory[] = [
   { id: "dermal-filler", label: "Dermal Filler", description: "Restored volume and smoother folds around the mouth, cheeks and jaw.", href: "/dermal-fillers" },
   { id: "rf-microneedling", label: "RF Microneedling", description: "Firmer, smoother skin texture on the face and neck.", href: "/rf-microneedling" },
   { id: "fractional-co2", label: "Fractional CO2", description: "Resurfaced tone and texture with fractional CO2 laser.", href: "/fractional-co2-laser-treatments" },
-  { id: "photofacial-ipl-for-face", label: "PhotoFacial IPL", description: "Clearer, more even tone after IPL photofacials.", href: "/lasers-and-lights" },
-  { id: "vein-treatment-ipl-for-veins", label: "IPL for Veins", description: "Faded spider veins with IPL vein treatment.", href: "/lasers-and-lights" },
+  { id: "photofacial-ipl-for-face", label: "PhotoFacial IPL", description: "Clearer, more even tone after IPL photofacials.", href: "/ipl-photofacial" },
+  { id: "vein-treatment-ipl-for-veins", label: "IPL for Veins", description: "Faded spider veins with IPL vein treatment.", href: "/ipl-photofacial" },
 ];
 
 export const BEFORE_AFTER_CASES: BeforeAfterCase[] = [

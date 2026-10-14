@@ -60,6 +60,11 @@ const services = [
     href: "/facials"
   },
   {
+    title: "IPL Photofacial",
+    image: "/images/services/catalog/ipl-photofacial.jpg",
+    href: "/ipl-photofacial"
+  },
+  {
     title: "Fractional CO2 Laser Treatments",
     image: "/images/services/catalog/fractional-co2-laser-treatments.jpg",
     href: "/fractional-co2-laser-treatments"
@@ -89,7 +94,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <main className="service-detail-page min-h-[100vh] bg-[#fff]">
-      <SiteHeader className="team-header" contactHref="/#contact" />
+      <SiteHeader className="team-header" />
 
       <section className="service-detail-hero has-media grid [place-items:center] min-h-[270px] [background:linear-gradient(rgba(0,0,0,0.58),rgba(0,0,0,0.58)),radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.08),transparent_20%),radial-gradient(circle_at_72%_42%,rgba(255,255,255,0.07),transparent_24%),linear-gradient(135deg,#2a2a2a,#111_52%,#242424)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,3.4vw,56px)] [&_h1]:leading-[1] [&_h1]:font-thin">
         <HeroMedia path="/services" />
@@ -116,7 +121,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <SiteFooter address="linked-name" copyright="plain" />
+      <SiteFooter />
     </main>
   );
 }

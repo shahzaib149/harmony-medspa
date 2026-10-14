@@ -60,7 +60,7 @@ export default function AboutUsPage() {
           </p>
           <p>Schedule a visit at Harmony Med Spa by calling the office or requesting an appointment online today!</p>
 
-          <a className="about-listing block w-[min(100%,590px)] mt-[52px] mb-[44px] mx-auto [&_img]:block [&_img]:w-full [&_img]:h-auto" href="#" aria-label="View Harmony Med Spa Sarasota Chamber listing">
+          <a className="about-listing block w-[min(100%,590px)] mt-[52px] mb-[44px] mx-auto [&_img]:block [&_img]:w-full [&_img]:h-auto" href="https://business.sarasotachamber.com/active-member-directory/Details/harmony-med-spa-4585800" target="_blank" rel="noopener noreferrer" aria-label="View Harmony Med Spa Sarasota Chamber listing">
             <Image
               src="/images/about-us/view_image/view our listing image.jpg"
               alt="Proud member of Sarasota Chamber 2026"
@@ -103,7 +103,7 @@ export default function AboutUsPage() {
         </aside>
       </section>
 
-      <SiteFooter address="linked-name" copyright="symbol" />
+      <SiteFooter />
     </main>
   );
 }

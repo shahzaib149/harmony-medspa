@@ -140,19 +140,6 @@
   }
 }
 
-.nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown:focus-within .nav-dropdown-menu {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%);
-}
-
-.nav-dropdown:hover .nav-dropdown-menu a,
-.nav-dropdown:focus-within .nav-dropdown-menu a {
-  opacity: 1;
-  transform: translateX(0);
-}
-
 .mobile-menu {
   position: relative;
 }
@@ -3669,11 +3656,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-dropdown-menu,
-  .nav-dropdown-menu a {
-    transition: none;
-  }
-
   .provider-heading-motion,
   .provider-large,
   .provider-small {

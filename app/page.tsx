@@ -75,7 +75,7 @@ export default function Home() {
         <ContactForm variant="home" />
       </section>
 
-      <SiteFooter address="linked-name" copyright="symbol" />
+      <SiteFooter />
     </main>
   );
 }

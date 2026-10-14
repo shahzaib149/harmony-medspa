@@ -64,7 +64,7 @@ export default function ContactUsPage() {
         </aside>
       </section>
 
-      <SiteFooter variant="contact-page-footer" social="compact" />
+      <SiteFooter />
     </main>
   );
 }

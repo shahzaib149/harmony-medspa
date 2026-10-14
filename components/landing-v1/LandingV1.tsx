@@ -206,7 +206,7 @@ export default function LandingV1() {
         </div>
       </section>
 
-      <SiteFooter address="plain" social="membership" />
+      <SiteFooter />
     </main>
   );
 }
