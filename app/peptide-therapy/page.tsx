@@ -1,10 +1,17 @@
-export const metadata = { title: "Peptide Therapy", alternates: { canonical: "/peptide-therapy" }, openGraph: openGraphFor("/peptide-therapy") };
+export const metadata = {
+  title: "Peptide Therapy in Sarasota, FL",
+  description:
+    "Peptide therapy at Harmony Med Spa in Sarasota, FL, with a plan built around your goals by our providers. Request personalized pricing or book online.",
+  alternates: { canonical: "/peptide-therapy" },
+  openGraph: openGraphFor("/peptide-therapy"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import faqData from "@/Images/Services/Peptide/peptide_therapy_faqs.json";
 import PeptideFaqAccordion from "./PeptideFaqAccordion";
@@ -128,7 +135,7 @@ export default function PeptideTherapyPage() {
           </section>
         </article>
 
-        <aside className="grid [align-content:start] gap-[35px] pt-[16px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[720px]:grid-cols-[1fr] max-[720px]:gap-[22px] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Peptide therapy links">
+        <aside className="service-side-sticky grid [align-content:start] gap-[35px] pt-[16px] [&_.about-side-card]:min-h-[269px] [&_.about-side-card]:rounded-[18px] [&_.about-side-card_span]:text-[length:30px] [&_.about-side-card_small]:text-[length:22px] max-[1050px]:grid-cols-[repeat(2,minmax(240px,390px))] max-[1050px]:justify-center max-[720px]:grid-cols-[1fr] max-[720px]:gap-[22px] max-[720px]:[&_.about-side-card]:min-h-[220px]" aria-label="Peptide therapy links">
           <label className="about-search flex items-center h-[70px] mb-0 py-0 pr-[24px] pl-[30px] [border:1px_solid_#c8d2dd] rounded-[8px] text-[var(--gold)] bg-[#fff] [&_input]:min-w-[0] [&_input]:flex-1 [&_input]:border-0 [&_input]:[outline:0] [&_input]:text-[#344356] [&_input]:bg-[transparent] [&_input]:[font:inherit] [&_input::placeholder]:text-[#425263] [&_input::placeholder]:opacity-[0.9] max-[1050px]:col-[1_/_-1]">
             <span className="sr-only">Search keyword</span>
             <input type="search" placeholder="Enter search keyword" />
@@ -148,6 +155,8 @@ export default function PeptideTherapyPage() {
           </Link>
         </aside>
       </section>
+
+      <ServicePricing path="/peptide-therapy" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>

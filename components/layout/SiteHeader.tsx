@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, ChevronLeft, ChevronRight, Menu, Phone, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import AboutDropdown from "@/components/layout/AboutDropdown";
 import PatientCenterDropdown from "@/components/layout/PatientCenterDropdown";
 import styles from "./SiteHeader.module.css";
@@ -67,9 +67,36 @@ function NavLink({
   );
 }
 
+// The header turns to frosted glass once the page scrolls (see "Sticky glass header" in globals.css).
+function subscribeToScroll(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  return () => window.removeEventListener("scroll", onChange);
+}
+const isPageScrolled = () => window.scrollY > 12;
+const isPageScrolledOnServer = () => false;
+
 export default function SiteHeader({ className, homeHref = "/", servicesHref = "/services", contactHref = "/contact-us" }: SiteHeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobilePanel, setMobilePanel] = useState<"about" | "patient" | null>(null);
+
+  const isScrolled = useSyncExternalStore(subscribeToScroll, isPageScrolled, isPageScrolledOnServer);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // Publish the header's height as --site-header-h: the hero under it, sticky sidebars and
+  // anchor scrolling all offset by it.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const root = document.documentElement;
+    const publish = () => root.style.setProperty("--site-header-h", `${Math.round(header.getBoundingClientRect().height)}px`);
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(header);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty("--site-header-h");
+    };
+  }, []);
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -77,7 +104,7 @@ export default function SiteHeader({ className, homeHref = "/", servicesHref = "
   };
 
   return (
-    <header className={`${className} ${styles.premiumHeader}`}>
+    <header ref={headerRef} className={`${className} ${styles.premiumHeader}${isScrolled ? " is-scrolled" : ""}`}>
       <div className={`mobile-menu hidden ${isMobileMenuOpen ? "is-open" : ""}`}>
         <button className="mobile-menu-trigger" type="button" aria-label="Open navigation" onClick={() => setIsMobileMenuOpen(true)}>
           <Menu size={32} strokeWidth={2.4} />
@@ -120,6 +147,7 @@ export default function SiteHeader({ className, homeHref = "/", servicesHref = "
                     <ChevronRight size={22} />
                   </button>
                   <NavLink href={servicesHref} onClick={closeMobileMenu}>Services</NavLink>
+                  <NavLink href="/pricing" onClick={closeMobileMenu}>Pricing</NavLink>
                   <NavLink href="/shop" onClick={closeMobileMenu}>Shop</NavLink>
                   <button type="button" onClick={() => setMobilePanel("patient")}>
                     Patient Center
@@ -136,6 +164,7 @@ export default function SiteHeader({ className, homeHref = "/", servicesHref = "
         <NavLink href={homeHref}>Home</NavLink>
         <AboutDropdown />
         <NavLink href={servicesHref}>Services</NavLink>
+        <NavLink href="/pricing">Pricing</NavLink>
       </nav>
       <NavLink className="brand block w-[270px] [&_img]:block [&_img]:w-full [&_img]:h-auto max-[720px]:w-[205px] max-[430px]:w-[178px]" href={homeHref} ariaLabel="Harmony Med Spa home">
         <Image src="/images/logo-transparent.png" alt="Harmony Med Spa" width={270} height={111} priority />

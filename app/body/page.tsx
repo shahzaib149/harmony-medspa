@@ -1,9 +1,16 @@
-export const metadata = { title: "Body", alternates: { canonical: "/body" }, openGraph: openGraphFor("/body") };
+export const metadata = {
+  title: "Body Treatments in Sarasota, FL",
+  description:
+    "Body treatments at Harmony Med Spa in Sarasota, FL, including Sculptra, RF microneedling, CO2 laser, laser hair removal, and medical weight loss.",
+  alternates: { canonical: "/body" },
+  openGraph: openGraphFor("/body"),
+};
 
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -79,6 +86,8 @@ export default function BodyPage() {
           ))}
         </div>
       </section>
+
+      <ServicePricing path="/body" />
 
       <SiteFooter address="linked-name" copyright="plain" />
     </main>
