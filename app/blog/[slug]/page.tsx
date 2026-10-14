@@ -11,7 +11,8 @@ import { buildBlogPostingSchema, buildBreadcrumbSchema, buildFaqPageSchema } fro
 import { getArchivedLegacyBlogBySlug } from "@/lib/blogs/archive";
 import { blogRedirectTarget } from "@/lib/blogs/redirects";
 import { getPublishedBlogBySlug } from "@/lib/blogs/airtable";
-import { firstPublicBlogImage, type PublicBlog, type PublicBlogBlock } from "@/lib/blogs/types";
+import { firstPublicBlogImage, imageSourceForSite, type PublicBlog, type PublicBlogBlock } from "@/lib/blogs/types";
+import { keepNumberHyphens } from "@/lib/text/headingCase";
 import { canonicalPublicUrl, siteUrl } from "@/lib/site-url";
 
 export const revalidate = 300;
@@ -137,7 +138,13 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
       {faqSchema ? <JsonLd data={faqSchema} /> : null}
       <SiteHeader className="contact-page-header" />
 
-      <header className="relative isolate overflow-hidden bg-[#11110f] px-6 py-20 text-white sm:py-24">
+      <header className="has-media-full relative isolate overflow-hidden bg-[#11110f] px-6 py-20 text-white sm:py-24">
+        {image ? (
+          <div className="hero-media is-full is-soft" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element -- article images can come from the CMS host */}
+            <img src={imageSourceForSite(image.url)} alt="" decoding="async" />
+          </div>
+        ) : null}
         <div className="absolute inset-0 -z-10 opacity-60 [background:radial-gradient(circle_at_18%_20%,rgba(214,164,55,.24),transparent_27%),radial-gradient(circle_at_85%_70%,rgba(255,255,255,.08),transparent_32%),repeating-linear-gradient(32deg,rgba(255,255,255,.025)_0_1px,transparent_1px_9px)]" />
         <div className="mx-auto max-w-[1040px]">
           <nav aria-label="Breadcrumb" className="mb-7 flex flex-wrap items-center gap-2 text-sm text-white/65">
@@ -149,7 +156,7 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
             <span className="rounded-full border border-[#c99a32]/45 bg-[#c99a32]/10 px-4 py-2 text-[#e9bf65]">{blog.category || "Harmony guide"}</span>
             <span className="text-white/55">{minutes} min read</span>
           </div>
-          <h1 className="m-0 max-w-[980px] text-balance font-light leading-[1.06] text-[#e4ad34] [font-size:clamp(2.35rem,5vw,4.7rem)]">{blog.title}</h1>
+          <h1 className="m-0 max-w-[980px] text-balance font-light leading-[1.06] text-[#e4ad34] [font-size:clamp(2.35rem,5vw,4.7rem)]">{keepNumberHyphens(blog.title)}</h1>
           <p className="mb-0 mt-7 max-w-[800px] text-lg leading-8 text-white/72 sm:text-xl">{blog.excerpt}</p>
         </div>
       </header>

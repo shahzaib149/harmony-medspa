@@ -4,10 +4,12 @@ import Link from "next/link";
 import BlogSearchForm from "@/components/blog/BlogSearchForm";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteHeader from "@/components/layout/SiteHeader";
+import HeroMedia from "@/components/layout/HeroMedia";
 import { listArchivedLegacyBlogs } from "@/lib/blogs/archive";
 import { listPublishedBlogs } from "@/lib/blogs/airtable";
 import { firstPublicBlogImage, imageSourceForSite, type PublicBlog } from "@/lib/blogs/types";
 import { siteUrl } from "@/lib/site-url";
+import { keepNumberHyphens } from "@/lib/text/headingCase";
 import { openGraphFor } from "@/lib/seo/metadata";
 
 const PAGE_SIZE = 9;
@@ -32,7 +34,7 @@ function wordCount(blog: PublicBlog) {
 function toCard(blog: PublicBlog) {
   const image = firstPublicBlogImage(blog);
   return {
-    title: blog.title,
+    title: keepNumberHyphens(blog.title),
     image: image ? imageSourceForSite(image.url) : "/images/logo.jpg",
     imageAlt: image?.alt || `${blog.title} at Harmony Med Spa`,
     href: `/blog/${blog.slug}`,
@@ -83,7 +85,8 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     <main className="min-h-screen overflow-x-clip bg-[#f8f7f4] text-[#26313c]">
       <SiteHeader className="contact-page-header" />
 
-      <header className="relative isolate overflow-hidden bg-[#11110f] px-6 py-20 text-white sm:py-24">
+      <header className="has-media-full relative isolate overflow-hidden bg-[#11110f] px-6 py-20 text-white sm:py-24">
+        <HeroMedia path="/blog" variant="full" />
         <div className="absolute inset-0 -z-10 opacity-60 [background:radial-gradient(circle_at_18%_20%,rgba(214,164,55,.24),transparent_27%),radial-gradient(circle_at_85%_70%,rgba(255,255,255,.08),transparent_32%),repeating-linear-gradient(32deg,rgba(255,255,255,.025)_0_1px,transparent_1px_9px)]" />
         <div className="mx-auto max-w-[1120px] text-center">
           <p className="mb-5 mt-0 text-xs font-semibold uppercase tracking-[0.2em] text-[#e2b554]">Harmony Med Spa · Sarasota</p>

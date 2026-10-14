@@ -1,47 +1,16 @@
 "use client";
 
 import { Fragment, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { formatHeading } from "@/lib/text/headingCase";
 
 /** useLayoutEffect warns during SSR; fall back to useEffect on the server. */
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const systemPrefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const smallTitleWords = new Set(["a", "an", "and", "as", "at", "by", "for", "from", "in", "into", "of", "on", "or", "the", "to", "with"]);
-const titleAcronyms: Record<string, string> = {
-  "adk-10": "ADK-10",
-  daxxify: "DAXXIFY",
-  e: "E",
-  glo2facial: "Glo2Facial",
-  glo2facials: "Glo2Facials",
-  bhrt: "BHRT",
-  co2: "CO2",
-  fl: "FL",
-  "glp-1": "GLP-1",
-  hrt: "HRT",
-  kerafactor: "KeraFactor",
-  ipl: "IPL",
-  iv: "IV",
-  rf: "RF",
-  t: "T",
-  tm: "TM",
-};
-
-function formatHeading(text: string): string {
-  return text.replace(/[a-z0-9]+(?:[-'][a-z0-9]+)*/gi, (word, offset) => {
-    const lower = word.toLocaleLowerCase("en-US");
-    const acronym = titleAcronyms[lower];
-    if (acronym) return acronym;
-
-    const followsColon = text.slice(0, offset).trimEnd().endsWith(":");
-    if (offset > 0 && !followsColon && smallTitleWords.has(lower)) return lower;
-
-    return lower
-      .split("-")
-      .map((part) => part.charAt(0).toLocaleUpperCase("en-US") + part.slice(1))
-      .join("-");
-  });
-}
+/** Long headings type faster, so no heading keeps its text hidden for more than about a second. */
+const MAX_TYPING_MS = 900;
+const MIN_LETTER_DELAY_MS = 18;
 
 type TypewriterTextProps = {
   text: string;
@@ -59,7 +28,7 @@ type TypewriterTextProps = {
 export default function TypewriterText({
   text,
   className,
-  initialDelay = 260,
+  initialDelay = 140,
   letterDelay = 55,
   startOnView = false,
   caret = false,
@@ -69,6 +38,7 @@ export default function TypewriterText({
   const displayText = formatHeading(text);
   const characters = Array.from(displayText);
   const total = characters.length;
+  const stepDelay = Math.max(MIN_LETTER_DELAY_MS, Math.min(letterDelay, Math.round(MAX_TYPING_MS / Math.max(total, 1))));
   const hostRef = useRef<HTMLSpanElement>(null);
 
   // Seed with the full string so SSR and no-JS render readable text.
@@ -106,7 +76,7 @@ export default function TypewriterText({
 
             return count + 1;
           });
-        }, letterDelay);
+        }, stepDelay);
       }, initialDelay);
     };
 
@@ -138,7 +108,7 @@ export default function TypewriterText({
       observer.disconnect();
       stop();
     };
-  }, [initialDelay, letterDelay, skipAnimation, startOnView, text, total]);
+  }, [initialDelay, stepDelay, skipAnimation, startOnView, text, total]);
 
   return (
     <span className={className} ref={hostRef} aria-label={displayText}>

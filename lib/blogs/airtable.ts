@@ -1,4 +1,5 @@
 import type { PublicBlog, PublicBlogBlock, PublicBlogStatus } from "@/lib/blogs/types";
+import { titleCaseIfLowercase } from "@/lib/text/headingCase";
 
 const BLOG_CACHE_TAG = "published-blogs";
 const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
@@ -99,7 +100,7 @@ function mapRecord(record: AirtableRecord): PublicBlog | null {
   const stored = parseStoredData(record.fields);
   const status: PublicBlogStatus = text(record.fields, "Status") === "Published" ? "Published" : "Draft";
   const slug = text(record.fields, "Slug").trim();
-  const title = text(record.fields, "Title").trim();
+  const title = titleCaseIfLowercase(text(record.fields, "Title").trim());
   if (status !== "Published" || !slug || !title) return null;
   return {
     id: record.id,

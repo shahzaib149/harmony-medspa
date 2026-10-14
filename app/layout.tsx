@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import AnalyticsNavigation from "@/components/AnalyticsNavigation";
 import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildMedicalClinicSchema, buildWebSiteSchema } from "@/lib/schema";
 import { SITE_NAME } from "@/lib/constants";
@@ -9,6 +10,7 @@ import { SITE_DESCRIPTION, sharedOpenGraph } from "@/lib/seo/metadata";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 import "./typography-polish.css";
+import "./design-polish.css";
 
 const canonicalSiteUrl = siteUrl();
 const siteName = SITE_NAME;
@@ -48,6 +50,7 @@ export default function RootLayout({
         <JsonLd data={[buildMedicalClinicSchema(), buildWebSiteSchema()]} />
         <Suspense fallback={null}><AnalyticsNavigation /></Suspense>
         {children}
+        <ScrollReveal />
       </body>
     </html>
   );

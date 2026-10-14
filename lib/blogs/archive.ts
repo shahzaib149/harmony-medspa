@@ -4,6 +4,7 @@ import profilePartTwo from "@/scripts/legacy-migration-profiles-2.json";
 import profilePartThree from "@/scripts/legacy-migration-profiles-3.json";
 import type { PublicBlog, PublicBlogBlock } from "@/lib/blogs/types";
 import { siteUrl } from "@/lib/site-url";
+import { titleCaseIfLowercase } from "@/lib/text/headingCase";
 
 type ArchivedPost = {
   slug: string;
@@ -36,7 +37,7 @@ function toPublicBlog(post: ArchivedPost): PublicBlog {
   }] : [];
   return {
     id: `legacy-${post.slug}`,
-    title: post.title,
+    title: titleCaseIfLowercase(post.title),
     slug: post.slug.toLowerCase(),
     status: "Published",
     primaryKeyword: post.primaryKeyword,
