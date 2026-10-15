@@ -19,7 +19,9 @@ export async function POST(request: Request) {
     return Response.json({ error: "A valid blog slug is required." }, { status: 400 });
   }
 
-  revalidateTag(BLOG_CACHE_TAG, "max");
+  // CRM webhook: the next reader/crawler must see the new publication state.
+  revalidateTag(BLOG_CACHE_TAG, { expire: 0 });
+  revalidatePath("/sitemap.xml");
   revalidatePath("/blog");
   revalidatePath(`/blog/${body.slug}`);
   if (validSlug(body.previousSlug) && body.previousSlug !== body.slug) {

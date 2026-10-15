@@ -1,21 +1,19 @@
 import type { MetadataRoute } from "next";
 import { listArchivedLegacyBlogs } from "@/lib/blogs/archive";
 import { listPublishedBlogs } from "@/lib/blogs/airtable";
-import type { PublicBlog } from "@/lib/blogs/types";
 import { REDIRECTED_BLOG_SLUGS } from "@/lib/blogs/redirects";
 import { INDEXABLE_ROUTES } from "@/lib/seo/routes";
 import { siteUrl } from "@/lib/site-url";
 
+// Refresh even when a CRM webhook is missed; avoid a frozen build-time snapshot.
+export const revalidate = 300;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const canonicalSiteUrl = siteUrl();
 
-  let published: PublicBlog[] = [];
-  try {
-    published = await listPublishedBlogs();
-  } catch (error) {
-    // An Airtable outage must not break the sitemap: keep static and legacy entries.
-    console.error("[sitemap] Could not load published blogs from Airtable.", error);
-  }
+  // Fail regeneration on backend errors so ISR retains its last complete sitemap,
+  // rather than caching a successful but incomplete list that drops CRM articles.
+  const published = await listPublishedBlogs({ strict: true });
 
   const entries: MetadataRoute.Sitemap = [
     ...INDEXABLE_ROUTES.map((route) => ({

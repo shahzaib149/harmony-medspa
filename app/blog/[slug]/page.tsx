@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import PromotionBanner from "@/components/promotions/PromotionBanner";
+import { estheticianSale } from "@/lib/promotions";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -160,6 +162,7 @@ export default async function PublishedBlogPage({ params }: { params: Promise<{ 
           <p className="mb-0 mt-7 max-w-[800px] text-lg leading-8 text-white/72 sm:text-xl">{blog.excerpt}</p>
         </div>
       </header>
+      {slug === estheticianSale.slug ? <PromotionBanner article /> : null}
 
       <div className="mx-auto grid w-[min(calc(100%_-_32px),1400px)] grid-cols-1 items-start gap-12 py-14 lg:grid-cols-[minmax(0,1000px)_310px] lg:gap-14 lg:py-24 xl:gap-20">
         <article className="min-w-0">

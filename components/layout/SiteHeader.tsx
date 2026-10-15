@@ -26,7 +26,7 @@ const patientCenterLinks: NavDropdownLink[] = [
   { label: "Payment Plans", href: "/payment-plans" },
   { label: "Gift Cards", href: "https://mailchi.mp/harmonymedspafl/gift_cards", newTab: true },
   { label: "Testimonials", href: "/testimonials" },
-  { label: "Specials", href: "https://mailchi.mp/harmonymedspafl/monthly-specials", newTab: true },
+  { label: "Specials", href: "/specials" },
   { label: "Events", href: "/events" },
   { label: "Blog", href: "/blog" },
   { label: "Newsletter", href: "https://mailchi.mp/harmonymedspafl/newsletter-opt-in", newTab: true },

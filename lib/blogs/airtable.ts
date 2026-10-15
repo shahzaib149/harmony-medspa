@@ -102,6 +102,8 @@ function mapRecord(record: AirtableRecord): PublicBlog | null {
   const slug = text(record.fields, "Slug").trim();
   const title = titleCaseIfLowercase(text(record.fields, "Title").trim());
   if (status !== "Published" || !slug || !title) return null;
+  const publishedAt = text(record.fields, "Published At");
+  if (publishedAt && Date.parse(publishedAt) > Date.now()) return null;
   return {
     id: record.id,
     title,
@@ -124,9 +126,12 @@ function mapRecord(record: AirtableRecord): PublicBlog | null {
   };
 }
 
-async function airtablePage(offset = "") {
+async function airtablePage(offset = "", strict = false) {
   const { token, baseId, table } = config();
-  if (!token || !baseId) return { records: [] as AirtableRecord[], offset: "" };
+  if (!token || !baseId) {
+    if (strict) throw new Error("Published blog credentials are not configured.");
+    return { records: [] as AirtableRecord[], offset: "" };
+  }
   const params = new URLSearchParams({
     pageSize: "100",
     filterByFormula: "AND({Status}='Published',{Slug}!='')",
@@ -144,6 +149,7 @@ async function airtablePage(offset = "") {
     if (response.ok) return response.json() as Promise<{ records: AirtableRecord[]; offset?: string }>;
     if (!RETRYABLE_STATUSES.has(response.status) || attempt === 2) {
       console.error(`Published blog fetch failed with Airtable status ${response.status}.`);
+      if (strict) throw new Error(`Published blog fetch failed (${response.status}).`);
       return { records: [], offset: "" };
     }
     await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
@@ -151,11 +157,11 @@ async function airtablePage(offset = "") {
   return { records: [], offset: "" };
 }
 
-export async function listPublishedBlogs() {
+export async function listPublishedBlogs({ strict = false }: { strict?: boolean } = {}) {
   const records: AirtableRecord[] = [];
   let offset = "";
   do {
-    const page = await airtablePage(offset);
+    const page = await airtablePage(offset, strict);
     records.push(...page.records);
     offset = page.offset || "";
   } while (offset);

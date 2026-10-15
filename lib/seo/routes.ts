@@ -28,11 +28,12 @@ export type IndexableRoute = {
  * - /unsubscribe: utility page, noindex.
  * - /book-now: redirects to the external PatientNow booking page.
  * - /jeuveau: permanently redirects to a blog post.
- * - /learn-more, /specials: redirect to Mailchimp pages.
+ * - /learn-more: redirects to Mailchimp.
  * - /blog/[slug]: added from the blog sources in app/sitemap.ts.
  */
 export const INDEXABLE_ROUTES: IndexableRoute[] = [
-  { path: "/", name: "Home", priority: 1.0, changeFrequency: "weekly", lastModified: "2026-09-01" },
+  { path: "/specials", name: "Specials", priority: 0.8, changeFrequency: "daily", lastModified: "2026-10-15" },
+  { path: "/", name: "Home", priority: 1.0, changeFrequency: "weekly", lastModified: "2026-10-15" },
 
   // Core and primary revenue pages
   { path: "/medical-weight-loss", name: "Medical Weight Loss", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment" },
@@ -64,7 +65,7 @@ export const INDEXABLE_ROUTES: IndexableRoute[] = [
   { path: "/body", name: "Body", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "category" },
   { path: "/skincare", name: "Skincare", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "category" },
   { path: "/wellness", name: "Wellness", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "category" },
-  { path: "/blog", name: "Blog", priority: 0.8, changeFrequency: "weekly", lastModified: "2026-09-29" },
+  { path: "/blog", name: "Blog", priority: 0.8, changeFrequency: "weekly", lastModified: "2026-10-15" },
 
   // Supporting, trust and commerce pages
   { path: "/about-us", name: "About Us", priority: 0.7, changeFrequency: "monthly", lastModified: "2026-09-29" },

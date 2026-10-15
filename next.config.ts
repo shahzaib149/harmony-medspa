@@ -78,11 +78,6 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: "/specials",
-        destination: "https://mailchi.mp/harmonymedspafl/monthly-specials",
-        permanent: false,
-      },
-      {
         source: "/learn-more",
         destination: "https://mailchi.mp/harmonymedspafl/newsletter-opt-in",
         permanent: false,

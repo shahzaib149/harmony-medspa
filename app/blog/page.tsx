@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PromotionBanner from "@/components/promotions/PromotionBanner";
 import Image from "next/image";
 import Link from "next/link";
 import BlogSearchForm from "@/components/blog/BlogSearchForm";
@@ -94,6 +95,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
           <p className="mx-auto mb-0 mt-7 max-w-[720px] text-lg leading-8 text-white/70">Straightforward guides to benefits, limitations, recovery, safety, and the questions worth asking before you book.</p>
         </div>
       </header>
+      <PromotionBanner />
 
       <section className="mx-auto w-[min(calc(100%_-_32px),1240px)] py-14 lg:py-20">
         <div className="mb-10 grid items-end gap-7 border-b border-[#ded8cd] pb-9 lg:grid-cols-[1fr_360px]">
