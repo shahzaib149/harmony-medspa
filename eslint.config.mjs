@@ -20,6 +20,8 @@ const config = [
   ...nextTypeScript,
   prettier,
   {
+    // Match Next's plugin scope: CommonJS test harnesses do not register React Hooks.
+    files: ["**/*.{js,jsx,mjs,ts,tsx,mts,cts}"],
     rules: {
       // Advisory performance rules (react-hooks v6) that flag several
       // intentional, correct patterns here: reduced-motion seeding in

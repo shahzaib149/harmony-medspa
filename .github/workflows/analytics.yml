@@ -2,21 +2,32 @@ name: Analytics regression checks
 on: [push, pull_request]
 jobs:
   analytics:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       NEXT_PUBLIC_GA4_MEASUREMENT_ID: G-TEST123
       NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID: AW-11396978687
       NEXT_PUBLIC_GOOGLE_ADS_LEAD_SEND_TO: AW-11396978687/R0vKCKrFz9kcEP-vwLoq
+      # CI must not need production CRM secrets or send requests to real records.
+      HARMONY_ANALYTICS_FIXTURE: '1'
+      AIRTABLE_API_KEY: test-only
+      AIRTABLE_BLOGS_BASE_ID: test-base
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chrome
       - run: npm run lint
+      - run: node scripts/test-promotion-discovery.cjs
       - run: npm run test:analytics
+        env:
+          NODE_OPTIONS: --require=./scripts/fixtures/airtable.cjs
       - run: npx tsc --noEmit
       - run: npm run build
+        env:
+          NODE_OPTIONS: --require=./scripts/fixtures/airtable.cjs
       - run: node scripts/test-analytics-production.mjs
+        env:
+          NODE_OPTIONS: --require=./scripts/fixtures/airtable.cjs

@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
   // Correct titles must arrive before initial/manual SPA page views.
   htmlLimitedBots: /.*/,
   images: {
+    // Match the existing carousel's requested qualities; keep the optimizer allowlist explicit.
+    qualities: [75, 85, 100],
     // Optimized copies of /public images rarely change; keep them cached for 31 days.
     minimumCacheTTL: 2678400,
     remotePatterns: [
