@@ -28,6 +28,9 @@ const stripScripts = html => html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,
     }
     if (['/', '/blog'].includes(path) && Date.now() >= Date.parse('2026-10-15T04:00:00Z') && Date.now() < Date.parse('2026-10-17T04:00:00Z')) {
       assert.ok(html.includes('View offers and terms'), 'Active banner absent from initial HTML');
+      for (const price of ['2,100', '1,890', '1,785', '4,000', '3,600', '3,400']) {
+        assert.ok(html.includes(price), `Active promotion price ${price} absent from ${path}`);
+      }
     }
     console.log(`PASS ${path}: HTTP 200, expected initial response content`);
   }
