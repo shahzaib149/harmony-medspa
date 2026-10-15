@@ -28,11 +28,10 @@ export type IndexableRoute = {
  * - /unsubscribe: utility page, noindex.
  * - /book-now: redirects to the external PatientNow booking page.
  * - /jeuveau: permanently redirects to a blog post.
- * - /learn-more: redirects to Mailchimp.
+ * - /learn-more, /specials: redirect to Mailchimp pages.
  * - /blog/[slug]: added from the blog sources in app/sitemap.ts.
  */
 export const INDEXABLE_ROUTES: IndexableRoute[] = [
-  { path: "/specials", name: "Specials", priority: 0.8, changeFrequency: "daily", lastModified: "2026-10-15" },
   { path: "/", name: "Home", priority: 1.0, changeFrequency: "weekly", lastModified: "2026-10-15" },
 
   // Core and primary revenue pages

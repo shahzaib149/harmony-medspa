@@ -1,5 +1,14 @@
 # Public promotion discovery
 
+## Correction: preserve existing Specials destination
+
+At the owner's request, restored the original `/specials` Mailchimp redirect,
+navigation/home links, and original dormant route source. Removed `/specials`
+from the sitemap because it redirects externally. The new on-site Specials page
+is no longer served. Homepage/blog banners still link to the published article;
+blog sitemap and cache improvements remain. The implementation notes below
+describe the initial version, superseded by this correction for Specials.
+
 Implemented from origin/main, October 15, 2026. CRM records are unchanged.
 
 ## Confirmed baseline

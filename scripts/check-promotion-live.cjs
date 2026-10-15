@@ -4,7 +4,11 @@ const origin = process.argv[2] || 'http://localhost:3107';
 const slug = 'national-esthetician-day-flash-sale-sarasota-2026';
 const stripScripts = html => html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
 (async () => {
-  for (const path of ['/', '/specials', '/blog', `/blog/${slug}`, '/robots.txt', '/sitemap.xml']) {
+  const specials = await fetch(origin + '/specials', { redirect: 'manual' });
+  assert.equal(specials.status, 307);
+  assert.equal(specials.headers.get('location'), 'https://mailchi.mp/harmonymedspafl/monthly-specials');
+  console.log('PASS /specials: original Mailchimp redirect restored');
+  for (const path of ['/', '/blog', `/blog/${slug}`, '/robots.txt', '/sitemap.xml']) {
     const response = await fetch(origin + path, { signal: AbortSignal.timeout(60000) });
     assert.equal(response.status, 200, path);
     assert.equal(new URL(response.url).pathname, path, `${path} unexpectedly redirects`);
@@ -12,14 +16,10 @@ const stripScripts = html => html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,
     const html = stripScripts(raw);
     if (path === '/sitemap.xml') {
       assert.ok(raw.includes(`/blog/${slug}`), 'Campaign absent from sitemap');
-      assert.ok(raw.includes('/specials</loc>'), 'Specials absent from sitemap');
+      assert.ok(!raw.includes('/specials</loc>'), 'Redirect must not appear in sitemap');
       const urls = [...raw.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
       assert.equal(urls.length, new Set(urls).size);
       assert.ok(urls.every(url => new URL(url).origin === 'https://www.harmonymedspafl.com'));
-    } else if (path === '/specials') {
-      for (const price of ['$2,100', '$1,890', '$1,785', '$4,000', '$3,600', '$3,400', '$99']) assert.ok(html.includes(price), `Missing ${price}`);
-      assert.ok(html.includes(`/blog/${slug}`));
-      assert.ok(html.includes('October 15'));
     } else if (path === `/blog/${slug}`) {
       assert.ok(html.includes('2,100'));
       assert.ok(html.includes('href="/specials"'));

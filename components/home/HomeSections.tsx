@@ -30,7 +30,7 @@ import styles from "./Home.module.css";
 /** Keeps credentials like "AGNP-C" on one line. */
 const noBreakHyphens = (text: string) => text.replace(/-/g, "\u2011");
 
-const monthlySpecialsUrl = "/specials";
+const monthlySpecialsUrl = "https://mailchi.mp/harmonymedspafl/monthly-specials";
 const newsletterOptInUrl = "https://mailchi.mp/harmonymedspafl/newsletter-opt-in";
 
 export function HomeAbout() {
@@ -92,7 +92,7 @@ export function HomeAbout() {
               Meet the Team
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
-            <a className={styles.btnLine} href={monthlySpecialsUrl}>
+            <a className={styles.btnLine} href={monthlySpecialsUrl} target="_blank" rel="noopener noreferrer">
               Monthly Specials
               <ArrowUpRight size={18} aria-hidden="true" />
             </a>
