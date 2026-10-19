@@ -1,5 +1,6 @@
 export const metadata = { title: "Our Team", alternates: { canonical: "/our-team" }, openGraph: openGraphFor("/our-team") };
 
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import TeamList from "@/components/team/TeamList";
 import styles from "@/components/team/Team.module.css";
@@ -79,6 +80,17 @@ export default function OurTeamPage() {
           compassionate team, committed to providing exceptional service to you.
         </p>
       </section>
+
+      <figure className={`${styles.wrap} ${styles.groupPhoto}`}>
+        <Image
+          src="/images/team/harmony-care-team.jpg"
+          alt="The Harmony Med Spa care team standing together at the clinic's skincare display"
+          width={1535}
+          height={1024}
+          sizes="(max-width: 1244px) 92vw, 1180px"
+          priority
+        />
+      </figure>
 
       <TeamList />
 

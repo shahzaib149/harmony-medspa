@@ -67,6 +67,18 @@
   line-height: 1.75;
 }
 
+.groupPhoto {
+  margin-block: 0 40px;
+}
+
+.groupPhoto img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(29, 23, 18, 0.14);
+}
+
 /* ---------- Owner feature ---------- */
 
 .feature {
