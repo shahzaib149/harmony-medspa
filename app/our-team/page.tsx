@@ -5,7 +5,6 @@ import { ArrowUpRight } from "lucide-react";
 import TeamList from "@/components/team/TeamList";
 import styles from "@/components/team/Team.module.css";
 import SiteHeader from "@/components/layout/SiteHeader";
-import HeroMedia from "@/components/layout/HeroMedia";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { providers } from "@/lib/data/providers";
@@ -49,8 +48,17 @@ export default function OurTeamPage() {
       <JsonLd data={teamSchema} />
       <SiteHeader className="team-header" />
 
-      <section className="team-hero has-media grid [place-items:center] min-h-[272px] overflow-hidden [background:linear-gradient(rgba(0,0,0,0.52),rgba(0,0,0,0.52)),radial-gradient(circle_at_12%_18%,rgba(255,255,255,0.1),transparent_18%),radial-gradient(circle_at_42%_58%,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_80%_24%,rgba(255,255,255,0.09),transparent_20%),linear-gradient(135deg,#202020,#111_48%,#252525)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,3.4vw,58px)] [&_h1]:leading-[1] [&_h1]:font-thin [&_h1]:[transform:scaleX(0)] [&_h1]:origin-[center] [&_h1]:opacity-0 [&_h1]:[animation:teamTitleReveal_200ms_ease-out_120ms_forwards] max-[720px]:min-h-[220px]">
-        <HeroMedia path="/our-team" />
+      <section className={`team-hero has-media ${styles.hero} grid [place-items:center] min-h-[272px] overflow-hidden [background:linear-gradient(rgba(0,0,0,0.52),rgba(0,0,0,0.52)),radial-gradient(circle_at_12%_18%,rgba(255,255,255,0.1),transparent_18%),radial-gradient(circle_at_42%_58%,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_80%_24%,rgba(255,255,255,0.09),transparent_20%),linear-gradient(135deg,#202020,#111_48%,#252525)] [&_h1]:m-0 [&_h1]:text-[var(--gold)] [&_h1]:text-[length:clamp(42px,3.4vw,58px)] [&_h1]:leading-[1] [&_h1]:font-thin [&_h1]:[transform:scaleX(0)] [&_h1]:origin-[center] [&_h1]:opacity-0 [&_h1]:[animation:teamTitleReveal_200ms_ease-out_120ms_forwards] max-[720px]:min-h-[220px]`}>
+        <div className={styles.heroPhoto}>
+          <Image
+            src="/images/team/harmony-care-team.jpg"
+            alt="The Harmony Med Spa care team standing together at the clinic's skincare display"
+            fill
+            priority
+            sizes="100vw"
+          />
+        </div>
+        <p className="hero-eyebrow">About Harmony</p>
         <h1 aria-label="Our Team">
           {teamTitleLetters.map((letter, index) => (
             <span
@@ -80,17 +88,6 @@ export default function OurTeamPage() {
           compassionate team, committed to providing exceptional service to you.
         </p>
       </section>
-
-      <figure className={`${styles.wrap} ${styles.groupPhoto}`}>
-        <Image
-          src="/images/team/harmony-care-team.jpg"
-          alt="The Harmony Med Spa care team standing together at the clinic's skincare display"
-          width={1535}
-          height={1024}
-          sizes="(max-width: 1244px) 92vw, 1180px"
-          priority
-        />
-      </figure>
 
       <TeamList />
 
