@@ -5,7 +5,7 @@ import co2Room from "@/public/images/blogs/october-2026/ipl-co2-treatment-planni
 import facialRoom from "@/public/images/blogs/october-2026/glo2facial-holiday-treatment-room.jpg";
 import treatmentSuite from "@/public/images/blogs/october-2026/rf-aftercare-harmony-treatment-room.jpg";
 import laserSuite from "@/public/images/blogs/october-2026/laser-hair-removal-office-suite.jpg";
-import lobby from "@/public/images/login/harmony-waiting-room-login-wide-v2.webp";
+import careTeam from "@/public/images/team/harmony-care-team.jpg";
 import glo2Facial from "@/public/images/blogs/harmony-editorial/glo2facial-vs-traditional-facial-sarasota.png";
 import consultLounge from "@/public/images/blogs/harmony-editorial/harmony-medspa-sarasota-consultation-room.png";
 import consultConversation from "@/public/images/blogs/harmony-editorial/med-spa-consultation-conversation-sarasota.png";
@@ -71,7 +71,7 @@ export const HERO_IMAGES: Record<string, HeroImage> = {
   "/lasers-and-lights": { image: laserRoom, eyebrow: "Lasers + Lights", position: "center 50%" },
   "/medical-weight-loss": { image: weightLossVisit, eyebrow: "Medical weight loss", position: "center 40%" },
   "/membership": { image: waitingRoom, eyebrow: "Memberships" },
-  "/our-team": { image: lobby, eyebrow: "About Harmony", position: "center 45%" },
+  "/our-team": { image: careTeam, eyebrow: "About Harmony", position: "center 36%" },
   "/patient-forms": { image: frontDesk, eyebrow: "Patient center", position: "center 60%" },
   "/payment-plans": { image: financingDisplay, eyebrow: "Patient center", position: "center 45%" },
   "/peptide-therapy": { image: peptideVirtual, eyebrow: "Wellness" },

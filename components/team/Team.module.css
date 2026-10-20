@@ -67,41 +67,18 @@
   line-height: 1.75;
 }
 
-/* Hero: the care-team photo spans the title band; the title sits low and left over a dark wash. */
-.hero {
-  min-height: clamp(400px, 36vw, 560px);
-  align-content: end;
-  padding-bottom: 56px;
-}
-
-.heroPhoto {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-}
-
-.heroPhoto img {
-  object-fit: cover;
-  object-position: center 28%;
-}
-
-.heroPhoto::after {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(8, 8, 8, 0.7) 0%, rgba(8, 8, 8, 0.25) 42%, rgba(8, 8, 8, 0) 70%),
-    linear-gradient(180deg, rgba(8, 8, 8, 0.6) 0%, rgba(8, 8, 8, 0) 28%, rgba(8, 8, 8, 0) 55%, rgba(8, 8, 8, 0.55) 100%);
-  content: "";
+/* Hero: the group photo needs a wider, gentler fade than the room photos so nobody is washed out. */
+.hero :global(.hero-media) {
+  width: min(68%, 1180px);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
 }
 
 @media (max-width: 720px) {
-  .hero {
-    min-height: 300px;
-    padding-bottom: 28px;
-  }
-
-  .heroPhoto img {
-    object-position: center 24%;
+  .hero :global(.hero-media) {
+    width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 
