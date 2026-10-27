@@ -1,4 +1,5 @@
 import archiveData from "@/content/legacy-blog-archive.json";
+import cmsSlugData from "@/content/legacy-cms-slugs.json";
 import profilePartOne from "@/scripts/legacy-migration-profiles-1.json";
 import profilePartTwo from "@/scripts/legacy-migration-profiles-2.json";
 import profilePartThree from "@/scripts/legacy-migration-profiles-3.json";
@@ -57,7 +58,13 @@ function toPublicBlog(post: ArchivedPost): PublicBlog {
   };
 }
 
-const archivedBlogs = (archiveData.posts as ArchivedPost[]).map(toPublicBlog);
+// Slugs migrated into the dashboard CMS are owned by Airtable from then on, so an
+// archived or deleted CMS article never falls back to its legacy copy.
+const cmsOwnedSlugs = new Set(cmsSlugData.slugs.map((slug) => slug.toLowerCase()));
+
+const archivedBlogs = (archiveData.posts as ArchivedPost[])
+  .filter((post) => !cmsOwnedSlugs.has(post.slug.toLowerCase()))
+  .map(toPublicBlog);
 
 export function listArchivedLegacyBlogs() {
   return archivedBlogs;
