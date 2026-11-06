@@ -5,14 +5,15 @@ import { REDIRECTED_BLOG_SLUGS } from "@/lib/blogs/redirects";
 import { INDEXABLE_ROUTES } from "@/lib/seo/routes";
 import { siteUrl } from "@/lib/site-url";
 
-// Refresh even when a CRM webhook is missed; avoid a frozen build-time snapshot.
-export const revalidate = 300;
+// Render per request: the cached ISR copy on Vercel stopped refreshing after CRM publishes.
+// The Airtable fetch is still cached (5 minutes, and cleared by the CRM revalidate webhook).
+export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const canonicalSiteUrl = siteUrl();
 
-  // Fail regeneration on backend errors so ISR retains its last complete sitemap,
-  // rather than caching a successful but incomplete list that drops CRM articles.
+  // Fail on backend errors rather than serving a successful but incomplete list
+  // that drops CRM articles; crawlers retry a failed sitemap.
   const published = await listPublishedBlogs({ strict: true });
 
   const entries: MetadataRoute.Sitemap = [
