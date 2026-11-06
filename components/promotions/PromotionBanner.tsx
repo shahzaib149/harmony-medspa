@@ -1,25 +1,11 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { estheticianSale, novemberSpecials, novemberSpecialsActive, promotionStatus } from "@/lib/promotions";
+import { estheticianSale, promotionStatus } from "@/lib/promotions";
 import styles from "./Promotions.module.css";
 
 /** Request-time HTML prevents cached active-sale banners surviving the deadline. */
 export default async function PromotionBanner({ article = false }: { article?: boolean }) {
   await connection();
-  if (!article && novemberSpecialsActive()) return <aside className={styles.banner} aria-label="November specials" data-no-reveal>
-    <div>
-      <span className={styles.eyebrow}>{novemberSpecials.dates} · Sarasota, Florida</span>
-      <strong>{novemberSpecials.title}</strong>
-      <ul className={styles.offers}>{novemberSpecials.offers.map(offer => <li key={offer.name}>
-        <b>{offer.name}: {offer.deal}.</b> {offer.detail}
-      </li>)}</ul>
-      <p>{novemberSpecials.terms}</p>
-    </div>
-    <div className={styles.links}>
-      <Link href="/book-now">Book Your 50% off Hormone Consultation <span aria-hidden="true">→</span></Link>
-      <Link href="/membership">Join Harmony This November &amp; Save $100 on Dermal Filler <span aria-hidden="true">→</span></Link>
-    </div>
-  </aside>;
   const status = promotionStatus();
   if (status !== "active" && !article) return null;
   return <aside className={styles.banner} aria-label="National Esthetician’s Day promotion" data-no-reveal>

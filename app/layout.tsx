@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import AnalyticsNavigation from "@/components/AnalyticsNavigation";
 import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import NovemberSpecialsPopup from "@/components/promotions/NovemberSpecialsPopup";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildMedicalClinicSchema, buildWebSiteSchema } from "@/lib/schema";
@@ -52,6 +53,7 @@ export default function RootLayout({
         <JsonLd data={[buildMedicalClinicSchema(), buildWebSiteSchema()]} />
         <Suspense fallback={null}><AnalyticsNavigation /></Suspense>
         {children}
+        <NovemberSpecialsPopup />
         <ScrollReveal />
       </body>
     </html>
