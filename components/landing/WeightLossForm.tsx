@@ -33,6 +33,10 @@ type WeightLossFormProps = {
    * keys are still posted (treatment = the page's fixed interest, best time = "") so the
    * Make scenario and Airtable schema are unchanged. */
   fields?: "full" | "essential";
+  /** Optional promotion code (e.g. "HRT150"), posted as "Offer Code" only when set. */
+  offerCode?: string;
+  /** "soft" gives the card rounded corners for the November landing pages. */
+  variant?: "default" | "soft";
 };
 
 export default function WeightLossForm({
@@ -47,8 +51,11 @@ export default function WeightLossForm({
   submitLabel = "Request my consultation",
   treatmentOptions,
   fields = "full",
+  offerCode,
+  variant = "default",
 }: WeightLossFormProps) {
   const essential = fields === "essential";
+  const cardClass = variant === "soft" ? `${styles.card} ${styles.soft}` : styles.card;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -101,6 +108,7 @@ export default function WeightLossForm({
       "Page URL": typeof window !== "undefined" ? window.location.href : "",
       "Landing URL": landingUrl,
       "Lead Created At": new Date().toISOString(),
+      ...(offerCode ? { "Offer Code": offerCode } : {}),
     };
 
     try {
@@ -116,7 +124,7 @@ export default function WeightLossForm({
 
   if (status === "success") {
     return (
-      <div className={styles.card} id={id} role="status" aria-live="polite">
+      <div className={cardClass} id={id} role="status" aria-live="polite">
         <div className={styles.successIcon} aria-hidden="true"><Check size={22} /></div>
         <p className={styles.kicker}>Request received</p>
         <h2 className={styles.successHeading}>We&apos;ll be in touch shortly.</h2>
@@ -129,7 +137,7 @@ export default function WeightLossForm({
   }
 
   return (
-    <div className={styles.card} id={id}>
+    <div className={cardClass} id={id}>
       <p className={styles.kicker}>{kicker}</p>
       <h2 className={styles.heading}>{heading}</h2>
       <p className={styles.subheading}>{subheading}</p>
