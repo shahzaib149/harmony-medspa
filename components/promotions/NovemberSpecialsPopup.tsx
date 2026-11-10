@@ -69,7 +69,9 @@ export default function NovemberSpecialsPopup() {
             src="/images/office/october-2026/harmony-lounge-logo-wall.jpg"
             alt="The Harmony Med Spa lounge in Sarasota"
             fill
-            sizes="(max-width: 760px) 1px, 320px"
+            // The 300px column is tall, so object-fit: cover renders this 4:3 photo about 860px wide.
+            sizes="(max-width: 760px) 1px, 860px"
+            quality={85}
           />
         </div>
         <div className={styles.body}>
