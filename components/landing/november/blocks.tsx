@@ -175,7 +175,7 @@ export function OfferCard({ label, price, regular, includes, terms, endLabel, ct
 
 export function StepTimeline({ steps }: { steps: readonly { title: string; body: string }[] }) {
   return (
-    <ol className={styles.timeline} data-reveal>
+    <ol className={steps.length === 3 ? `${styles.timeline} ${styles.timeline3}` : styles.timeline} data-reveal>
       <span className={styles.timelineLine} aria-hidden="true" />
       {steps.map((step, index) => (
         <li key={step.title} className={styles.step} style={{ transitionDelay: `${150 + index * 140}ms` }}>
@@ -214,7 +214,7 @@ export function Providers({ intro }: { intro: string }) {
   );
 }
 
-export function FAQ({ items }: { items: readonly { q: string; a: string }[] }) {
+export function FAQ({ items, title = "Before your exam" }: { items: readonly { q: string; a: string }[]; title?: string }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -222,7 +222,7 @@ export function FAQ({ items }: { items: readonly { q: string; a: string }[] }) {
   };
   return (
     <section className={styles.section} aria-labelledby="faq-title">
-      <SectionHead eyebrow="Questions" title="Before your exam" id="faq-title" />
+      <SectionHead eyebrow="Questions" title={title} id="faq-title" />
       <div className={styles.faqList} data-reveal>
         {items.map((item) => (
           <details key={item.q} className={styles.faqItem}>
