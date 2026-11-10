@@ -9,24 +9,26 @@ export const OFFER_ENDS_AT = "2026-12-01T00:00:00-05:00";
 export const OFFER_END_LABEL = "November 30, 2026";
 
 export const COMPLIANCE_LINE =
-  "Treatment eligibility is determined at your consultation. Results vary by individual. Offers valid through November 30, 2026 and cannot be combined unless stated.";
+  "Offers valid November 1–30, 2026. Hormone exam $150 (regular $306). IV discount excludes add-ons. Vitamin shot purchases valid for one year. Treatment eligibility is determined at your consultation. Results vary.";
 
 export const hormoneOffer = {
   examPrice: 150,
-  // Hayden's brief says regularly $300; the website price menu shows $306.
-  regularPrice: 300, // TODO: confirm with Hayden
-  regularPriceConfirmed: false,
+  regularPrice: 306,
+  regularPriceConfirmed: true,
+  /** $150 is not exactly half of $306, so copy says "Save $156", never a percentage. */
+  savings: 156,
+  eligibility: "Available to new patients and existing Harmony patients starting the hormone program.",
+  summary: "Establishes care in our hormone program, includes your personalized treatment plan, and covers follow-up visits for one year.",
   includes: [
-    "Comprehensive hormone consultation and evaluation",
-    "Physical exam by our Nurse Practitioner",
-    "Personalized treatment plan built around your symptoms and goals",
-    "12 months of follow-up visits, in office and virtual",
+    "Establishes care in our hormone program",
+    "Your personalized treatment plan",
+    "Follow-up visits for one year, in office and virtual",
   ],
   labsNote: "Lab work, medications, and pellet procedures are billed separately.",
-  newPatientsOnly: null as boolean | null, // TODO: confirm with Hayden
+  newPatientsOnly: false,
   treatmentInterest: "Hormone Optimization",
   offerCode: "HRT150",
-  confirmed: false,
+  confirmed: true,
 };
 
 export const memberships = [
@@ -39,9 +41,11 @@ export const memberships = [
 
 export const fillerOffer = {
   discount: 100,
-  eligibility: "New members who join in November", // TODO: confirm with Hayden: current members too?
+  eligibility: "New and current members, November only",
+  tagline: "Join and save, or use your existing membership to treat yourself!",
+  brand: "RHA® fillers",
   offerCode: "MEMBER100",
-  confirmed: false,
+  confirmed: true,
 };
 
 export const ivOffer = {
@@ -51,23 +55,38 @@ export const ivOffer = {
     { name: "Athlete's Edge", regular: 168.3 },
     { name: "Radiance", regular: 188.7 },
   ],
-  addOns: ["Glutathione"], // TODO: confirm the add-on is included in 25% off
+  /** Add-ons are never discounted; show them at regular price only. */
+  addOns: [{ name: "Glutathione IV push", note: "Add-on, not included in the 25% offer" }],
+  terms: "25% off applies to IV drips only. Add-ons, such as a glutathione IV push, are not included.",
   offerCode: "IV25",
-  confirmed: false,
+  confirmed: true,
 };
 
 export const shotsOffer = {
   deal: "Buy 2, get 1 free",
   shots: ["B12", "MICC", "Glutathione", "Vitamin D", "Bio-Boost"],
-  terms: null as string | null, // TODO: confirm mix-and-match / different days
+  terms: "Mix and match eligible vitamin shots and use them on different days. Purchases are valid for one year.",
   offerCode: "SHOTS3",
+  confirmed: true,
+};
+
+export const laserOffer = {
+  featured: "RF Microneedling + Fractional CO2",
+  positioning: "Our highest-level combination treatment for signs of aging, wrinkles, and hyperpigmentation.",
+  price: null as number | null, // TODO: November pricing not final; show no price or discount
+  cta: "Ask about November pricing",
   confirmed: false,
 };
 
-export const laserOffer = null; // TODO: Hayden to choose a device/laser offer (may stay null)
+/** Real Harmony patients (filler, RHA), ordered to mix younger and older examples. Clinic confirmed consent. */
+export const fillerBeforeAfters = {
+  consentConfirmed: true,
+  caption: "Real Harmony Med Spa patients. Results vary.",
+  images: [1, 2, 3, 4, 5, 6].map((n) => `/images/before-after/filler/filler-ba-0${n}.jpg`),
+};
 export const skincareGift = { value: 299, confirmed: false }; // TODO: confirm details; specials hub only
 
-/** Before-and-after images stay hidden until written patient consent is confirmed. */
+/** Other before-and-after images stay hidden until written patient consent is confirmed. */
 export const beforeAfterConsentConfirmed = false;
 
 /** Sale price rounded to cents, never typed by hand. */
@@ -87,6 +106,7 @@ const unconfirmed = [
   ["hormoneOffer", hormoneOffer.confirmed],
   ["hormoneOffer.regularPrice", hormoneOffer.regularPriceConfirmed],
   ["fillerOffer", fillerOffer.confirmed],
+  ["laserOffer", laserOffer.confirmed],
   ["ivOffer", ivOffer.confirmed],
   ["shotsOffer", shotsOffer.confirmed],
   ["skincareGift", skincareGift.confirmed],

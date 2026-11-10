@@ -18,16 +18,17 @@ export const novemberSpecials = {
   featured: {
     name: "Hormone Optimization Exam",
     price: "$150",
-    regular: "Regularly $300",
-    detail: "Includes your exam by our Nurse Practitioner, a personalized treatment plan, and 12 months of follow-up visits.",
+    regular: "Regularly $306",
+    detail: "Establishes care in our hormone program, with your personalized treatment plan and a full year of follow-up visits.",
   },
   offers: [
-    { name: "New Membership", deal: "$100 off eligible dermal filler" },
+    { name: "Memberships", deal: "$100 off dermal filler for new and current members" },
     { name: "Skincare", deal: "Free travel-size Revision Brightening Cleanser with $299+" },
-    { name: "IV Therapy", deal: "25% off eligible treatments" },
-    { name: "Vitamin Injections", deal: "Buy 2, get 1 free" },
+    { name: "IV Therapy", deal: "25% off IV drips" },
+    { name: "Vitamin Shots", deal: "Buy 2, get 1 free" },
+    { name: "RF Microneedling + CO2", deal: "Ask about November pricing" },
   ],
-  terms: "Valid through November 30, 2026. Treatment eligibility is determined by the provider. Exam labs, medications, and procedures are additional. Filler offer requires a qualifying new membership. Skincare gift: one per qualifying purchase, while supplies last. Injection selection and timing are subject to provider approval.",
+  terms: "Offers valid November 1–30, 2026. Hormone exam $150 (regular $306). IV discount excludes add-ons. Vitamin shot purchases valid for one year; mix and match and use on different days. Skincare gift: one per qualifying purchase, while supplies last. Treatment eligibility is determined at your consultation.",
 } as const;
 
 export function novemberSpecialsActive(now = new Date()) {

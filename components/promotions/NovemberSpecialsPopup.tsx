@@ -96,10 +96,10 @@ export default function NovemberSpecialsPopup() {
 
           <div className={styles.actions}>
             <a href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer" className={styles.primary} onClick={() => { track("book_hormone_consultation"); close(); }}>
-              Book Your 50% off Hormone Consultation
+              Book Your $150 Hormone Exam
             </a>
             <Link href="/membership" className={styles.secondary} onClick={() => { track("join_membership"); close(); }}>
-              Join Harmony This November &amp; Save $100 on Dermal Filler
+              Save $100 on Dermal Filler With a Membership
             </Link>
           </div>
 

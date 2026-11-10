@@ -14,12 +14,12 @@ const socialImage = "https://www.harmonymedspafl.com/images/office/october-2026/
 
 export const metadata: Metadata = {
   title: "Hormone Optimization Exam in Sarasota, $150 This November",
-  description: "Start hormone optimization at Harmony Med Spa in Sarasota with a $150 exam this November, including a personalized plan and 12 months of follow-up visits.",
+  description: "Start hormone optimization at Harmony Med Spa in Sarasota with a $150 exam this November (reg. $306), including a personalized plan and a year of follow-ups.",
   alternates: { canonical: pageUrl },
   robots: { index: false, follow: true },
   openGraph: {
     title: "Hormone Optimization Exam in Sarasota | Harmony Med Spa",
-    description: "A $150 hormone exam this November, with a personalized plan and 12 months of follow-up visits.",
+    description: "A $150 hormone exam this November (reg. $306), with a personalized plan and a full year of follow-up visits.",
     url: pageUrl,
     images: [{ url: socialImage, width: 1920, height: 1440, alt: "A patient's wellness check at Harmony Med Spa in Sarasota" }],
   },
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const HEROES = {
   default: {
     title: "Feel Like Yourself Again",
-    sub: `Your hormone exam is now $${hormoneOffer.examPrice}, 50% off, with 12 months of follow-ups included.`,
+    sub: `Your hormone exam is now $${hormoneOffer.examPrice} (reg. $${hormoneOffer.regularPrice}), with your personalized plan and a full year of follow-up visits.`,
   },
   menopause: {
     title: "Menopause & Perimenopause Support in Sarasota",
@@ -46,11 +46,12 @@ const steps = [
 ];
 
 const faqs = [
-  { q: `Are labs included in the $${hormoneOffer.examPrice}?`, a: "No. Lab work, medications, and pellet procedures are billed separately. Our team will go over lab pricing before anything is ordered." },
+  { q: `Who can get the $${hormoneOffer.examPrice} exam?`, a: "New patients and existing Harmony patients who want to start the hormone program." },
+  { q: `Are labs included in the $${hormoneOffer.examPrice}?`, a: "Lab work is billed separately. We'll go over lab work at your exam." },
   { q: "Is hormone therapy covered by insurance?", a: "Coverage depends on your plan. Ask our team and we will tell you what to expect before your exam." },
   { q: "How soon might I notice a difference?", a: "It varies from person to person. Your provider will talk you through what to expect for your plan at your exam." },
   { q: "Pellets, creams or injections: what's the difference?", a: "They are different ways of delivering hormones. Pellets are placed under the skin and release hormones gradually over several months; creams are applied regularly; injections are given on a schedule. Your provider will explain which options fit you." },
-  { q: "Do you offer virtual follow-ups?", a: "Yes. The 12 months of follow-up visits included with your exam can be in office or virtual." },
+  { q: "Do you offer virtual follow-ups?", a: "Yes. The year of follow-up visits included with your exam can be in office or virtual." },
   { q: "Who is a good candidate?", a: "Adults with symptoms such as low energy, poor sleep, mood changes, hot flashes, or low drive. Hormone therapy isn't right for everyone; your exam determines whether it is appropriate for you." },
 ];
 
@@ -65,7 +66,7 @@ export default async function HormoneOptimizationLandingPage({ searchParams }: {
         eyebrow="Hormone Optimization · Sarasota"
         title={hero.title}
         sub={hero.sub}
-        badge={<><span className={styles.badge}>November offer · 50% off</span><CountdownPill /></>}
+        badge={<><span className={styles.badge}>${hormoneOffer.examPrice} Hormone Exam · Ends Nov 30</span><CountdownPill label="November offer" /></>}
         primaryLabel={`Book My $${hormoneOffer.examPrice} Exam`}
         image="/images/office/october-2026/wellness-blood-pressure-check.jpg"
         imageAlt="A patient relaxing during a wellness check in a Harmony Med Spa treatment room"
@@ -102,11 +103,11 @@ export default async function HormoneOptimizationLandingPage({ searchParams }: {
               <p>This is more than a discounted consultation. Your exam starts a year of provider-guided care, with follow-up visits included so your plan can change as you do.</p>
             </div>
             <OfferCard
-              label="Hormone Optimization Exam"
+              label={`Hormone Exam · Save $${hormoneOffer.savings}`}
               price={hormoneOffer.examPrice}
               regular={regular}
               includes={hormoneOffer.includes}
-              terms={`${hormoneOffer.labsNote} Treatment eligibility is determined by your provider. Offer valid through ${OFFER_END_LABEL}.`}
+              terms={`${hormoneOffer.eligibility} ${hormoneOffer.labsNote} Treatment eligibility is determined by your provider. Offer valid through ${OFFER_END_LABEL}.`}
               endLabel="Ends Nov 30"
               ctaLabel={`Book My $${hormoneOffer.examPrice} Exam`}
             />
