@@ -1,0 +1,90 @@
+/* /landing/laser-skin only. Lives inside November.module.css .root, so it reuses its variables. */
+.eyebrow { margin: 0 0 .9rem; color: var(--gold); font-size: .74rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.intro { max-width: 40rem; margin: 1rem 0 0; color: var(--ink-soft); }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Signature graphic */
+.graphicSection { max-width: 1200px; margin: 0 auto; padding: clamp(4rem, 8vw, 6.5rem) clamp(1rem, 3vw, 2rem) 2rem; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.graphicHead h2 { margin: 0; }
+.graphicCard { position: relative; padding: clamp(1rem, 2.5vw, 1.8rem); background: linear-gradient(160deg, #fff, var(--tint)); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.animated { margin: 0; }
+.svg { display: block; width: 100%; height: auto; border-radius: 18px; overflow: hidden; }
+.caption { min-height: 3.2em; margin: 1rem .2rem 0; font-family: var(--display); font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.35; color: var(--ink); }
+.stageDots { display: flex; gap: .4rem; margin: .8rem .2rem 0; padding: 0; list-style: none; }
+.stageDots li { width: 28px; height: 3px; border-radius: 3px; background: var(--line); transition: background .4s ease; }
+.stageDots li.dotOn { background: var(--gold); }
+
+.layer { transition: opacity .45s ease; }
+.dim { opacity: .32; }
+.labels text { fill: rgba(36, 29, 41, .55); font: 700 11px/1 "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing: .16em; }
+
+/* Stage 1: CO2 columns grow down from the surface. */
+.columns rect { fill: #9a6a5c; opacity: .55; transform-box: fill-box; transform-origin: top; transform: scaleY(0); transition: transform .7s cubic-bezier(.2, .7, .2, 1), opacity .45s ease; }
+.svg[data-stage="1"] .columns rect, .svg[data-stage="3"] .columns rect { transform: scaleY(1); }
+.svg[data-stage="2"] .columns rect { transform: scaleY(1); opacity: .22; }
+/* Stage 2: needles reach the dermis, pulses glow at depth. */
+.needles line { stroke: #8b6d74; stroke-width: 1.5; stroke-linecap: round; opacity: .7; }
+.needles > g { opacity: 0; transform: translateY(-24px); transition: opacity .6s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
+.svg[data-stage="2"] .needles > g, .svg[data-stage="3"] .needles > g { opacity: 1; transform: none; }
+.pulse { transform-box: fill-box; transform-origin: center; }
+.svg[data-stage="2"] .pulse, .svg[data-stage="3"] .pulse { animation: pulse 2.4s ease-out 2; }
+.svg .needles.dim > g, .svg .columns.dim rect { opacity: .2; }
+
+/* Reduced motion: three still panels instead. */
+.staticPanels { display: none; }
+.staticPanel { margin: 0; }
+.staticPanel figcaption { margin-top: .6rem; font-size: .95rem; color: var(--ink-soft); }
+
+/* Concern selector */
+.concernSection { max-width: 1200px; margin: 0 auto; padding: 2rem clamp(1rem, 3vw, 2rem) clamp(3.5rem, 7vw, 5.5rem); }
+.concernSection h2 { margin: 0; }
+.concernChips { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
+.chip { min-height: 48px; padding: .7rem 1.25rem; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: 1rem; cursor: pointer; transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+.chip:hover { transform: translateY(-2px); border-color: var(--gold-soft); }
+.chipOn { color: #fff; background: var(--accent); border-color: var(--accent); }
+.concernAnswer { min-height: 4.5rem; margin-top: 1.3rem; max-width: 46rem; }
+.concernAnswer p { margin: 0; color: var(--ink-soft); }
+.answerHint { font-style: italic; color: var(--muted) !important; }
+.answerLink { display: inline-flex; align-items: center; gap: .4rem; margin-top: .7rem; font-weight: 600; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px; }
+
+/* Why the combination */
+.whyGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; }
+.whyCard { padding: clamp(1.4rem, 2.6vw, 2rem); background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); transition: transform .35s ease, box-shadow .35s ease; }
+.whyCard:hover { transform: translateY(-4px); }
+.whyIcon { display: block; width: 44px; height: 44px; margin-bottom: 1.1rem; color: var(--gold); }
+.whyCard p { margin: 0; color: var(--ink-soft); font-size: .97rem; }
+
+/* Gallery card, also-offered row, pricing note */
+.galleryCard { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; padding: clamp(1.6rem, 3vw, 2.4rem); background: radial-gradient(circle at 90% 0%, var(--tint-deep), transparent 55%), #fff; border: 1px solid var(--gold-soft); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.galleryCard h3 { font-size: 1.6rem; }
+.galleryCard p { margin: .4rem 0 0; color: var(--ink-soft); }
+.galleryCaption { font-style: italic; color: var(--muted) !important; font-size: .9rem; }
+.alsoRow { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.alsoRow a { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; padding: .55rem 1rem; background: #fff; border: 1px solid var(--line); border-radius: 999px; font-size: .93rem; font-weight: 600; text-decoration: none; transition: border-color .25s ease, transform .25s ease; }
+.alsoRow a:hover { border-color: var(--gold-soft); transform: translateY(-2px); }
+.alsoLabel { margin: 0; color: var(--muted); font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.pricingNote { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; align-items: start; margin-top: 2.2rem; padding: 1.3rem 1.4rem; background: var(--paper); border: 1px dashed var(--gold-soft); border-radius: var(--radius-md); }
+.pricingNote p { margin: 0; color: var(--ink-soft); }
+.pricingNote strong { color: var(--ink); }
+.trustLinks { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin-top: 1.2rem; padding: 0; list-style: none; font-size: .9rem; font-weight: 600; color: var(--ink-soft); }
+.trustLinks li { display: inline-flex; align-items: center; gap: .4rem; }
+.trustLinks svg { color: var(--gold); }
+.trustLinks a { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 4px; }
+
+@keyframes pulse { 0% { transform: scale(.4); opacity: .2; } 45% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.25); opacity: .35; } }
+
+@media (max-width: 960px) {
+  .graphicSection { grid-template-columns: 1fr; }
+  .whyGrid { grid-template-columns: 1fr; }
+  .galleryCard { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated { display: none; }
+  .staticPanels { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+  .graphicSection { grid-template-columns: 1fr; }
+  .columns rect, .needles > g { transition: none !important; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 700px) {
+  .staticPanels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

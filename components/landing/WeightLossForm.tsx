@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Check, LockKeyhole } from "lucide-react";
 import { ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import { formatUsPhoneE164, submitLeadPayload } from "@/lib/submitLead";
@@ -37,6 +37,9 @@ type WeightLossFormProps = {
   offerCode?: string;
   /** "soft" gives the card rounded corners for the November landing pages. */
   variant?: "default" | "soft";
+  /** When true, a window "harmony:set-interest" event (detail = option string) pre-selects
+   * that treatment. Used by the November offer finder; off for every other page. */
+  acceptInterestEvents?: boolean;
 };
 
 export default function WeightLossForm({
@@ -53,6 +56,7 @@ export default function WeightLossForm({
   fields = "full",
   offerCode,
   variant = "default",
+  acceptInterestEvents = false,
 }: WeightLossFormProps) {
   const essential = fields === "essential";
   const cardClass = variant === "soft" ? `${styles.card} ${styles.soft}` : styles.card;
@@ -68,6 +72,17 @@ export default function WeightLossForm({
   const availableTreatments = treatmentOptions?.length
     ? treatmentOptions
     : [treatmentInterest, "Not sure — I’d like guidance"];
+
+  useEffect(() => {
+    if (!acceptInterestEvents) return;
+    const onSet = (event: Event) => {
+      const value = (event as CustomEvent<string>).detail;
+      const allowed = treatmentOptions?.length ? treatmentOptions : [treatmentInterest];
+      if (typeof value === "string" && allowed.includes(value)) setSelectedTreatment(value);
+    };
+    window.addEventListener("harmony:set-interest", onSet);
+    return () => window.removeEventListener("harmony:set-interest", onSet);
+  }, [acceptInterestEvents, treatmentInterest, treatmentOptions]);
 
 
   function validate(): Errors {

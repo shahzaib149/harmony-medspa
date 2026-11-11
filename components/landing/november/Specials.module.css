@@ -1,0 +1,79 @@
+/* /landing/november-specials only. Lives inside November.module.css .root and reuses its variables. */
+
+/* Hero collage: three real clinic photos, softly layered. */
+.collage { position: absolute; inset: 0; }
+.collageMain { position: absolute; inset: 0 22% 14% 0; overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.collageSide { position: absolute; right: 0; top: 10%; width: 38%; aspect-ratio: 3 / 4; overflow: hidden; border: 5px solid var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow); }
+.collageSmall { position: absolute; left: 8%; bottom: 0; width: 36%; aspect-ratio: 4 / 3; overflow: hidden; border: 5px solid var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow); }
+.collage img { object-fit: cover; }
+.collageFrame { aspect-ratio: 5 / 4 !important; overflow: visible !important; box-shadow: none !important; background: transparent; }
+
+/* Offer grid: the centrepiece. */
+.offerGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; margin: 0; padding: 0; list-style: none; }
+.offer { position: relative; display: flex; flex-direction: column; height: 100%; padding: clamp(1.4rem, 2.4vw, 1.9rem); overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); transition: transform .4s cubic-bezier(.2, .7, .2, 1), box-shadow .4s ease, border-color .4s ease; }
+.offer::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-soft), transparent); }
+.offer:hover { transform: translateY(-6px); border-color: var(--gold-soft); box-shadow: 0 2px 4px rgba(36, 29, 41, .05), 0 30px 64px -26px rgba(36, 29, 41, .34); }
+.offerIcon { width: 46px; height: 46px; margin-bottom: 1.1rem; color: var(--gold); }
+.offerName { margin: 0; color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.offerValue { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem .6rem; margin: .5rem 0 0; font-family: var(--display); font-size: clamp(2.3rem, 3.6vw, 3rem); line-height: 1.05; letter-spacing: -.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.offerValue small { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: .95rem; letter-spacing: 0; color: var(--ink-soft); }
+.offerValue s { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: .95rem; letter-spacing: 0; color: var(--muted); }
+.offerBenefit { margin: .9rem 0 0; color: var(--ink); font-size: 1rem; font-weight: 600; }
+.offerTerms { margin: .7rem 0 1.4rem; padding-top: .8rem; color: var(--muted); border-top: 1px solid var(--line); font-size: .84rem; }
+.offerCta { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 48px; padding: 0 1.2rem; color: var(--ink); border: 1px solid rgba(36, 29, 41, .22); border-radius: 999px; font-weight: 600; text-decoration: none; transition: background .25s ease, color .25s ease; }
+.offer:hover .offerCta, .offerCta:focus-visible { color: #fff; background: var(--accent); border-color: var(--accent); }
+.giftBand { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem 2rem; margin-top: 1.3rem; padding: 1.1rem 1.5rem; background: linear-gradient(90deg, var(--tint), #fff); border: 1px solid var(--gold-soft); border-radius: var(--radius-md); }
+.giftBand p { margin: 0; color: var(--ink); }
+.giftBand svg { color: var(--gold); vertical-align: -3px; margin-right: .4rem; }
+.root .offerGrid > li { transition-delay: calc(var(--i, 0) * 70ms); }
+
+/* Offer finder */
+.finder { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; padding: clamp(1.4rem, 3vw, 2.4rem); background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.finderSteps { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
+.finderSteps li { display: flex; align-items: center; gap: .7rem; color: var(--muted); font-weight: 600; }
+.finderSteps span { display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid var(--line); border-radius: 50%; font-family: var(--display); }
+.finderSteps .stepOn { color: var(--ink); }
+.finderSteps .stepOn span { color: #fff; background: var(--accent); border-color: var(--accent); }
+.finderBody { min-height: 220px; }
+.finderPanel { margin: 0; padding: 0; border: 0; animation: slideIn .35s cubic-bezier(.2, .7, .2, 1) both; }
+.finderPanel legend { padding: 0; margin-bottom: 1rem; font-family: var(--display); font-size: 1.5rem; }
+.finderOptions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+.finderOption { min-height: 56px; padding: .8rem 1rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md); font: inherit; font-weight: 600; text-align: left; cursor: pointer; transition: border-color .2s ease, transform .2s ease, background .2s ease; }
+.finderOption:hover { border-color: var(--gold); background: #fff; transform: translateY(-2px); }
+.finderResult h3 { font-size: 1.7rem; }
+.finderResult p { margin: .4rem 0 0; color: var(--ink-soft); }
+.finderKicker { margin: 0 0 .3rem !important; color: var(--gold) !important; font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.finderActions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.2rem; margin-top: 1.2rem; }
+.finderCta { display: inline-flex; align-items: center; gap: .45rem; min-height: 50px; padding: 0 1.4rem; color: #fff; background: var(--accent); border: 0; border-radius: 999px; font: inherit; font-weight: 600; cursor: pointer; }
+.finderCta:hover { background: var(--accent-hover); }
+.finderLink { font-weight: 600; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 4px; }
+.finderBack { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; margin-top: 1rem; padding: 0; color: var(--muted); background: none; border: 0; font: inherit; font-size: .9rem; cursor: pointer; }
+
+/* Services */
+.serviceGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; margin: 0; padding: 0; list-style: none; }
+.serviceGrid a { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-height: 56px; padding: .8rem 1.1rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); font-weight: 600; text-decoration: none; transition: border-color .25s ease, transform .25s ease; }
+.serviceGrid a:hover { border-color: var(--gold-soft); transform: translateY(-2px); }
+.serviceGrid svg { flex: none; color: var(--gold); }
+
+/* Reviews */
+.reviewGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; margin: 0; padding: 0; list-style: none; }
+.review { height: 100%; margin: 0; padding: clamp(1.4rem, 2.4vw, 1.9rem); background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); }
+.review blockquote { margin: 0; font-family: var(--display); font-size: 1.08rem; line-height: 1.5; color: var(--ink); }
+.review figcaption { margin-top: 1rem; color: var(--muted); font-size: .9rem; font-weight: 600; }
+.stars { display: block; margin-bottom: .8rem; color: var(--gold); letter-spacing: .2em; }
+
+@keyframes slideIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 960px) {
+  .offerGrid, .reviewGrid { grid-template-columns: 1fr; }
+  .serviceGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .finder { grid-template-columns: 1fr; }
+  .finderSteps { grid-template-columns: repeat(3, minmax(0, 1fr)); font-size: .82rem; }
+  .finderSteps li { flex-direction: column; align-items: flex-start; gap: .35rem; }
+}
+@media (max-width: 520px) {
+  .finderOptions, .serviceGrid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .finderPanel { animation: none; }
+}

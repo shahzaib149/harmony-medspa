@@ -76,6 +76,40 @@ export const laserOffer = {
   price: null as number | null, // TODO: November pricing not final; show no price or discount
   cta: "Ask about November pricing",
   confirmed: false,
+  treatmentInterest: "RF Microneedling + CO2 Laser",
+  offerCode: "RFCO2-NOV",
+  source: "Laser Skin Landing Page",
+  /** The CO2 3-treatment face package price shows only once the clinic confirms it for November. */
+  co2PackagePrice: null as number | null,
+  co2PackageConfirmed: false,
+};
+
+export const LASER_COMPLIANCE_LINE =
+  "Treatment eligibility is determined at your consultation. Results vary by individual. November offers valid through November 30, 2026.";
+
+/**
+ * /landing/november-specials. Card prices and terms read from the offers above, so a later
+ * Black Friday version can swap this object without layout edits.
+ */
+export const novemberSpecials = {
+  source: "November Specials Landing Page",
+  offerCode: "NOV",
+  /** Site service names, used as Treatment Interest values (and by the offer finder). */
+  interests: {
+    hormone: "Hormone Optimization",
+    filler: "Dermal Fillers",
+    memberships: "Memberships",
+    laser: "RF Microneedling + CO2 Laser",
+    iv: "IV Therapy",
+    shots: "Vitamin Shots",
+    unsure: "Not sure — I’d like guidance",
+  },
+  links: {
+    hormone: "/landing/hormone-optimization",
+    memberships: "/landing/memberships",
+    laser: "/landing/laser-skin",
+    iv: "/iv-therapy",
+  },
 };
 
 /** Real Harmony patients (filler, RHA), ordered to mix younger and older examples. Clinic confirmed consent. */
@@ -85,6 +119,8 @@ export const fillerBeforeAfters = {
   images: [1, 2, 3, 4, 5, 6].map((n) => `/images/before-after/filler/filler-ba-0${n}.jpg`),
 };
 export const skincareGift = { value: 299, confirmed: false }; // TODO: confirm details; specials hub only
+
+export const SPECIALS_COMPLIANCE_LINE = `Offers valid November 1–30, 2026 and cannot be combined unless stated. Hormone exam $${hormoneOffer.examPrice} (regular $${hormoneOffer.regularPrice}). IV discount excludes add-ons. Vitamin shot purchases valid for one year. Treatment eligibility is determined at your consultation. Results vary.`;
 
 /** Other before-and-after images stay hidden until written patient consent is confirmed. */
 export const beforeAfterConsentConfirmed = false;

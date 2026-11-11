@@ -16,7 +16,9 @@ const MAP_URL = "https://www.google.com/maps/search/?api=1&query=Harmony+Med+Spa
 export type Tint = "sand" | "blush" | "aqua" | "champagne" | "porcelain";
 
 /** Page frame: slim header (logo, phone, book), footer with address, hours, map and the compliance line. */
-export function LandingShell({ tint, children, bookLabel }: { tint: Tint; children: ReactNode; bookLabel: string }) {
+export function LandingShell({ tint, children, bookLabel, complianceLine = COMPLIANCE_LINE }: {
+  tint: Tint; children: ReactNode; bookLabel: string; complianceLine?: string;
+}) {
   return (
     <div className={`${styles.root} ${styles[tint]} ${displayFont.variable}`} data-landing-root>
       <a className={styles.skip} href="#main">Skip to main content</a>
@@ -53,7 +55,7 @@ export function LandingShell({ tint, children, bookLabel }: { tint: Tint; childr
           </div>
         </div>
         <div className={styles.footerLegal}>
-          <p>{COMPLIANCE_LINE}</p>
+          <p>{complianceLine}</p>
           <p>© {new Date().getFullYear()} Harmony Med Spa. This page is general information, not medical advice.</p>
           <PoweredByCodeSquad className="mt-3" />
         </div>
@@ -64,9 +66,13 @@ export function LandingShell({ tint, children, bookLabel }: { tint: Tint; childr
   );
 }
 
-export function Hero({ eyebrow, title, sub, badge, primaryLabel, image, imageAlt, form, aside }: {
+export function Hero({ eyebrow, title, sub, badge, primaryLabel, image, imageAlt, form, aside, media, primaryHref }: {
   eyebrow: string; title: string; sub: string; badge: ReactNode; primaryLabel: string;
   image: string; imageAlt: string; form: ReactNode; aside?: ReactNode;
+  /** Replaces the single hero photo (e.g. a collage). */
+  media?: ReactNode;
+  /** Primary button target; defaults to the form. */
+  primaryHref?: string;
 }) {
   return (
     <section className={styles.hero} id="top" aria-labelledby="hero-title">
@@ -85,23 +91,24 @@ export function Hero({ eyebrow, title, sub, badge, primaryLabel, image, imageAlt
           <p className={`${styles.heroSub} ${styles.rise}`} style={{ animationDelay: "320ms" }}>{sub}</p>
           <div className={`${styles.badgeRow} ${styles.pop}`} style={{ animationDelay: "480ms" }}>{badge}</div>
           <div className={`${styles.ctaRow} ${styles.rise}`} style={{ animationDelay: "420ms" }}>
-            <a className={styles.primaryBtn} href={`#${FORM_ID}`}>{primaryLabel} <ArrowRight size={17} aria-hidden="true" /></a>
+            <a className={styles.primaryBtn} href={primaryHref ?? `#${FORM_ID}`}>{primaryLabel} <ArrowRight size={17} aria-hidden="true" /></a>
             <TrackedCall href={PHONE_HREF} className={styles.ghostBtn} placement="hero"><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</TrackedCall>
           </div>
           {aside}
         </div>
         <div className={styles.heroForm} id={FORM_ID}>{form}</div>
         <figure className={styles.heroMedia}>
-          <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 960px) 100vw, 46vw" className={styles.heroImage} />
+          {media ?? <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 960px) 100vw, 46vw" className={styles.heroImage} />}
         </figure>
       </div>
     </section>
   );
 }
 
-export function LeadForm({ source, treatmentInterest, landingUrl, offerCode, heading, subheading, submitLabel, options }: {
+export function LeadForm({ source, treatmentInterest, landingUrl, offerCode, heading, subheading, submitLabel, options, acceptInterestEvents, kicker = "November offer · request your visit" }: {
   source: string; treatmentInterest: string; landingUrl: string; offerCode?: string;
   heading: string; subheading: string; submitLabel: string; options?: readonly string[];
+  acceptInterestEvents?: boolean; kicker?: string;
 }) {
   return (
     <WeightLossForm
@@ -112,11 +119,12 @@ export function LeadForm({ source, treatmentInterest, landingUrl, offerCode, hea
       landingUrl={landingUrl}
       offerCode={offerCode}
       ariaLabel={`${treatmentInterest} consultation request`}
-      kicker="November offer · request your visit"
+      kicker={kicker}
       heading={heading}
       subheading={subheading}
       submitLabel={submitLabel}
       treatmentOptions={options}
+      acceptInterestEvents={acceptInterestEvents}
     />
   );
 }
