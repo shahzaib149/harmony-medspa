@@ -46,7 +46,7 @@ const icons = {
   membership: <svg {...ICON}><rect x="6" y="12" width="34" height="22" rx="4" /><path d="M6 19h34" /><path d="M12 28h8" /><circle cx="33" cy="28" r="2.5" /></svg>,
   laser: <svg {...ICON}><path d="M5 16c6-2 12 2 18 0s12-2 18 0" /><path d="M5 26c6-2 12 2 18 0s12-2 18 0" opacity=".6" /><path d="M5 36c6-2 12 2 18 0s12-2 18 0" opacity=".35" /><path d="M14 9v9M23 9v9M32 9v9" /><path d="M19 15v18M28 15v18" /></svg>,
   iv: <svg {...ICON}><rect x="15" y="5" width="16" height="20" rx="3" /><path d="M23 25v6M23 31c0 6-6 6-6 10" /><path d="M19 12h8M19 17h8" /></svg>,
-  shots: <svg {...ICON}><rect x="7" y="12" width="8" height="24" rx="2" /><rect x="19" y="12" width="8" height="24" rx="2" /><rect x="31" y="12" width="8" height="24" rx="2" strokeDasharray="3 3" /><path d="M9 8h4M21 8h4M33 8h4" /></svg>,
+  injections: <svg {...ICON}><rect x="7" y="12" width="8" height="24" rx="2" /><rect x="19" y="12" width="8" height="24" rx="2" /><rect x="31" y="12" width="8" height="24" rx="2" strokeDasharray="3 3" /><path d="M9 8h4M21 8h4M33 8h4" /></svg>,
 };
 
 type OfferCardData = {
@@ -90,11 +90,11 @@ const offers: OfferCardData[] = [
     href: links.iv, cta: "See IV drips",
   },
   {
-    key: "shots", name: "Vitamin shots", icon: icons.shots,
+    key: "injections", name: "Vitamin injections", icon: icons.injections,
     value: <span style={{ fontSize: ".8em" }}>{shotsOffer.deal}</span>,
     benefit: "Mix & match · Use on different days · Valid 1 year",
-    terms: `Eligible shots: ${shotsOffer.shots.join(", ")}. ${shotsOffer.terms}`,
-    href: links.iv, cta: "See vitamin shots",
+    terms: `Eligible vitamin injections: ${shotsOffer.shots.join(", ")}. ${shotsOffer.terms}`,
+    href: links.iv, cta: "See vitamin injections",
   },
 ];
 
@@ -127,7 +127,7 @@ const services = [
   { label: "Glo2Facial", href: "/glo2facials" },
   { label: "Chemical Peels", href: "/chemical-peels" },
   { label: "IV Therapy", href: "/iv-therapy" },
-  { label: "Vitamin Shots", href: "/iv-therapy" },
+  { label: "Vitamin Injections", href: "/iv-therapy" },
   { label: "Hormone Optimization", href: "/hormone-replacement-therapy" },
 ];
 

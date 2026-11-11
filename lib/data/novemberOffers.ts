@@ -9,7 +9,7 @@ export const OFFER_ENDS_AT = "2026-12-01T00:00:00-05:00";
 export const OFFER_END_LABEL = "November 30, 2026";
 
 export const COMPLIANCE_LINE =
-  "Offers valid November 1–30, 2026. Hormone exam $150 (regular $306). IV discount excludes add-ons. Vitamin shot purchases valid for one year. Treatment eligibility is determined at your consultation. Results vary.";
+  "Offers valid November 1–30, 2026. Hormone exam $150 (regular $306). IV discount excludes add-ons. Vitamin injection purchases valid for one year. Treatment eligibility is determined at your consultation. Results vary.";
 
 export const hormoneOffer = {
   examPrice: 150,
@@ -64,8 +64,8 @@ export const ivOffer = {
 
 export const shotsOffer = {
   deal: "Buy 2, get 1 free",
-  shots: ["B12", "MICC", "Glutathione", "Vitamin D", "Bio-Boost"],
-  terms: "Mix and match eligible vitamin shots and use them on different days. Purchases are valid for one year.",
+  shots: ["B12", "MICC", "glutathione", "vitamin D", "Bio-Boost"],
+  terms: "Mix and match eligible vitamin injections and use them on different days. Purchases are valid for one year.",
   offerCode: "SHOTS3",
   confirmed: true,
 };
@@ -101,7 +101,7 @@ export const novemberSpecials = {
     memberships: "Memberships",
     laser: "RF Microneedling + CO2 Laser",
     iv: "IV Therapy",
-    shots: "Vitamin Shots",
+    shots: "Vitamin Injections",
     unsure: "Not sure — I’d like guidance",
   },
   links: {
@@ -120,7 +120,7 @@ export const fillerBeforeAfters = {
 };
 export const skincareGift = { value: 299, confirmed: false }; // TODO: confirm details; specials hub only
 
-export const SPECIALS_COMPLIANCE_LINE = `Offers valid November 1–30, 2026 and cannot be combined unless stated. Hormone exam $${hormoneOffer.examPrice} (regular $${hormoneOffer.regularPrice}). IV discount excludes add-ons. Vitamin shot purchases valid for one year. Treatment eligibility is determined at your consultation. Results vary.`;
+export const SPECIALS_COMPLIANCE_LINE = `Offers valid November 1–30, 2026 and cannot be combined unless stated. Hormone exam $${hormoneOffer.examPrice} (regular $${hormoneOffer.regularPrice}). IV discount excludes add-ons. Vitamin injection purchases valid for one year. Treatment eligibility is determined at your consultation. Results vary.`;
 
 /** Other before-and-after images stay hidden until written patient consent is confirmed. */
 export const beforeAfterConsentConfirmed = false;
