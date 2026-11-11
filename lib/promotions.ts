@@ -25,10 +25,10 @@ export const novemberSpecials = {
     { name: "Memberships", deal: "$100 off dermal filler for new and current members" },
     { name: "Skincare", deal: "Free travel-size Revision Brightening Cleanser with $299+" },
     { name: "IV Therapy", deal: "25% off IV drips" },
-    { name: "Vitamin Shots", deal: "Buy 2, get 1 free" },
+    { name: "Vitamin Injections", deal: "Buy 2, get 1 free" },
     { name: "RF Microneedling + CO2", deal: "Ask about November pricing" },
   ],
-  terms: "Offers valid November 1–30, 2026. Hormone exam $150 (regular $306). IV discount excludes add-ons. Vitamin shot purchases valid for one year; mix and match and use on different days. Skincare gift: one per qualifying purchase, while supplies last. Treatment eligibility is determined at your consultation.",
+  terms: "Offers valid November 1–30, 2026. Hormone exam $150 (regular $306). IV discount excludes add-ons. Vitamin injection purchases valid for one year; mix and match and use on different days. Skincare gift: one per qualifying purchase, while supplies last. Treatment eligibility is determined at your consultation.",
 } as const;
 
 export function novemberSpecialsActive(now = new Date()) {
