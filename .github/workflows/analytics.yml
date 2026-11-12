@@ -21,6 +21,7 @@ jobs:
       - run: npx playwright install --with-deps chrome
       - run: npm run lint
       - run: node scripts/test-promotion-discovery.cjs
+      - run: node scripts/test-blog-image-host.cjs
       - run: npm run test:analytics
         env:
           NODE_OPTIONS: --require=./scripts/fixtures/airtable.cjs
