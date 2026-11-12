@@ -28,6 +28,12 @@ function track(action: string) {
 
 export default function NovemberSpecialsPopup() {
   const pathname = usePathname();
+  if (pathname === "/contact-us" || pathname === "/contact-us/") return null;
+
+  return <NovemberSpecialsDialog pathname={pathname} />;
+}
+
+function NovemberSpecialsDialog({ pathname }: { pathname: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [show, setShow] = useState(false);
 
