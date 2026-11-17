@@ -7,6 +7,7 @@ import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingServicesCarousel from "@/components/home/LandingServicesCarousel";
 import LandingTestimonials from "@/components/home/LandingTestimonials";
 import SiteFooter from "@/components/layout/SiteFooter";
+import MobileCallBar from "@/components/ui/MobileCallBar";
 
 const landingImages = "/images/landing";
 
@@ -97,6 +98,7 @@ export default function LandingPage() {
       </section>
 
       <SiteFooter />
+      <MobileCallBar formId="contact" />
     </main>
   );
 }

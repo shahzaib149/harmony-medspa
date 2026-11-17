@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next";
+import MobileCallBar from "@/components/ui/MobileCallBar";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ClipboardCheck, MapPin, Phone, ShieldCheck, Stethoscope } from "lucide-react";
@@ -262,10 +263,7 @@ export default function MedicalWeightLossLandingPage() {
         <div className={styles.footerLegal}><p>© {new Date().getFullYear()} Harmony Med Spa.</p><p>This page provides general information and is not medical advice. Recommendations follow an individual medical evaluation.</p><PoweredByCodeSquad className="mt-3" /></div>
       </footer>
 
-      <nav className={styles.mobileBar} aria-label="Quick contact actions">
-        <a href={phoneHref}><Phone size={17} aria-hidden="true" /> Call</a>
-        <a href="#consultation">Request consultation <ArrowRight size={17} aria-hidden="true" /></a>
-      </nav>
+      <MobileCallBar formId="consultation" />
     </div>
   );
 }

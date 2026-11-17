@@ -12,6 +12,7 @@ import { Search } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import HeroMedia from "@/components/layout/HeroMedia";
 import SiteFooter from "@/components/layout/SiteFooter";
+import MobileCallBar from "@/components/ui/MobileCallBar";
 import ServicePricing from "@/components/pricing/ServicePricing";
 import TypewriterText from "@/components/ui/TypewriterText";
 import RouteSchema from "@/components/seo/RouteSchema";
@@ -163,6 +164,7 @@ export default function Glo2FacialsPage() {
       <ServicePricing path="/glo2facials" />
 
       <SiteFooter />
+      <MobileCallBar />
     </main>
   );
 }

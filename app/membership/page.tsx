@@ -12,6 +12,7 @@ import MembershipForm from "@/components/forms/MembershipForm";
 import SiteHeader from "@/components/layout/SiteHeader";
 import HeroMedia from "@/components/layout/HeroMedia";
 import SiteFooter from "@/components/layout/SiteFooter";
+import MobileCallBar from "@/components/ui/MobileCallBar";
 import TypewriterText from "@/components/ui/TypewriterText";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import { openGraphFor } from "@/lib/seo/metadata";
@@ -262,6 +263,7 @@ export default function MembershipPage() {
       </section>
 
       <SiteFooter />
+      <MobileCallBar formId="request-membership" />
     </main>
   );
 }

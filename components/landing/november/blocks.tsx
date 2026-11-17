@@ -6,7 +6,8 @@ import PoweredByCodeSquad from "@/components/layout/PoweredByCodeSquad";
 import { ADDRESS_LINE_1, ADDRESS_LINE_2, ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import { COMPLIANCE_LINE } from "@/lib/data/novemberOffers";
 import { displayFont } from "@/lib/fonts";
-import { CountUp, RevealObserver, StickyMobileCTA, TrackedCall } from "./client";
+import { CountUp, RevealObserver, TrackedCall } from "./client";
+import MobileCallBar from "@/components/ui/MobileCallBar";
 import styles from "./November.module.css";
 
 export const PHONE_HREF = `tel:+1${PHONE_TEL}`;
@@ -16,8 +17,10 @@ const MAP_URL = "https://www.google.com/maps/search/?api=1&query=Harmony+Med+Spa
 export type Tint = "sand" | "blush" | "aqua" | "champagne" | "porcelain";
 
 /** Page frame: slim header (logo, phone, book), footer with address, hours, map and the compliance line. */
-export function LandingShell({ tint, children, bookLabel, complianceLine = COMPLIANCE_LINE }: {
-  tint: Tint; children: ReactNode; bookLabel: string; complianceLine?: string;
+export function LandingShell({ tint, children, complianceLine = COMPLIANCE_LINE }: {
+  tint: Tint; children: ReactNode; complianceLine?: string;
+  /** No longer shown: the shared mobile call bar uses "Call (941) 923-8990" / "Book online". */
+  bookLabel?: string;
 }) {
   return (
     <div className={`${styles.root} ${styles[tint]} ${displayFont.variable}`} data-landing-root>
@@ -60,7 +63,7 @@ export function LandingShell({ tint, children, bookLabel, complianceLine = COMPL
           <PoweredByCodeSquad className="mt-3" />
         </div>
       </footer>
-      <StickyMobileCTA formId={FORM_ID} phoneHref={PHONE_HREF} bookLabel={bookLabel} />
+      <MobileCallBar formId={FORM_ID} />
       <RevealObserver />
     </div>
   );

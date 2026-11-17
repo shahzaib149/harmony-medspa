@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next";
+import MobileCallBar from "@/components/ui/MobileCallBar";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -331,10 +332,7 @@ export default function InjectablesLandingPage() {
         </div>
       </footer>
 
-      <nav className={styles.mobileBar} aria-label="Quick contact actions">
-        <a href={phoneHref}><Phone size={17} aria-hidden="true" /> Call</a>
-        <a href="#consultation">Request consultation <ArrowRight size={17} aria-hidden="true" /></a>
-      </nav>
+      <MobileCallBar formId="consultation" />
     </div>
   );
 }

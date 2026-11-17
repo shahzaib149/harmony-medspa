@@ -127,6 +127,38 @@ export function trackEvent(name: "select_content" | "click" | "file_download", p
 }
 export function trackPageView() { trackingRuntime()?.pageView(); }
 
+// Google Ads "Phone Click - Landing". A public conversion id/label, not a secret;
+// NEXT_PUBLIC_GOOGLE_ADS_PHONE_SEND_TO can override it without a code change.
+const phoneSendToSetting = process.env.NEXT_PUBLIC_GOOGLE_ADS_PHONE_SEND_TO?.trim() || "AW-11396978687/MnC1CIGTiLodEP-vwLoq";
+export const phoneSendTo = /^AW-\d+\/[A-Za-z0-9_-]+$/.test(phoneSendToSetting) ? phoneSendToSetting : "";
+let phoneConversionPage = "";
+
+/**
+ * A tap on any tel: link. Fires the Google Ads phone conversion at most once per page
+ * view, and a GA4 phone_click with the page and the stored campaign / ad group. Uses
+ * beacon transport and never touches the click event, so the dialer opens immediately.
+ */
+export function trackPhoneClick(href: string) {
+  const runtime = trackingRuntime();
+  if (!runtime) return;
+  const attribution = runtime.read();
+  if (validMeasurementId) {
+    runtime.event("phone_click", {
+      send_to: validMeasurementId,
+      page_path: window.location.pathname,
+      link_url: href,
+      utm_campaign: attribution.utm_campaign ?? "",
+      utm_adgroup: attribution.utm_adgroup || attribution.utm_ad_group || "",
+      transport_type: "beacon",
+    });
+  }
+  const page = window.location.pathname + window.location.search;
+  if (phoneSendTo && phoneConversionPage !== page) {
+    phoneConversionPage = page;
+    runtime.event("conversion", { send_to: phoneSendTo, transport_type: "beacon" });
+  }
+}
+
 const confirmed = new WeakSet<Response>();
 const tracked = new WeakSet<Response>();
 const successBrand: unique symbol = Symbol("successful-lead-response");

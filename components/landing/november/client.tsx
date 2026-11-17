@@ -60,23 +60,6 @@ export function TrackedCall({ href, className, children, placement, ariaLabel }:
   );
 }
 
-/** Mobile-only bottom bar; hides while the lead form is on screen. */
-export function StickyMobileCTA({ formId, phoneHref, bookLabel }: { formId: string; phoneHref: string; bookLabel: string }) {
-  const [hidden, setHidden] = useState(false);
-  useEffect(() => {
-    const form = document.getElementById(formId);
-    if (!form || !("IntersectionObserver" in window)) return;
-    const observer = new IntersectionObserver(([entry]) => setHidden(entry.isIntersecting), { threshold: 0.05 });
-    observer.observe(form);
-    return () => observer.disconnect();
-  }, [formId]);
-  return (
-    <div className={`${styles.stickyCta} ${hidden ? styles.stickyHidden : ""}`} aria-hidden={hidden}>
-      <TrackedCall href={phoneHref} className={styles.stickyCall} placement="sticky_mobile">Call</TrackedCall>
-      <a href={`#${formId}`} className={styles.stickyBook} tabIndex={hidden ? -1 : 0}>{bookLabel}</a>
-    </div>
-  );
-}
 
 /** Counts a whole-dollar price up from 70% when it first scrolls into view. Server HTML shows the final value. */
 export function CountUp({ value, prefix = "$" }: { value: number; prefix?: string }) {
