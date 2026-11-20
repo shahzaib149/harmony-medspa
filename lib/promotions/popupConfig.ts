@@ -1,4 +1,4 @@
-import { BF_PHASE_BOUNDARIES } from "@/lib/data/blackFriday2026";
+import { BF_PHASE_BOUNDARIES, EARLY_ACCESS_URL } from "@/lib/data/blackFriday2026";
 
 export type PopupCta = { label: string; href: string; action: string };
 export type PromotionPopupPhase = {
@@ -25,8 +25,8 @@ export const promotionPopupPhases: PromotionPopupPhase[] = [
     eyebrow: "Coming Soon",
     title: "Black Friday Beauty Event",
     body: "Member early access begins November 23, with the public sale November 27–30. Be first to receive our biggest savings of the year.",
-    primaryCta: { label: "Request the Specials", href: "/black-friday#request", action: "request_specials" },
-    secondaryCta: { label: "View Memberships", href: "/membership", action: "view_memberships" },
+    primaryCta: { label: "Request Early Access", href: EARLY_ACCESS_URL, action: "request_early_access" },
+    secondaryCta: { label: "Preview the Specials", href: "/black-friday", action: "preview_specials" },
     note: "Or DM us “BLACK FRIDAY” on Instagram.",
   },
   {
@@ -35,7 +35,7 @@ export const promotionPopupPhases: PromotionPopupPhase[] = [
     eyebrow: "Member Early Access",
     title: "Early Access Is Open",
     body: "Harmony members shop Black Friday first, through November 26. New patients can join a membership and unlock member pricing after their first payment.",
-    primaryCta: { label: "Shop Early Access", href: "/black-friday", action: "shop_early_access" },
+    primaryCta: { label: "See Early Access Pricing", href: "/black-friday", action: "shop_early_access" },
     secondaryCta: { label: "Join a Membership", href: "/membership", action: "join_membership" },
   },
   {

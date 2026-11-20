@@ -34,6 +34,21 @@ const nextConfig: NextConfig = {
         pathname: "/storage/v1/object/public/Blog%20Images/**",
         search: "",
       },
+      // Harmony's approved Black Friday 2026 campaign assets and official logos (Hayden's handoff, Nov 20).
+      {
+        protocol: "https",
+        hostname: "jwbngsdmdwaagpksyxxn.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/Black%20Friday%202026/**",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "jwbngsdmdwaagpksyxxn.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/Logos/**",
+        search: "",
+      },
       {
         protocol: "https",
         hostname: "fcpqllxxplkmrbxayeuo.supabase.co",

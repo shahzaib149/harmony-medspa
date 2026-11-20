@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Phone } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, MessageSquare, Phone } from "lucide-react";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import MobileCallBar from "@/components/ui/MobileCallBar";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CountUp } from "@/components/landing/november/client";
-import { GiftCardArt, GoldRule, OfferImage, PhaseScope, noir } from "@/components/promotions/noir/NoirParts";
+import { PhaseScope, noir } from "@/components/promotions/noir/NoirParts";
+import { BlackFridayLeadForm, ContactActions, DeviceExplorer, PhaseCountdown, TrackedLink } from "@/components/black-friday/client";
 import {
-  BlackFridayLeadForm, CategoryNav, DeviceExplorer, OfferActions, PhaseCountdown, PriceBlock, SculptraSelector,
-} from "@/components/black-friday/client";
-import {
-  BF_FORM_ID, blackFridayFaq, checkoutTerms, deviceTerms, formatUsd, highlights, memberSavings, membershipUrl, offerById,
-  signatureEnhancements, termsClosing,
+  BF_FORM_ID, EARLY_ACCESS_URL, TEXT_HREF, blackFridayFaq, checkoutTerms, deviceTerms, formatUsd, images, memberSavings,
+  membershipUrl, offerById, signatureEnhancements, termsClosing, type ImageSlotId, type Offer,
 } from "@/lib/data/blackFriday2026";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
+import { ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import { displayFont } from "@/lib/fonts";
 import { buildFaqPageSchema } from "@/lib/schema";
 import { openGraphFor } from "@/lib/seo/metadata";
 import styles from "@/components/black-friday/BlackFriday.module.css";
+import p from "@/components/black-friday/PricingLayout.module.css";
 
 // The phase is re-checked in the browser before first paint; this only keeps the
 // server-rendered default fresh.
@@ -34,55 +33,117 @@ export const metadata: Metadata = {
 };
 
 const TEL = `tel:+1${PHONE_TEL}`;
-const CATEGORIES = [
+const JUMP = [
   { id: "injectables", label: "Injectables" },
   { id: "facials", label: "Facials" },
-  { id: "devices", label: "Devices & Laser" },
+  { id: "devices", label: "Laser & Devices" },
   { id: "skincare", label: "Skincare" },
   { id: "gift-cards", label: "Gift Cards" },
-  { id: "wellness", label: "Wellness" },
+  { id: "wellness", label: "Hormone Optimization" },
 ] as const;
 
 const daxxify = offerById("daxxify");
 const rha = offerById("rha");
+const sculptra = [offerById("sculptra-2"), offerById("sculptra-4"), offerById("sculptra-6")];
 const glo2 = offerById("glo2facial");
 const signature = offerById("signature-facial");
-const devices = offerById("devices");
 const skincare = offerById("skincare");
 const skincareGift = offerById("skincare-gift");
+const giftBonus = offerById("gift-card-bonus");
 const bhrt = offerById("bhrt-exam");
 
-function SectionHead({ eyebrow, title, intro, id }: { eyebrow: string; title: React.ReactNode; intro?: string; id?: string }) {
+/* ---------- Small server pieces ---------- */
+
+function CardImage({ slot, contain = false, top = false, priority = false }: { slot: ImageSlotId; contain?: boolean; top?: boolean; priority?: boolean }) {
+  const image = images[slot];
+  if (!image.src) return null;
   return (
-    <header className={styles.sectionHead}>
-      <p className={noir.eyebrow}>{eyebrow}</p>
-      <h2 id={id} className={`${noir.display} ${styles.sectionTitle}`}>{title}</h2>
-      {intro ? <p className={`${noir.lead} ${styles.sectionIntro}`}>{intro}</p> : null}
+    <div className={`${p.cardImage} ${contain ? `${p.cardImageContain} ${p.cardImageLight}` : ""} ${top ? p.cardImageTop : ""}`}>
+      <Image src={image.src} alt={image.alt} fill sizes="(max-width: 900px) 100vw, 580px" quality={80} priority={priority} />
+    </div>
+  );
+}
+
+function priceCell(offer: Offer, side: "nonmember" | "member") {
+  const value = offer[side];
+  if (value === null) return side === "nonmember" ? offer.nonmemberLabel ?? "" : offer.memberLabel ?? "";
+  return formatUsd(value);
+}
+
+/** Treatment | Nonmember | Member, like the /pricing lists but with both columns. */
+function PriceTable({ rows, caption }: { rows: { label: string; note?: string; offer: Offer }[]; caption: string }) {
+  return (
+    <table className={p.table}>
+      <caption className={styles.srOnly}>{caption}</caption>
+      <thead><tr><th scope="col">Treatment</th><th scope="col">Nonmember</th><th scope="col">Member</th></tr></thead>
+      <tbody>
+        {rows.map(({ label, note, offer }) => (
+          <tr key={offer.id}>
+            <th scope="row">{label}{note ? <small>{note}</small> : null}</th>
+            <td data-label="Nonmember" className={p.nonmember}>
+              {offer.regular ? <span className={p.regular}>Reg. {formatUsd(offer.regular)}</span> : null}
+              {priceCell(offer, "nonmember")}
+            </td>
+            <td data-label="Member" className={p.member}>{priceCell(offer, "member")}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+function SaveChip({ offer }: { offer: Offer }) {
+  const save = memberSavings(offer);
+  return save > 0 ? <span className={p.save}>Members save {formatUsd(save)}</span> : null;
+}
+
+function Bullets({ items }: { items: readonly string[] }) {
+  return <ul className={p.bullets}>{items.map((item) => <li key={item}>{item}</li>)}</ul>;
+}
+
+function FullTerms({ text }: { text: string }) {
+  return <details className={p.terms}><summary>Full terms</summary><p>{text}</p></details>;
+}
+
+function GroupTitle({ id, title, intro }: { id: string; title: string; intro?: string }) {
+  return (
+    <header id={id} className={p.groupTitle}>
+      <h2>{title}</h2>
+      {intro ? <p>{intro}</p> : null}
     </header>
   );
 }
 
-function Bullets({ items }: { items: readonly string[] }) {
-  return <ul className={styles.bullets}>{items.map((item) => <li key={item}><span aria-hidden="true" className={styles.bulletMark} />{item}</li>)}</ul>;
-}
-
-function FullTerms({ text }: { text: string }) {
+/** Before Nov 23 the main action is Hayden's Mailchimp early-access signup; from Nov 23, Call / Text / Book. */
+function HeroCtas() {
   return (
-    <details className={styles.fullTerms}>
-      <summary>Full terms</summary>
-      <p>{text}</p>
-    </details>
+    <>
+      <div className={p.ctaRow} data-bf-show="pre">
+        <TrackedLink id="early_access" href={EARLY_ACCESS_URL} className={noir.btnPrimary}>Request Early Access <ArrowRight size={17} aria-hidden="true" /></TrackedLink>
+        <a href={TEL} className={noir.btnSecondary}><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
+      </div>
+      <div className={p.ctaRow} data-bf-show="early public">
+        <a href={TEL} className={noir.btnPrimary}><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
+        <a href={TEXT_HREF} className={noir.btnSecondary}><MessageSquare size={16} aria-hidden="true" /> Text Us</a>
+        <a href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer" className={noir.btnSecondary}><CalendarDays size={16} aria-hidden="true" /> Book Online</a>
+      </div>
+      <div className={p.ctaRow} data-bf-show="ended">
+        <Link href="/pricing" className={noir.btnPrimary}>View Current Pricing <ArrowRight size={17} aria-hidden="true" /></Link>
+        <Link href={membershipUrl} className={noir.btnSecondary}>Explore Memberships</Link>
+      </div>
+    </>
   );
 }
 
 export default function BlackFridayPage() {
   const faqSchema = buildFaqPageSchema(blackFridayFaq);
+  const hero = images.hero;
   return (
     <main className={`${displayFont.variable} ${noir.noir} ${styles.page}`}>
       {faqSchema ? <JsonLd data={faqSchema} /> : null}
       <SiteHeader className="site-header" />
       <PhaseScope>
-        {/* 1. Phase bar */}
+        {/* Phase bar */}
         <div className={styles.phaseBar} data-bf-show="pre early public" data-no-reveal>
           <div className={styles.phaseBarInner}>
             <p className={styles.phaseWindows}>
@@ -94,324 +155,306 @@ export default function BlackFridayPage() {
           </div>
         </div>
 
-        {/* 2. Hero */}
-        <section className={`${styles.hero} ${noir.grain}`} aria-labelledby="bf-title" data-no-reveal>
-          <div className={styles.heroGlow} aria-hidden="true" />
-          <div className={styles.heroInner}>
-            <div className={styles.heroCopy}>
-              <p className={noir.eyebrow}>Harmony Med Spa · Sarasota</p>
-              <h1 id="bf-title" className={`${noir.display} ${styles.heroTitle}`}>
-                <span className={noir.foil}>Black Friday</span>{" "}
-                <em className={noir.foil}>Beauty Event</em>
-              </h1>
-              <p className={`${noir.lead} ${styles.heroSub}`}>
-                <span data-bf-show="pre">Member early access begins November 23. Request the specials now and be first to know.</span>
-                <span data-bf-show="early">Member early access is open through November 26. Join today and unlock member pricing instantly.</span>
-                <span data-bf-show="public">Our biggest savings of the year, now through November 30.</span>
-                <span data-bf-show="ended">Black Friday 2026 has ended. Explore our current pricing and memberships.</span>
-              </p>
-              <div className={styles.heroCtas} data-bf-show="pre early public">
-                <a href={`#${BF_FORM_ID}`} className={noir.btnPrimary}>Request the Specials <ArrowRight size={17} aria-hidden="true" /></a>
-                <a href={TEL} className={noir.btnSecondary}><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
-              </div>
-              <div className={styles.heroCtas} data-bf-show="ended">
-                <Link href="/pricing" className={noir.btnPrimary}>View Current Pricing <ArrowRight size={17} aria-hidden="true" /></Link>
-                <Link href="/membership" className={noir.btnSecondary}>Explore Memberships</Link>
-              </div>
-              <p className={styles.trust} data-bf-show="pre early public">
-                <span>Provider-led</span><span aria-hidden="true">·</span><span>Gulf Gate, Sarasota</span><span aria-hidden="true">·</span><span>Prepay now, treat within 365 days</span>
-              </p>
-            </div>
-            <div className={styles.heroArt} data-bf-show="pre early public" aria-hidden="true">
-              <div className={styles.heroPortrait}><OfferImage slot="hero" sizes="(max-width: 900px) 80vw, 420px" priority /></div>
-              <div className={`${styles.floatCard} ${styles.floatCard1}`}><small>Daxxify</small><strong>Buy 100 · Get 40 Free</strong></div>
-              <div className={`${styles.floatCard} ${styles.floatCard2}`}><small>RHA Fillers</small><strong>2nd Syringe 50% Off</strong></div>
-              <div className={`${styles.floatCard} ${styles.floatCard3}`}><small>Laser &amp; Devices</small><strong>Up to 30% Off</strong></div>
-            </div>
+        {/* Hero: the pricing page's dark hero, black and gold */}
+        <section className={`${p.hero} ${noir.grain}`} aria-labelledby="bf-title" data-no-reveal>
+          {hero.src ? <div className={p.heroPhoto}><Image src={hero.src} alt="" fill priority sizes="100vw" quality={70} /></div> : null}
+          <div className={p.heroShade} aria-hidden="true" />
+          <div className={p.heroInner}>
+            <p className={noir.eyebrow}>Harmony Med Spa · Sarasota</p>
+            <h1 id="bf-title" className={`${noir.display} ${p.heroTitle}`}>
+              <span className={noir.foil}>Black Friday</span>{" "}<em className={noir.foil}>Beauty Event</em>
+            </h1>
+            <p className={p.heroSub}>
+              <span data-bf-show="pre">Member early access begins November 23. Request early access and be first to receive our biggest savings of the year.</span>
+              <span data-bf-show="early">Member early access is open through November 26. Not a member yet? Join today and unlock member pricing after your first payment.</span>
+              <span data-bf-show="public">Our biggest savings of the year, now through November 30. Call, text or book to claim your offer.</span>
+              <span data-bf-show="ended">Black Friday 2026 has ended. Explore our current pricing and memberships.</span>
+            </p>
+            <ul className={p.dates} data-bf-show="pre early public" aria-label="Sale dates">
+              <li>Member early access <b>Nov 23–26</b></li>
+              <li>Public sale <b>Nov 27–30</b></li>
+            </ul>
+            <HeroCtas />
           </div>
         </section>
 
-        <div data-bf-show="pre early public">
-          {/* 3. Highlights */}
-          <section className={styles.highlights} aria-label="Black Friday highlights">
-            <ul className={styles.highlightList}>
-              {highlights.map((item) => (
-                <li key={item.label} className={styles.highlight}>
-                  <span className={styles.highlightValue}>
-                    {item.prefix ? <span className={styles.highlightPrefix}>{item.prefix}</span> : null}
-                    <CountUp value={item.value} prefix="" />{item.suffix}
-                  </span>
-                  <span className={styles.highlightLabel}>{item.label}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+        <div className={p.light}>
+          <div data-bf-show="pre early public">
+            {/* Intro, like the pricing page */}
+            <section className={`${p.wrap} ${p.intro}`}>
+              <h2 className={p.introTitle}>Harmony Med Spa Black Friday Pricing in Sarasota, FL</h2>
+              <div className={p.introText}>
+                <p>Save on injectables, four-treatment facial packages, laser and device packages, selected skincare, gift cards and hormone optimization at our Gulf Gate med spa.</p>
+                <p>Prepay during the sale and schedule your treatments within 365 days, with your provider&apos;s approval. Members save more, and new patients receive member pricing as soon as their first membership payment has cleared.</p>
+                <p>To claim an offer, call or text us at {PHONE_DISPLAY} or book online.</p>
+              </div>
+              <ContactActions id="intro" className={p.actions} />
 
-          {/* 4. Membership spotlight (ivory interlude) */}
-          <section className={styles.ivory} aria-labelledby="members-title">
-            <div className={styles.container}>
-              <header className={styles.sectionHead}>
-                <p className={styles.ivoryEyebrow}>Membership</p>
-                <span className={styles.earlyBadge} data-bf-show="early">Early Access Now Open for Members</span>
-                <h2 id="members-title" className={`${noir.display} ${styles.ivoryTitle}`}>Members <em>Save More</em></h2>
-                <p className={styles.ivoryLead}>New patients who enroll in an eligible membership receive member pricing as soon as their first membership payment is completed.</p>
-              </header>
-              <div className={styles.compare} role="table" aria-label="Nonmember vs member pricing">
-                <div className={styles.compareRow} role="row">
-                  <span role="columnheader">Offer</span><span role="columnheader">Nonmember</span><span role="columnheader">Member</span><span role="columnheader">You save</span>
+              <nav className={p.jump} aria-label="Black Friday categories">
+                <p className={p.jumpLabel}>Jump to a category</p>
+                <ul className={p.jumpList}>
+                  {JUMP.map((item) => <li key={item.id}><a href={`#${item.id}`}>{item.label}</a></li>)}
+                </ul>
+              </nav>
+
+              <div className={p.members}>
+                <div className={p.membersHead}>
+                  <h2 className={`${noir.display} ${p.membersTitle}`}>Members Save More</h2>
+                  <span className={p.badge} data-bf-show="early">Member early access is open</span>
                 </div>
-                {[daxxify, rha].map((offer) => (
-                  <div key={offer.id} className={styles.compareRow} role="row">
-                    <span role="cell" className={styles.compareName}>{offer.name}</span>
-                    <span role="cell" data-label="Nonmember">{formatUsd(offer.nonmember ?? 0)}</span>
-                    <span role="cell" data-label="Member" className={styles.compareMember}>{formatUsd(offer.member ?? 0)}</span>
-                    <span role="cell" data-label="You save" className={styles.compareSave}>{formatUsd(memberSavings(offer))}</span>
-                  </div>
-                ))}
-                <div className={styles.compareRow} role="row">
-                  <span role="cell" className={styles.compareName}>{devices.name}</span>
-                  <span role="cell" data-label="Nonmember">{devices.nonmemberLabel}</span>
-                  <span role="cell" data-label="Member" className={styles.compareMember}>{devices.memberLabel}</span>
-                  <span role="cell" data-label="You save" className={styles.compareSave}>Extra 10% off</span>
+                <p className={p.membersText}>
+                  Members shop first, November 23–26, and get the lower member price on injectables and laser packages. New patients can request a membership today and receive member pricing once their first membership payment has cleared.
+                </p>
+                <div className={`${p.ctaRow} ${p.ctaRowStart}`} style={{ marginTop: 18 }}>
+                  <Link href={membershipUrl} className={`${p.btnLight} ${p.btnInk}`}>Request a Membership <ArrowRight size={16} aria-hidden="true" /></Link>
                 </div>
               </div>
-              <div className={styles.ivoryCtas}>
-                <Link href={membershipUrl} className={styles.ivoryBtn}>Explore Memberships <ArrowRight size={17} aria-hidden="true" /></Link>
-              </div>
-            </div>
-          </section>
+            </section>
 
-          {/* 5. Category navigator */}
-          <CategoryNav items={CATEGORIES} />
+            {/* Category cards */}
+            <section className={`${p.wrap} ${p.grid}`} aria-label="Black Friday offers">
+              <GroupTitle id="injectables" title="Injectables" intro="Members' 10% injectable discount is applied first, then the Black Friday offer. Dosing and eligibility are determined by your provider." />
 
-          {/* 6. Injectables */}
-          <section id="injectables" className={`${styles.section} ${noir.glow}`} aria-labelledby="injectables-title">
-            <div className={styles.container}>
-              <SectionHead id="injectables-title" eyebrow="Injectables" title={<>Refresh, <em>Refine</em>, Restore</>} />
-              <div className={styles.featureGrid}>
-                {[{ offer: daxxify, slot: "daxxify" as const, bullets: ["140 prepaid units total", "Use over multiple visits within 365 days", "Dosing by your provider"], interest: "Daxxify" as const },
-                  { offer: rha, slot: "rha" as const, bullets: ["RHA 2, 3, 4 and Redensity, mix and match", "50% off the lower-priced syringe", "Prices assume two $714 syringes"], interest: "RHA Fillers" as const }].map(({ offer, slot, bullets, interest }) => (
-                  <article key={offer.id} className={`${noir.card} ${styles.featureCard}`}>
-                    <OfferImage slot={slot} sizes="(max-width: 900px) 100vw, 560px" className={styles.featureImage} />
-                    <div className={styles.featureBody}>
-                      <h3 className={`${noir.display} ${styles.offerTitle}`}>{offer.name}</h3>
-                      <PriceBlock nonmember={offer.nonmember ?? 0} member={offer.member ?? 0} />
-                      <Bullets items={bullets} />
-                      <FullTerms text={offer.terms} />
-                      <OfferActions offerId={offer.id} interest={interest} />
-                    </div>
-                  </article>
-                ))}
-              </div>
-              <article className={`${noir.card} ${styles.sculptraCard}`}>
-                <OfferImage slot="sculptra" sizes="(max-width: 900px) 100vw, 420px" className={styles.sculptraImage} />
-                <div className={styles.featureBody}>
-                  <h3 className={`${noir.display} ${styles.offerTitle}`}>Sculptra: <em>Build Your Package</em></h3>
-                  <SculptraSelector />
-                  <OfferActions offerId="sculptra-2" interest="Sculptra" />
+              <article className={p.card}>
+                <CardImage slot="daxxify" contain />
+                <div className={p.cardBody}>
+                  <p className={p.cardEyebrow}>Buy 100 units, get 40 free</p>
+                  <h3 className={p.cardTitle}>Daxxify</h3>
+                  <PriceTable caption="Daxxify Black Friday pricing" rows={[{ label: "140 prepaid units", offer: daxxify }]} />
+                  <SaveChip offer={daxxify} />
+                  <Bullets items={["Use over multiple visits within 365 days", "One bundle per patient unless your provider approves more", "Dosing by your provider"]} />
+                  <FullTerms text={daxxify.terms} />
+                  <ContactActions id={daxxify.id} className={p.actions} />
                 </div>
               </article>
-              <p className={styles.note}>Members receive their additional 10% injectable discount before the Black Friday offer is applied. Dosing and eligibility determined by your provider.</p>
-            </div>
-          </section>
 
-          <GoldRule />
+              <article className={p.card}>
+                <CardImage slot="rha" contain />
+                <div className={p.cardBody}>
+                  <p className={p.cardEyebrow}>Buy one syringe, second 50% off</p>
+                  <h3 className={p.cardTitle}>RHA Dermal Fillers</h3>
+                  <PriceTable caption="RHA filler Black Friday pricing" rows={[{ label: "Two syringes", note: "Example based on two $714 syringes", offer: rha }]} />
+                  <SaveChip offer={rha} />
+                  <Bullets items={["Mix and match RHA 2, 3, 4 and Redensity", "50% off the lower-priced syringe", "Multiple pairs with provider approval"]} />
+                  <FullTerms text={rha.terms} />
+                  <ContactActions id={rha.id} className={p.actions} />
+                </div>
+              </article>
 
-          {/* 7. Facials */}
-          <section id="facials" className={styles.section} aria-labelledby="facials-title">
-            <div className={styles.container}>
-              <SectionHead id="facials-title" eyebrow="Facials" title={<>Your Glow, <em>Four Times Over</em></>} />
-              <div className={styles.featureGrid}>
-                <article className={`${noir.card} ${styles.featureCard}`}>
-                  <OfferImage slot="glo2facial" sizes="(max-width: 900px) 100vw, 560px" className={styles.featureImage} />
-                  <div className={styles.featureBody}>
-                    <h3 className={`${noir.display} ${styles.offerTitle}`}>{glo2.name}</h3>
-                    <p className={styles.singlePrice}><span className={styles.priceMember}>{formatUsd(glo2.member ?? 0)}</span><span className={styles.priceLabel}>Members &amp; nonmembers</span></p>
-                    <Bullets items={["One 4-pack per patient", "365-day redemption", "Full prepayment; no further discounts"]} />
-                    <FullTerms text={glo2.terms} />
-                    <OfferActions offerId={glo2.id} interest="Glo2Facial" />
-                  </div>
-                </article>
-                <article className={`${noir.card} ${styles.featureCard}`}>
-                  <OfferImage slot="signatureFacial" sizes="(max-width: 900px) 100vw, 560px" className={styles.featureImage} />
-                  <div className={styles.featureBody}>
-                    <h3 className={`${noir.display} ${styles.offerTitle}`}>{signature.name}</h3>
-                    <p className={styles.singlePrice}><span className={styles.priceMember}>{formatUsd(signature.member ?? 0)}</span><span className={styles.priceLabel}>Members &amp; nonmembers</span></p>
-                    <p className={styles.enhanceIntro}>One free enhancement per visit (up to $100 added value):</p>
-                    <ul className={styles.goldChecks}>
-                      {signatureEnhancements.map((item) => <li key={item}><Check size={16} aria-hidden="true" />{item}</li>)}
-                    </ul>
-                    <FullTerms text={signature.terms} />
-                    <OfferActions offerId={signature.id} interest="Signature Facial" />
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
+              <article className={`${p.card} ${p.cardWide}`}>
+                <CardImage slot="sculptra" contain />
+                <div className={p.cardBody}>
+                  <p className={p.cardEyebrow}>Save up to $1,000</p>
+                  <h3 className={p.cardTitle}>Sculptra</h3>
+                  <PriceTable caption="Sculptra Black Friday pricing" rows={[
+                    { label: "2 vials, $250 off", offer: sculptra[0] },
+                    { label: "4 vials", note: "Package total confirmed when you call", offer: sculptra[1] },
+                    { label: "6 vials", note: "Package total confirmed when you call", offer: sculptra[2] },
+                  ]} />
+                  <SaveChip offer={sculptra[0]} />
+                  <Bullets items={["Members' 10% applied first, then the dollar savings", "Use over multiple visits within 365 days", "Provider approval required"]} />
+                  <FullTerms text={sculptra[0].terms} />
+                  <ContactActions id="sculptra" className={p.actions} />
+                </div>
+              </article>
 
-          <GoldRule />
+              <GroupTitle id="facials" title="Facials" intro="Four-treatment packages, the same price for members and nonmembers. One 4-pack per patient." />
 
-          {/* 8. Devices & Laser */}
-          <section id="devices" className={`${styles.section} ${noir.glow}`} aria-labelledby="devices-title">
-            <div className={styles.container}>
-              <SectionHead id="devices-title" eyebrow="Devices & Laser" title={<>Secret PRO, CO2, IPL <em>&amp; Laser Hair Removal</em></>} />
-              <div className={styles.deviceBand}>
-                <span><strong>20% Off</strong> for Nonmembers</span>
-                <span aria-hidden="true" className={styles.diamond}>◆</span>
-                <span><strong className={styles.gold}>30% Off</strong> for Members</span>
+              <article className={p.card}>
+                <CardImage slot="glo2facial" />
+                <div className={p.cardBody}>
+                  <p className={p.cardEyebrow}>4 treatments</p>
+                  <h3 className={p.cardTitle}>Glo2Facial</h3>
+                  <PriceTable caption="Glo2Facial Black Friday pricing" rows={[{ label: "4-treatment package", offer: glo2 }]} />
+                  <Bullets items={["Full prepayment; 365-day redemption", "No further discounts"]} />
+                  <FullTerms text={glo2.terms} />
+                  <ContactActions id={glo2.id} className={p.actions} />
+                </div>
+              </article>
+
+              <article className={p.card}>
+                <CardImage slot="signatureFacial" />
+                <div className={p.cardBody}>
+                  <p className={p.cardEyebrow}>4 treatments + enhancements</p>
+                  <h3 className={p.cardTitle}>Signature Facial</h3>
+                  <PriceTable caption="Signature Facial Black Friday pricing" rows={[{ label: "4-treatment package", offer: signature }]} />
+                  <p className={p.cardBlurb}>One free enhancement each visit (up to $100 added value):</p>
+                  <Bullets items={signatureEnhancements} />
+                  <FullTerms text={signature.terms} />
+                  <ContactActions id={signature.id} className={p.actions} />
+                </div>
+              </article>
+            </section>
+          </div>
+
+          {/* Laser & devices: a dark feature band with the full package matrix */}
+          <section id="devices" className={`${p.band} ${noir.noir} ${noir.glow}`} aria-labelledby="devices-title" data-bf-show="pre early public">
+            <div className={p.wrap}>
+              <header className={p.bandHead}>
+                <p className={noir.eyebrow}>Laser &amp; Devices</p>
+                <h2 id="devices-title" className={`${noir.display} ${p.bandTitle}`}>20% off for nonmembers · <em className={noir.foil}>30% off for members</em></h2>
+                <p className={noir.lead}>Secret PRO RF microneedling, fractional CO2, IPL and laser hair removal packages. Prices below are package totals, already discounted.</p>
+              </header>
+              <div className={p.deviceShots}>
+                {(["secretPro", "ipl"] as const).map((slot) => images[slot].src ? (
+                  <figure key={slot} className={p.deviceShot} style={{ margin: 0 }}>
+                    <Image src={images[slot].src as string} alt={images[slot].alt} fill sizes="(max-width: 900px) 50vw, 560px" quality={80} />
+                    <figcaption>{images[slot].label}</figcaption>
+                  </figure>
+                ) : null)}
               </div>
               <DeviceExplorer />
               <ul className={styles.deviceTerms}>{deviceTerms.map((t) => <li key={t}>{t}</li>)}</ul>
             </div>
           </section>
 
-          <GoldRule />
+          <div data-bf-show="pre early public">
+            <section className={`${p.wrap} ${p.grid}`} aria-label="Skincare and wellness offers">
+              <GroupTitle id="skincare" title="Skincare" intro="Selected products only. The 25% replaces members' usual 10% skincare discount." />
+              <article className={p.card}>
+                <CardImage slot="skincare" contain />
+                <div className={p.cardBody}>
+                  <p className={p.cardEyebrow}>25% off + a free gift</p>
+                  <h3 className={p.cardTitle}>Selected Skincare</h3>
+                  <PriceTable caption="Skincare Black Friday offers" rows={[
+                    { label: "Selected skincare products", offer: skincare },
+                    { label: "Free gift with $399+", note: "After discount, before tax", offer: skincareGift },
+                  ]} />
+                  <p className={p.cardBlurb}>Choose one gift from approved options, including a Revision Brightening Facial Wash travel size, while supplies last.</p>
+                  <FullTerms text={`${skincare.terms} ${skincareGift.terms}`} />
+                  <ContactActions id={skincare.id} className={p.actions} />
+                </div>
+              </article>
 
-          {/* 9. Skincare */}
-          <section id="skincare" className={styles.section} aria-labelledby="skincare-title">
-            <div className={styles.container}>
-              <SectionHead id="skincare-title" eyebrow="Skincare" title={<>Skincare <em>Savings</em></>} />
-              <div className={styles.twoUp}>
-                <article className={`${noir.card} ${styles.miniCard}`}>
-                  <p className={styles.bigStat}>25% <small>off</small></p>
-                  <h3 className={styles.miniTitle}>{skincare.name}</h3>
-                  <p className={styles.miniText}>Only individually approved products qualify. Replaces members&apos; normal 10% skincare discount; no stacking.</p>
-                  <OfferActions offerId={skincare.id} interest="Skincare" compact />
-                </article>
-                <article className={`${noir.card} ${styles.miniCard}`}>
-                  <p className={styles.bigStat}>Free <small>gift</small></p>
-                  <h3 className={styles.miniTitle}>{skincareGift.name}</h3>
-                  <p className={styles.miniText}>Spend $399 after discount, before tax, and choose one gift from approved options, including a Revision Brightening Facial Wash travel size, while supplies last.</p>
-                  <OfferActions offerId={skincareGift.id} interest="Skincare" compact />
-                </article>
-              </div>
-              <p className={styles.note}>Selected products only.</p>
-            </div>
-          </section>
+              <article id="wellness" className={p.card}>
+                <CardImage slot="provider" top />
+                <div className={p.cardBody}>
+                  <p className={p.cardEyebrow}>Hormone optimization</p>
+                  <h3 className={p.cardTitle}>BHRT Initial Examination</h3>
+                  <PriceTable caption="BHRT exam Black Friday pricing" rows={[{ label: "Initial exam + 1 year of follow-ups", offer: bhrt }]} />
+                  <Bullets items={["NP assessment and a customized plan", "Follow-up consultations for one year", "Enroll and pay by November 30", "Labs, medications and procedures are extra"]} />
+                  <FullTerms text={bhrt.terms} />
+                  <ContactActions id={bhrt.id} className={p.actions} />
+                </div>
+              </article>
+            </section>
+          </div>
 
-          {/* 10. Gift card band */}
-          <section id="gift-cards" className={`${styles.giftBand} ${noir.grain}`} aria-labelledby="gift-title">
-            <div className={`${styles.container} ${styles.giftInner}`}>
-              <div className={styles.giftCopy}>
+          {/* Gift cards */}
+          <section id="gift-cards" className={`${p.band} ${noir.noir} ${noir.grain}`} aria-labelledby="gift-title" data-bf-show="pre early public">
+            <div className={`${p.wrap} ${p.giftGrid}`}>
+              <div className={p.bandHead}>
                 <p className={noir.eyebrow}>Gift Cards</p>
-                <h2 id="gift-title" className={`${noir.display} ${styles.sectionTitle}`}>
-                  <span data-bf-show="pre early">Coming Nov 27: Buy a gift card, <em className={noir.foil}>get 10% back</em></span>
+                <h2 id="gift-title" className={`${noir.display} ${p.bandTitle}`}>
+                  <span data-bf-show="pre early">From Nov 27: buy a gift card, <em className={noir.foil}>get 10% back</em></span>
                   <span data-bf-show="public">Buy a $100+ gift card, <em className={noir.foil}>get 10% back</em></span>
                 </h2>
-                <p className={noir.lead} data-bf-show="public">November 27–30 only. Your bonus credit is issued to you after payment and can be used starting December 1 on regular-priced services and skincare. Purchased gift cards never expire.</p>
-                <p className={noir.lead} data-bf-show="pre early">From November 27–30, $100+ gift cards earn 10% back in bonus credit for you. Purchased gift cards never expire.</p>
-                <div className={styles.heroCtas}>
-                  <Link href="/gift-cards#request" className={noir.btnPrimary} data-bf-show="public">Request a Gift Card <ArrowRight size={17} aria-hidden="true" /></Link>
-                  <Link href="/gift-cards#request" className={noir.btnSecondary} data-bf-show="pre early">Preview the Gift Card Offer <ArrowRight size={17} aria-hidden="true" /></Link>
+                <p className={noir.lead}>
+                  <span data-bf-show="pre early">The gift card bonus starts November 27 and runs through November 30. Gift cards bought before then don&apos;t earn the bonus. </span>
+                  $100+ gift cards paid with new funds earn a separate 10% promotional credit for you, usable from December 1, 2026. Purchased gift cards never expire.
+                </p>
+                <FullTerms text={giftBonus.terms} />
+                <div className={`${p.ctaRow} ${p.ctaRowStart}`}>
+                  <Link href="/gift-cards#request" className={noir.btnPrimary}>Request a Gift Card <ArrowRight size={17} aria-hidden="true" /></Link>
+                  <a href={TEL} className={noir.btnSecondary}><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
                 </div>
               </div>
-              <div className={styles.giftArt}><GiftCardArt amount="$500" /></div>
+              {images.giftCard.src ? (
+                <div className={p.giftPhoto}><Image src={images.giftCard.src} alt={images.giftCard.alt} fill sizes="(max-width: 900px) 100vw, 520px" quality={85} /></div>
+              ) : null}
             </div>
           </section>
 
-          {/* 11. Wellness */}
-          <section id="wellness" className={`${styles.section} ${noir.glow}`} aria-labelledby="wellness-title">
-            <div className={styles.container}>
-              <SectionHead id="wellness-title" eyebrow="Wellness" title={<>Hormone <em>Optimization</em></>} />
-              <article className={`${noir.card} ${styles.wellnessCard}`}>
-                <div>
-                  <h3 className={`${noir.display} ${styles.offerTitle}`}>{bhrt.name}</h3>
-                  <p className={styles.singlePrice}><span className={styles.priceMember}>{formatUsd(bhrt.member ?? 0)}</span><span className={styles.priceLabel}>Prepay by November 30</span></p>
-                  <p className={styles.miniText}>NP exam, personalized plan and 1 year of follow-ups. Labs and therapy separate.</p>
-                  <FullTerms text={bhrt.terms} />
-                </div>
-                <OfferActions offerId={bhrt.id} interest="Hormone Optimization" />
-              </article>
-            </div>
-          </section>
+          <div data-bf-show="pre early public" className={p.wrap}>
+            {/* How it works */}
+            <ol className={p.steps} aria-label="How to claim a Black Friday offer">
+              {[
+                { t: "Call, text or book", b: `Reach us at ${PHONE_DISPLAY} or book online. We'll confirm your offer and eligibility.` },
+                { t: "Prepay during the sale", b: "Black Friday offers require full prepayment during the sale dates. No deposits or price holds." },
+                { t: "Schedule within 365 days", b: "Book your treatments when it suits you. Provider approval is required." },
+              ].map((step, i) => (
+                <li key={step.t}>
+                  <span className={p.stepNum}>{String(i + 1).padStart(2, "0")}</span>
+                  <h3>{step.t}</h3>
+                  <p>{step.b}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
 
-          <GoldRule />
-
-          {/* 12. How it works */}
-          <section className={styles.section} aria-labelledby="how-title">
-            <div className={styles.container}>
-              <SectionHead id="how-title" eyebrow="How It Works" title={<>Three Simple <em>Steps</em></>} />
-              <ol className={styles.steps}>
-                {[{ t: "Request or call", b: `Send the form below or call ${PHONE_DISPLAY}. We'll confirm your offers and eligibility.` },
-                  { t: "Prepay during the sale", b: "Black Friday offers require full prepayment during the sale dates. No deposits or price holds." },
-                  { t: "Schedule within 365 days", b: "Book your treatments when it suits you. Provider approval required." }].map((step, i) => (
-                  <li key={step.t} className={styles.step}>
-                    <span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span>
-                    <h3 className={styles.stepTitle}>{step.t}</h3>
-                    <p className={styles.miniText}>{step.b}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </section>
-
-          {/* 13. Lead form */}
-          <section id={BF_FORM_ID} className={`${styles.formSection} ${noir.glow}`} aria-labelledby="request-title">
-            <div className={`${styles.container} ${styles.formGrid}`}>
-              <div className={styles.formIntro}>
-                <p className={noir.eyebrow}>Be First to Know</p>
-                <h2 id="request-title" className={`${noir.display} ${styles.sectionTitle}`}>Request the <em className={noir.foil}>Black Friday</em> Specials</h2>
-                <p className={noir.lead}>Tell us what you&apos;re interested in and we&apos;ll send every special, with member and nonmember pricing.</p>
-                <p className={styles.formCall}>Prefer to talk? <a href={TEL}>{PHONE_DISPLAY}</a></p>
+          {/* Early access (before Nov 23) or the claim form (Nov 23–30) */}
+          <section id={BF_FORM_ID} className={`${p.band} ${noir.noir} ${noir.glow}`} aria-labelledby="request-title" data-bf-show="pre early public">
+            <div className={`${p.wrap} ${p.formWrap}`}>
+              <div className={p.bandHead}>
+                <p className={noir.eyebrow} data-bf-show="pre">Be first to know</p>
+                <p className={noir.eyebrow} data-bf-show="early public">Claim an offer</p>
+                <h2 id="request-title" className={`${noir.display} ${p.bandTitle}`}>
+                  <span data-bf-show="pre">Request <em className={noir.foil}>Early Access</em></span>
+                  <span data-bf-show="early public">Request a <em className={noir.foil}>Call Back</em></span>
+                </h2>
+                <p className={noir.lead} data-bf-show="pre">Sign up to receive the Black Friday specials as soon as early access opens on November 23.</p>
+                <p className={noir.lead} data-bf-show="early public">Tell us what you&apos;re interested in and our team will contact you to help you claim your offer. Prefer to talk now? Call or text {PHONE_DISPLAY}.</p>
               </div>
-              <div className={styles.glassPanel}>
+              <div className={p.earlyCard} data-bf-show="pre">
+                <p className={noir.lead} style={{ margin: 0 }}>Early access sign-up takes less than a minute. You can choose email and text updates.</p>
+                <div className={`${p.ctaRow} ${p.ctaRowStart}`}>
+                  <TrackedLink id="early_access_form" href={EARLY_ACCESS_URL} className={noir.btnPrimary}>Request Early Access <ArrowRight size={17} aria-hidden="true" /></TrackedLink>
+                  <a href={TEL} className={noir.btnSecondary}><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
+                </div>
+              </div>
+              <div className={styles.glassPanel} data-bf-show="early public">
                 <BlackFridayLeadForm />
               </div>
             </div>
           </section>
-        </div>
 
-        {/* Ended state */}
-        <section className={`${styles.section} ${styles.endedBlock}`} data-bf-show="ended" aria-label="Black Friday 2026 has ended">
-          <div className={styles.container}>
-            <p className={styles.endedText}>Black Friday 2026 has ended. Thank you for celebrating with us.</p>
-            <div className={styles.heroCtas}>
-              <Link href="/pricing" className={noir.btnPrimary}>View Pricing</Link>
-              <Link href="/membership" className={noir.btnSecondary}>Memberships</Link>
+          {/* Ended state */}
+          <section className={`${p.wrap} ${p.intro}`} data-bf-show="ended" aria-label="Black Friday 2026 has ended">
+            <h2 className={p.introTitle}>Black Friday 2026 has ended</h2>
+            <p className={p.introText}>Thank you for celebrating with us. See our current pricing or learn about memberships.</p>
+            <div className={`${p.ctaRow} ${p.ctaRowStart}`}>
+              <Link href="/pricing" className={`${p.btnLight} ${p.btnInk}`}>View Pricing</Link>
+              <Link href="/membership" className={`${p.btnLight} ${p.btnOutline}`}>Memberships</Link>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* 14. FAQ */}
-        <section className={styles.section} aria-labelledby="faq-title">
-          <div className={`${styles.container} ${styles.narrow}`}>
-            <SectionHead id="faq-title" eyebrow="Questions" title={<>Black Friday <em>FAQ</em></>} />
-            <div className={styles.faq}>
+          {/* FAQ and terms */}
+          <section className={`${p.wrap} ${p.faqSection}`} aria-labelledby="faq-title">
+            <h2 id="faq-title" className={p.faqTitle}>Black Friday FAQ</h2>
+            <div className={p.faq}>
               {blackFridayFaq.map((item) => (
-                <details key={item.question} className={styles.faqItem}>
-                  <summary>{item.question}</summary>
-                  <p>{item.answer}</p>
-                </details>
+                <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* 15. Terms */}
-        <section className={styles.termsSection} aria-labelledby="terms-title">
-          <div className={`${styles.container} ${styles.narrow}`}>
-            <h2 id="terms-title" className={styles.termsTitle}>Terms</h2>
-            <dl className={styles.termsList}>
-              {checkoutTerms.map((t) => <div key={t.label}><dt>{t.label}:</dt> <dd>{t.text}</dd></div>)}
-              <div><dt>Devices &amp; laser:</dt> <dd>{deviceTerms.join(" ")}</dd></div>
-            </dl>
-            <p className={styles.termsClose}>{termsClosing}</p>
-            <p className={styles.termsClose}>Results vary. No results are guaranteed.</p>
-          </div>
-        </section>
-
-        {/* 16. Final CTA */}
-        <section className={`${styles.finalCta} ${noir.grain}`} aria-labelledby="final-title" data-bf-show="pre early public">
-          <div className={styles.container}>
-            <h2 id="final-title" className={`${noir.display} ${styles.finalTitle}`}><span className={noir.foil}>Your Most Beautiful</span> <em className={noir.foil}>Season Starts Here</em></h2>
-            <div className={`${styles.heroCtas} ${styles.center}`}>
-              <a href={`#${BF_FORM_ID}`} className={noir.btnPrimary}>Request the Specials</a>
-              <a href={TEL} className={noir.btnSecondary}><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
+            <div className={p.termsBlock}>
+              <h2>Terms</h2>
+              <dl>
+                {checkoutTerms.map((t) => <div key={t.label}><dt>{t.label}:</dt> <dd>{t.text}</dd></div>)}
+                <div><dt>Devices &amp; laser:</dt> <dd>{deviceTerms.join(" ")}</dd></div>
+                <div><dt>Gift cards:</dt> <dd>{giftBonus.terms}</dd></div>
+              </dl>
+              <p>{termsClosing}</p>
+              <p>Results vary. No results are guaranteed. Product images are manufacturer photography; they do not show Harmony patients.</p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <div data-bf-show="pre early public"><MobileCallBar formId={BF_FORM_ID} tone="noir" bookLabel="Request Specials" /></div>
+          {/* Closing CTA, like the pricing page */}
+          <section className={`${p.wrap} ${p.bottomSpace}`} data-bf-show="pre early public">
+            <div className={p.closing}>
+              <h2 className={noir.display}><span className={noir.foil}>Your Most Beautiful Season Starts Here</span></h2>
+              <p>Call, text or book online to claim your Black Friday offer with our Sarasota team.</p>
+              <div className={p.ctaRow}>
+                <a href={TEL} className={noir.btnPrimary}><Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
+                <a href={TEXT_HREF} className={noir.btnSecondary}><MessageSquare size={16} aria-hidden="true" /> Text Us</a>
+                <a href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer" className={noir.btnSecondary}><Check size={16} aria-hidden="true" /> Book Online</a>
+              </div>
+            </div>
+          </section>
+          <div className={p.bottomSpace} data-bf-show="ended" />
+        </div>
+
+        <div data-bf-show="pre"><MobileCallBar tone="noir" /></div>
+        <div data-bf-show="early public"><MobileCallBar formId={BF_FORM_ID} tone="noir" bookLabel="Claim an Offer" /></div>
       </PhaseScope>
       <SiteFooter />
     </main>

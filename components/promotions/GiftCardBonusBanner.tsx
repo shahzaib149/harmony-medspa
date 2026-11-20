@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { displayFont } from "@/lib/fonts";
 import { GiftCardArt, PhaseScope, noir } from "@/components/promotions/noir/NoirParts";
+import { images } from "@/lib/data/blackFriday2026";
 import styles from "./GiftCardBonusBanner.module.css";
 
 /**
@@ -22,15 +24,19 @@ export default function GiftCardBonusBanner({ id }: { id?: string }) {
               <span data-bf-show="early">Black Friday: buy a gift card, <em className={noir.foil}>get 10% back</em>, starting November 27.</span>
               <span data-bf-show="public">Black Friday — buy a gift card, <em className={noir.foil}>get 10% back!</em></span>
             </h2>
-            <p className={styles.sub} data-bf-show="public">$100+ gift cards earn 10% back in bonus credit for you. November 27–30 only.</p>
-            <p className={styles.sub} data-bf-show="early">$100+ gift cards purchased November 27–30 earn 10% back in bonus credit for you.</p>
+            <p className={styles.sub} data-bf-show="public">$100+ gift cards paid with new funds earn 10% back in bonus credit for you. November 27–30 only.</p>
+            <p className={styles.sub} data-bf-show="early">The bonus starts November 27. $100+ gift cards purchased November 27–30 with new funds earn 10% back in bonus credit for you.</p>
             <div className={styles.actions}>
               <Link href="/gift-cards#request" className={noir.btnPrimary} data-bf-show="public">Request a Gift Card <ArrowRight size={17} aria-hidden="true" /></Link>
               <Link href="/gift-cards#request" className={noir.btnSecondary} data-bf-show="early">Preview the Offer <ArrowRight size={17} aria-hidden="true" /></Link>
             </div>
           </div>
           <div className={styles.art}>
-            <GiftCardArt amount="$250" className={styles.card} />
+            {images.giftCard.src ? (
+              <Image src={images.giftCard.src} alt={images.giftCard.alt} width={1448} height={1086} sizes="(max-width: 760px) 80vw, 380px" className={styles.photo} quality={85} />
+            ) : (
+              <GiftCardArt amount="$250" className={styles.card} />
+            )}
           </div>
         </div>
       </section>

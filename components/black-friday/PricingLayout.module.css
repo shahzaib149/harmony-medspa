@@ -1,0 +1,209 @@
+/* /black-friday on the /pricing page skeleton (Hayden's handoff): a dark black-and-gold hero,
+   then light ivory pricing sections like harmonymedspafl.com/pricing, with dark feature bands
+   for devices, gift cards and the request form. Scoped to this page only. */
+
+.light {
+  background: #fff;
+  color: #4b5663;
+  font-family: var(--sans);
+}
+.wrap { width: min(100% - 48px, 1180px); margin: 0 auto; }
+@media (max-width: 720px) { .wrap { width: min(100% - 32px, 640px); } }
+
+/* Hero: the pricing page's dark hero, with Harmony's treatment room photo behind it. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: clamp(420px, 70svh, 640px);
+  padding: 72px 0 64px;
+  text-align: center;
+  overflow: hidden;
+}
+.heroPhoto { position: absolute; inset: 0; z-index: -2; }
+.heroPhoto img { object-fit: cover; }
+.heroShade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(10, 10, 11, 0.55), rgba(10, 10, 11, 0.9) 75%),
+    linear-gradient(180deg, rgba(10, 10, 11, 0.4), rgba(10, 10, 11, 0.92));
+}
+.heroInner { display: grid; justify-items: center; gap: 20px; width: min(100% - 40px, 860px); }
+.heroTitle { font-size: clamp(46px, 10vw, 96px); line-height: 0.98; letter-spacing: -0.03em; margin: 0; }
+.heroSub { margin: 0; max-width: 46ch; font-size: clamp(17px, 2.1vw, 20px); color: var(--text); }
+.dates { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 4px 0 0; padding: 0; list-style: none; }
+.dates li {
+  display: inline-flex; gap: 8px; align-items: center; min-height: 36px; padding: 0 14px;
+  border: 1px solid var(--hairline); border-radius: 999px; background: rgba(10, 10, 11, 0.55);
+  font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-300);
+}
+.dates b { color: var(--text); font-weight: 600; letter-spacing: 0.04em; }
+
+/* Shared CTA rows */
+.ctaRow { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.ctaRowStart { justify-content: flex-start; }
+.btnLight {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px;
+  border-radius: 999px; font-size: 15px; font-weight: 600; text-decoration: none;
+  transition: transform 160ms ease, background 160ms ease;
+}
+.btnGold { background: #c6a15b; color: #16130f; }
+.btnGold:hover { background: #d9bc7a; }
+.btnInk { background: #16130f; color: #f6efe1; }
+.btnInk:hover { transform: translateY(-1px); }
+.btnOutline { background: transparent; color: #16130f; border: 1px solid #d9c497; }
+.btnOutline:hover { background: #f4ecdc; }
+.btnLight:focus-visible { outline: 2px solid #a9823d; outline-offset: 2px; }
+
+/* Intro, like the pricing page intro */
+.intro { padding-top: 72px; }
+.introTitle { margin: 0 0 20px; color: #16130f; font-size: clamp(28px, 3.2vw, 40px); line-height: 1.08; font-weight: 300; }
+.introText { max-width: 860px; font-size: 18px; line-height: 1.6; color: #4f5966; }
+.introText p { margin: 0 0 16px; }
+@media (max-width: 720px) { .intro { padding-top: 52px; } .introText { font-size: 16px; } }
+
+/* Jump to a category */
+.jump { margin-top: 40px; }
+.jumpLabel { margin: 0 0 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #9a7530; }
+.jumpList { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.jumpList a {
+  display: inline-flex; min-height: 40px; align-items: center; padding: 0 16px; border-radius: 999px;
+  background: #f4ecdc; border: 1px solid #e6d9bd; color: #5b513f; font-size: 14px; text-decoration: none;
+}
+.jumpList a:hover { background: #ece0c7; }
+
+/* Members compare strip */
+.members { margin-top: 48px; padding: clamp(24px, 4vw, 36px); border-radius: 22px; background: linear-gradient(180deg, #f6efe2, #efe5d3); border: 1px solid #e6d9bd; }
+.membersHead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 24px; }
+.membersTitle { margin: 0; color: #16130f; font-size: clamp(24px, 2.6vw, 32px); font-weight: 300; }
+.membersText { margin: 10px 0 0; max-width: 70ch; color: #514a40; font-size: 16px; line-height: 1.55; }
+.badge {
+  display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px;
+  background: #16130f; color: #ead7a4; border: 1px solid #c6a15b; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* Category grid, like the pricing cards */
+.grid { margin-top: 46px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+.groupTitle { grid-column: 1 / -1; margin: 18px 0 -6px; scroll-margin-top: calc(var(--site-header-h, 80px) + 60px); }
+.groupTitle h2 { margin: 0; color: #16130f; font-size: clamp(26px, 3vw, 36px); font-weight: 300; }
+.groupTitle p { margin: 6px 0 0; color: #6b6151; font-size: 15px; }
+.card {
+  display: grid; align-content: start; overflow: hidden; border-radius: 20px;
+  background: #fbf7ef; border: 1px solid #ece0c8; box-shadow: 0 14px 40px rgba(60, 45, 20, 0.06);
+}
+.cardWide { grid-column: 1 / -1; }
+.cardImage { position: relative; aspect-ratio: 16 / 10; background: #111113; border-bottom: 1px solid #ece0c8; }
+.cardImage img { object-fit: cover; }
+.cardImageContain img { object-fit: contain; padding: 18px; }
+.cardImageLight { background: #fff; }
+.cardBody { display: grid; gap: 14px; padding: 26px 28px 28px; }
+@media (max-width: 720px) { .cardBody { padding: 20px; } }
+.cardEyebrow { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #9a7530; }
+.cardTitle { margin: 0; color: #16130f; font-size: 23px; line-height: 1.2; font-weight: 500; }
+.cardBlurb { margin: 0; color: #6b6151; font-size: 15px; line-height: 1.55; }
+
+/* Price table: treatment | nonmember | member */
+.table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
+.table th, .table td { padding: 11px 0; text-align: left; vertical-align: baseline; }
+.table thead th { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8071; border-bottom: 1px solid #e6d9bd; }
+.table thead th + th, .table td { text-align: right; padding-left: 14px; }
+.table tbody tr + tr th, .table tbody tr + tr td { border-top: 1px solid #efe6d3; }
+.table tbody th { font-weight: 400; color: #3a342b; font-size: 16px; line-height: 1.35; }
+.table small { display: block; color: #8a8071; font-size: 13px; }
+.nonmember { color: #16130f; font-size: 17px; font-weight: 600; white-space: nowrap; }
+.member { color: #7a5a22; font-size: 17px; font-weight: 700; white-space: nowrap; }
+.regular { display: block; color: #8a8071; font-size: 13px; font-weight: 400; text-decoration: line-through; }
+.save {
+  justify-self: start; display: inline-flex; align-items: center; min-height: 30px; padding: 0 12px;
+  border-radius: 999px; border: 1px solid #c6a15b; color: #7a5a22; font-size: 13px; font-weight: 700;
+}
+@media (max-width: 480px) {
+  .table thead { display: none; }
+  .table tr { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; padding: 10px 0; }
+  .table tbody tr + tr { border-top: 1px solid #efe6d3; }
+  .table tbody tr + tr th, .table tbody tr + tr td { border-top: 0; }
+  .table th, .table td { padding: 0; }
+  .table tbody th { grid-column: 1 / -1; }
+  .table td { text-align: left; padding-left: 0; }
+  .table td::before { content: attr(data-label); display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8071; font-weight: 700; }
+}
+
+.bullets { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; color: #514a40; font-size: 15px; }
+.bullets li { display: flex; gap: 10px; align-items: baseline; }
+.bullets li::before { content: ""; flex: 0 0 auto; width: 6px; height: 6px; transform: rotate(45deg) translateY(-2px); background: #c6a15b; }
+.terms { border-top: 1px solid #ece0c8; padding-top: 10px; color: #6b6151; font-size: 14px; }
+.terms summary { cursor: pointer; color: #9a7530; font-weight: 700; min-height: 32px; display: inline-flex; align-items: center; }
+.terms p { margin: 6px 0 0; line-height: 1.55; }
+.note { margin: 22px 0 0; color: #6b6151; font-size: 14px; line-height: 1.55; font-style: italic; }
+
+/* Offer CTAs on light cards */
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.actions a {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+}
+.actions a:first-child { background: #16130f; color: #f6efe1; }
+.actions a:not(:first-child) { border: 1px solid #d9c497; color: #16130f; background: #fff; }
+.actions a:not(:first-child):hover { background: #f4ecdc; }
+.actions a:focus-visible { outline: 2px solid #a9823d; outline-offset: 2px; }
+
+/* Dark bands (devices, gift card, form, final CTA) sit inside the light page */
+.band { margin-top: 64px; padding: clamp(56px, 8vw, 96px) 0; scroll-margin-top: calc(var(--site-header-h, 80px) + 40px); }
+.bandHead { display: grid; gap: 12px; margin-bottom: 30px; }
+.bandTitle { margin: 0; font-size: clamp(32px, 5vw, 52px); }
+.deviceShots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 28px; }
+.deviceShot { position: relative; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--hairline); }
+.deviceShot img { object-fit: contain; padding: 14px; }
+.deviceShot figcaption { position: absolute; left: 12px; bottom: 10px; padding: 4px 10px; border-radius: 999px; background: rgba(10, 10, 11, 0.8); color: var(--gold-300); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.giftGrid { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 900px) { .giftGrid { grid-template-columns: 1.1fr 0.9fr; } }
+.giftPhoto { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden; }
+.giftPhoto img { object-fit: contain; }
+
+/* How it works (light) */
+.steps { margin: 56px 0 0; padding: 0; list-style: none; display: grid; gap: 18px; counter-reset: step; }
+@media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.steps li { padding: 24px; border-radius: 18px; background: #fbf7ef; border: 1px solid #ece0c8; }
+.stepNum { display: block; font-family: var(--display); color: #a9823d; font-size: 30px; line-height: 1; }
+.steps h3 { margin: 10px 0 6px; color: #16130f; font-size: 19px; font-weight: 600; }
+.steps p { margin: 0; color: #514a40; font-size: 15px; line-height: 1.55; }
+
+/* Early access (pre phase) and the request form */
+.formWrap { display: grid; gap: 30px; align-items: start; }
+@media (min-width: 960px) { .formWrap { grid-template-columns: 0.9fr 1.1fr; } }
+.earlyCard { display: grid; gap: 16px; padding: clamp(24px, 4vw, 36px); border-radius: 22px; border: 1px solid var(--hairline); background: rgba(24, 24, 27, 0.75); }
+
+/* FAQ and terms (light) */
+.faqSection { margin-top: 64px; }
+.faqTitle { margin: 0 0 20px; color: #16130f; font-size: clamp(24px, 2.6vw, 32px); font-weight: 300; }
+.faq { display: grid; gap: 10px; }
+.faq details { border: 1px solid #ece0c8; border-radius: 14px; background: #fbf7ef; padding: 0 18px; }
+.faq summary { cursor: pointer; min-height: 54px; display: flex; align-items: center; color: #16130f; font-size: 16px; font-weight: 600; }
+.faq p { margin: 0 0 16px; color: #514a40; line-height: 1.6; }
+.termsBlock { margin-top: 44px; padding-bottom: 24px; color: #6b6151; font-size: 13px; line-height: 1.6; }
+.termsBlock h2 { margin: 0 0 10px; color: #16130f; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; }
+.termsBlock dl { margin: 0; display: grid; gap: 6px; }
+.termsBlock dt { display: inline; font-weight: 700; color: #3a342b; }
+.termsBlock dd { display: inline; margin: 0; }
+.termsBlock p { margin: 10px 0 0; }
+
+/* Closing CTA, like the pricing page */
+.closing {
+  margin: 48px auto 0; padding: clamp(28px, 5vw, 44px); border-radius: 24px; text-align: center; color: #f6efe1;
+  background: radial-gradient(circle at 30% 20%, #2a2319, transparent 60%), linear-gradient(160deg, #1b1711, #0d0b08);
+}
+.closing h2 { margin: 0 0 12px; font-size: clamp(26px, 3.4vw, 38px); }
+.closing p { margin: 0 auto 24px; max-width: 640px; color: #c9c0b0; font-size: 16px; line-height: 1.55; }
+.bottomSpace { padding-bottom: 90px; }
+
+/* The wide (Sculptra) card sits image-left, details-right on desktop. */
+@media (min-width: 901px) {
+  .cardWide { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
+  .cardWide .cardImage { aspect-ratio: auto; min-height: 100%; border-bottom: 0; border-right: 1px solid #ece0c8; }
+}
+.cardImageTop img { object-position: center 18%; }

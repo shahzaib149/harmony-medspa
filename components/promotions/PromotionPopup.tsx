@@ -10,6 +10,14 @@ import { popupExcluded, promotionPopupPhases, type PromotionPopupPhase } from "@
 import { OfferImage, noir } from "@/components/promotions/noir/NoirParts";
 import styles from "./PromotionPopup.module.css";
 
+/** External links (e.g. Hayden's Mailchimp early-access page) open in a new tab; site paths use Link. */
+function PopupLink({ cta, className, onClick }: { cta: PromotionPopupPhase["primaryCta"]; className: string; onClick: () => void }) {
+  if (/^https?:/.test(cta.href)) {
+    return <a href={cta.href} className={className} target="_blank" rel="noopener" onClick={onClick}>{cta.label}</a>;
+  }
+  return <Link href={cta.href} className={className} onClick={onClick}>{cta.label}</Link>;
+}
+
 const dismissKey = (id: string) => `harmony_popup_dismissed_${id}`;
 
 function activePhase(): PromotionPopupPhase | null {
@@ -77,8 +85,8 @@ function PromotionDialog({ pathname }: { pathname: string }) {
           <h2 id="promotion-popup-title" className={`${noir.display} ${styles.title}`}><span className={noir.foil}>{phase.title}</span></h2>
           <p className={styles.text}>{phase.body}</p>
           <div className={styles.actions}>
-            <Link href={phase.primaryCta.href} className={noir.btnPrimary} onClick={() => click(phase.primaryCta.action)}>{phase.primaryCta.label}</Link>
-            <Link href={phase.secondaryCta.href} className={noir.btnSecondary} onClick={() => click(phase.secondaryCta.action)}>{phase.secondaryCta.label}</Link>
+            <PopupLink cta={phase.primaryCta} className={noir.btnPrimary} onClick={() => click(phase.primaryCta.action)} />
+            <PopupLink cta={phase.secondaryCta} className={noir.btnSecondary} onClick={() => click(phase.secondaryCta.action)} />
           </div>
           {phase.note ? <p className={styles.note}>{phase.note}</p> : null}
         </div>

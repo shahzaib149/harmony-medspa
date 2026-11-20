@@ -1,11 +1,11 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
-import { ArrowUpRight, Check, Search } from "lucide-react";
+import { CalendarDays, Check, MessageSquare, Phone, Search } from "lucide-react";
 import { trackLead, trackPurchaseLinkClick } from "@/lib/analytics";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
+import { ONLINE_BOOKING_URL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/constants";
 import {
-  BF_FORM_ID, BF_OFFER_CODE, BF_SOURCE, deviceGroups, formatUsd, memberStatusOptions, offerById,
+  BF_OFFER_CODE, BF_SOURCE, TEXT_HREF, deviceGroups, formatUsd, memberStatusOptions, offerById,
   treatmentChips, type TreatmentChip,
 } from "@/lib/data/blackFriday2026";
 import { nextBoundary } from "@/lib/promotions/blackFriday";
@@ -91,32 +91,46 @@ export function CategoryNav({ items }: { items: readonly { id: string; label: st
   );
 }
 
-/* ---------- Offer actions ---------- */
+/* ---------- Offer actions: Call / Text / Book Online ---------- */
 
-/** Purchase link when an approved checkout URL exists, otherwise "Request This Offer" (scrolls to the form and ticks the treatment). */
-export function OfferActions({ offerId, interest, compact = false }: { offerId: string; interest: TreatmentChip; compact?: boolean }) {
+/**
+ * There are no online purchase links: patients claim an offer by calling, texting or booking.
+ * tel: taps are tracked sitewide by PhoneClickTracker; Text and Book clicks are tracked here.
+ */
+export function OfferActions({ offerId, compact = false, tone = "light" }: { offerId: string; interest?: TreatmentChip; compact?: boolean; tone?: "light" | "dark" }) {
   const offer = offerById(offerId);
-  const tel = `tel:+1${PHONE_TEL}`;
   return (
-    <div className={`${styles.offerActions} ${compact ? styles.offerActionsCompact : ""}`}>
-      {offer.purchaseUrl ? (
-        <a href={offer.purchaseUrl} className={noir.btnPrimary} target="_blank" rel="noopener" onClick={() => trackPurchaseLinkClick(offer.id, offer.purchaseUrl ?? "")}>
-          Purchase <ArrowUpRight size={17} aria-hidden="true" />
-        </a>
-      ) : (
-        <a href={`#${BF_FORM_ID}`} className={noir.btnPrimary}
-          onClick={(event) => {
-            event.preventDefault();
-            trackPurchaseLinkClick(offer.id, `#${BF_FORM_ID}`);
-            window.dispatchEvent(new CustomEvent<TreatmentChip>(SELECT_EVENT, { detail: interest }));
-            scrollToId(BF_FORM_ID);
-          }}>
-          Request This Offer
-        </a>
-      )}
-      <a href={tel} className={styles.callLink}>{offer.purchaseUrl ? "Call" : "Call to Purchase"} {PHONE_DISPLAY}</a>
+    <div className={`${styles.offerActions} ${compact ? styles.offerActionsCompact : ""} ${tone === "dark" ? styles.offerActionsDark : ""}`}>
+      <a href={`tel:+1${PHONE_TEL}`} className={styles.ctaCall}>
+        <Phone size={16} aria-hidden="true" /> Call {PHONE_DISPLAY}
+      </a>
+      <a href={TEXT_HREF} className={styles.ctaGhost} onClick={() => trackPurchaseLinkClick(`${offer.id}:text`, TEXT_HREF)}>
+        <MessageSquare size={16} aria-hidden="true" /> Text Us
+      </a>
+      <a href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer" className={styles.ctaGhost}
+        onClick={() => trackPurchaseLinkClick(`${offer.id}:book`, ONLINE_BOOKING_URL)}>
+        <CalendarDays size={16} aria-hidden="true" /> Book Online
+      </a>
     </div>
   );
+}
+
+/** Call / Text / Book Online for the light pricing cards. The wrapper class styles the buttons. */
+export function ContactActions({ id, className }: { id: string; className: string }) {
+  return (
+    <div className={className}>
+      <a href={`tel:+1${PHONE_TEL}`}><Phone size={15} aria-hidden="true" /> Call {PHONE_DISPLAY}</a>
+      <a href={TEXT_HREF} onClick={() => trackPurchaseLinkClick(`${id}:text`, TEXT_HREF)}><MessageSquare size={15} aria-hidden="true" /> Text Us</a>
+      <a href={ONLINE_BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackPurchaseLinkClick(`${id}:book`, ONLINE_BOOKING_URL)}>
+        <CalendarDays size={15} aria-hidden="true" /> Book Online
+      </a>
+    </div>
+  );
+}
+
+/** A tracked outbound link (e.g. the Mailchimp early-access signup), opened in a new tab. */
+export function TrackedLink({ id, href, className, children }: { id: string; href: string; className: string; children: ReactNode }) {
+  return <a href={href} target="_blank" rel="noopener" className={className} onClick={() => trackPurchaseLinkClick(id, href)}>{children}</a>;
 }
 
 /* ---------- Animated price ---------- */
@@ -157,6 +171,7 @@ export function SculptraSelector() {
   const [index, setIndex] = useState(0);
   const choice = SCULPTRA[index];
   const offer = offerById(choice.id);
+  const provisional = offer.provisional || offer.nonmember === null || offer.member === null;
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
   const move = (next: number) => { const i = (next + SCULPTRA.length) % SCULPTRA.length; setIndex(i); refs.current[i]?.focus(); };
   return (
@@ -175,7 +190,15 @@ export function SculptraSelector() {
         ))}
       </div>
       <p className={styles.sculptraOff}>{choice.off} · {offer.name.replace("Sculptra: ", "")}</p>
-      <PriceBlock nonmember={offer.nonmember ?? 0} member={offer.member ?? 0} animated />
+      {provisional ? (
+        <div className={styles.prices}>
+          <div className={styles.priceCol}><span className={styles.priceLabel}>Nonmember</span><span className={styles.priceNon}>{offer.nonmemberLabel}</span></div>
+          <div className={styles.priceCol}><span className={styles.priceLabel}>Member</span><span className={styles.priceMember}>{offer.memberLabel}</span></div>
+          <span className={styles.saveChip}>Package total confirmed when you call</span>
+        </div>
+      ) : (
+        <PriceBlock nonmember={offer.nonmember ?? 0} member={offer.member ?? 0} animated />
+      )}
       <p className={styles.terms}>{offer.terms}</p>
     </div>
   );
@@ -260,7 +283,7 @@ export function DeviceExplorer() {
           <p className={styles.noResults}>No {group.label} areas match “{query.trim()}”. Try another tab, or call {PHONE_DISPLAY}.</p>
         )}
       </div>
-      <OfferActions offerId="devices" interest={group.interest} />
+      <OfferActions offerId="devices" tone="dark" />
     </div>
   );
 }
@@ -283,6 +306,7 @@ export function BlackFridayLeadForm() {
   const [chips, setChips] = useState<TreatmentChip[]>([]);
   const [member, setMember] = useState<(typeof memberStatusOptions)[number] | "">("");
   const [consent, setConsent] = useState(false);
+  const [emailConsent, setEmailConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -337,7 +361,9 @@ export function BlackFridayLeadForm() {
         "Offer Code": BF_OFFER_CODE,
         "Treatment Interest": chips.join(", "),
         Message: `Member status: ${member || "Not answered"}`,
+        // Kept separate, per Harmony's handoff: email and promotional SMS consent are recorded independently.
         "SMS Consent": consent,
+        "Email Consent": emailConsent,
         "SMS Sent Status": consent ? "Pending" : "Not Requested",
         "Email Sent Status": "Pending",
         "Page URL": window.location.href,
@@ -346,7 +372,7 @@ export function BlackFridayLeadForm() {
       });
       trackLead(response);
       setStatus("success");
-      setAnnounce("You're on the list. We'll send your Black Friday specials shortly.");
+      setAnnounce("Thank you. Our team will contact you shortly to help you claim your Black Friday offer.");
     } catch {
       setStatus("error");
       setAnnounce(`We couldn't send your request. Please call ${PHONE_DISPLAY}.`);
@@ -362,9 +388,9 @@ export function BlackFridayLeadForm() {
       <div className={styles.formSuccess}>
         {live}
         <span className={styles.successCheck} aria-hidden="true"><Check size={30} strokeWidth={2.4} /></span>
-        <h3 className={`${noir.display} ${styles.successTitle}`}>You&apos;re on the list.</h3>
-        <p className={noir.lead}>We&apos;ll send your Black Friday specials shortly.</p>
-        <p className={styles.successPhone}>Ready now? Call <a href={`tel:+1${PHONE_TEL}`}>{PHONE_DISPLAY}</a></p>
+        <h3 className={`${noir.display} ${styles.successTitle}`}>Thank you.</h3>
+        <p className={noir.lead}>Our team will contact you shortly to help you claim your Black Friday offer.</p>
+        <p className={styles.successPhone}>Ready now? Call or text <a href={`tel:+1${PHONE_TEL}`}>{PHONE_DISPLAY}</a></p>
       </div>
     );
   }
@@ -382,7 +408,7 @@ export function BlackFridayLeadForm() {
   });
 
   return (
-    <form className={styles.form} onSubmit={onSubmit} noValidate aria-label="Request the Black Friday specials">
+    <form className={styles.form} onSubmit={onSubmit} noValidate aria-label="Claim a Black Friday offer">
       {live}
       <div className={styles.honeypot} aria-hidden="true">
         <label htmlFor="bf-website">Leave this blank</label>
@@ -424,12 +450,16 @@ export function BlackFridayLeadForm() {
       </fieldset>
 
       <label className={styles.consent}>
+        <input type="checkbox" checked={emailConsent} onChange={(e) => setEmailConsent(e.target.checked)} />
+        <span>Yes, email me Black Friday offers and reminders from Harmony Med Spa. Unsubscribe anytime.</span>
+      </label>
+      <label className={styles.consent}>
         <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
         <span>Yes, Harmony Med Spa may text me about my request and Black Friday offers. Msg &amp; data rates may apply. Reply STOP to opt out. Consent is not a condition of purchase.</span>
       </label>
 
       <button type="submit" className={`${noir.btnPrimary} ${styles.submit}`} disabled={status === "submitting"} aria-busy={status === "submitting"}>
-        {status === "submitting" ? "Sending…" : "Request the Specials"}
+        {status === "submitting" ? "Sending…" : "Claim My Offer"}
       </button>
       {status === "error" ? (
         <p className={styles.formError} role="alert">We couldn&apos;t send your request. Please call <a href={`tel:+1${PHONE_TEL}`}>{PHONE_DISPLAY}</a> and we&apos;ll help directly.</p>
