@@ -183,8 +183,9 @@ export function trackLead(response: SuccessfulLeadResponse) {
 }
 
 // Black Friday 2026. Both Google Ads labels are optional: unset or malformed means GA4 only.
-const purchaseSendTo = process.env.NEXT_PUBLIC_GOOGLE_ADS_PURCHASE_SEND_TO?.trim() || "";
-const giftCardSendTo = process.env.NEXT_PUBLIC_GOOGLE_ADS_GIFTCARD_SEND_TO?.trim() || "";
+// Secondary conversions created Nov 20 (BF2026 Text or Book Click / Gift Card Request); env vars override.
+const purchaseSendTo = process.env.NEXT_PUBLIC_GOOGLE_ADS_PURCHASE_SEND_TO?.trim() || "AW-11396978687/qyPbCJb1p7wdEP-vwLoq";
+const giftCardSendTo = process.env.NEXT_PUBLIC_GOOGLE_ADS_GIFTCARD_SEND_TO?.trim() || "AW-11396978687/ueAUCJP1p7wdEP-vwLoq";
 const isSendTo = (value: string) => /^AW-\d+\/[A-Za-z0-9_-]+$/.test(value);
 
 /** A click on a Black Friday "Purchase" / "Request This Offer" button. Beacon transport, never blocks navigation. */
