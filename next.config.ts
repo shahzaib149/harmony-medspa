@@ -44,6 +44,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/landing/black-friday", destination: "/black-friday", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "harmony-medspa.vercel.app" }],

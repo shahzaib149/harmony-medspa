@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import AnalyticsNavigation from "@/components/AnalyticsNavigation";
 import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import NovemberSpecialsPopup from "@/components/promotions/NovemberSpecialsPopup";
+import PromotionPopup from "@/components/promotions/PromotionPopup";
 import PhoneClickTracker from "@/components/PhoneClickTracker";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -55,7 +55,7 @@ export default function RootLayout({
         <Suspense fallback={null}><AnalyticsNavigation /></Suspense>
         <PhoneClickTracker />
         {children}
-        <NovemberSpecialsPopup />
+        <PromotionPopup />
         <ScrollReveal />
       </body>
     </html>

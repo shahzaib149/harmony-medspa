@@ -8,6 +8,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import NavDropdown, { type NavDropdownLink } from "@/components/layout/NavDropdown";
 import styles from "./SiteHeader.module.css";
 import { ONLINE_BOOKING_URL, PHONE_TEL } from "@/lib/constants";
+import { useBlackFridayPhase } from "@/lib/promotions/useBlackFridayPhase";
 
 type SiteHeaderProps = {
   /** Header style variant class (site-header | team-header | contact-page-header) plus utilities. */
@@ -24,7 +25,7 @@ const aboutLinks: NavDropdownLink[] = [
 const patientCenterLinks: NavDropdownLink[] = [
   { label: "Patient Forms", href: "/patient-forms" },
   { label: "Payment Plans", href: "/payment-plans" },
-  { label: "Gift Cards", href: "https://mailchi.mp/harmonymedspafl/gift_cards", newTab: true },
+  { label: "Gift Cards", href: "/gift-cards" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Specials", href: "https://mailchi.mp/harmonymedspafl/monthly-specials", newTab: true },
   { label: "Events", href: "/events" },
@@ -132,6 +133,8 @@ const isPageScrolledOnServer = () => false;
 export default function SiteHeader({ className, homeHref = "/" }: SiteHeaderProps) {
   const pathname = usePathname() ?? "";
   const section = sectionFor(pathname);
+  const bfPhase = useBlackFridayPhase();
+  const showBlackFriday = bfPhase !== "ended";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobilePanel, setMobilePanel] = useState<"about" | "patient" | null>(null);
 
@@ -196,6 +199,7 @@ export default function SiteHeader({ className, homeHref = "/" }: SiteHeaderProp
                   </button>
                   <NavLink href="/services" active={section === "services"} onClick={closeMobileMenu}>Services</NavLink>
                   <NavLink href="/pricing" active={section === "pricing"} onClick={closeMobileMenu}>Pricing</NavLink>
+                  {showBlackFriday ? <NavLink href="/black-friday" className="nav-black-friday" active={pathname === "/black-friday"} onClick={closeMobileMenu}>Black Friday</NavLink> : null}
                   <NavLink href="/shop" active={section === "shop"} onClick={closeMobileMenu}>Shop</NavLink>
                   <button type="button" className={section === "patient" ? "is-active" : undefined} onClick={() => setMobilePanel("patient")}>
                     Patient Center
@@ -218,6 +222,7 @@ export default function SiteHeader({ className, homeHref = "/" }: SiteHeaderProp
         <Image src="/images/logo-transparent.png" alt="Harmony Med Spa" width={270} height={111} priority />
       </NavLink>
       <nav className="nav-right flex gap-[clamp(28px,4vw,62px)] items-center pt-[12px] justify-end max-[1050px]:p-0 max-[1050px]:gap-[22px] max-[720px]:flex-wrap max-[720px]:justify-center max-[720px]:gap-x-[18px] max-[720px]:gap-y-[8px] max-[720px]:text-[length:12px] max-[430px]:gap-x-[13px] max-[430px]:text-[length:11px]" aria-label="Primary right">
+        {showBlackFriday ? <NavLink href="/black-friday" className="nav-black-friday" active={pathname === "/black-friday"}>Black Friday</NavLink> : null}
         <NavLink href="/shop" active={section === "shop"}>Shop</NavLink>
         <NavDropdown label="Patient Center" links={patientCenterLinks} active={section === "patient"} pathname={pathname} />
         <NavLink href="/contact-us" active={section === "contact"}>Contact Us</NavLink>

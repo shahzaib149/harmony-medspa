@@ -41,6 +41,8 @@ export const INDEXABLE_ROUTES: IndexableRoute[] = [
   { path: "/our-team", name: "Our Team", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-09-29" },
   { path: "/services", name: "Services", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-09-29" },
   { path: "/contact-us", name: "Contact Us", priority: 0.9, changeFrequency: "monthly", lastModified: "2026-10-14" },
+  { path: "/black-friday", name: "Black Friday 2026", priority: 0.8, changeFrequency: "daily", lastModified: "2026-11-19", parent: "/" },
+  { path: "/gift-cards", name: "Gift Cards", priority: 0.7, changeFrequency: "monthly", lastModified: "2026-11-19", parent: "/" },
 
   // Treatment pages
   { path: "/semaglutide", name: "Semaglutide", priority: 0.8, changeFrequency: "monthly", lastModified: "2026-10-14", schema: "treatment", parent: "/medical-weight-loss" },

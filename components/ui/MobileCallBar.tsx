@@ -12,7 +12,13 @@ import styles from "./MobileCallBar.module.css";
  * The bar hides while the form is on screen so it never covers the submit button, and
  * the page gets bottom padding so nothing sits behind it.
  */
-export default function MobileCallBar({ formId }: { formId?: string }) {
+export default function MobileCallBar({ formId, tone = "default", bookLabel = "Book online" }: {
+  formId?: string;
+  /** "noir" = the Black Friday black-and-gold styling. */
+  tone?: "default" | "noir";
+  /** Label of the right-hand button. */
+  bookLabel?: string;
+}) {
   const [formVisible, setFormVisible] = useState(false);
 
   useEffect(() => {
@@ -52,13 +58,13 @@ export default function MobileCallBar({ formId }: { formId?: string }) {
   };
 
   return (
-    <nav className={`${styles.bar} ${formVisible ? styles.hidden : ""}`} aria-label="Call or book" aria-hidden={formVisible || undefined}>
+    <nav className={`${styles.bar} ${tone === "noir" ? styles.noir : ""} ${formVisible ? styles.hidden : ""}`} aria-label="Call or book" aria-hidden={formVisible || undefined}>
       <a className={styles.call} href={`tel:+1${PHONE_TEL}`} tabIndex={formVisible ? -1 : undefined}>
         <Phone size={17} aria-hidden="true" /> Call {PHONE_DISPLAY}
       </a>
       <a className={styles.book} href={formId ? `#${formId}` : ONLINE_BOOKING_URL} onClick={book} tabIndex={formVisible ? -1 : undefined}
         {...(formId ? {} : { target: "_blank", rel: "noopener noreferrer" })}>
-        <CalendarDays size={17} aria-hidden="true" /> Book online
+        <CalendarDays size={17} aria-hidden="true" /> {bookLabel}
       </a>
     </nav>
   );

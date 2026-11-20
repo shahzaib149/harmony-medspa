@@ -2,6 +2,7 @@ export const metadata = { title: { absolute: `Home | ${SITE_NAME}` }, alternates
 
 import HomeHero from "@/components/home/HomeHero";
 import PromotionBanner from "@/components/promotions/PromotionBanner";
+import GiftCardBonusBanner from "@/components/promotions/GiftCardBonusBanner";
 import HomeOffers, { HomeOfferBand } from "@/components/home/HomeOffers";
 import {
   HomeAbout,
@@ -27,6 +28,7 @@ export default function Home() {
       <SiteHeader className="site-header" homeHref="#home" />
 
       <HomeHero />
+      <GiftCardBonusBanner />
       <PromotionBanner />
       <HomeOfferBand />
       <HomeAbout />

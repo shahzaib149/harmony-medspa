@@ -322,3 +322,12 @@
     animation: none;
   }
 }
+
+/* Black Friday 2026 nav item (shown Nov 19–30 only). */
+.premiumHeader :global(.nav-black-friday) {
+  color: #D9BC7A !important;
+  font-weight: 700;
+  text-shadow: 0 0 14px rgba(217, 188, 122, 0.35);
+}
+.premiumHeader :global(.nav-black-friday:hover),
+.premiumHeader :global(.nav-black-friday.is-active) { color: #EAD7A4 !important; }

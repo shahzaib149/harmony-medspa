@@ -182,6 +182,36 @@ export function trackLead(response: SuccessfulLeadResponse) {
   });
 }
 
+// Black Friday 2026. Both Google Ads labels are optional: unset or malformed means GA4 only.
+const purchaseSendTo = process.env.NEXT_PUBLIC_GOOGLE_ADS_PURCHASE_SEND_TO?.trim() || "";
+const giftCardSendTo = process.env.NEXT_PUBLIC_GOOGLE_ADS_GIFTCARD_SEND_TO?.trim() || "";
+const isSendTo = (value: string) => /^AW-\d+\/[A-Za-z0-9_-]+$/.test(value);
+
+/** A click on a Black Friday "Purchase" / "Request This Offer" button. Beacon transport, never blocks navigation. */
+export function trackPurchaseLinkClick(offerId: string, url: string) {
+  const runtime = trackingRuntime();
+  if (!runtime) return;
+  if (validMeasurementId) {
+    runtime.event("select_content", {
+      send_to: validMeasurementId, content_type: "black_friday_offer", item_id: offerId,
+      link_url: url, page_path: window.location.pathname, transport_type: "beacon",
+    });
+  }
+  if (isSendTo(purchaseSendTo)) runtime.event("conversion", { send_to: purchaseSendTo, transport_type: "beacon" });
+}
+
+/**
+ * A gift card request Make has acknowledged. Fires its own Ads conversion (value = amount)
+ * and GA4 generate_lead with lead_type "gift_card". Deliberately not the main lead conversion.
+ */
+export function trackGiftCardRequest(response: SuccessfulLeadResponse, amount: number) {
+  if (!response || !response.ok || !confirmed.has(response) || tracked.has(response)) return;
+  tracked.add(response);
+  const value = Math.round(amount * 100) / 100;
+  if (isSendTo(giftCardSendTo)) trackingRuntime()?.event("conversion", { send_to: giftCardSendTo, value, currency: "USD" });
+  if (validMeasurementId) trackingRuntime()?.event("generate_lead", { send_to: validMeasurementId, value, currency: "USD", lead_type: "gift_card" });
+}
+
 export function googleTagBootstrap() {
   return '(' + initializeAnalytics.toString() + ')(' + JSON.stringify({
     measurement: validMeasurementId, conversion: validConversionId,

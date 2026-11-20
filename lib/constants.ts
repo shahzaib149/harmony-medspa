@@ -32,6 +32,8 @@ export const ONLINE_BOOKING_URL =
   "https://na02.patientnow.com/a/HARMONYMEDSPA/OnlineBooking.aspx?rwg_token=AFd1xnFT_kHlHeWFNIXMwAf3TLK1AxeHVlcMQ61FZdPxWhFYciZL0fRt3UMK2zrvrLi7F1GTDI4HCRPGl127Ac2dGDOiiEMlnA%3D%3D";
 
 export const CONTACT_WEBHOOK_URL = "https://hook.us2.make.com/mj8bga3ohgj6l7l0fe35f1mqktlfob7a";
+// Gift Card Request (2026), Make scenario 7108868. Separate from Speed to Lead on purpose.
+export const GIFT_CARD_WEBHOOK_URL = "https://hook.us2.make.com/w8rmwb84i1vzhsyoddp4irogwkc26uoy";
 
 export const RXPHOTO_GALLERY_URL =
   "https://harmonymedfl.wpenginepowered.com/before-and-after/?iframe=iframe";

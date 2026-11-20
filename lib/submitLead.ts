@@ -1,6 +1,6 @@
 import { attributionFields, referrerSource } from "./analytics/attribution";
 import { confirmLeadResponse } from "./analytics";
-import { CONTACT_WEBHOOK_URL } from "@/lib/constants";
+import { CONTACT_WEBHOOK_URL, GIFT_CARD_WEBHOOK_URL } from "@/lib/constants";
 
 export type LeadFields = {
   name: string;
@@ -48,6 +48,19 @@ export async function submitLead(fields: LeadFields) {
 
 export async function submitLeadPayload(payload: Record<string, unknown>) {
   const response = await fetch(CONTACT_WEBHOOK_URL, {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...payload, ...attributionFields(), referrerSource: referrerSource() }),
+  });
+  return confirmLeadResponse(response);
+}
+
+/**
+ * Gift card requests go to their own Make scenario, never Speed to Lead. The payload uses
+ * Purchaser / Recipient keys only (no Name, Email or Phone), so nothing downstream can
+ * mistake the gift recipient for a lead.
+ */
+export async function submitGiftCardRequest(payload: Record<string, unknown>) {
+  const response = await fetch(GIFT_CARD_WEBHOOK_URL, {
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...payload, ...attributionFields(), referrerSource: referrerSource() }),
   });

@@ -41,6 +41,14 @@
   .call:focus-visible, .book:focus-visible { outline: 3px solid #b08a3e; outline-offset: 2px; }
 }
 
+@media (max-width: 767px) {
+  /* Black Friday Noir variant. */
+  .noir { background: rgba(10, 10, 11, .94); border-top: 1px solid rgba(217, 188, 122, .35); box-shadow: 0 -12px 34px -18px rgba(0, 0, 0, .9); }
+  .noir .call { color: #1A1A1A !important; background: linear-gradient(135deg, #F3E3B5 0%, #D9BC7A 35%, #B88C45 65%, #EAD7A4 100%); }
+  .noir .book { color: #EAD7A4 !important; background: transparent; border-color: #D9BC7A; }
+  .noir .call:focus-visible, .noir .book:focus-visible { outline-color: #D9BC7A; }
+}
+
 @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
   .bar { transition: none; }
 }

@@ -1,0 +1,327 @@
+/* Harmony Noir: the scoped Black Friday luxury theme. Every rule hangs off .noir or a
+   phase scope, so nothing leaks into the rest of the site. */
+
+.noir, .giftCard {
+  --noir-950: #0A0A0B;
+  --noir-900: #111113;
+  --noir-800: #18181B;
+  --noir-700: #232327;
+  --gold-300: #EAD7A4;
+  --gold-400: #D9BC7A;
+  --gold-500: #C6A15B;
+  --gold-600: #A9823D;
+  --gold-gradient: linear-gradient(135deg, #F3E3B5 0%, #D9BC7A 35%, #B88C45 65%, #EAD7A4 100%);
+  --champagne: #F6EEDF;
+  --ivory: #FBF8F2;
+  --ink: #1A1A1A;
+  --text: #F5F1E8;
+  --text-2: rgba(245, 241, 232, 0.68);
+  --hairline: rgba(217, 188, 122, 0.28);
+  --display: var(--font-home-display), "Playfair Display", Georgia, serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius: 20px;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.noir {
+  color: var(--text);
+  background: var(--noir-950);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.noir *, .noir *::before, .noir *::after { box-sizing: border-box; }
+
+/* Film grain + gold glow for dark sections. */
+.grain { position: relative; isolation: isolate; }
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--grain);
+  opacity: 0.035;
+}
+.glow { position: relative; isolation: isolate; }
+.glow::after {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: -10% -20% auto;
+  height: 70%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 30%, rgba(217, 188, 122, 0.11), transparent 62%);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--gold-400);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.display {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  color: var(--text);
+}
+.display em { font-style: italic; }
+
+/* Gold foil type: gradient clipped to text, one slow shimmer sweep on load. */
+.foil {
+  background: var(--gold-gradient);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: foilSweep 2.6s cubic-bezier(0.4, 0, 0.2, 1) 0.35s 1 both;
+}
+@keyframes foilSweep {
+  from { background-position: 100% 50%; }
+  to { background-position: 0% 50%; }
+}
+
+.lead { margin: 0; color: var(--text-2); font-size: 17px; line-height: 1.65; }
+
+/* Buttons: both at least 48px, with a 2px gold ring offset 2px on focus. */
+.btnPrimary, .btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  white-space: nowrap;
+}
+.btnPrimary {
+  color: var(--ink) !important;
+  background: var(--gold-gradient);
+  border: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(120, 84, 30, 0.35), 0 10px 30px -12px rgba(217, 188, 122, 0.55);
+}
+.btnPrimary:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(120, 84, 30, 0.35), 0 16px 36px -12px rgba(217, 188, 122, 0.7); }
+.btnSecondary {
+  color: var(--gold-300) !important;
+  background: transparent;
+  border: 1px solid var(--gold-400);
+}
+.btnSecondary:hover { background: rgba(217, 188, 122, 0.1); color: #fff !important; }
+.btnPrimary:focus-visible, .btnSecondary:focus-visible, .noir :focus-visible {
+  outline: 2px solid var(--gold-400);
+  outline-offset: 2px;
+}
+.btnPrimary[disabled] { opacity: 0.7; cursor: progress; }
+
+/* Hairline divider with a centred diamond. */
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: min(560px, 80%);
+  margin: 0 auto;
+  color: var(--gold-400);
+}
+.rule::before, .rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hairline) 30%, var(--gold-500) 100%);
+}
+.rule::after { background: linear-gradient(90deg, var(--gold-500), var(--hairline) 70%, transparent); }
+.rule span { width: 7px; height: 7px; transform: rotate(45deg); background: var(--gold-400); box-shadow: 0 0 12px rgba(217, 188, 122, 0.6); }
+
+/* Raised hairline card. */
+.card {
+  position: relative;
+  background: var(--noir-800);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+@media (hover: hover) and (min-width: 900px) {
+  .card:hover, .card:focus-within {
+    border-color: rgba(217, 188, 122, 0.65);
+    box-shadow: inset 0 0 40px -8px rgba(217, 188, 122, 0.12), 0 24px 60px -30px rgba(0, 0, 0, 0.9);
+  }
+}
+
+/* Designed placeholder: black-and-gold composition with the slot's name in display type. */
+.placeholder {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(217, 188, 122, 0.18), transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(169, 130, 61, 0.16), transparent 50%),
+    linear-gradient(160deg, #1c1c20, #0b0b0c 70%);
+  isolation: isolate;
+}
+.placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(217, 188, 122, 0.45);
+  border-radius: calc(var(--radius) - 8px);
+  pointer-events: none;
+}
+.placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--grain);
+  opacity: 0.05;
+}
+.placeholderInner { display: grid; justify-items: center; gap: 12px; padding: 28px; text-align: center; }
+.placeholderMark { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.32em; color: var(--gold-400); text-transform: uppercase; }
+.placeholderName {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(26px, 3.4vw, 40px);
+  line-height: 1.1;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.placeholderDiamond { width: 6px; height: 6px; transform: rotate(45deg); background: var(--gold-400); }
+.media { position: relative; overflow: hidden; border-radius: var(--radius); }
+.media img { object-fit: cover; }
+
+/* CSS gift card: black card, gold foil wordmark, embossed edge, slow tilt on hover (desktop). */
+.giftCard {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1.586;
+  border-radius: 18px;
+  padding: clamp(18px, 4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--gold-300);
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(234, 215, 164, 0.16), transparent 50%),
+    linear-gradient(135deg, #1d1d21 0%, #0c0c0d 55%, #18181b 100%);
+  border: 1px solid rgba(217, 188, 122, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.6),
+    inset 0 0 0 6px rgba(217, 188, 122, 0.04),
+    0 40px 80px -30px rgba(0, 0, 0, 0.95),
+    0 0 60px -20px rgba(217, 188, 122, 0.25);
+  transform: perspective(1000px) rotateX(0) rotateY(0);
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  overflow: hidden;
+  isolation: isolate;
+}
+.giftCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 240, 200, 0.12) 45%, transparent 60%);
+  transform: translateX(-60%);
+  animation: cardShimmer 6s ease-in-out 1.2s infinite;
+}
+@keyframes cardShimmer {
+  0%, 60% { transform: translateX(-60%); }
+  100% { transform: translateX(60%); }
+}
+@media (hover: hover) and (min-width: 900px) {
+  .giftCard:hover { transform: perspective(1000px) rotateX(6deg) rotateY(-10deg) translateY(-4px); }
+}
+.giftCardTop { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.giftWordmark { display: grid; gap: 2px; }
+.giftWordmark b {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(22px, 4vw, 30px);
+  letter-spacing: 0.24em;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.giftWordmark small { font-size: 9px; letter-spacing: 0.42em; color: var(--gold-400); font-weight: 700; }
+.giftChip { width: 40px; height: 30px; border-radius: 6px; background: var(--gold-gradient); opacity: 0.85; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25); }
+.giftCardBottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.giftLabel { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-2); }
+.giftAmount {
+  font-family: var(--display);
+  font-size: clamp(34px, 7vw, 52px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.giftRibbon {
+  position: absolute;
+  top: 18px;
+  right: -46px;
+  width: 190px;
+  padding: 6px 0;
+  text-align: center;
+  transform: rotate(35deg);
+  background: var(--gold-gradient);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.7);
+  animation: ribbonIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes ribbonIn {
+  from { opacity: 0; transform: rotate(35deg) translateY(-30px); }
+  to { opacity: 1; transform: rotate(35deg) translateY(0); }
+}
+
+/* Phase scopes: the inline script sets data-bf-phase before first paint; blocks marked
+   data-bf-show="early public" render only in those phases. */
+.scope { display: contents; }
+.phaseBox { position: relative; }
+.scope[data-bf-phase="pre"] [data-bf-show]:not([data-bf-show~="pre"]),
+.scope[data-bf-phase="early"] [data-bf-show]:not([data-bf-show~="early"]),
+.scope[data-bf-phase="public"] [data-bf-show]:not([data-bf-show~="public"]),
+.scope[data-bf-phase="ended"] [data-bf-show]:not([data-bf-show~="ended"]),
+.phaseBox[data-bf-phase="pre"] [data-bf-show]:not([data-bf-show~="pre"]),
+.phaseBox[data-bf-phase="early"] [data-bf-show]:not([data-bf-show~="early"]),
+.phaseBox[data-bf-phase="public"] [data-bf-show]:not([data-bf-show~="public"]),
+.phaseBox[data-bf-phase="ended"] [data-bf-show]:not([data-bf-show~="ended"]) {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foil, .giftCard::before, .giftRibbon { animation: none; }
+  .foil { background-position: 0% 50%; }
+  .giftCard, .btnPrimary, .btnSecondary, .card { transition: none; }
+  .giftCard:hover { transform: none; }
+}

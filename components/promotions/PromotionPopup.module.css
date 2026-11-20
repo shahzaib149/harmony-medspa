@@ -1,0 +1,55 @@
+.dialog {
+  width: min(820px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgba(217, 188, 122, 0.45);
+  border-radius: 22px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 80px -30px rgba(217, 188, 122, 0.35);
+  overflow: hidden;
+  animation: rise 0.36s ease-out;
+}
+.dialog::backdrop { background: rgba(5, 5, 6, 0.72); backdrop-filter: blur(4px); animation: fade 0.36s ease-out; }
+.layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); max-height: calc(100dvh - 32px); }
+.photo { position: relative; border-right: 1px solid rgba(217, 188, 122, 0.28); }
+.photoInner { position: absolute; inset: 0; border-radius: 0; }
+.body {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  padding: 44px 40px 34px;
+  overflow-y: auto;
+  background: radial-gradient(ellipse at 80% 0%, rgba(217, 188, 122, 0.14), transparent 60%), #111113;
+}
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #EAD7A4;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+.close:hover { background: rgba(217, 188, 122, 0.12); }
+.title { font-size: clamp(32px, 4.4vw, 44px); margin-right: 36px; }
+.text { margin: 0; color: rgba(245, 241, 232, 0.78); font-size: 16px; line-height: 1.65; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.note { margin: 0; color: rgba(245, 241, 232, 0.68); font-size: 14px; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; }
+  .photo { display: none; }
+  .body { padding: 40px 22px 26px; }
+  .actions > * { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .dialog, .dialog::backdrop { animation: none; } }
