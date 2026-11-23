@@ -248,8 +248,8 @@ export default function BlackFridayPage() {
                   <h3 className={p.cardTitle}>Sculptra</h3>
                   <PriceTable caption="Sculptra Black Friday pricing" rows={[
                     { label: "2 vials, $250 off", offer: sculptra[0] },
-                    { label: "4 vials", note: "Package total confirmed when you call", offer: sculptra[1] },
-                    { label: "6 vials", note: "Package total confirmed when you call", offer: sculptra[2] },
+                    { label: "4 vials, $600 off", offer: sculptra[1] },
+                    { label: "6 vials, $1,000 off", offer: sculptra[2] },
                   ]} />
                   <SaveChip offer={sculptra[0]} />
                   <Bullets items={["Members' 10% applied first, then the dollar savings", "Use over multiple visits within 365 days", "Provider approval required"]} />
