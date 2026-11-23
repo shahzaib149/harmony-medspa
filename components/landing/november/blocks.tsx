@@ -108,8 +108,9 @@ export function Hero({ eyebrow, title, sub, badge, primaryLabel, image, imageAlt
   );
 }
 
-export function LeadForm({ source, treatmentInterest, landingUrl, offerCode, heading, subheading, submitLabel, options, acceptInterestEvents, kicker = "November offer · request your visit" }: {
+export function LeadForm({ source, treatmentInterest, landingUrl, offerCode, offerCodeByTreatment, heading, subheading, submitLabel, options, acceptInterestEvents, kicker = "November offer · request your visit" }: {
   source: string; treatmentInterest: string; landingUrl: string; offerCode?: string;
+  offerCodeByTreatment?: Readonly<Record<string, string>>;
   heading: string; subheading: string; submitLabel: string; options?: readonly string[];
   acceptInterestEvents?: boolean; kicker?: string;
 }) {
@@ -121,6 +122,7 @@ export function LeadForm({ source, treatmentInterest, landingUrl, offerCode, hea
       treatmentInterest={treatmentInterest}
       landingUrl={landingUrl}
       offerCode={offerCode}
+      offerCodeByTreatment={offerCodeByTreatment}
       ariaLabel={`${treatmentInterest} consultation request`}
       kicker={kicker}
       heading={heading}

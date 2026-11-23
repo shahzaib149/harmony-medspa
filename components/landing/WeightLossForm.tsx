@@ -35,6 +35,8 @@ type WeightLossFormProps = {
   fields?: "full" | "essential";
   /** Optional promotion code (e.g. "HRT150"), posted as "Offer Code" only when set. */
   offerCode?: string;
+  /** Per-option override of offerCode (e.g. Black Friday options post "BF2026"). */
+  offerCodeByTreatment?: Readonly<Record<string, string>>;
   /** "soft" gives the card rounded corners for the November landing pages. */
   variant?: "default" | "soft";
   /** When true, a window "harmony:set-interest" event (detail = option string) pre-selects
@@ -55,6 +57,7 @@ export default function WeightLossForm({
   treatmentOptions,
   fields = "full",
   offerCode,
+  offerCodeByTreatment,
   variant = "default",
   acceptInterestEvents = false,
 }: WeightLossFormProps) {
@@ -123,8 +126,9 @@ export default function WeightLossForm({
       "Page URL": typeof window !== "undefined" ? window.location.href : "",
       "Landing URL": landingUrl,
       "Lead Created At": new Date().toISOString(),
-      ...(offerCode ? { "Offer Code": offerCode } : {}),
     };
+    const code = offerCodeByTreatment?.[selectedTreatment] ?? offerCode;
+    if (code) Object.assign(payload, { "Offer Code": code });
 
     try {
       const response = await submitLeadPayload(payload);

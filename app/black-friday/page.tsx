@@ -453,8 +453,8 @@ export default function BlackFridayPage() {
           <div className={p.bottomSpace} data-bf-show="ended" />
         </div>
 
-        <div data-bf-show="pre"><MobileCallBar tone="noir" /></div>
-        <div data-bf-show="early public"><MobileCallBar formId={BF_FORM_ID} tone="noir" bookLabel="Claim an Offer" /></div>
+        <div data-bf-show="pre"><MobileCallBar tone="noir" promo={false} /></div>
+        <div data-bf-show="early public"><MobileCallBar formId={BF_FORM_ID} tone="noir" bookLabel="Claim an Offer" promo={false} /></div>
       </PhaseScope>
       <SiteFooter />
     </main>

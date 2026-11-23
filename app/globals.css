@@ -6049,6 +6049,20 @@
   background-origin: border-box;
 }
 
+/* Black Friday 2026: /glo2facials puts the offer block (.bf-lead) between its header and
+   hero. Once the sale ends the block is hidden, so restore the float-over-hero above. */
+.team-header:has(+ .bf-lead[data-bf-phase="ended"] + section) {
+  position: fixed;
+  right: 0;
+  left: 0;
+  background-color: transparent;
+}
+.bf-lead[data-bf-phase="ended"] + section {
+  box-sizing: content-box;
+  border-top: var(--site-header-h) solid transparent;
+  background-origin: border-box;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-header,
   .team-header,

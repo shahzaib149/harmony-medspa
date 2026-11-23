@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { ONLINE_BOOKING_URL } from "@/lib/constants";
 import { PRICING_GENERAL_DISCLAIMER, PRICING_PATH, SERVICE_PRICING, requestPricingHref } from "@/lib/data/pricing";
 import PriceList from "./PriceList";
@@ -14,7 +15,11 @@ const outlineButton = `${buttonBase} [border:1px_solid_#cdb98f] bg-[#fff] text-[
  * has any), then View Treatment Pricing, Book Online and Request Personalized Pricing. The
  * request link carries the treatment name so the lead is tagged with the page it came from.
  */
-export default function ServicePricing({ path, heading, intro }: { path: string; heading?: string; intro?: string }) {
+export default function ServicePricing({ path, heading, intro, note }: {
+  path: string; heading?: string; intro?: string;
+  /** Optional line above the price list (e.g. a promotion). */
+  note?: ReactNode;
+}) {
   const entry = SERVICE_PRICING[path];
   if (!entry) throw new Error(`No service pricing registered for ${path}`);
   const hasPrices = entry.groups.length > 0;
@@ -61,6 +66,7 @@ export default function ServicePricing({ path, heading, intro }: { path: string;
           <h2 id="service-pricing-heading" className="mt-0 mb-[14px] text-[#16130f] text-[length:clamp(28px,3vw,38px)] leading-[1.08] font-thin">
             {heading ?? `${entry.service} Pricing in Sarasota, FL`}
           </h2>
+          {note}
           <p className={`mt-0 ${sideCard ? "mb-0" : "mb-[30px]"} max-w-[760px] text-[length:17px] leading-[1.6] text-[#514a40] max-[720px]:text-[length:16px]`}>
             {intro ??
               (hasPrices

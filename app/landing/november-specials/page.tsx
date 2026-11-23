@@ -8,6 +8,8 @@ import {
 } from "@/components/landing/november/blocks";
 import { CountdownPill, CountUp } from "@/components/landing/november/client";
 import { OfferFinder, Parallax, type FinderGoal } from "@/components/landing/november/specials";
+import BfOfferBlock from "@/components/promotions/bf-landing/BfOfferBlock";
+import { BF_OFFER_CODE } from "@/lib/data/blackFriday2026";
 import styles from "@/components/landing/november/November.module.css";
 import sp from "@/components/landing/november/Specials.module.css";
 import {
@@ -148,13 +150,20 @@ const faqs = [
   { q: "When do the offers end?", a: `All November offers are valid through ${OFFER_END_LABEL}.` },
 ];
 
+// Black Friday options first (Google Ads "Med Spa Sarasota" traffic lands here); every existing option kept.
+const BF_SPECIALS = "Black Friday specials";
+const BF_FACIALS = "Facials / Glo2Facial";
 const formOptions = [
+  BF_SPECIALS, BF_FACIALS, "Laser hair removal",
   interests.unsure, interests.hormone, interests.filler, interests.memberships, interests.laser, interests.iv, interests.shots,
 ];
+/** These choices post Offer Code BF2026; everything else keeps the page's existing code. */
+const bfOfferCodes = { [BF_SPECIALS]: BF_OFFER_CODE, [BF_FACIALS]: BF_OFFER_CODE } as const;
 
 export default function NovemberSpecialsLandingPage() {
   return (
     <LandingShell tint="champagne" bookLabel="Book a visit" complianceLine={SPECIALS_COMPLIANCE_LINE}>
+      <BfOfferBlock variant="medspa" callbackHref={`#${FORM_ID}`} />
       <Hero
         eyebrow="November at Harmony Med Spa"
         title="Sarasota's MD & NP-Led Med Spa"
@@ -183,6 +192,7 @@ export default function NovemberSpecialsLandingPage() {
             treatmentInterest={interests.unsure}
             landingUrl={pageUrl}
             offerCode={novemberSpecials.offerCode}
+            offerCodeByTreatment={bfOfferCodes}
             kicker="November specials · request your visit"
             heading="Claim a November offer."
             subheading="Tell us what you're interested in. Our Sarasota team will call to book your visit."

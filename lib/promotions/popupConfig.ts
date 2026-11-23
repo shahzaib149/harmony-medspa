@@ -51,7 +51,7 @@ export const promotionPopupPhases: PromotionPopupPhase[] = [
 
 /** Paths where no promotion popup shows. Matched by whole segment, so "/landing" does not cover "/landing-v1". */
 export const POPUP_EXCLUDED_PATHS = [
-  "/landing", "/landing-v1", "/offer-test-fixture", "/unsubscribe", "/patient-forms", "/contact-us", "/black-friday", "/gift-cards",
+  "/landing", "/landing-v1", "/offer-test-fixture", "/unsubscribe", "/patient-forms", "/contact-us", "/black-friday", "/gift-cards", "/glo2facials",
 ];
 
 export function popupExcluded(pathname: string): boolean {

@@ -22,6 +22,11 @@ export const BF_PHASE_BOUNDARIES = {
 export const BF_OFFER_CODE = "BF2026";
 export const BF_SOURCE = "Black Friday Landing Page";
 export const BF_FORM_ID = "request";
+
+/** Single Glo2Facial at regular price, per the staff menu and the live /glo2facials page ($204). */
+export const GLO2_SINGLE_REGULAR = 204;
+/** Anchor of the short "Reserve" form on ad landing pages (components/promotions/bf-landing). */
+export const BF_RESERVE_ID = "bf-reserve";
 export const GIFT_CARD_BONUS_RATE = 0.1;
 export const GIFT_CARD_BONUS_MINIMUM = 100;
 

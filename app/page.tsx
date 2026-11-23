@@ -1,6 +1,7 @@
 export const metadata = { title: { absolute: `Home | ${SITE_NAME}` }, alternates: { canonical: "/" }, openGraph: openGraphFor("/", { title: `${SITE_NAME} | Sarasota, FL` }) };
 
 import HomeHero from "@/components/home/HomeHero";
+import BfOfferBlock from "@/components/promotions/bf-landing/BfOfferBlock";
 import PromotionBanner from "@/components/promotions/PromotionBanner";
 import GiftCardBonusBanner from "@/components/promotions/GiftCardBonusBanner";
 import HomeOffers, { HomeOfferBand } from "@/components/home/HomeOffers";
@@ -27,6 +28,7 @@ export default function Home() {
     <main className={`${displayFont.variable} ${styles.home}`}>
       <SiteHeader className="site-header" homeHref="#home" />
 
+      <BfOfferBlock variant="home" />
       <HomeHero />
       <GiftCardBonusBanner />
       <PromotionBanner />

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import PromotionPopup from "@/components/promotions/PromotionPopup";
 import PhoneClickTracker from "@/components/PhoneClickTracker";
+import { GlobalMobileCallBar } from "@/components/ui/MobileCallBar";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildMedicalClinicSchema, buildWebSiteSchema } from "@/lib/schema";
@@ -55,6 +56,7 @@ export default function RootLayout({
         <Suspense fallback={null}><AnalyticsNavigation /></Suspense>
         <PhoneClickTracker />
         {children}
+        <GlobalMobileCallBar />
         <PromotionPopup />
         <ScrollReveal />
       </body>

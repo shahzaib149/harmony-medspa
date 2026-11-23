@@ -7,6 +7,7 @@ import { trackEvent } from "@/lib/analytics";
 import { displayFont } from "@/lib/fonts";
 import { clientBlackFridayPhase, phaseOverride } from "@/lib/promotions/blackFriday";
 import { popupExcluded, promotionPopupPhases, type PromotionPopupPhase } from "@/lib/promotions/popupConfig";
+import { isAdVisitorNow } from "@/lib/promotions/useIsAdVisitor";
 import { OfferImage, noir } from "@/components/promotions/noir/NoirParts";
 import styles from "./PromotionPopup.module.css";
 
@@ -44,6 +45,8 @@ function PromotionDialog({ pathname }: { pathname: string }) {
   const [phase, setPhase] = useState<PromotionPopupPhase | null>(null);
 
   useEffect(() => {
+    // Google Ads visitors land on a page that already shows the offer; never cover it.
+    if (isAdVisitorNow()) return;
     const current = activePhase();
     if (!current || dismissed(current.id)) return;
     const timer = window.setTimeout(() => setPhase(current), 700);
