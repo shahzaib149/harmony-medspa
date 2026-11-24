@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 
-import waitingRoom from "@/public/images/blogs/october-2026/membership-harmony-waiting-room.jpg";
+import loungeMembershipTv from "@/public/images/office/november-2026/harmony-lounge-membership-tv.webp";
 import co2Room from "@/public/images/blogs/october-2026/ipl-co2-treatment-planning-room.jpg";
 import facialRoom from "@/public/images/blogs/october-2026/glo2facial-holiday-treatment-room.jpg";
 import treatmentSuite from "@/public/images/blogs/october-2026/rf-aftercare-harmony-treatment-room.jpg";
@@ -70,7 +70,8 @@ export const HERO_IMAGES: Record<string, HeroImage> = {
   "/laser-hair-removal": { image: laserHairRoom, eyebrow: "Lasers + Lights", position: "center 55%" },
   "/lasers-and-lights": { image: laserRoom, eyebrow: "Lasers + Lights", position: "center 50%" },
   "/medical-weight-loss": { image: weightLossVisit, eyebrow: "Medical weight loss", position: "center 40%" },
-  "/membership": { image: waitingRoom, eyebrow: "Memberships" },
+  // Lounge with the membership slide on the TV (supplied by Hayden, Nov 24 2026).
+  "/membership": { image: loungeMembershipTv, eyebrow: "Memberships", position: "center 45%" },
   "/our-team": { image: careTeam, eyebrow: "About Harmony", position: "center 36%" },
   "/patient-forms": { image: frontDesk, eyebrow: "Patient center", position: "center 60%" },
   "/payment-plans": { image: financingDisplay, eyebrow: "Patient center", position: "center 45%" },
