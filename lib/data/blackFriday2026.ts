@@ -56,7 +56,8 @@ export const images: Record<ImageSlotId, ImageSlot> = {
   secretPro: { src: `${ASSETS}/Cutera%20%28RF%20Microneedling%2C%20Fractional%20CO2%29/Cutera-Secret-pro.png`, alt: "Cutera Secret PRO RF microneedling and fractional CO2 device", label: "Secret PRO" },
   ipl: { src: `${ASSETS}/Alma%20%28Laser%20Hair%20Removal%2C%20IPL%29/Alma%20Harmony%20Lite%20%28IPL_LHR%29.png`, alt: "Alma Harmony IPL and laser hair removal device", label: "IPL & Laser Hair Removal" },
   skincare: { src: `${ASSETS}/Revision%20skincare/Brightening%20Facial%20Wash.png`, alt: "Revision Skincare Brightening Facial Wash", label: "Skincare" },
-  giftCard: { src: `${ASSETS}/Gift%20Cards/HMS_Gift%20Card_Granite_Gold.png`, alt: "Harmony Med Spa black and gold gift card", label: "Gift Cards" },
+  // Cut out of HMS_Gift Card_Granite_Gold.png: just the card, rounded, transparent (no white backdrop), 1319×774.
+  giftCard: { src: "/images/black-friday/harmony-gift-card.webp", alt: "Harmony Med Spa black and gold gift card", label: "Gift Cards" },
   provider: { src: `${ASSETS}/Headshots/Jessica%20Simone%20square%20070.jpg`, alt: "Jessica N. Simone, AGNP-C, Harmony Med Spa provider", label: "Harmony Med Spa" },
 };
 

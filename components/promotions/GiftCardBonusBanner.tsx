@@ -33,7 +33,7 @@ export default function GiftCardBonusBanner({ id }: { id?: string }) {
           </div>
           <div className={styles.art}>
             {images.giftCard.src ? (
-              <Image src={images.giftCard.src} alt={images.giftCard.alt} width={1448} height={1086} sizes="(max-width: 760px) 80vw, 380px" className={styles.photo} quality={85} />
+              <Image src={images.giftCard.src} alt={images.giftCard.alt} width={1319} height={774} sizes="(max-width: 760px) 80vw, 400px" className={styles.photo} quality={85} />
             ) : (
               <GiftCardArt amount="$250" className={styles.card} />
             )}

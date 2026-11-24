@@ -162,8 +162,9 @@
 
 .giftGrid { display: grid; gap: 32px; align-items: center; }
 @media (min-width: 900px) { .giftGrid { grid-template-columns: 1.1fr 0.9fr; } }
-.giftPhoto { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden; }
-.giftPhoto img { object-fit: contain; }
+/* The gift card floats on the dark band with a soft gold glow (the image is a transparent cut-out). */
+.giftPhoto { position: relative; aspect-ratio: 1319 / 774; width: min(100%, 520px); margin-inline: auto; }
+.giftPhoto img { object-fit: contain; filter: drop-shadow(0 0 34px rgba(217, 188, 122, 0.42)) drop-shadow(0 26px 44px rgba(0, 0, 0, 0.6)); }
 
 /* How it works (light) */
 .steps { margin: 56px 0 0; padding: 0; list-style: none; display: grid; gap: 18px; counter-reset: step; }

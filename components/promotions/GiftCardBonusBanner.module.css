@@ -34,4 +34,5 @@
   .card { max-width: 340px; }
 }
 
-.photo { width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.55)); }
+/* Transparent card cut-out with a soft gold glow behind it. */
+.photo { width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 0 30px rgba(217, 188, 122, 0.45)) drop-shadow(0 26px 44px rgba(0, 0, 0, 0.6)); }
