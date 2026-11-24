@@ -453,8 +453,6 @@
   margin-top: 20px;
   padding-right: 18px;
   overflow-y: auto;
-  scrollbar-color: #d6c4a0 transparent;
-  scrollbar-width: thin;
 }
 
 .dialogScroll p {

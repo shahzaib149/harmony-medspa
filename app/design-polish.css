@@ -728,3 +728,54 @@
     linear-gradient(90deg, rgba(10, 10, 9, 0.9) 0%, rgba(10, 10, 9, 0.78) 55%, rgba(10, 10, 9, 0.6) 100%),
     linear-gradient(180deg, rgba(10, 10, 9, 0.5) 0%, rgba(10, 10, 9, 0) 40%);
 }
+
+/* ============================================================
+   Scrollbars: one premium style across the site.
+   - The page: a dark ink rail (matching the header and footer) with a slim
+     gold-foil pill.
+   - Panels that scroll (price tables, popups, bios, sidebars): no rail, just a
+     thin gold thumb that brightens on hover.
+   Chromium and Safari use the ::-webkit rules (they allow the gradient). Firefox
+   uses the standard properties below. Elements that hide their scrollbar
+   (scrollbar-width: none) keep doing so.
+   ============================================================ */
+:root {
+  --sb-rail: #0d0c0b;
+  --sb-gold: linear-gradient(180deg, #f3e3b5 0%, #d9bc7a 45%, #b88c45 100%);
+  --sb-gold-hover: linear-gradient(180deg, #f8ecc8 0%, #e6cb8c 45%, #c99b52 100%);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-thumb {
+  min-height: 40px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: var(--sb-gold) padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--sb-gold-hover) padding-box; }
+
+/* The page itself (Chromium styles the window scrollbar from body, Safari from html). */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar { width: 12px; }
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: var(--sb-rail);
+  box-shadow: inset 1px 0 0 rgba(217, 188, 122, 0.16);
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  min-height: 64px;
+  border: 3px solid var(--sb-rail);
+  background: var(--sb-gold) padding-box;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover { background: var(--sb-gold-hover) padding-box; }
+
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-color: #c6a15b var(--sb-rail); scrollbar-width: thin; }
+  body * { scrollbar-color: rgba(198, 161, 91, 0.9) transparent; scrollbar-width: thin; }
+}

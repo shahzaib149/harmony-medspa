@@ -3252,18 +3252,6 @@
   transform: scale(1.06);
 }
 
-.team-modal-scroll::-webkit-scrollbar {
-  width: 2px;
-}
-
-.team-modal-scroll::-webkit-scrollbar-track {
-  background: #d4d4d4;
-}
-
-.team-modal-scroll::-webkit-scrollbar-thumb {
-  background: #111;
-}
-
 .contact-page-header {
   position: relative;
   z-index: 20;
@@ -6185,8 +6173,6 @@
     padding: 0 48px 48px; /* room for the cards' 48px shadows inside the scroll box */
     overflow-y: auto;
     overscroll-behavior: contain;
-    scrollbar-color: #d8cbb2 transparent;
-    scrollbar-width: thin;
   }
 
   .blog-side-sticky.blog-side-post {
